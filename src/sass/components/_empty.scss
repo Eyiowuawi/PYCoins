@@ -1,0 +1,12 @@
+.empty {
+  background-color: $color-white;
+  @include flex(column, center, center);
+
+  @include border(#E5E9F2);
+  border-radius: 5px;
+  padding: 8rem 0;
+  p{
+      width: 35%;
+      text-align: center;
+  }
+}

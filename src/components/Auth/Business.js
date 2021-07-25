@@ -2,11 +2,10 @@ import Button from "../UI/Button";
 import Input from "../UI/Input";
 import AuthFooter from "./AuthFooter";
 
-
 import upload from "../../assets/upload.svg";
 const title = "Already have an account?";
 const linkTitle = "Login";
-const link="/login"
+const link = "/login";
 
 const Business = ({ businessForm, handleSubmit }) => {
   const formArr = [];
@@ -17,13 +16,13 @@ const Business = ({ businessForm, handleSubmit }) => {
     });
   }
 
-  const form = formArr.map(({ key, config }) => (
+  const form = formArr.map(({ id, config }) => (
     <Input
+      key={id}
       value={config.value}
       type={config.type}
       elementType={config.elementType}
       placeholder={config.placeholder}
-      key={config.key}
       options={config.options}
     />
   ));
@@ -40,7 +39,7 @@ const Business = ({ businessForm, handleSubmit }) => {
         </label>
         <Button onclick={handleSubmit}>Continue</Button>
       </form>
-      <AuthFooter title={title} linkTitle={linkTitle} link={link}  />
+      <AuthFooter title={title} linkTitle={linkTitle} link={link} />
     </>
   );
 };

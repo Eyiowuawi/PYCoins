@@ -1,0 +1,44 @@
+.sidebar {
+  position: fixed;
+  width: 350px;
+  height: 100vh;
+  background-color: $bg-color;
+  font-family: $font-family;
+  padding: 2rem 4rem 6rem 4rem;
+
+  &_container {
+    height: 100%;
+    @include flex(column, flex-start, initial);
+  }
+
+  &_name {
+    margin: 2.5rem 0;
+    background-color: $color-white;
+    padding: 1rem;
+    @include border(#e5e9f2);
+    border-radius: 5px;
+
+
+    h5 {
+      color: #1d1e2c;
+      font-size: 1rem;
+      font-weight: auto;
+      line-height: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    P {
+      font-size: 13px;
+      line-height: 16px;
+      color: $color-sidebar
+    }
+  }
+
+
+  &_footer{
+      @include flex(row, initial, center);
+      span{
+          margin-left: 1rem;
+      }
+  }
+}

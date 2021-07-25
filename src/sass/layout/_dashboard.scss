@@ -1,0 +1,11 @@
+.dashboard {
+
+  &_container {
+    @include flex(row, initial, flex-start);
+  }
+
+  &_content {
+    margin-left: 350px;
+    width: 100%;
+  }
+}

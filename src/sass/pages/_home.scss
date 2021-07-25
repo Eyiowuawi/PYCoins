@@ -1,0 +1,37 @@
+.home {
+  width: 100%;
+
+  position: relative;
+  &_container {
+    @include flex(row, space-between, stretch);
+  }
+
+  &_name {
+    @include flex(column, space-between, initial);
+  }
+
+  &_switch {
+    @include flex(row, flex-start, center);
+    @include border(#e5e9f2);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+
+    img {
+      margin-right: 1rem;
+    }
+  }
+
+  &_wallets {
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    @include flex(row, space-between, center);
+
+    span {
+      margin-right: 1rem;
+    }
+  }
+
+  &_empty {
+    margin-top: 5rem;
+  }
+}

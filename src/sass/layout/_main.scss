@@ -1,0 +1,11 @@
+.main {
+  margin-top: 76px;
+  width: 100%;
+  min-height: calc(100vh - 76px);
+
+  &_container {
+    margin-left: 2rem;
+    margin-right: 80px;
+    padding: 2rem 0 5rem 0;
+  }
+}

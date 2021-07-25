@@ -1,0 +1,27 @@
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: calc(100vw - 350px);
+  background-color: $color-white;
+  border-bottom: 3px solid #f8f8f8;
+
+  &_container {
+    padding: 16px 48px;
+    @include flex(row, flex-end, center);
+    & * {
+      margin-right: 32px;
+    }
+  }
+
+  &_name {
+    width: 40px;
+    height: 40px;
+    border-radius:50%;
+    background-color:#444854;
+    @include flex(row, center, center);
+    color:  #FFFFFF;
+    font-size: 16px;
+    font-family: $font-family;
+  }
+}

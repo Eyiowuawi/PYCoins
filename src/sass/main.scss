@@ -7,11 +7,19 @@
 
 @import "components/button";
 @import "components/form";
+@import "components/crypto";
 @import "components/indicator";
+@import "components/empty";
 
 @import "layout/auth";
+@import "layout/dashboard";
+@import "layout/header";
+@import "layout/nav";
+@import "layout/sidebar";
+@import "layout/main";
 
 @import "pages/create";
 @import "pages/verify";
 @import "pages/business";
 @import "pages/personal";
+@import "pages/home"
