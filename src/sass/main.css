@@ -462,6 +462,111 @@ a {
   text-align: center;
 }
 
+.table {
+  width: 100%;
+}
+
+.table thead {
+  text-align: left;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #e5e9f2;
+  padding: 1rem 0;
+}
+
+.table th {
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.03em;
+  color: #787676;
+  font-family: "Mulish", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.table td {
+  font-family: "Mulish", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #909198;
+}
+
+.table tbody tr td:first-of-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.table tbody tr td:first-of-type div {
+  margin-right: 1rem;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.table tbody tr td:first-of-type .sent {
+  background: rgba(235, 67, 53, 0.08);
+}
+
+.table tbody tr td:first-of-type .received {
+  background: rgba(72, 209, 137, 0.08);
+}
+
+.table tbody tr td:last-of-type {
+  vertical-align: middle;
+  font-weight: normal !important;
+}
+
+.table tbody tr td:last-of-type span {
+  display: inline-block !important;
+  padding: 0.2rem 0.5rem;
+  border-radius: 100px;
+  font-size: 12px;
+  border: 2px solid #ffffff;
+}
+
+.table .failed {
+  color: #cc4945;
+  background-color: #fff3f3;
+}
+
+.table .pending {
+  color: #cc9600;
+  background-color: #fffade;
+}
+
+.table .success {
+  color: #188f32;
+  background-color: #deffe5;
+}
+
 .auth {
   width: 100%;
   min-height: 100vh;
@@ -808,7 +913,7 @@ a {
 
 .main_container {
   margin-left: 2rem;
-  margin-right: 80px;
+  margin-right: 48px;
   padding: 2rem 0 5rem 0;
 }
 

@@ -1,0 +1,76 @@
+.table {
+  width: 100%;
+
+  thead {
+    text-align: left;
+  }
+
+  th,
+  td {
+    border-bottom: 1px solid #e5e9f2;
+    padding: 1rem 0;
+  }
+
+  th {
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.03em;
+    color: #787676;
+    font-family: $font-family;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  td {
+    font-family: $font-family;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: $color-sidebar;
+  }
+
+  tbody tr td:first-of-type {
+    @include flex(row, flex-start, center);
+
+    div {
+      margin-right: 1rem;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      @include flex(row, center, center);
+    }
+    .sent {
+      background: rgba(235, 67, 53, 0.08);
+    }
+    .received {
+      background: rgba(72, 209, 137, 0.08);
+    }
+  }
+
+  tbody tr td:last-of-type {
+    vertical-align: middle;
+    font-weight: normal !important;
+
+    span {
+      display: inline-block !important;
+      padding: 0.2rem 0.5rem;
+      border-radius: 100px;
+      font-size: 12px;
+      border: 2px solid #ffffff;
+    }
+  }
+
+  .failed {
+    color: $color-failed;
+    background-color: $bg-color-failed;
+  }
+  .pending {
+    color: $color-pending;
+    background-color: $bg-color-pending;
+  }
+  .success {
+    color: $color-success;
+    background-color: $bg-color-success;
+  }
+}

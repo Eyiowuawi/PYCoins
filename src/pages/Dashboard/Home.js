@@ -6,6 +6,9 @@ import User from "../../components/Dashboard/User";
 import RegisterBusiness from "../../components/RegisterBusiness";
 import CryptoCurrency from "../../components/UI/CrytptoCurrency";
 import Empty from "../../components/UI/Empty";
+import Table from "../../components/UI/Table";
+
+import { transactions } from "../../constants";
 
 const Dashboard = () => {
   const date = useMemo(() => {
@@ -34,10 +37,8 @@ const Dashboard = () => {
       </div>
       <CryptoCurrency />
       <div className="home_empty">
-        <p className="title title-small mb-small">
-          Recent Transactions{" "}
-        </p>
-        <Empty>
+        <p className="title title-small mb-small">Recent Transactions </p>
+        {/* <Empty>
           <h3 className="title title-black mb-small mt-small">
             Your transaction history is currently empty!
           </h3>
@@ -45,7 +46,8 @@ const Dashboard = () => {
             Once you start receiving payments, the transaction details will
             appear here.
           </p>
-        </Empty>
+        </Empty> */}
+        <Table data={transactions} />
       </div>
     </div>
   );
