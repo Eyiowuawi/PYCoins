@@ -1,0 +1,29 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(10px);
+  overflow-y: auto;
+
+  &_container {
+    width: 700px;
+    max-width: 90%;
+    margin: 10rem auto;
+    background-color: $color-white;
+    padding: 2rem;
+    border-radius: 10px;
+    position: relative;
+  }
+
+  &_close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    cursor: pointer;
+  }
+}

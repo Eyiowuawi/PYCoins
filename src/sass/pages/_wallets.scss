@@ -1,0 +1,32 @@
+.wallets {
+  width: 100%;
+
+  &_crypto {
+    margin-top: 2rem;
+
+    &-list {
+      @include flex(row, space-between, center);
+    }
+
+    &-item {
+      @include border(#e5e9f2);
+      background-color: $color-white;
+      flex-basis: 20%;
+      padding: 1rem;
+      @include flex(column, space-between, initial);
+      border-radius: 5px;
+    }
+
+    &-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    &-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

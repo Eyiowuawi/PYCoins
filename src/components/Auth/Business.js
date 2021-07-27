@@ -1,13 +1,10 @@
 import Button from "../UI/Button";
 import Input from "../UI/Input";
-import AuthFooter from "./AuthFooter";
 
 import upload from "../../assets/upload.svg";
-const title = "Already have an account?";
-const linkTitle = "Login";
-const link = "/login";
 
-const Business = ({ businessForm, handleSubmit }) => {
+
+const Business = ({ businessForm, handleSubmit, children }) => {
   const formArr = [];
   for (let key in businessForm) {
     formArr.push({
@@ -39,7 +36,7 @@ const Business = ({ businessForm, handleSubmit }) => {
         </label>
         <Button onclick={handleSubmit}>Continue</Button>
       </form>
-      <AuthFooter title={title} linkTitle={linkTitle} link={link} />
+      {children && children}
     </>
   );
 };

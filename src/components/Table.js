@@ -1,5 +1,5 @@
-import Received from "../../assets/received.svg";
-import Sent from "../../assets/sent.svg";
+import Received from "../assets/received.svg";
+import Sent from "../assets/sent.svg";
 
 const Table = ({ data }) => {
   return (

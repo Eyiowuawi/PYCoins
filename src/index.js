@@ -1,17 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import "./sass/main.css"
-import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from "react-router-dom"
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./sass/main.css";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import ModalComponent from "./context";
 
 ReactDOM.render(
   <BrowserRouter>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <ModalComponent>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ModalComponent>
   </BrowserRouter>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

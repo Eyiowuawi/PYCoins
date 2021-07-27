@@ -1,15 +1,15 @@
 import { useState } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import Input from "../../components/UI/Input";
 import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
 
 import show from "../../assets/show.svg";
 const title = "Don't have an account?";
-const link = "/";
-const linkTitle= "Sign Up"
+const link = "/create";
+const linkTitle = "Sign Up";
 
-const Login = () => {
+const Login = ({ history }) => {
   const [loginForm] = useState({
     email: {
       value: "",
@@ -27,6 +27,11 @@ const Login = () => {
       image: show,
     },
   });
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    history.push("/");
+  };
 
   const formArr = [];
   for (let key in loginForm) {
@@ -57,9 +62,13 @@ const Login = () => {
         </p>
         <form>
           {form}
-          <Button>Sign In </Button>
+          <Button onclick={handleSubmit}>Sign In </Button>
         </form>
-        <Link to="/forgotpassword" className="link ta mt-small" style={{ width: "100%" }}>
+        <Link
+          to="/forgotpassword"
+          className="link ta mt-small"
+          style={{ width: "100%" }}
+        >
           Forgot Password?
         </Link>
         <AuthFooter title={title} link={link} linkTitle={linkTitle} />

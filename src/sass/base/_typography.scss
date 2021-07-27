@@ -52,8 +52,8 @@
   line-height: 1.125rem;
   display: inline-block;
 
-  &-small{
-    font-size:1rem !important;
+  &-small {
+    font-size: 1rem !important;
   }
 }
 
@@ -86,4 +86,13 @@
   &-grey {
     color: #909198;
   }
+}
+
+.mute {
+  font-family: $font-family;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  color: #1d1e2c;
 }

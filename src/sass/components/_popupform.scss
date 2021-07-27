@@ -1,0 +1,12 @@
+.popupform {
+  form {
+    padding-top: 2rem;
+  }
+
+  svg {
+    position: absolute;
+  }
+  &_back {
+    cursor: pointer;
+  }
+}

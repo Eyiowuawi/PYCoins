@@ -1,4 +1,6 @@
-import { Switch, Route } from "react-router-dom";
+// import {  useState } from "react";
+import { Switch, Route, useLocation } from "react-router-dom";
+
 import AuthLayout from "./layout/Auth";
 import DashboardLayout from "./layout/Dashboard";
 
@@ -16,20 +18,42 @@ import Payment from "./pages/Dashboard/Payment";
 import Wallet from "./pages/Dashboard/Wallet";
 import Settings from "./pages/Dashboard/Settings";
 
+// Popup component
+// import Popup from "./pages/Popup";
+
 function App() {
-  return (
-    <div>
-      {/* <AuthLayout>
+  // const [_, setShowPopup] = useState(false);
+  const { pathname } = useLocation();
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     // setShow(true);
+  //     setShowPopup(true);
+  //   }, 5000);
+  // }, []);
+
+  if (
+    pathname === "/login" ||
+    pathname === "/register/business" ||
+    pathname === "/register/personal" ||
+    pathname === "/create" ||
+    pathname === "/forgotpassword" ||
+    pathname === "/resetpassword"
+  ) {
+    return (
+      <AuthLayout>
         <Switch>
-          <Route path="/" exact component={Create} />
+          <Route path="/create" exact component={Create} />
           <Route path="/register/business" component={BusinessForm} />
           <Route path="/register/personal" component={PersonalForm} />
           <Route path="/login" component={Login} />
           <Route path="/forgotpassword" component={ForgotPassword} />
           <Route path="/resetpassword" component={ResetPassword} />
         </Switch>
-      </AuthLayout> */}
-
+      </AuthLayout>
+    );
+  }
+  return (
+    <div>
       <DashboardLayout>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -37,6 +61,7 @@ function App() {
           <Route path="/payment/pay" exact component={Payment} />
           <Route path="/settings" exact component={Settings} />
         </Switch>
+        {/* {showpopup && <Popup closeModal={setShowPopup} />} */}
       </DashboardLayout>
     </div>
   );

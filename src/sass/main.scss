@@ -11,6 +11,12 @@
 @import "components/indicator";
 @import "components/empty";
 @import "components/table";
+@import "components/modal";
+@import "components/response";
+@import "components/settlement";
+@import "components/accounts";
+@import "components/popupform";
+@import "components/primary";
 
 @import "layout/auth";
 @import "layout/dashboard";
@@ -23,4 +29,5 @@
 @import "pages/verify";
 @import "pages/business";
 @import "pages/personal";
-@import "pages/home"
+@import "pages/home";
+@import "pages/wallets";
