@@ -11,7 +11,7 @@ const Settlement = ({handlechange}) => {
       <p className="title title-grey ta mb-small">
         Click on the button below to add new settlement method to your account.
       </p>
-      <Button onclick={handlechange}>
+      <Button bg={"button_primary"} onclick={handlechange}>
         <img src={Plus} alt="Add" className="" />
         <span>Add Settlement Account</span>
       </Button>

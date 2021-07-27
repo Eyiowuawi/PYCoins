@@ -1,0 +1,38 @@
+.cryptodetails {
+  &_link {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    svg {
+      margin-right: 1rem;
+    }
+  }
+
+  &_name {
+    margin-top: 4rem;
+    @include flex(row, initial, center);
+  }
+
+  p {
+    font-weight: 700 !important;
+  }
+
+  &_btns {
+    margin-top: 3rem;
+    width: 400px;
+    @include flex(row, initial, center);
+    button {
+      @include flex(row, center, center);
+      gap: 1rem;
+    }
+
+    button:not(:last-of-type) {
+      margin-right: 2rem;
+    }
+    button:last-of-type {
+      svg {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}

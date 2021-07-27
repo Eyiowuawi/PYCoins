@@ -36,7 +36,7 @@ const PersonalInfo = ({ personalform, formSubmit }) => {
       </p>
       <form onSubmit={formSubmit} className="form mt-small">
         {form}
-        <Button type="submit">Create Account</Button>
+        <Button bg={"button_primary"} type="submit">Create Account</Button>
       </form>
       <AuthFooter title={title} linkTitle={linkTitle} link={link} />
     </>

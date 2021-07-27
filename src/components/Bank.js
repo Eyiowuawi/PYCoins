@@ -36,7 +36,7 @@ const Bank = ({ goBack }) => {
       <form>
         {form}
         <Primary />
-        <Button>Save</Button>
+        <Button bg={"button_primary"}>Save</Button>
       </form>
     </div>
   );

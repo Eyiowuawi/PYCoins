@@ -25,7 +25,7 @@ const ForgotPassword = () => {
             value={email}
             placeholder="Email Address"
           />
-          <Button>Reset Password </Button>
+          <Button bg={"button_primary"}>Reset Password </Button>
         </form>
         <AuthFooter title={title} link={link} linkTitle={linkTitle} />
       </div>

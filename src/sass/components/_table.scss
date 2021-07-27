@@ -30,6 +30,10 @@
     color: $color-sidebar;
   }
 
+  tbody tr{
+    cursor: pointer;
+  }
+
   tbody tr td:first-of-type {
     @include flex(row, flex-start, center);
 

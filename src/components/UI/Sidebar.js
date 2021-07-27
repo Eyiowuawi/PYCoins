@@ -2,6 +2,7 @@ import Logo from "../../assets/Logo.svg";
 import Navigation from "./Navigation/Nav";
 
 import { Logout } from "../../icons";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -15,10 +16,10 @@ const Sidebar = () => {
           <p>ID: 10123856</p>
         </div>
         <Navigation />
-        <div className="sidebar_footer">
+        <Link to="/create" className="sidebar_footer">
           <Logout />
           <p className="nav-text">Logout</p>
-        </div>
+        </Link>
       </div>
     </div>
   );

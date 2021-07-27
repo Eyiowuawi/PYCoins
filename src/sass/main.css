@@ -74,7 +74,7 @@ a {
 
 .title-grey {
   color: #787676;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .title-small {
@@ -160,17 +160,26 @@ a {
 }
 
 .button {
-  padding: 1.2rem 0;
+  padding: 1rem 0;
   width: 100%;
   border: none;
-  background-color: #48d189;
   text-align: center;
-  color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-family: "Mulish", sans-serif;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 700;
+}
+
+.button_white {
+  background-color: #ffffff;
+  border: 1px solid #48d189;
+  color: #48d189;
+}
+
+.button_primary {
+  color: #ffffff;
+  background-color: #48d189;
 }
 
 .form {
@@ -505,6 +514,10 @@ a {
   color: #909198;
 }
 
+.table tbody tr {
+  cursor: pointer;
+}
+
 .table tbody tr td:first-of-type {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -817,6 +830,36 @@ a {
 .primary_label p {
   color: #52575c;
   font-size: 1rem;
+}
+
+.transdetails {
+  width: 100%;
+}
+
+.transdetails_box {
+  margin-top: 2rem;
+}
+
+.transdetails_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid #e5e9f2;
+}
+
+.transdetails_item p:first-of-type {
+  font-weight: 600 !important;
 }
 
 .auth {
@@ -1426,5 +1469,86 @@ a {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.cryptodetails_link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.cryptodetails_link svg {
+  margin-right: 1rem;
+}
+
+.cryptodetails_name {
+  margin-top: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: initial;
+      -ms-flex-pack: initial;
+          justify-content: initial;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cryptodetails p {
+  font-weight: 700 !important;
+}
+
+.cryptodetails_btns {
+  margin-top: 3rem;
+  width: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: initial;
+      -ms-flex-pack: initial;
+          justify-content: initial;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cryptodetails_btns button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+.cryptodetails_btns button:not(:last-of-type) {
+  margin-right: 2rem;
+}
+
+.cryptodetails_btns button:last-of-type svg {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 /*# sourceMappingURL=main.css.map */

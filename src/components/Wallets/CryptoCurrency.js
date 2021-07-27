@@ -27,8 +27,8 @@ const Cryptocurrency = () => {
       </Link>
       <Link
         to={{
-            pathname: "/wallet/crypto",
-            search: "?currency=Ethereum",
+          pathname: "/wallet/crypto",
+          search: "?currency=Ethereum",
         }}
         className="wallets_crypto-item"
       >
@@ -45,8 +45,8 @@ const Cryptocurrency = () => {
       </Link>
       <Link
         to={{
-            pathname: "/wallet/crypto",
-            search: "?currency=Tether",
+          pathname: "/wallet/crypto",
+          search: "?currency=Tether",
         }}
         className="wallets_crypto-item"
       >

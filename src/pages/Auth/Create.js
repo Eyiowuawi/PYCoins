@@ -59,7 +59,7 @@ const Create = ({ history }) => {
                 <span className="small">Unregistered Business/Personal</span>
               </label>
             </div>
-            <Button onclick={handleRouteChange}>Continue</Button>
+            <Button bg={"button_primary"} onclick={handleRouteChange}>Continue</Button>
           </div>
         </div>
       </div>

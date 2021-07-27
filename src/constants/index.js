@@ -1,3 +1,6 @@
+import Bitcoin from '../assets/bitcoin.svg'
+import Ethereum from '../assets/ethereum.svg'
+import Tether from '../assets/tether.svg'
 
 export const transactions = [
     {id: 1, type: "Sent", name: "Sent Naira", amount: "10,0000.00 NGN", date: "June 10, 2021", status: "Success"},
@@ -11,3 +14,12 @@ export const transactions = [
     {id: 9, type: "Sent", name: "Sent Tether", amount: "1,000 USD₮", date: "June 27, 2021", status: "Pending"},
     {id: 10, type: "Received", name: "Received Bitcoin", amount: "0.000521 BTC", date: "June 30, 2021", status: "Failed"},
 ] ;
+
+
+
+
+export const cryptos = [
+    {id: 1, name: "Bitcoin", img: Bitcoin},
+    {id: 2, name: "Ethereum", img: Ethereum},
+    {id: 3, name: "Tether", img: Tether},
+]

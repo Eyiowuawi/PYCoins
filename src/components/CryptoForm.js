@@ -18,7 +18,7 @@ const CryptoForm = ({ name, goBack }) => {
           type="text"
         />
         <Primary />
-        <Button>Save</Button>
+        <Button bg={"button_primary"}>Save</Button>
       </form>
     </div>
   );

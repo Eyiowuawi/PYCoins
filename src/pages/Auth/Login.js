@@ -62,7 +62,7 @@ const Login = ({ history }) => {
         </p>
         <form>
           {form}
-          <Button onclick={handleSubmit}>Sign In </Button>
+          <Button bg={"button_primary"} onclick={handleSubmit}>Sign In </Button>
         </form>
         <Link
           to="/forgotpassword"

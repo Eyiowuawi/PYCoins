@@ -1,7 +1,7 @@
 import Received from "../assets/received.svg";
 import Sent from "../assets/sent.svg";
 
-const Table = ({ data }) => {
+const Table = ({ data, onclick }) => {
   return (
     <table className="table">
       <thead>
@@ -14,7 +14,7 @@ const Table = ({ data }) => {
       </thead>
       <tbody>
         {data.map((item) => (
-          <tr key={item.id}>
+          <tr key={item.id} onClick={onclick}>
             <td>
               <div className={item.type === "Sent" ? "sent" : "received"}>
                 <img src={item.type === "Sent" ? Sent : Received} alt="Icon" />

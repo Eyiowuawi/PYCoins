@@ -1,4 +1,4 @@
-// import {  useState } from "react";
+import { useState, useEffect } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 
 import AuthLayout from "./layout/Auth";
@@ -17,19 +17,20 @@ import Home from "./pages/Dashboard/Home";
 import Payment from "./pages/Dashboard/Payment";
 import Wallet from "./pages/Dashboard/Wallet";
 import Settings from "./pages/Dashboard/Settings";
+import CryptoDetails from "./pages/Dashboard/CryptoDetails";
 
 // Popup component
-// import Popup from "./pages/Popup";
+import Popup from "./pages/Popup";
 
 function App() {
-  // const [_, setShowPopup] = useState(false);
+  const [showpopup, setShowPopup] = useState(false);
   const { pathname } = useLocation();
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     // setShow(true);
-  //     setShowPopup(true);
-  //   }, 5000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      // setShow(true);
+      setShowPopup(true);
+    }, 5000);
+  }, []);
 
   if (
     pathname === "/login" ||
@@ -60,6 +61,7 @@ function App() {
           <Route path="/wallet" exact component={Wallet} />
           <Route path="/payment/pay" exact component={Payment} />
           <Route path="/settings" exact component={Settings} />
+          <Route path="/wallet/crypto" component={CryptoDetails} />
         </Switch>
         {/* {showpopup && <Popup closeModal={setShowPopup} />} */}
       </DashboardLayout>

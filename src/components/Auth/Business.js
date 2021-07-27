@@ -3,7 +3,6 @@ import Input from "../UI/Input";
 
 import upload from "../../assets/upload.svg";
 
-
 const Business = ({ businessForm, handleSubmit, children }) => {
   const formArr = [];
   for (let key in businessForm) {
@@ -34,7 +33,9 @@ const Business = ({ businessForm, handleSubmit, children }) => {
           <span>Upload Business Incorporation Document</span>
           <img src={upload} alt="Upload Document" />
         </label>
-        <Button onclick={handleSubmit}>Continue</Button>
+        <Button bg={"button_primary"} onclick={handleSubmit}>
+          Continue
+        </Button>
       </form>
       {children && children}
     </>
