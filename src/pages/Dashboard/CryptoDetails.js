@@ -6,11 +6,23 @@ import Button from "../../components/UI/Button";
 import Plus from "../../assets/plus.svg";
 import Table from "./../../components/Table";
 import TransactionsDetails from "./../../components/TransactionDetails";
+import FundWallet from "../../components/Fund";
+import Settlement from "../../components/Settlement";
+import Accounts from "../../components/Account";
+import Modal from "../../components/UI/Modal";
+import WithdrawForm from "../../components/WithdrawForm";
 
 const CryptoDetails = () => {
   const [show, setShow] = useState(false);
+  const [fund, setFund] = useState(false);
+  const [withdraw, setWithdraw] = useState(false);
+  const [name, setName] = useState("");
   const { search } = useLocation();
   const currency = search.substring(10);
+
+  const handleChange = (name) => {
+    setName(name);
+  };
 
   const { img } = cryptos.find((item) => item.name === currency);
 
@@ -39,11 +51,11 @@ const CryptoDetails = () => {
         <p className="title title-grey mt-small">TOTAL BALANCE</p>
         <p className="title title-grey mt-small">0.00 BTC</p>
         <div className="cryptodetails_btns">
-          <Button bg={"button_primary"}>
+          <Button bg={"button_primary"} onclick={() => setFund(true)}>
             <img src={Plus} alt="Add" className="" />
             <span>Fund</span>
           </Button>
-          <Button bg={"button_white"}>
+          <Button bg={"button_white"} onclick={() => setWithdraw(true)}>
             <RightArrow fill="#48d189" />
             <span> Withdraw</span>
           </Button>
@@ -54,6 +66,13 @@ const CryptoDetails = () => {
         </div>
       </div>
       {show && <TransactionsDetails close={setShow} />}
+      {fund && <FundWallet close={setFund} />}
+      {withdraw && (
+        <Modal>
+          <Accounts name={name} showForm={handleChange} />
+          {name !== "" && <WithdrawForm name="" />}
+        </Modal>
+      )}
     </>
   );
 };

@@ -7,13 +7,7 @@ import Tether from "../assets/tether.svg";
 import Bank from "./Bank";
 import CryptoForm from "./CryptoForm";
 
-const Accounts = () => {
-  const [name, setName] = useState("");
-
-  const handleBack = () => {
-    setName("");
-  };
-
+const Accounts = ({ showForm, goBack, name }) => {
   return (
     <>
       {name === "" && (
@@ -22,14 +16,17 @@ const Accounts = () => {
           <div className="accounts_container">
             <h5 className="mute">SELECT YOUR SETTLEMENT METHOD </h5>
             <div className="accounts_list">
-              <div className="accounts_item" onClick={() => setName("bank")}>
+              <div className="accounts_item" onClick={() => showForm("bank")}>
                 <div className="accounts_img accounts_img-1">
                   <House fill="#787676" width={"14"} height="14" />
                 </div>
                 <p>Bank Account</p>
                 <img src={Proceed} alt="Continue" />
               </div>
-              <div className="accounts_item" onClick={() => setName("Bitcoin")}>
+              <div
+                className="accounts_item"
+                onClick={() => showForm("Bitcoin")}
+              >
                 <div className="accounts_img accounts_img-2">
                   <img src={Bitcoin} alt="Bitcoin" />
                 </div>
@@ -38,7 +35,7 @@ const Accounts = () => {
               </div>
               <div
                 className="accounts_item"
-                onClick={() => setName("Ethereum")}
+                onClick={() => showForm("Ethereum")}
               >
                 <div className="accounts_img accounts_img-3">
                   <img src={Ethereum} alt="Ethereum" />
@@ -46,7 +43,7 @@ const Accounts = () => {
                 <p>Ethereum Wallet </p>
                 <img src={Proceed} alt="Continue" />
               </div>
-              <div className="accounts_item" onClick={() => setName("Tether")}>
+              <div className="accounts_item" onClick={() => showForm("Tether")}>
                 <div className="accounts_img accounts_img-4">
                   <img src={Tether} alt="Tether" />
                 </div>
@@ -57,8 +54,6 @@ const Accounts = () => {
           </div>
         </div>
       )}
-      {name === "bank" && <Bank goBack={handleBack} />}
-      {name !== "" && name !== "bank" && <CryptoForm name={name} goBack={handleBack}/>}
     </>
   );
 };

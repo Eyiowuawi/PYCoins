@@ -1,0 +1,20 @@
+.fund {
+  @include flex(column, initial, stretch);
+  margin-top: 3rem;
+
+  &_img {
+    align-self: center;
+    margin-bottom: 3rem;
+    @include border(#e5e9f2);
+    padding: 0.5rem;
+  }
+
+  &_wallet {
+    @include line;
+    @include flex(row, space-between, center);
+  }
+
+  &_details {
+    @include flex(row, space-between, center);
+  }
+}
