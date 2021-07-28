@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { cryptos } from "../../constants";
 import Modal from "./../../components/UI/Modal";
 import Account from "../../components/Account";
 import Settlement from "../../components/Settlement";
@@ -27,7 +28,12 @@ const Popup = ({ closeModal }) => {
     <Modal close={closeModal}>
       {account === "" && <Settlement handlechange={handleChange} />}
       {account === "account" && (
-        <Account name={name}  showForm={showForm} goBack={handleBack} />
+        <Account
+          cryptos={cryptos}
+          name={name}
+          showForm={showForm}
+          goBack={handleBack}
+        />
       )}
       {name === "bank" && <Bank goBack={handleBack} />}
       {name !== "" && name !== "bank" && (

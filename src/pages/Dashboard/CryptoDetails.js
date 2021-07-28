@@ -9,20 +9,16 @@ import TransactionsDetails from "./../../components/TransactionDetails";
 import FundWallet from "../../components/Fund";
 import Settlement from "../../components/Settlement";
 import Accounts from "../../components/Account";
-import Modal from "../../components/UI/Modal";
-import WithdrawForm from "../../components/WithdrawForm";
+import WithDraw from "./Withdraw";
 
 const CryptoDetails = () => {
   const [show, setShow] = useState(false);
   const [fund, setFund] = useState(false);
   const [withdraw, setWithdraw] = useState(false);
-  const [name, setName] = useState("");
+ 
   const { search } = useLocation();
   const currency = search.substring(10);
 
-  const handleChange = (name) => {
-    setName(name);
-  };
 
   const { img } = cryptos.find((item) => item.name === currency);
 
@@ -67,12 +63,7 @@ const CryptoDetails = () => {
       </div>
       {show && <TransactionsDetails close={setShow} />}
       {fund && <FundWallet close={setFund} />}
-      {withdraw && (
-        <Modal>
-          <Accounts name={name} showForm={handleChange} />
-          {name !== "" && <WithdrawForm name="" />}
-        </Modal>
-      )}
+      {withdraw && <WithDraw currency={currency} close={setWithdraw} />}
     </>
   );
 };

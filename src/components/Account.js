@@ -7,7 +7,7 @@ import Tether from "../assets/tether.svg";
 import Bank from "./Bank";
 import CryptoForm from "./CryptoForm";
 
-const Accounts = ({ showForm, goBack, name }) => {
+const Accounts = ({ showForm, goBack, name, cryptos }) => {
   return (
     <>
       {name === "" && (
@@ -23,33 +23,19 @@ const Accounts = ({ showForm, goBack, name }) => {
                 <p>Bank Account</p>
                 <img src={Proceed} alt="Continue" />
               </div>
-              <div
-                className="accounts_item"
-                onClick={() => showForm("Bitcoin")}
-              >
-                <div className="accounts_img accounts_img-2">
-                  <img src={Bitcoin} alt="Bitcoin" />
+              {cryptos.map((item) => (
+                <div
+                  key={item.name}
+                  className="accounts_item"
+                  onClick={() => showForm(item.name)}
+                >
+                  <div className={item.classname}>
+                    <img src={item.img} alt={item.name} />
+                  </div>
+                  <p>{item.name} Wallet</p>
+                  <img src={Proceed} alt="Continue" />
                 </div>
-                <p>Bitcoin Wallet</p>
-                <img src={Proceed} alt="Continue" />
-              </div>
-              <div
-                className="accounts_item"
-                onClick={() => showForm("Ethereum")}
-              >
-                <div className="accounts_img accounts_img-3">
-                  <img src={Ethereum} alt="Ethereum" />
-                </div>
-                <p>Ethereum Wallet </p>
-                <img src={Proceed} alt="Continue" />
-              </div>
-              <div className="accounts_item" onClick={() => showForm("Tether")}>
-                <div className="accounts_img accounts_img-4">
-                  <img src={Tether} alt="Tether" />
-                </div>
-                <p>Tether Wallet</p>
-                <img src={Proceed} alt="Continue" />
-              </div>
+              ))}
             </div>
           </div>
         </div>

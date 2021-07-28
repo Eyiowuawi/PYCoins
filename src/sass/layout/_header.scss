@@ -8,19 +8,32 @@
 
   &_container {
     padding: 16px 48px;
+  }
+
+  &_desktop {
     @include flex(row, flex-end, center);
     & * {
       margin-right: 32px;
+    }
+    @include respond(tab-port) {
+      display: none;
+    }
+  }
+
+  &_mobile {
+    display: none;
+    @include respond(tab-port) {
+      display: flex;
     }
   }
 
   &_name {
     width: 40px;
     height: 40px;
-    border-radius:50%;
-    background-color:#444854;
+    border-radius: 50%;
+    background-color: #444854;
     @include flex(row, center, center);
-    color:  #FFFFFF;
+    color: #ffffff;
     font-size: 16px;
     font-family: $font-family;
   }
