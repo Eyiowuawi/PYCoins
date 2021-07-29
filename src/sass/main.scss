@@ -19,6 +19,8 @@
 @import "components/label";
 @import "components/transdetails";
 @import "components/fund";
+@import "components/back";
+@import "components/balance";
 
 @import "layout/auth";
 @import "layout/dashboard";
@@ -26,6 +28,7 @@
 @import "layout/nav";
 @import "layout/sidebar";
 @import "layout/main";
+@import "layout/background";
 
 @import "pages/create";
 @import "pages/verify";
@@ -35,3 +38,5 @@
 @import "pages/wallets";
 @import "pages/cryptodetails";
 @import "pages/payment";
+@import "pages/paymentpage";
+@import "pages/paymentdetails";

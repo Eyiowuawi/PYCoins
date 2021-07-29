@@ -1,0 +1,27 @@
+.balance {
+  width: 100%;
+
+  @include flex(row, space-between, sretch);
+  &_item {
+    @include border(#e5e9f2);
+    flex-basis: 50%;
+    @include flex(row, flex-start, center);
+    padding-left: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
+  }
+
+  &_content {
+    margin-left: 1rem;
+    p:first-of-type {
+      font-weight: 800 !important;
+    }
+    p:nth-last-of-type(2) {
+      font-weight: 600 !important;
+      font-size: 18px !important;
+    }
+  }
+}

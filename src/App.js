@@ -21,6 +21,8 @@ import CryptoDetails from "./pages/Dashboard/CryptoDetails";
 
 // Popup component
 import Popup from "./pages/Popup";
+import PaymentDetails from "./pages/Dashboard/PaymentDetails";
+import PaymentPage from "./pages/PaymentPage";
 
 function App() {
   const [showpopup, setShowPopup] = useState(false);
@@ -52,6 +54,8 @@ function App() {
         </Switch>
       </AuthLayout>
     );
+  } else if (pathname === "/paymentpage") {
+    return <PaymentPage />;
   }
   return (
     <div>
@@ -60,6 +64,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/wallet" exact component={Wallet} />
           <Route path="/payment/pay" exact component={Payment} />
+          <Route path="/payment/pay/:id" exact component={PaymentDetails} />
           <Route path="/settings" exact component={Settings} />
           <Route path="/wallet/crypto" component={CryptoDetails} />
         </Switch>

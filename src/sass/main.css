@@ -52,6 +52,10 @@ a {
   margin-bottom: 1.5rem;
 }
 
+.mb-smaller {
+  margin-bottom: .5rem;
+}
+
 .mt-small {
   margin-top: 1.5rem;
 }
@@ -157,6 +161,15 @@ a {
   font-size: 14px;
   line-height: 18px;
   color: #1d1e2c;
+}
+
+.delete {
+  font-family: "Mulish", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23px;
+  color: #eb5757;
 }
 
 .button {
@@ -765,12 +778,9 @@ a {
   padding-top: 2rem;
 }
 
-.popupform svg {
-  position: absolute;
-}
-
 .popupform_back {
   cursor: pointer;
+  position: absolute;
 }
 
 .label_input {
@@ -914,77 +924,76 @@ a {
           align-items: center;
 }
 
-.auth {
-  width: 100%;
-  min-height: 100vh;
-}
-
-.auth_container {
+.back {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.back svg {
+  margin-right: 1rem;
+}
+
+.balance {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: initial;
-      -ms-flex-align: initial;
-          align-items: initial;
-  min-height: 100vh;
-  height: 100%;
-  position: relative;
+  -webkit-box-align: sretch;
+      -ms-flex-align: sretch;
+          align-items: sretch;
 }
 
-.auth_bgcolor {
-  -ms-flex-preferred-size: 400px;
-      flex-basis: 400px;
-  background-color: #fafafa;
-}
-
-@media (max-width: 800px) {
-  .auth_bgcolor {
-    background-color: transparent;
-  }
-}
-
-.auth_ext {
-  -webkit-box-flex: 2;
-      -ms-flex-positive: 2;
-          flex-grow: 2;
-  background-color: #ffffff;
-}
-
-.auth_content {
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
-  width: 700px;
-  max-width: 90%;
-  margin: auto;
+.balance_item {
+  border: 1px solid #e5e9f2;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: initial;
-      -ms-flex-pack: initial;
-          justify-content: initial;
-  -webkit-box-align: initial;
-      -ms-flex-align: initial;
-          align-items: initial;
-  padding: 4rem 0;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
-.auth_img {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+.balance_item:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.balance_content {
+  margin-left: 1rem;
+}
+
+.balance_content p:first-of-type {
+  font-weight: 800 !important;
+}
+
+.balance_content p:nth-last-of-type(2) {
+  font-weight: 600 !important;
+  font-size: 18px !important;
 }
 
 .auth_form {
@@ -1291,6 +1300,79 @@ a {
   padding: 2rem 0 5rem 0;
 }
 
+.background {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.background_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: initial;
+      -ms-flex-align: initial;
+          align-items: initial;
+  min-height: 100vh;
+  height: 100%;
+  position: relative;
+}
+
+.background_bgcolor {
+  -ms-flex-preferred-size: 400px;
+      flex-basis: 400px;
+  background-color: #fafafa;
+}
+
+@media (max-width: 800px) {
+  .background_bgcolor {
+    background-color: transparent;
+  }
+}
+
+.background_ext {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  background-color: #ffffff;
+}
+
+.background_content {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  width: 700px;
+  max-width: 90%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: initial;
+      -ms-flex-pack: initial;
+          justify-content: initial;
+  -webkit-box-align: initial;
+      -ms-flex-align: initial;
+          align-items: initial;
+  padding: 4rem 0;
+}
+
+.background_img {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
 .create {
   width: 100%;
 }
@@ -1550,22 +1632,6 @@ a {
           justify-content: space-between;
 }
 
-.cryptodetails_link {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-}
-
-.cryptodetails_link svg {
-  margin-right: 1rem;
-}
-
 .cryptodetails_name {
   margin-top: 4rem;
   display: -webkit-box;
@@ -1715,5 +1781,143 @@ a {
 
 .payment_created button svg, .payment_created button img {
   margin-right: 1rem;
+}
+
+.paymentpage {
+  margin-top: 3rem;
+  background-color: #ffffff;
+  padding: 2rem 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.paymentpage_img {
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+}
+
+.paymentpage .ta {
+  width: 80%;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.paymentpage_form {
+  margin-top: 2rem;
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
+}
+
+.paymentpage_pay {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.paymentpage_wallets {
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
+  margin-top: 2rem;
+}
+
+.paymentpage_qr {
+  margin-top: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #E5E9F2;
+  border-radius: 10px;
+  padding: .6rem;
+}
+
+.paymentdetails {
+  width: 100%;
+}
+
+.paymentdetails_header {
+  margin: 4rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.paymentdetails_ctas {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.paymentdetails_ctas div {
+  margin-right: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.paymentdetails_ctas div p {
+  margin-left: 0.5rem;
 }
 /*# sourceMappingURL=main.css.map */

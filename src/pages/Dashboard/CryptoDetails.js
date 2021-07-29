@@ -10,6 +10,7 @@ import FundWallet from "../../components/CryptoDetails/Fund";
 import Settlement from "../../components/Popup/Settlement";
 import Accounts from "../../components/Account";
 import WithDraw from "../../components/CryptoDetails/Withdraw";
+import Back from "../../components/Back";
 
 const CryptoDetails = () => {
   const [show, setShow] = useState(false);
@@ -32,12 +33,7 @@ const CryptoDetails = () => {
   return (
     <>
       <div className="cryptodetails">
-        <Link to="/wallet" className="cryptodetails_link">
-          <div>
-            <LeftArrow fill={"#333333"} />
-          </div>
-          <p className="title title-black">Wallet</p>
-        </Link>
+        <Back to="/wallet" title="Wallet" />
         <div className="cryptodetails_name">
           <div className={["crypto_img", classname].join(" ")}>
             <img src={img} alt={currency} />

@@ -5,9 +5,16 @@ import Button from "../../components/UI/Button";
 import Link from "../../assets/link.svg";
 import PaymentForm from "../../components/Payment/PaymentForm";
 import usePaymentForm from "../../hooks/paymentform";
-const Payment = () => {
+import PaymentTable from "../../components/Payment/Table";
+import { paymentTable } from "../../constants";
+
+const Payment = ({ history }) => {
   const [show, setShow] = useState(false);
   const [paymentForm] = usePaymentForm();
+
+  const handleChangePage = (id) => {
+    history.push(`/payment/pay/${id}`);
+  };
 
   return (
     <>
@@ -19,7 +26,7 @@ const Payment = () => {
             <span>Create New</span>
           </Button>
         </div>
-        <Empty>
+        {/* <Empty>
           <img src={Link} alt="Empty State" />
           <h3 className="title title-black mb-small mt-small">
             You haven’t created any payment link yet!
@@ -28,7 +35,8 @@ const Payment = () => {
             Create a payment link to start requesting money from friends,
             family, customers or anyone anywhere around the world.
           </p>
-        </Empty>
+        </Empty> */}
+        <PaymentTable gotoDetails={handleChangePage} data={paymentTable} />
       </div>
       {show && <PaymentForm closeForm={setShow} paymentForm={paymentForm} />}
     </>

@@ -1,0 +1,21 @@
+.paymentdetails {
+  width: 100%;
+
+  &_header {
+    margin: 4rem 0;
+
+    @include flex(row, space-between, center);
+  }
+
+  &_ctas {
+    @include flex(row, space-between, center);
+
+    div {
+      margin-right: 3rem;
+      @include flex(row, space-between, center);
+      p {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}

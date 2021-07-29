@@ -105,3 +105,66 @@ export const cryptos = [
     classname: "accounts_img accounts_img-4",
   },
 ];
+
+export const paymentTable = [
+  {
+    id: 1,
+    name: "Freelance Link",
+    amount: "10,000 NGN",
+    date: "June 10, 2021",
+  },
+  {
+    id: 2,
+    name: "Freelance Link",
+    amount: "10,000 NGN",
+    date: "June 10, 2021",
+  },
+  {
+    id: 3,
+    name: "Freelance Link",
+    amount: "10,000 NGN",
+    date: "June 10, 2021",
+  },
+  {
+    id: 4,
+    name: "Freelance Link",
+    amount: "10,000 NGN",
+    date: "June 10, 2021",
+  },
+  {
+    id: 5,
+    name: "Freelance Link",
+    amount: "10,000 NGN",
+    date: "June 10, 2021",
+  },
+  {
+    id: 6,
+    name: "Freelance Link",
+    amount: "10,000 NGN",
+    date: "June 10, 2021",
+  },
+  {
+    id: 7,
+    name: "Freelance Link",
+    amount: "10,000 NGN",
+    date: "June 10, 2021",
+  },
+  {
+    id: 8,
+    name: "Freelance Link",
+    amount: "10,000 NGN",
+    date: "June 10, 2021",
+  },
+  {
+    id: 9,
+    name: "Freelance Link",
+    amount: "10,000 NGN",
+    date: "June 10, 2021",
+  },
+  {
+    id: 10,
+    name: "Freelance Link",
+    amount: "10,000 NGN",
+    date: "June 10, 2021",
+  },
+];
