@@ -29,7 +29,7 @@ const PersonalInfo = ({ personalform, formSubmit }) => {
 
   return (
     <>
-      <h3 className="title title-black">Personal Information</h3>
+      <h3 className="title title-black ta">Personal Information</h3>
       <p className="ta mt-small title title-grey">
         Password it's at least 8 characters including a number, special
         character and an uppercase letter.

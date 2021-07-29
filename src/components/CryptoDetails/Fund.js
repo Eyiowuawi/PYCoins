@@ -1,6 +1,7 @@
-import Modal from "./UI/Modal";
-import QRCode from "../assets/qrcode.png";
-import Copy from "../assets/copy.svg";
+import Modal from "../UI/Modal";
+import QRCode from "../../assets/qrcode.png";
+// import Copy from "../../assets/copy.svg";
+import { Copy } from "../../icons";
 
 const FundWallet = ({ close }) => {
   return (
@@ -13,7 +14,7 @@ const FundWallet = ({ close }) => {
         <p>WALLET ADDRESS</p>
         <div className="fund_wallet mt-small">
           <p>3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5</p>
-          <img src={Copy} alt="Copy" />
+          <Copy fill="#909198" />
         </div>
         <div className="fund_details mt-small">
           <p>BTC BALANCE</p>

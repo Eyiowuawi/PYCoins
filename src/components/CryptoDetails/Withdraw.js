@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Accounts from "../../components/Account";
-import Response from "../../components/Response";
-import Modal from "../../components/UI/Modal";
-import WithdrawForm from "../../components/WithdrawForm";
-import Confirmation from "./../../components/Confirmation";
+import Accounts from "../Account";
+import Response from "../UI/Response";
+import Modal from "../UI/Modal";
+import WithdrawForm from "./WithdrawForm";
+import Confirmation from "./Confirmation";
 import Success from "../../assets/success.svg";
 import { cryptos } from "../../constants";
 

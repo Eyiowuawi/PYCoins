@@ -1,7 +1,7 @@
-import Input from "./UI/Input";
-import { LeftArrow } from "../icons";
-import Primary from "./UI/Primary";
-import Button from "./UI/Button";
+import Input from "../UI/Input";
+import { LeftArrow } from "../../icons";
+import Primary from "../UI/Label";
+import Button from "../UI/Button";
 
 const CryptoForm = ({ name, goBack }) => {
   return (
@@ -17,7 +17,12 @@ const CryptoForm = ({ name, goBack }) => {
           value=""
           type="text"
         />
-        <Primary />
+        <Primary
+          title={"Make this my primary settlement account"}
+          name={"primary"}
+          id={"pimary"}
+          type="checkbox"
+        />
         <Button bg={"button_primary"}>Save</Button>
       </form>
     </div>

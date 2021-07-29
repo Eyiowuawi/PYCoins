@@ -195,9 +195,9 @@ a {
 .form_input, .form_select, .form_textarea, .form_upload-label {
   display: block;
   width: 100%;
-  padding: 1.3rem;
   font-size: 1rem;
   border: 1px solid #e5e9f2;
+  padding: 1.3rem;
   border-radius: 8px;
   font-family: "Mulish", sans-serif;
   color: #30324b;
@@ -638,10 +638,6 @@ a {
   padding-bottom: 1rem;
 }
 
-.response * {
-  margin-bottom: 1.5rem;
-}
-
 .settlement {
   padding: 6rem 5rem 4rem;
   display: -webkit-box;
@@ -777,15 +773,15 @@ a {
   cursor: pointer;
 }
 
-.primary_input {
+.label_input {
   display: none;
 }
 
-.primary_input:checked ~ label > span:after {
+.label_input:checked ~ label > span:after {
   opacity: 1;
 }
 
-.primary_label {
+.label_label {
   margin-bottom: 1.5rem;
   cursor: pointer;
   display: -webkit-box;
@@ -802,11 +798,11 @@ a {
       -ms-flex-align: center;
           align-items: center;
   border: 1px solid #e5e9f2;
-  padding: 1rem;
+  padding: 1.3rem;
   border-radius: 8px;
 }
 
-.primary_label span {
+.label_label span {
   height: 28px;
   width: 28px;
   border-radius: 50%;
@@ -815,7 +811,7 @@ a {
   position: relative;
 }
 
-.primary_label span:after {
+.label_label span:after {
   height: 25px;
   width: 25px;
   border-radius: 50%;
@@ -825,11 +821,6 @@ a {
   opacity: 0;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-}
-
-.primary_label p {
-  color: #52575c;
-  font-size: 1rem;
 }
 
 .transdetails {
@@ -890,7 +881,7 @@ a {
 
 .fund_wallet {
   border: 1px solid #e5e9f2;
-  padding: 1rem;
+  padding: 1.3rem;
   border-radius: 8px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1638,5 +1629,91 @@ a {
 .cryptodetails_btns button:last-of-type svg {
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
+}
+
+.payment {
+  width: 100%;
+}
+
+.payment_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-bottom: 3rem;
+}
+
+.payment_container button {
+  width: -webkit-max-content !important;
+  width: -moz-max-content !important;
+  width: max-content !important;
+  padding: 1rem 1.5rem !important;
+}
+
+.payment_container button img {
+  margin-right: 1rem;
+}
+
+.payment_amount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.payment_amount div {
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+}
+
+.payment_amount div:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.payment_created {
+  -ms-flex-item-align: stretch;
+      align-self: stretch;
+  width: 60%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.payment_created button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  margin-right: 2rem;
+}
+
+.payment_created button svg, .payment_created button img {
+  margin-right: 1rem;
 }
 /*# sourceMappingURL=main.css.map */

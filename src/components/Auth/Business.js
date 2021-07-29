@@ -24,7 +24,7 @@ const Business = ({ businessForm, handleSubmit, children }) => {
   ));
   return (
     <>
-      <h3 className="title title-black">Business Information</h3>
+      <h3 className="title title-black ta">Business Information</h3>
 
       <form className="mt-small">
         {form}

@@ -6,10 +6,10 @@ import Button from "../../components/UI/Button";
 import Plus from "../../assets/plus.svg";
 import Table from "./../../components/Table";
 import TransactionsDetails from "./../../components/TransactionDetails";
-import FundWallet from "../../components/Fund";
-import Settlement from "../../components/Settlement";
+import FundWallet from "../../components/CryptoDetails/Fund";
+import Settlement from "../../components/Popup/Settlement";
 import Accounts from "../../components/Account";
-import WithDraw from "./Withdraw";
+import WithDraw from "../../components/CryptoDetails/Withdraw";
 
 const CryptoDetails = () => {
   const [show, setShow] = useState(false);

@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { ModalContext } from "../../context";
 
-import Modal from "../../components/UI/Modal";
-import Business from "../../components/Auth/Business";
+import Modal from "../UI/Modal";
+import Business from "../Auth/Business";
 import useBusinessForm from "../../hooks/businessform";
-import Response from "../../components/Response";
+import Response from "../UI/Response";
 
 import Success from "../../assets/success.svg";
 

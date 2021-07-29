@@ -1,6 +1,6 @@
-import Button from "./UI/Button";
-import Plus from "../assets/plus.svg";
-import { House } from "../icons";
+import Button from "../UI/Button";
+import Plus from "../../assets/plus.svg";
+import { House } from "../../icons";
 const Settlement = ({handlechange}) => {
   return (
     <div className="settlement">

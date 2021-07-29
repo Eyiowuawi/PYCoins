@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { ModalContext } from "../../context";
 
 import User from "../../components/Dashboard/User";
-import RegisterBusiness from "../../components/RegisterBusiness";
+import RegisterBusiness from "../../components/Dashboard/RegisterBusiness";
 import CryptoCurrency from "../../components/Dashboard/CrytptoCurrency";
 import Table from "../../components/Table";
-import BusinessForm from "./BusinessForm";
+import BusinessForm from "../../components/Dashboard/BusinessForm";
 import { RightArrow } from "../../icons";
 // import Empty from "../../components/Empty"
 import { transactions } from "../../constants";
@@ -43,6 +43,7 @@ const Dashboard = () => {
         <div className="home_empty">
           <p className="title title-small mb-small">Recent Transactions </p>
           {/* <Empty>
+          <img src={empty} alt="Empty State" />
           <h3 className="title title-black mb-small mt-small">
             Your transaction history is currently empty!
           </h3>

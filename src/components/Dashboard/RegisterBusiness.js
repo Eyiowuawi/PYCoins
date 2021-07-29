@@ -1,5 +1,5 @@
-import UserSwitch from "../assets/user-switch.svg";
-import { RightArrow } from "../icons";
+import UserSwitch from "../../assets/user-switch.svg";
+import { RightArrow } from "../../icons";
 
 const RegisterBusiness = ({ date, onclick }) => {
   return (

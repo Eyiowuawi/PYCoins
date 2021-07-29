@@ -3,9 +3,9 @@ import { useState } from "react";
 import { cryptos } from "../../constants";
 import Modal from "./../../components/UI/Modal";
 import Account from "../../components/Account";
-import Settlement from "../../components/Settlement";
-import Bank from "../../components/Bank";
-import CryptoForm from "../../components/CryptoForm";
+import Settlement from "../../components/Popup/Settlement";
+import Bank from "../../components/Popup/Bank";
+import CryptoForm from "../../components/Popup/CryptoForm";
 
 const Popup = ({ closeModal }) => {
   const [account, setAccount] = useState("");

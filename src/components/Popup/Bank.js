@@ -1,8 +1,8 @@
-import useBankForm from "../hooks/bankform";
-import Input from "./UI/Input";
-import { LeftArrow } from "../icons";
-import Button from "./UI/Button";
-import Primary from "./UI/Primary";
+import useBankForm from "../../hooks/bankform";
+import Input from "../UI/Input";
+import { LeftArrow } from "../../icons";
+import Button from "../UI/Button";
+import Primary from "../UI/Label";
 const Bank = ({ goBack }) => {
   const [bankForm] = useBankForm();
 

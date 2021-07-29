@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Button from "../../components/UI/Button";
+import Label from "../../components/UI/Label";
 
 const Create = ({ history }) => {
   const [formType, setFormType] = useState("");
   const [message, setMessage] = useState("");
 
   const handleChange = (evt) => {
+    console.log(evt.target.value)
     setFormType(evt.target.value);
   };
 
@@ -31,35 +33,25 @@ const Create = ({ history }) => {
           </p>
           <div className="create_form">
             {message !== "" && <p className="ta msg">{message}</p>}
-            <div className="create_form-group">
-              <input
-                type="radio"
-                id="business"
-                name="registration"
-                hidden
-                value="business"
-                onChange={handleChange}
-              />
-              <label htmlFor="business">
-                <span></span>
-                <span className="small">Registered Business/Corporates</span>
-              </label>
-            </div>
-            <div className="create_form-group">
-              <input
-                type="radio"
-                id="personal"
-                name="registration"
-                hidden
-                value="personal"
-                onChange={handleChange}
-              />
-              <label htmlFor="personal">
-                <span></span>
-                <span className="small">Unregistered Business/Personal</span>
-              </label>
-            </div>
-            <Button bg={"button_primary"} onclick={handleRouteChange}>Continue</Button>
+            <Label
+              id="business"
+              title="Registered Businesses/Corporates "
+              name={"form"}
+              type="radio"
+              onchange={handleChange}
+              value={"business"}
+            />
+            <Label
+              id="personal"
+              onchange={handleChange}
+              title="Unregistered Businesses/Personal "
+              name={"form"}
+              type="radio"
+              value={"personal"}
+            />
+            <Button bg={"button_primary"} onclick={handleRouteChange}>
+              Continue
+            </Button>
           </div>
         </div>
       </div>

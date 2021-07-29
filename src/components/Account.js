@@ -4,8 +4,8 @@ import Proceed from "../assets/proceed.svg";
 import Ethereum from "../assets/ethereum.svg";
 import Bitcoin from "../assets/bitcoin.svg";
 import Tether from "../assets/tether.svg";
-import Bank from "./Bank";
-import CryptoForm from "./CryptoForm";
+import Bank from "./Popup/Bank";
+import CryptoForm from "./Popup/CryptoForm";
 
 const Accounts = ({ showForm, goBack, name, cryptos }) => {
   return (
