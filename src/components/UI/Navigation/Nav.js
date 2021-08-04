@@ -51,7 +51,7 @@ const Navigation = (props) => {
             ))}
           </div>
         </li>
-        <NavItem to="/settings" title="Settings" onclick={() => setShow(false)}>
+        <NavItem to="/settings?tab=general" title="Settings" onclick={() => setShow(false)}>
           <Settings />
         </NavItem>
       </ul>

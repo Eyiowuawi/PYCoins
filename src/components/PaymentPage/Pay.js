@@ -1,9 +1,9 @@
 import { Copy, LeftArrow } from "../../icons";
 import QRCode from "../../assets/qrcode.png";
-const Pay = () => {
+const Pay = ({goBack}) => {
   return (
     <div className="">
-      <div className="popupform_back">
+      <div className="popupform_back" onClick={goBack}>
         <LeftArrow fill={"#333333"} />
       </div>
       <h3 className="ta title-black title mb-small">Pay</h3>

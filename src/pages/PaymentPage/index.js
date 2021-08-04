@@ -7,9 +7,11 @@ import Button from "./../../components/UI/Button";
 import Select from "./../../components/PaymentPage/Select";
 import Pay from "./../../components/PaymentPage/Pay";
 import PaymentProcess from "../../components/PaymentPage";
+import { useState } from "react";
 
 const PaymentPage = () => {
   const [paymentPageForm, setPaymentPageForm] = usePaymentForm();
+  const [show, setShow] = useState(false);
 
   const formArr = [];
   for (let key in paymentPageForm) {
@@ -42,10 +44,12 @@ const PaymentPage = () => {
             accepting payment from my customers anywhere around the world.
           </p>
           <form className="paymentpage_form">{form}</form>
-          <Button bg="button_primary">Pay Now</Button>
+          <Button bg="button_primary" onclick={() => setShow(true)}>
+            Pay Now
+          </Button>
         </div>
       </Background>
-      <PaymentProcess />
+      {show && <PaymentProcess close={setShow} />}
     </>
   );
 };

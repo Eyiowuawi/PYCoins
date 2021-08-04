@@ -23,15 +23,13 @@ const BusinessForm = () => {
         />
       )}
       {success && (
-        <Response>
-          <img src={Success} alt="Success" />
-          <h3 className="title title-black">Verification Submitted</h3>
-          <p className="title title-grey ta">
-            Your business document has been submitted successfully and in
-            currently in progress. You wil receive an email after being verified
-            by the team.
-          </p>
-        </Response>
+        <Response
+          img={Success}
+          title="Verification Submitted"
+          text="Your business document has been submitted successfully and in
+        currently in progress. You wil receive an email after being verified
+        by the team."
+        />
       )}
     </Modal>
   );

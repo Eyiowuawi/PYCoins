@@ -44,7 +44,6 @@ const Input = ({
         ></textarea>
       );
       break;
-
     default:
       inputElement = <input />;
       break;

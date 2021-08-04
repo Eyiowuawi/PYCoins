@@ -2,13 +2,14 @@ import { cryptos } from "../../constants";
 import Accounts from "../Account";
 import Modal from "./../UI/Modal";
 
-const Select = () => {
+const Select = ({ name, onclick }) => {
   return (
     <Accounts
       cryptos={cryptos}
       header="Select Payment Method"
       title="PAY WITH"
-      name=""
+      name={name}
+      showForm={onclick}
     />
   );
 };

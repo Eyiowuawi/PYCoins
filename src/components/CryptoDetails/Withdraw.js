@@ -68,13 +68,11 @@ const WithDraw = ({ currency, close }) => {
     case "success":
       renderElement = (
         <>
-          <Response>
-            <img src={Success} alt="Success" />
-            <h3 className="title title-black">Withdrawal Successful</h3>
-            <p className="title title-grey ta">
-              Your withdrawal of NGN 100,000 was successful.
-            </p>
-          </Response>
+          <Response
+            img={Success}
+            title="Withdrawal Successful"
+            text=" Your withdrawal of NGN 100,000 was successful."
+          />
         </>
       );
       break;
