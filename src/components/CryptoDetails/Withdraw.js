@@ -29,7 +29,13 @@ const WithDraw = ({ currency, close }) => {
     case "":
       renderElement = (
         <>
-          <Accounts cryptos={crypto} name={name} showForm={handleChange} />
+          <Accounts
+            header="Settlement Account"
+            title="SELECT YOUR SETTLEMENT METHOD "
+            cryptos={crypto}
+            name={name}
+            showForm={handleChange}
+          />
         </>
       );
       break;

@@ -33,6 +33,8 @@ const Popup = ({ closeModal }) => {
           name={name}
           showForm={showForm}
           goBack={handleBack}
+          header="Settlement Account"
+          title="SELECT YOUR SETTLEMENT METHOD"
         />
       )}
       {name === "bank" && <Bank goBack={handleBack} />}

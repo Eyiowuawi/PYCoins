@@ -2,7 +2,7 @@ import Switch from "react-switch";
 import { useState } from "react";
 
 const Toggle = () => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
 
   const handleChange = () => {
     setChecked(!checked);

@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
+const nav = ["general", "settlements", "api-keys-webhooks", "currency"];
 
 const useSettingsNav = () => {
   const { search } = useLocation();
+
   const [settingsNav, setSettingsNav] = useState([
     { id: 1, to: "?tab=general", name: "General", active: true },
     { id: 2, to: "?tab=settlements", name: "Settlements", active: false },
@@ -25,9 +27,7 @@ const useSettingsNav = () => {
     );
   }, []);
 
-
-  return [settingsNav, setSettingsNav]
+  return [settingsNav, setSettingsNav];
 };
 
-
-export default useSettingsNav
+export default useSettingsNav;
