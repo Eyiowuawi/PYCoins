@@ -10,11 +10,12 @@
 
   &_input,
   &_select,
-  &_textarea, &_upload-label{
+  &_textarea,
+  &_upload-label {
     display: block;
     width: 100%;
     font-size: 1rem;
-   @include line;
+    @include line;
     font-family: $font-family;
     color: #30324b;
     &::placeholder {
@@ -54,18 +55,15 @@
     right: 30px;
   }
 
-  &_upload{
-    &-input{
-      display: none
-
+  &_upload {
+    &-input {
+      display: none;
     }
 
-
-    &-label{
+    &-label {
       margin-bottom: 2rem;
-cursor: pointer;
-      @include flex(row, space-between, center)
-
+      cursor: pointer;
+      @include flex(row, space-between, center);
     }
   }
 }

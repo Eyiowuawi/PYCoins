@@ -1,6 +1,7 @@
 import { Copy, LeftArrow } from "../../icons";
 import QRCode from "../../assets/qrcode.png";
-const Pay = ({goBack}) => {
+import ActionLabel from "./../UI/ActionLabel";
+const Pay = ({ goBack }) => {
   return (
     <div className="">
       <div className="popupform_back" onClick={goBack}>
@@ -19,17 +20,18 @@ const Pay = ({goBack}) => {
         <div className="paymentpage_wallets">
           <div className="mb-small">
             <p className="title title-grey mb-smaller">WALLET ADDRESS</p>
-            <div className="fund_wallet ">
-              <p>3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5</p>
+            <ActionLabel
+              // style="mt-small"
+              text="3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5"
+            >
               <Copy fill="#909198" />
-            </div>
+            </ActionLabel>
           </div>
           <div>
             <p className="title title-grey mb-smaller">WALLET ADDRESS</p>
-            <div className="fund_wallet ">
-              <p>3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5</p>
+            <ActionLabel text="3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5">
               <Copy fill="#909198" />
-            </div>
+            </ActionLabel>
           </div>
         </div>
       </div>

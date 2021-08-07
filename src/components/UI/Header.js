@@ -1,13 +1,14 @@
 import Switch from "../../assets/Switch.png";
 import { Arrow } from "../../icons";
 import Hamburger from "../../assets/hamburger.svg";
+import Toggle from "./Switch";
 const Header = () => {
   return (
     <div className="header">
       <div className="header_container">
         <div className="header_desktop">
           <p className="header-text header-text-grey">Test</p>
-          <img src={Switch} alt="toggle" />
+          <Toggle />
           <p className="header-text header-text-grey">Live</p>
           <div className="header_name">JD</div>
           <p className="header-text header-text-black">John Doe</p>

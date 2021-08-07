@@ -6,8 +6,8 @@ import { Home, Payment, Settings, Wallet } from "../../../icons";
 
 const items = [
   { id: 1, title: "Payment Page", link: "/payment/pay" },
-  { id: 2, title: "Settlement Page", link: "/payment/settle" },
-  { id: 3, title: "Wallet Page", link: "/payment/wallet" },
+  // { id: 2, title: "Settlement Page", link: "/payment/settle" },
+  // { id: 3, title: "Wallet Page", link: "/payment/wallet" },
 ];
 
 

@@ -1966,4 +1966,158 @@ a {
 .settings_pages {
   margin-top: 4rem;
 }
+
+.general {
+  width: 70%;
+}
+
+.general h3 {
+  font-size: 18px !important;
+}
+
+.general_pic {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.general_upload {
+  margin-left: 2rem;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  padding: 0.7rem 1.3rem;
+  cursor: pointer;
+}
+
+.general_form {
+  margin-top: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: initial;
+      -ms-flex-align: initial;
+          align-items: initial;
+}
+
+.general_form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2rem;
+}
+
+.general_form-group label {
+  font-weight: 600 !important;
+  -ms-flex-preferred-size: 300px;
+      flex-basis: 300px;
+}
+
+.general_form-group .fund_wallet {
+  width: 100%;
+}
+
+.general_form .form_group {
+  margin-bottom: 0 !important;
+}
+
+.general_form .button {
+  -ms-flex-item-align: end !important;
+      align-self: flex-end !important;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 1rem !important;
+}
+
+.settlements {
+  width: 100%;
+}
+
+.settlements_box {
+  margin-top: 4rem;
+  border: 1px solid #e5e9f2;
+  padding: 4rem;
+}
+
+.settlements_box button {
+  width: 20% !important;
+}
+
+.currency {
+  position: relative;
+}
+
+.currency_items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: initial;
+      -ms-flex-align: initial;
+          align-items: initial;
+}
+
+.currency_item {
+  margin-bottom: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.currency_item p {
+  font-family: "Mulish", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+  color: #333333;
+  -ms-flex-preferred-size: 300px;
+      flex-basis: 300px;
+}
 /*# sourceMappingURL=main.css.map */
