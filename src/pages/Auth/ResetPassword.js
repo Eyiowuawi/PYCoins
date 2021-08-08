@@ -4,6 +4,7 @@ import show from "../../assets/show.svg";
 import Input from "../../components/UI/Input";
 import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
+import formGenerator from "../../utils/formgenerator";
 
 const title = "Remember Your Passoword?";
 const link = "/auth/login";
@@ -29,25 +30,7 @@ const ResetPassword = () => {
     },
   });
 
-  const formArr = [];
-  for (let key in resetPassword) {
-    formArr.push({
-      id: key,
-      config: resetPassword[key],
-    });
-  }
-
-  const form = formArr.map(({ id, config }) => (
-    <Input
-      key={id}
-      value={config.value}
-      type={config.type}
-      elementType={config.elementType}
-      placeholder={config.placeholder}
-      info={config.info}
-      svg={config.image}
-    />
-  ));
+  const form = formGenerator(resetPassword)
 
   return (
     <div className="auth_form">

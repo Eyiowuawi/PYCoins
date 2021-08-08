@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Input from "../../components/UI/Input";
 import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
+import formGenerator from "../../utils/formgenerator";
 
 import show from "../../assets/show.svg";
 const title = "Don't have an account?";
@@ -33,25 +34,8 @@ const Login = ({ history }) => {
     history.push("/");
   };
 
-  const formArr = [];
-  for (let key in loginForm) {
-    formArr.push({
-      id: key,
-      config: loginForm[key],
-    });
-  }
 
-  const form = formArr.map(({ id, config }) => (
-    <Input
-      key={id}
-      value={config.value}
-      type={config.type}
-      elementType={config.elementType}
-      placeholder={config.placeholder}
-      info={config.info}
-      svg={config.image}
-    />
-  ));
+  const form = formGenerator(loginForm)
 
   return (
     <div className="auth_form">

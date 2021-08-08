@@ -4,7 +4,7 @@ import Hamburger from "../../assets/hamburger.svg";
 import Toggle from "./Switch";
 const Header = () => {
   return (
-    <div className="header">
+    <header className="header">
       <div className="header_container">
         <div className="header_desktop">
           <p className="header-text header-text-grey">Test</p>
@@ -19,7 +19,7 @@ const Header = () => {
           <div className="header_name">JD</div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

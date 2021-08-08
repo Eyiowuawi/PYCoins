@@ -2,30 +2,13 @@ import Button from "../UI/Button";
 import Input from "../UI/Input";
 
 import upload from "../../assets/upload.svg";
+import formGenerator from "../../utils/formgenerator";
 
 const Business = ({ businessForm, handleSubmit, children }) => {
-  const formArr = [];
-  for (let key in businessForm) {
-    formArr.push({
-      id: key,
-      config: businessForm[key],
-    });
-  }
-
-  const form = formArr.map(({ id, config }) => (
-    <Input
-      key={id}
-      value={config.value}
-      type={config.type}
-      elementType={config.elementType}
-      placeholder={config.placeholder}
-      options={config.options}
-    />
-  ));
+  const form = formGenerator(businessForm);
   return (
     <>
       <h3 className="title title-black ta">Business Information</h3>
-
       <form className="mt-small">
         {form}
         <input id="upload" type="file" className="form_upload-input" />

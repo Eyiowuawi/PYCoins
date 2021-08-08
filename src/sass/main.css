@@ -1217,10 +1217,11 @@ a {
 .sidebar {
   position: fixed;
   width: 350px;
-  height: 100vh;
   background-color: #f8f8f8;
   font-family: "Mulish", sans-serif;
   padding: 2rem 4rem 6rem 4rem;
+  bottom: 0;
+  top: 0;
 }
 
 @media (max-width: 800px) {
