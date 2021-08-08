@@ -9,7 +9,6 @@ const TransactionsDetails = ({close}) => {
             <p className="title title-grey">Name</p>
             <p className="title title-grey">Jack Ma</p>
           </div>
-
           <div className="transdetails_item">
             <p className="title title-grey">Email</p>
             <p className="title title-grey">jackma@gmail.com</p>

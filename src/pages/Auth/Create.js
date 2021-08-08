@@ -17,9 +17,9 @@ const Create = ({ history }) => {
       return;
     }
     if (formType === "business") {
-      history.push("/register/business");
+      history.push("/auth/register/business");
     } else if (formType === "personal") {
-      history.push("/register/personal");
+      history.push("/auth/register/personal");
     }
   };
 

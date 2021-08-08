@@ -6,7 +6,7 @@ import AuthFooter from "../../components/Auth/AuthFooter";
 
 import show from "../../assets/show.svg";
 const title = "Don't have an account?";
-const link = "/create";
+const link = "/auth/create";
 const linkTitle = "Sign Up";
 
 const Login = ({ history }) => {
@@ -65,7 +65,7 @@ const Login = ({ history }) => {
           <Button bg={"button_primary"} onclick={handleSubmit}>Sign In </Button>
         </form>
         <Link
-          to="/forgotpassword"
+          to="/auth/forgotpassword"
           className="link ta mt-small"
           style={{ width: "100%" }}
         >

@@ -21,37 +21,37 @@ import PaymentPage from "./pages/PaymentPage";
 
 const routes = [
   {
-    path: "/create",
+    path: "/auth",
     component: AuthLayout,
     routes: [
       {
-        path: "/create",
+        path: "/auth",
         exact: true,
         component: Create,
         key: "create-initial",
       },
-      { path: "/create", exact: true, component: Create, key: "create-page" },
+      { path: "/auth/create", exact: true, component: Create, key: "create-page" },
       {
-        path: "/register/business",
+        path: "/auth/register/business",
         exact: true,
         component: BusinessForm,
         key: "register-business",
       },
       {
-        path: "/register/personal",
+        path: "/auth/register/personal",
         exact: true,
         component: PersonalForm,
         key: "register-personal",
       },
-      { path: "/login", exact: true, component: Login, key: "login" },
+      { path: "/auth/login", exact: true, component: Login, key: "login" },
       {
-        path: "/forgotpassword",
+        path: "/auth/forgotpassword",
         exact: true,
         component: ForgotPassword,
-        key: "forgotpassword",
+        key: "forgot-password",
       },
       {
-        path: "/resetpassword",
+        path: "/auth/resetpassword",
         exact: true,
         component: ResetPassword,
         key: "reset-password",

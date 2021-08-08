@@ -4,7 +4,7 @@ import AuthFooter from "./AuthFooter";
 
 const title = "Already have an account?";
 const linkTitle = "Login";
-const link = "/login";
+const link = "/auth/login";
 const PersonalInfo = ({ personalform, formSubmit }) => {
   let formArr = [];
 

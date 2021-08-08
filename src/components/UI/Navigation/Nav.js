@@ -4,12 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import Dropdown from "../../../assets/dropdown.svg";
 import { Home, Payment, Settings, Wallet } from "../../../icons";
 
-const items = [
-  { id: 1, title: "Payment Page", link: "/payment/pay" },
-  // { id: 2, title: "Settlement Page", link: "/payment/settle" },
-  // { id: 3, title: "Wallet Page", link: "/payment/wallet" },
-];
-
+const items = [{ id: 1, title: "Payment Page", link: "/payment/pay" }];
 
 const Navigation = (props) => {
   const { pathname } = useLocation();
@@ -51,7 +46,11 @@ const Navigation = (props) => {
             ))}
           </div>
         </li>
-        <NavItem to="/settings?tab=general" title="Settings" onclick={() => setShow(false)}>
+        <NavItem
+          to="/settings?tab=general"
+          title="Settings"
+          onclick={() => setShow(false)}
+        >
           <Settings />
         </NavItem>
       </ul>

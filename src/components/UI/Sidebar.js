@@ -16,7 +16,7 @@ const Sidebar = () => {
           <p>ID: 10123856</p>
         </div>
         <Navigation />
-        <Link to="/create" className="sidebar_footer">
+        <Link to="/auth/create" className="sidebar_footer">
           <Logout />
           <p className="nav-text">Logout</p>
         </Link>

@@ -9,7 +9,7 @@ import AuthFooter from "./../../components/Auth/AuthFooter";
 
 const title = "Already have an account?";
 const linkTitle = "Login";
-const link = "/login";
+const link = "/auth/login";
 
 const BusinessForm = () => {
   const [businessForm] = useBusinessForm();

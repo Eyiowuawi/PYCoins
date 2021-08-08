@@ -5,7 +5,7 @@ import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
 
 const title = "Remember Your Passoword?";
-const link = "/login";
+const link = "/auth/login";
 const linkTitle="Login"
 const ForgotPassword = () => {
   const [email] = useState("");
