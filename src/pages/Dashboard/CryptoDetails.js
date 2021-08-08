@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { LeftArrow, RightArrow } from "../../icons";
 import { cryptos, transactions } from "../../constants";
@@ -11,24 +11,23 @@ import Settlement from "../../components/Popup/Settlement";
 import Accounts from "../../components/Account";
 import WithDraw from "../../components/CryptoDetails/Withdraw";
 import Back from "../../components/Back";
-
 const CryptoDetails = () => {
   const [show, setShow] = useState(false);
   const [fund, setFund] = useState(false);
   const [withdraw, setWithdraw] = useState(false);
- 
+
   const { search } = useLocation();
   const currency = search.substring(10);
 
-
   const { img } = cryptos.find((item) => item.name === currency);
 
-  const classname =
-    currency === "Bitcoin"
+  const classname = useMemo(() => {
+    return currency === "Bitcoin"
       ? "crypto_img-1"
       : currency === "Ethereum"
       ? "crypto_img-2"
       : "crypto_img-3";
+  }, [currency]);
 
   return (
     <>

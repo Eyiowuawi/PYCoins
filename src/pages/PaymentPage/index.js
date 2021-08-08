@@ -8,28 +8,13 @@ import Select from "./../../components/PaymentPage/Select";
 import Pay from "./../../components/PaymentPage/Pay";
 import PaymentProcess from "../../components/PaymentPage";
 import { useState } from "react";
+import formGenerator from "../../utils/formgenerator";
 
 const PaymentPage = () => {
   const [paymentPageForm, setPaymentPageForm] = usePaymentForm();
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);  
 
-  const formArr = [];
-  for (let key in paymentPageForm) {
-    formArr.push({
-      id: key,
-      config: paymentPageForm[key],
-    });
-  }
-
-  const form = formArr.map(({ id, config }) => (
-    <Input
-      key={id}
-      value={config.value}
-      type={config.type}
-      elementType={config.elementType}
-      placeholder={config.placeholder}
-    />
-  ));
+  const form = formGenerator(paymentPageForm)
 
   return (
     <>

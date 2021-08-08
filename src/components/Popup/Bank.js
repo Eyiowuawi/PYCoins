@@ -3,27 +3,29 @@ import Input from "../UI/Input";
 import { LeftArrow } from "../../icons";
 import Button from "../UI/Button";
 import Primary from "../UI/Label";
+import formGenerator from './../../utils/formgenerator';
 const Bank = ({ goBack }) => {
   const [bankForm] = useBankForm();
 
-  const formArr = [];
-  for (let key in bankForm) {
-    formArr.push({
-      key,
-      config: bankForm[key],
-    });
-  }
+  // const formArr = [];
+  // for (let key in bankForm) {
+  //   formArr.push({
+  //     key,
+  //     config: bankForm[key],
+  //   });
+  // }
 
-  const form = formArr.map(({ key, config }) => (
-    <Input
-      key={key}
-      value={config.value}
-      elementType={config.elementType}
-      valid={config.valid}
-      options={config.options}
-      placeholder={config.placeholder}
-    />
-  ));
+  // const form = formArr.map(({ key, config }) => (
+  //   <Input
+  //     key={key}
+  //     value={config.value}
+  //     elementType={config.elementType}
+  //     valid={config.valid}
+  //     options={config.options}
+  //     placeholder={config.placeholder}
+  //   />
+  // ));
+  const form = formGenerator(bankForm)
 
   return (
     <div className="popupform">
