@@ -12,7 +12,6 @@ const PersonalForm = () => {
     evt.preventDefault();
     setIndicate(true);
   };
-  console.log(indicate);
 
   return (
     <div className="personal">

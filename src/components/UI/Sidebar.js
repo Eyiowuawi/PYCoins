@@ -4,9 +4,9 @@ import Navigation from "./Navigation/Nav";
 import { Logout } from "../../icons";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({show, close}) => {
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${show && "sidebar_show"}`}>
       <div className="sidebar_container">
         <div>
           <img src={Logo} alt="Payercoins Logo" />
@@ -15,7 +15,7 @@ const Sidebar = () => {
           <h5>Business Name</h5>
           <p>ID: 10123856</p>
         </div>
-        <Navigation />
+        <Navigation close={close} />
         <Link to="/auth/create" className="sidebar_footer">
           <Logout />
           <p className="nav-text">Logout</p>

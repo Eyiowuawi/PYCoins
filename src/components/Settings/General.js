@@ -49,7 +49,7 @@ const General = () => {
       <h3 className="title title-black mt-small">Business Information</h3>
       <form className="mt-small general_form">
         <div className="general_form-group">
-          <label>Business Name</label>
+          <label className="title title-grey">Business Name</label>
           <Input
             value=""
             type="text"
@@ -58,7 +58,7 @@ const General = () => {
           />
         </div>
         <div className="general_form-group">
-          <label>Business Phone No.</label>
+          <label className="title title-grey">Business Phone No.</label>
           <Input
             value=""
             type="text"
@@ -67,7 +67,7 @@ const General = () => {
           />
         </div>
         <div className="general_form-group">
-          <label>Business Email</label>
+          <label className="title title-grey">Business Email</label>
           <Input
             value=""
             type="text"
@@ -76,7 +76,7 @@ const General = () => {
           />
         </div>
         <div className="general_form-group">
-          <label>Business Address</label>
+          <label className="title title-grey">Business Address</label>
           <Input
             value=""
             type="text"

@@ -3,7 +3,7 @@ const TransactionsDetails = ({close}) => {
   return (
     <Modal close={close}>
       <div className="transdetails">
-        <h2>Transaction Details</h2>
+        <h2 className="title title-black">Transaction Details</h2>
         <div className="transdetails_box">
           <div className="transdetails_item">
             <p className="title title-grey">Name</p>

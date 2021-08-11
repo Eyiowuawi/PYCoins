@@ -1,6 +1,4 @@
 .cryptodetails {
- 
-
   &_name {
     margin-top: 4rem;
     @include flex(row, initial, center);
@@ -13,10 +11,15 @@
   &_btns {
     margin-top: 3rem;
     width: 400px;
-    @include flex(row, initial, center);
+    max-width: 100%;
+    display : grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
     button {
       @include flex(row, center, center);
-      gap: 1rem;
+      span{
+        margin-left: 1rem;
+      }
     }
 
     button:not(:last-of-type) {

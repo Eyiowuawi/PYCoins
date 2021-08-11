@@ -17,9 +17,7 @@ const PaymentTable = ({ data, gotoDetails }) => {
             <td>{item.name}</td>
             <td>{item.amount}</td>
             <td>{item.date}</td>
-            {/* <td>
-              <img src={Actions} alt={"Actions"} />
-            </td> */}
+      
           </tr>
         ))}
       </tbody>

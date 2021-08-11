@@ -8,15 +8,15 @@ const Currency = () => {
       </p>
       <div className="mt-small currency_items">
         <div className="currency_item">
-          <p>Bitcoin</p>
+          <p className="title title-black">Bitcoin</p>
           <Toggle />
         </div>
         <div className="currency_item">
-          <p>Ethereum</p>
+          <p className="title title-black">Ethereum</p>
           <Toggle />
         </div>
         <div className="currency_item">
-          <p>Tether</p>
+          <p className="title title-black">Tether</p>
           <Toggle />
         </div>
       </div>

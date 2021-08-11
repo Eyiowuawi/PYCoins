@@ -18,6 +18,7 @@ import CryptoDetails from "./pages/Dashboard/CryptoDetails";
 import PaymentDetails from "./pages/Dashboard/PaymentDetails";
 
 import PaymentPage from "./pages/PaymentPage";
+import PaymentPageLayout from "./layout/PaymentPage";
 
 const routes = [
   {
@@ -30,7 +31,12 @@ const routes = [
         component: Create,
         key: "create-initial",
       },
-      { path: "/auth/create", exact: true, component: Create, key: "create-page" },
+      {
+        path: "/auth/create",
+        exact: true,
+        component: Create,
+        key: "create-page",
+      },
       {
         path: "/auth/register/business",
         exact: true,
@@ -109,8 +115,16 @@ const routes = [
   {
     path: "/paymentpage",
     exact: true,
-    component: PaymentPage,
+    component: PaymentPageLayout,
     key: "payment-page",
+    routes: [
+      {
+        path: "/paymentpage",
+        exact: true,
+        component: PaymentPage,
+        key: "payment-page",
+      },
+    ],
   },
 ];
 

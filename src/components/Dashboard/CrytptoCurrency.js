@@ -9,7 +9,7 @@ const Cryptocurrency = () => {
         <div className="crypto_img crypto_img-1">
           <img src={Bitcoin} alt="Bitcoin" />
         </div>
-        <div  className="crypto_content">
+        <div className="crypto_content">
           <p className="title title-grey">Bitcoin Wallet</p>
           <p className="title title-grey">0.0000560 BTC</p>
         </div>

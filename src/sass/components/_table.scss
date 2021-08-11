@@ -12,7 +12,7 @@
   }
 
   th {
-    font-size: 12px;
+    font-size: .75rem;
     line-height: 15px;
     letter-spacing: 0.03em;
     color: #787676;
@@ -25,10 +25,11 @@
     font-family: $font-family;
     font-style: normal;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 1rem;
     line-height: 18px;
     color: $color-sidebar;
-    // text-align: center;
+    @include respond(phone) {
+    }
   }
 
   tbody tr{

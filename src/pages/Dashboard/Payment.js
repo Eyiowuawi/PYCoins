@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Plus from "../../assets/plus.svg";
 import Empty from "../../components/Empty";
 import Button from "../../components/UI/Button";
@@ -7,10 +7,13 @@ import PaymentForm from "../../components/Payment/PaymentForm";
 import usePaymentForm from "../../hooks/paymentform";
 import PaymentTable from "../../components/Payment/Table";
 import { paymentTable } from "../../constants";
+import PaymentTableResponsive from "./../../components/Payment/PaymentTable";
+import useWindowWidth from "./../../hooks/windowwidth";
 
 const Payment = ({ history }) => {
   const [show, setShow] = useState(false);
   const [paymentForm] = usePaymentForm();
+  const [width, setWidth] = useWindowWidth();
 
   const handleChangePage = (id) => {
     history.push(`/payment/pay/${id}`);
@@ -36,7 +39,15 @@ const Payment = ({ history }) => {
             family, customers or anyone anywhere around the world.
           </p>
         </Empty> */}
-        <PaymentTable gotoDetails={handleChangePage} data={paymentTable} />
+        {width > 400 && (
+          <PaymentTable gotoDetails={handleChangePage} data={paymentTable} />
+        )}
+        {width <= 400 && (
+          <PaymentTableResponsive
+            gotoDetails={handleChangePage}
+            data={paymentTable}
+          />
+        )}
       </div>
       {show && <PaymentForm closeForm={setShow} paymentForm={paymentForm} />}
     </>

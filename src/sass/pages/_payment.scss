@@ -1,7 +1,7 @@
 .payment {
   width: 100%;
   &_container {
-    @include flex(row, space-between, flex-start);
+    @include flex(row, space-between, center);
     margin-bottom: 3rem;
 
     button {
@@ -22,6 +22,15 @@
         margin-right: 2rem;
       }
     }
+
+    @media screen and(max-width: 400px) {
+      @include flex(column, flex-start, initial);
+      div {
+        &:not(:last-child) {
+          margin-right: 0;
+        }
+      }
+    }
   }
   &_created {
     align-self: stretch;
@@ -35,8 +44,9 @@
       align-items: center;
       flex-basis: 50%;
       margin-right: 2rem;
-      svg,img{
-          margin-right: 1rem;
+      svg,
+      img {
+        margin-right: 1rem;
       }
     }
   }

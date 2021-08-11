@@ -6,7 +6,7 @@ import { Home, Payment, Settings, Wallet } from "../../../icons";
 
 const items = [{ id: 1, title: "Payment Page", link: "/payment/pay" }];
 
-const Navigation = (props) => {
+const Navigation = ({close}) => {
   const { pathname } = useLocation();
   const [show, setShow] = useState(false);
 
@@ -17,10 +17,19 @@ const Navigation = (props) => {
   return (
     <nav className="nav">
       <ul className="nav_items">
-        <NavItem to="/" exact title="Dashboard" onclick={() => setShow(false)}>
+        <NavItem
+          close={close}
+          to="/"
+          exact
+          title="Dashboard"
+        >
           <Home />
         </NavItem>
-        <NavItem to="/wallet" title="Wallet" onclick={() => setShow(false)}>
+        <NavItem
+          close={close}
+          to="/wallet"
+          title="Wallet"
+        >
           <Wallet />
         </NavItem>
         <li className={"nav_item"} onClick={handleShow}>
@@ -35,21 +44,23 @@ const Navigation = (props) => {
           </div>
           <div className={show ? "nav_show" : ""}>
             {items.map((item) => (
-              <NavLink
-                key={item.id}
-                activeClassName="nav_active"
-                className="nav_link"
-                to={`${item.link}`}
-              >
-                <span className="nav-text">{item.title}</span>
-              </NavLink>
+              <p onClick={close}>
+                <NavLink
+                  key={item.id}
+                  activeClassName="nav_active"
+                  className="nav_link"
+                  to={`${item.link}`}
+                >
+                  <span className="nav-text">{item.title}</span>
+                </NavLink>
+              </p>
             ))}
           </div>
         </li>
         <NavItem
+          close={close}
           to="/settings?tab=general"
           title="Settings"
-          onclick={() => setShow(false)}
         >
           <Settings />
         </NavItem>

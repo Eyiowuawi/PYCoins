@@ -18,7 +18,7 @@ const Cryptocurrency = () => {
           <div className="crypto_img crypto_img-1">
             <img src={Bitcoin} alt="Bitcoin" />
           </div>
-          <p className="mute">Bitcoin</p>
+          <p className="mute">Bitcoin Wallet</p>
         </div>
         <div className="wallets_crypto-footer">
           <p className="title title-grey">0.0000560 BTC</p>
@@ -36,7 +36,7 @@ const Cryptocurrency = () => {
           <div className="crypto_img crypto_img-2">
             <img src={Ethereum} alt="Ethereum" />
           </div>
-          <p className="mute">Ethereum</p>
+          <p className="mute">Ethereum Wallet</p>
         </div>
         <div className="wallets_crypto-footer">
           <p className="title title-grey">0.000001 ETH</p>
@@ -54,7 +54,7 @@ const Cryptocurrency = () => {
           <div className="crypto_img crypto_img-3">
             <img src={Tether} alt="Tether" />
           </div>
-          <p className="mute">Tether</p>
+          <p className="mute">Tether Wallet</p>
         </div>
         <div className="wallets_crypto-footer">
           <p className="title title-grey">1,060 USD₮</p>

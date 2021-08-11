@@ -7,7 +7,7 @@ import Confirmation from "./Confirmation";
 import Success from "../../assets/success.svg";
 import { cryptos } from "../../constants";
 
-const WithDraw = ({ currency, close }) => {
+const WithDraw = ({ currency, close, show }) => {
   const [name, setName] = useState("");
   const handleChange = (name) => {
     setName(name);
@@ -84,7 +84,7 @@ const WithDraw = ({ currency, close }) => {
       break;
   }
 
-  return <Modal close={close}>{renderElement}</Modal>;
+  return <Modal show={show} close={close}>{renderElement}</Modal>;
 };
 
 export default WithDraw;

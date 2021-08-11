@@ -6,11 +6,11 @@ import Button from "../UI/Button";
 const CryptoForm = ({ name, goBack }) => {
   return (
     <div className="popupform">
-      <div className="popupform_back" onClick={goBack}>
+      <div className="popupform_back " onClick={goBack}>
         <LeftArrow fill={"#333333"} />
       </div>
-      <h3 className="ta title title-black"> {name}</h3>
-      <form>
+      <h3 className="ta title title-black mt-small"> {name}</h3>
+      <form className="mt-small">
         <Input
           elementType="input"
           placeholder="Wallet Address"

@@ -7,24 +7,7 @@ import Created from "./Created";
 import formGenerator from "../../utils/formgenerator";
 const PaymentForm = ({ paymentForm, closeForm }) => {
   const [success, setSuccess] = useState(false);
-  // const formArr = [];
-  // for (let key in paymentForm) {
-  //   formArr.push({
-  //     id: key,
-  //     config: paymentForm[key],
-  //   });
-  // }
 
-  // const form = formArr.map(({ id, config }) => (
-  //   <Input
-  //     key={id}
-  //     value={config.value}
-  //     type={config.type}
-  //     elementType={config.elementType}
-  //     placeholder={config.placeholder}
-  //     options={config.options}
-  //   />
-  // ));
   const form = formGenerator(paymentForm);
 
   return (

@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
-const NavItem = ({ children, title, to, exact, onclick }) => {
+const NavItem = ({ children, title, to, exact, close }) => {
   return (
     <>
-      <li className="nav_item" onClick={onclick}>
+      <li className="nav_item"  onClick={close}>
         <NavLink exact={ exact} activeClassName="nav_active" className="nav_link" to={to}>
           {children}
           <span className="nav-text"> {title}</span>
@@ -12,3 +12,4 @@ const NavItem = ({ children, title, to, exact, onclick }) => {
   );
 };
 export default NavItem;
+  

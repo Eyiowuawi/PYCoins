@@ -1,4 +1,3 @@
-// import Img from "../../assets/success.svg";
 
 const Response = ({ img, title, text, children }) => {
   return (

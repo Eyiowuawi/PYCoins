@@ -1,6 +1,6 @@
 const Label = ({ title, id, onchange, ...props }) => {
   return (
-    <div>
+    <div >
       <input id={id} className="label_input" onChange={onchange} {...props} />
       <label htmlFor={id} className="label_label">
         <span></span>

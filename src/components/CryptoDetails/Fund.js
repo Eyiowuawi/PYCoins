@@ -1,6 +1,5 @@
 import Modal from "../UI/Modal";
 import QRCode from "../../assets/qrcode.png";
-// import Copy from "../../assets/copy.svg";
 import { Copy } from "../../icons";
 import ActionLabel from "./../UI/ActionLabel";
 
@@ -12,13 +11,13 @@ const FundWallet = ({ close }) => {
         <div className="fund_img">
           <img src={QRCode} alt="Barcode Scanner" />
         </div>
-        <p>WALLET ADDRESS</p>
+        <p className="title title-grey">WALLET ADDRESS</p>
         <ActionLabel style="mt-small" text="3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5">
           <Copy fill="#909198" />
         </ActionLabel>
         <div className="fund_details mt-small">
-          <p>BTC BALANCE</p>
-          <p>0 BTC = NGN 0.00</p>
+          <p className="title title-grey">BTC BALANCE</p>
+          <p className="title title-grey">0 BTC = NGN 0.00</p>
         </div>
       </div>
     </Modal>

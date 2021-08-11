@@ -1,5 +1,13 @@
 .general {
-    width: 70%;
+  width: 80%;
+
+  @media (max-width: 1024px) and (min-width: 800px) {
+    width: 100%;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 
   h3 {
     font-size: 18px !important;
@@ -25,10 +33,19 @@
 
     &-group {
       @include flex(row, flex-start, center);
+
+      @media (max-width: 450px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
       margin-bottom: 2rem;
       label {
         font-weight: 600 !important;
-        flex-basis: 300px;
+        flex-basis: 250px;
+        @media (max-width: 450px) {
+          flex-basis: 0;
+          margin-bottom: 1rem;
+        }
       }
 
       .fund_wallet {
@@ -43,6 +60,11 @@
       align-self: flex-end !important;
       width: max-content;
       padding: 1rem !important;
+
+      @media (max-width: 485px){
+        align-self:initial !important;
+        width: 100%
+      }
     }
   }
 }

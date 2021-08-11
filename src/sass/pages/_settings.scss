@@ -6,15 +6,23 @@
   }
 
   &_ul {
-    padding: 0;
+    padding: 0 0 1rem 0;
     margin: 0;
 
     list-style: none;
     @include flex(row, stretch, center);
+    overflow-x: auto;
+
+
+    &::-webkit-scrollbar{
+      width: 0;
+      height: 0
+    }
   }
 
   &_li {
     margin-right: 3rem;
+    flex-shrink: 0;
     a {
       margin-left: 0 !important;
     }

@@ -3,6 +3,7 @@
 
 @import "base/base";
 @import "base/utility";
+@import "base/animation";
 @import "base/typography";
 
 @import "components/button";
@@ -20,7 +21,9 @@
 @import "components/transdetails";
 @import "components/fund";
 @import "components/back";
+@import "components/tableresponsive";
 @import "components/balance";
+@import "components/paymenttableresponsive";
 
 @import "layout/auth";
 @import "layout/dashboard";
@@ -29,6 +32,7 @@
 @import "layout/sidebar";
 @import "layout/main";
 @import "layout/background";
+@import "layout/mobilesidebar";
 
 @import "pages/create";
 @import "pages/verify";

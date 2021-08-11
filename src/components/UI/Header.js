@@ -1,8 +1,8 @@
-import Switch from "../../assets/Switch.png";
 import { Arrow } from "../../icons";
+import Logo from "../../assets/Logo.svg";
 import Hamburger from "../../assets/hamburger.svg";
 import Toggle from "./Switch";
-const Header = () => {
+const Header = ({showsidebar}) => {
   return (
     <header className="header">
       <div className="header_container">
@@ -14,9 +14,18 @@ const Header = () => {
           <p className="header-text header-text-black">John Doe</p>
           <Arrow />
         </div>
+
         <div className="header_mobile">
-          <img src={Hamburger} />
-          <div className="header_name">JD</div>
+          <img onClick={showsidebar} src={Hamburger} />
+          <div className="header_logo">
+            <img src={Logo} alt="Payercoins Logo" />
+          </div>
+          <div className="header_name_container">
+            <div className="header_name">JD</div>
+            <div className="header_mobile_arrow">
+              <Arrow />
+            </div>
+          </div>
         </div>
       </div>
     </header>
