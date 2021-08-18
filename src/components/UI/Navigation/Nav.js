@@ -22,6 +22,7 @@ const Navigation = ({close}) => {
           to="/"
           exact
           title="Dashboard"
+          // onclick={() => setShow(false)}
         >
           <Home />
         </NavItem>
@@ -29,6 +30,7 @@ const Navigation = ({close}) => {
           close={close}
           to="/wallet"
           title="Wallet"
+          // onclick={() => setShow(false)}
         >
           <Wallet />
         </NavItem>
@@ -61,6 +63,7 @@ const Navigation = ({close}) => {
           close={close}
           to="/settings?tab=general"
           title="Settings"
+          // onclick={() => setShow(false)}
         >
           <Settings />
         </NavItem>

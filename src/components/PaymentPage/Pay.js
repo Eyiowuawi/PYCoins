@@ -21,6 +21,7 @@ const Pay = ({ goBack }) => {
           <div className="mb-small">
             <p className="title title-grey mb-smaller">WALLET ADDRESS</p>
             <ActionLabel
+              // style="mt-small"
               text="3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5"
             >
               <Copy fill="#909198" />

@@ -1,5 +1,6 @@
 import Modal from "../UI/Modal";
 import QRCode from "../../assets/qrcode.png";
+// import Copy from "../../assets/copy.svg";
 import { Copy } from "../../icons";
 import ActionLabel from "./../UI/ActionLabel";
 

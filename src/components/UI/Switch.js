@@ -8,7 +8,7 @@ const Toggle = () => {
     setChecked(!checked);
   };
   return (
-    <label>
+    <label className="toggle">
       <Switch
         onChange={handleChange}
         checked={checked}

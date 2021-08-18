@@ -2,6 +2,7 @@ import { Arrow } from "../../icons";
 import Logo from "../../assets/Logo.svg";
 import Hamburger from "../../assets/hamburger.svg";
 import Toggle from "./Switch";
+import Arrowdropdown from "./Arrowdropdown";
 const Header = ({showsidebar}) => {
   return (
     <header className="header">
@@ -12,7 +13,7 @@ const Header = ({showsidebar}) => {
           <p className="header-text header-text-grey">Live</p>
           <div className="header_name">JD</div>
           <p className="header-text header-text-black">John Doe</p>
-          <Arrow />
+          <Arrowdropdown />
         </div>
 
         <div className="header_mobile">
@@ -23,7 +24,7 @@ const Header = ({showsidebar}) => {
           <div className="header_name_container">
             <div className="header_name">JD</div>
             <div className="header_mobile_arrow">
-              <Arrow />
+              <Arrowdropdown />
             </div>
           </div>
         </div>

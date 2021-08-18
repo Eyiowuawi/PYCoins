@@ -16,6 +16,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     button {
+      // flex-shrink: 1;
       @include flex(row, center, center);
       span{
         margin-left: 1rem;

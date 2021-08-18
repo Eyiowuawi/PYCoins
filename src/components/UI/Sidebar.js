@@ -8,9 +8,9 @@ const Sidebar = ({show, close}) => {
   return (
     <div className={`sidebar ${show && "sidebar_show"}`}>
       <div className="sidebar_container">
-        <div>
+        <Link to="/">
           <img src={Logo} alt="Payercoins Logo" />
-        </div>
+        </Link>
         <div className="sidebar_name">
           <h5>Business Name</h5>
           <p>ID: 10123856</p>

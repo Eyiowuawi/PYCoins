@@ -29,7 +29,9 @@
     line-height: 18px;
     color: $color-sidebar;
     @include respond(phone) {
+      // font-size: ;
     }
+    // text-align: center;
   }
 
   tbody tr{

@@ -76,3 +76,70 @@
   }
 }
 
+/*media query*/
+// @media only screen and (max-width: 900px) {
+//   // .wallets_crypto-list {
+//   //   display: flex;
+//   //   flex-direction: row;
+//   // }
+// }
+// @media only screen and (max-width: 768px) {
+//   .wallets_crypto-list {
+//     display: flex;
+//     flex-direction: column;
+//   }
+//   .wallets_crypto-item {
+//     display: flex;
+//     flex-direction: column;
+//     margin: 20px;
+//     width: 100%;
+//   }
+// }
+// @media only screen and (max-width: 668px) {
+//   .wallets_crypto-list {
+//     display: flex;
+//     flex-direction: column;
+//   }
+//   .wallets_crypto-item {
+//     display: flex;
+//     flex-direction: column;
+//     margin: 10px;
+//     width: 100%;
+//   }
+// }
+// @media only screen and (max-width: 568px) {
+//   .wallets_crypto-list {
+//     display: flex;
+//     flex-direction: column;
+//   }
+//   .wallets_crypto-item {
+//     display: flex;
+//     flex-direction: column;
+//     margin: 10px;
+//     width: 100%;
+//   }
+// }
+@media only screen and (max-width: 468px) {
+  .wallets_crypto-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .wallets_crypto-item {
+    display: flex;
+    flex-direction: column;
+    // margin: 10px;
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 368px) {
+  // .wallets_crypto-list {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+  // .wallets_crypto-item {
+  //   display: flex;
+  //   flex-direction: column;
+  //   // margin: 10px;
+  //   width: 100%;
+  // }
+}
