@@ -24,6 +24,7 @@ const ForgotPassword = () => {
             elementType="input"
             value={email}
             placeholder="Email Address"
+            label="Email Address"
           />
           <Button bg={"button_primary"}>Reset Password </Button>
         </form>

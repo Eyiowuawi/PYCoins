@@ -18,6 +18,7 @@ const Login = ({ history }) => {
       type: "email",
       elementType: "input",
       placeholder: "Email",
+      label: "Email"
     },
     password: {
       value: "",
@@ -26,6 +27,7 @@ const Login = ({ history }) => {
       elementType: "input",
       placeholder: "Password",
       image: show,
+      label: "Password"
     },
   });
 

@@ -19,6 +19,7 @@ const formGenerator = (formType) => {
       info={config.info}
       svg={config.image}
       options={config.options}
+      label={config.label}
     />
   ));
   return form;
