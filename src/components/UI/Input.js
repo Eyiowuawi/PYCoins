@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
   root: {
     "&": {
       width: "100%",
+      marginTop: "1rem",
 
       "& .MuiOutlinedInput-root": {
         fontSize: "1.1rem",
@@ -42,6 +43,7 @@ const useStyles = makeStyles(() => ({
   select: {
     "&": {
       width: "100%",
+      marginTop: "1rem",
       backgroundPositionX: "98% !important",
       backgroundRepeat: "no-repeat",
       backgroundPositionY: "50% !important",
