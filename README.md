@@ -1,6 +1,6 @@
 # PAYERCOINS DASHBOARD
 
-## Payercoins helps individuals and SMEs to accept and make payments with Bitcoin and other cryptocurrencies from customers anywhere in the world.
+#### Payercoins helps individuals and SMEs to accept and make payments with Bitcoin and other cryptocurrencies from customers anywhere in the world.
 
 To run project
 
