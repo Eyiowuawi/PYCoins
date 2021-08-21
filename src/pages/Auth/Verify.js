@@ -12,7 +12,7 @@ const VerifyMsg = () => {
         Hello, your account has been successfully registered. To complete the
         verification process, please check your email to verify your account.
       </p>
-      <Link to="/login" className="link">Login</Link>
+      <Link to="/auth/login" className="link">Login</Link>
     </div>
   );
 };

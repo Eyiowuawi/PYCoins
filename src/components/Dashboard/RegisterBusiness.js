@@ -14,4 +14,8 @@ const RegisterBusiness = ({ date, onclick }) => {
     </div>
   );
 };
+
+
+
+
 export default RegisterBusiness;

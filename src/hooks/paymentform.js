@@ -8,6 +8,7 @@ const usePaymentForm = () => {
       elementType: "input",
       type: "text",
       placeholder: "Payment Name",
+      label: "Payment Name"
     },
     desc: {
       value: "",
@@ -15,6 +16,7 @@ const usePaymentForm = () => {
       type: "url",
       elementType: "textarea",
       placeholder: "Description",
+      label: "Description"
     },
     currency: {
       value: "",

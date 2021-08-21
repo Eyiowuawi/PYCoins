@@ -7,7 +7,8 @@ const useBusinessForm = () => {
       valid: false,
       elementType: "input",
       type: "text",
-      placeholder: "First Name",
+      placeholder: "Business Name",
+      label: "Business Name",
     },
     country: {
       value: "",
@@ -41,6 +42,7 @@ const useBusinessForm = () => {
       type: "email",
       elementType: "input",
       placeholder: "Business Email",
+      label: "Business Email",
     },
     role: {
       value: "",
@@ -62,6 +64,7 @@ const useBusinessForm = () => {
       type: "url",
       elementType: "input",
       placeholder: "Website URL",
+      label: "Business URL",
     },
     desc: {
       value: "",
@@ -76,6 +79,7 @@ const useBusinessForm = () => {
       type: "text",
       elementType: "input",
       placeholder: "Business Address",
+      label: "Business Address",
     },
   });
 

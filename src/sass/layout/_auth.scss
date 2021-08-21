@@ -5,6 +5,9 @@
     padding-bottom: 1rem;
     &-container {
       padding: 2rem;
+      @media (max-width: 600px){
+        padding: 0;
+      }
     }
   }
 }

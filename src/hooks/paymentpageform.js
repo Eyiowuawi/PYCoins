@@ -8,6 +8,7 @@ const usePaymentPageForm = () => {
       elementType: "input",
       type: "text",
       placeholder: "Name",
+      label: "Name"
     },
     email: {
       value: "",
@@ -15,6 +16,7 @@ const usePaymentPageForm = () => {
       type: "email",
       elementType: "input",
       placeholder: "Email",
+      label: "Email"
     },
     amount: {
       value: "",
@@ -22,6 +24,7 @@ const usePaymentPageForm = () => {
       type: "text",
       elementType: "input",
       placeholder: "Phone Number",
+      label: "Enter Amount"
     },
     message: {
       value: "",
@@ -29,6 +32,7 @@ const usePaymentPageForm = () => {
       type: "text",
       elementType: "textarea",
       placeholder: "Message (Optional)",
+      label: "Message"
     },
   });
 

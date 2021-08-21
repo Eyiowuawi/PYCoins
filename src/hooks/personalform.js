@@ -8,6 +8,7 @@ const usePersonalForm = () => {
       elementType: "input",
       type: "text",
       placeholder: "First Name",
+      label: "First Name"
 
     },
     lastName: {
@@ -16,6 +17,7 @@ const usePersonalForm = () => {
       elementType: "input",
       type: "text",
       placeholder: "Last Name",
+      label: "Last Name"
     },
     number: {
       value: "",
@@ -23,6 +25,7 @@ const usePersonalForm = () => {
       type: "text",
       elementType: "input",
       placeholder: "Phone Number",
+      label: "Phone Number"
     },
     email: {
       value: "",
@@ -30,6 +33,7 @@ const usePersonalForm = () => {
       type: "email",
       elementType: "input",
       placeholder: "Email",
+      label: "Email"
     },
     password: {
       value: "",
@@ -37,7 +41,8 @@ const usePersonalForm = () => {
       type: "password",
       elementType: "input",
       placeholder: "Password",
-      image:show,
+      image: show,
+      label: "Password",
     },
     confirm: {
       value: "",
@@ -46,6 +51,7 @@ const usePersonalForm = () => {
       elementType: "input",
       image: show,
       placeholder: "Confirm Password",
+      label: "Confirm Password"
     },
   });
 

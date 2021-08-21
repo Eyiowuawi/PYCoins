@@ -19,6 +19,7 @@ const ResetPassword = () => {
       elementType: "input",
       image: show,
       placeholder: "Password",
+      label: "Password",
     },
     confirm: {
       value: "",
@@ -27,6 +28,7 @@ const ResetPassword = () => {
       elementType: "input",
       placeholder: "Confirm Password",
       image: show,
+      label: "Confirm Password"
     },
   });
 

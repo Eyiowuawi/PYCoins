@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { ModalContext } from "../../context";
 
 import Modal from "../UI/Modal";
@@ -8,14 +8,14 @@ import Response from "../UI/Response";
 
 import Success from "../../assets/success.svg";
 
-const BusinessForm = () => {
-  const { setShow } = useContext(ModalContext);
+const BusinessForm = ({close}) => {
+  // const { setShow } = useContext(ModalContext);
   const [success, setSuccess] = useState();
 
   const [businessForm] = useBusinessForm();
 
   return (
-    <Modal close={setShow}>
+    <Modal close={close}>
       {!success && (
         <Business
           businessForm={businessForm}

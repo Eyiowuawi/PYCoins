@@ -43,6 +43,7 @@ const useBankForm = () => {
       elementType: "input",
       type: "number",
       placeholder: "Accouunt Number",
+      label: "Account Number"
     },
     name: {
       value: "",
@@ -50,6 +51,7 @@ const useBankForm = () => {
       elementType: "input",
       type: "number",
       placeholder: "Accouunt Name",
+      label: "Account Name"
     },
   });
   return [bankForm, setBankForm];

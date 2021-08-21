@@ -21,6 +21,12 @@ import PaymentPage from "./pages/PaymentPage";
 
 const routes = [
   {
+    path: "/paymentpage",
+    exact: true,
+    component: PaymentPage,
+    key: "payment-page",
+  },
+  {
     path: "/auth",
     component: AuthLayout,
     routes: [
@@ -30,7 +36,12 @@ const routes = [
         component: Create,
         key: "create-initial",
       },
-      { path: "/auth/create", exact: true, component: Create, key: "create-page" },
+      {
+        path: "/auth/create",
+        exact: true,
+        component: Create,
+        key: "create-page",
+      },
       {
         path: "/auth/register/business",
         exact: true,
@@ -105,12 +116,6 @@ const routes = [
         key: "settings",
       },
     ],
-  },
-  {
-    path: "/paymentpage",
-    exact: true,
-    component: PaymentPage,
-    key: "payment-page",
   },
 ];
 

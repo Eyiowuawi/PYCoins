@@ -13,7 +13,6 @@ const DashboardLayout = ({ route }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      // setShow(true);
       setShowPopup(true);
     }, 5000);
   }, []);

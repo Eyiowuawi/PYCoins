@@ -1,6 +1,5 @@
-import { useMemo, useContext, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ModalContext } from "../../context";
 
 import User from "../../components/Dashboard/User";
 import RegisterBusiness from "../../components/Dashboard/RegisterBusiness";
@@ -11,10 +10,10 @@ import { RightArrow } from "../../icons";
 // import Empty from "../../components/Empty"
 import { transactions } from "../../constants";
 import TableResponsive from "./../../components/TableResponsive";
-import useWindowWidth from './../../hooks/windowwidth';
+import useWindowWidth from "./../../hooks/windowwidth";
 
 const Dashboard = () => {
-  const { show, setShow } = useContext(ModalContext);
+  const [show, setShow] = useState(false);
   const [width, setWidth] = useWindowWidth();
 
   const date = useMemo(() => {
@@ -24,10 +23,7 @@ const Dashboard = () => {
       year: "numeric",
       weekday: "long",
     });
-
   }, []);
-
-
 
   return (
     <>
@@ -66,7 +62,7 @@ const Dashboard = () => {
           {width <= 500 && <TableResponsive data={transactions} />}
         </div>
       </div>
-      {show && <BusinessForm />}
+      {show && <BusinessForm close={setShow} />}
     </>
   );
 };

@@ -4,7 +4,7 @@ import VerifyMsg from "./Verify";
 
 import usePersonalForm from "../../hooks/personalform";
 
-const PersonalForm = () => {
+const PersonalForm = ({history}) => {
   const [form] = usePersonalForm();
   const [indicate, setIndicate] = useState(false);
 

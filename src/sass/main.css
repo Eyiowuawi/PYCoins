@@ -353,9 +353,14 @@ a {
 }
 
 .form_select option {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-family: "Mulish", sans-serif;
   padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form_select * {
+  border: 1px solid red;
 }
 
 .form_textarea {
@@ -1388,6 +1393,12 @@ a {
 
 .auth_form-container {
   padding: 2rem;
+}
+
+@media (max-width: 600px) {
+  .auth_form-container {
+    padding: 0;
+  }
 }
 
 .dashboard_content {
