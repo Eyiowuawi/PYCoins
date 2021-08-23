@@ -46,9 +46,8 @@
       margin-bottom: 1rem;
     }
 
-
-    &  * {
-      border: 1px solid red
+    & * {
+      border: 1px solid red;
     }
   }
 
@@ -57,8 +56,9 @@
   }
   &_img {
     position: absolute;
-    top: 40%;
+    top: 60%;
     right: 30px;
+    transform: translateY(-50%);
   }
 
   &_upload {

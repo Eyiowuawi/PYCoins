@@ -1,10 +1,10 @@
 import { useState } from "react";
 import PersonalInfo from "../../components/Auth/Personal";
 import VerifyMsg from "./Verify";
-
 import usePersonalForm from "../../hooks/personalform";
+import withRegistrationType from "../../hoc/registerType";
 
-const PersonalForm = ({history}) => {
+const PersonalForm = ({ history }) => {
   const [form] = usePersonalForm();
   const [indicate, setIndicate] = useState(false);
 
@@ -46,4 +46,4 @@ const PersonalForm = ({history}) => {
   );
 };
 
-export default PersonalForm;
+export default withRegistrationType(PersonalForm);

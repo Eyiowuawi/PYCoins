@@ -1,15 +1,17 @@
 import { createContext, useState } from "react";
 
-export const ModalContext = createContext(null);
+export const AppContext = createContext(null);
 
-const ModalComponent = ({ children }) => {
-  const [show, setShow] = useState(false);
+const AppComponent = ({ children }) => {
+
+  const [register, setRegister] = useState("")
+  console.log(register)
 
   return (
-    <ModalContext.Provider value={{ show, setShow }}>
+    <AppContext.Provider  value={{register, setRegister}}>
       {children}
-    </ModalContext.Provider>
+    </AppContext.Provider>
   );
 };
 
-export default ModalComponent;
+export default AppComponent;

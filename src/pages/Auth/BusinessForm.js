@@ -6,6 +6,8 @@ import VerifyMsg from "./Verify";
 import Indicator from "../../components/UI/Indicator";
 import Business from "../../components/Auth/Business";
 import AuthFooter from "./../../components/Auth/AuthFooter";
+import withRegistrationType from "../../hoc/registerType";
+import useBusinessPage from "../../hooks/businessPage";
 
 const title = "Already have an account?";
 const linkTitle = "Login";
@@ -14,9 +16,8 @@ const link = "/auth/login";
 const BusinessForm = () => {
   const [businessForm] = useBusinessForm();
   const [personalForm] = usePersonalForm();
-  const [show_1, setShow_1] = useState(false);
-  const [show_2, setShow_2] = useState(false);
-  const [page, setPage] = useState("");
+  const [show_1, setShow_1, show_2, setShow_2, page, setPage] =
+    useBusinessPage();
 
   const handleChangeForm = (evt) => {
     evt.preventDefault();
@@ -56,4 +57,4 @@ const BusinessForm = () => {
   );
 };
 
-export default BusinessForm;
+export default withRegistrationType(BusinessForm);

@@ -369,8 +369,10 @@ a {
 
 .form_img {
   position: absolute;
-  top: 40%;
+  top: 60%;
   right: 30px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 .form_upload-input {

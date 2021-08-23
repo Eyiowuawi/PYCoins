@@ -4,15 +4,15 @@ import App from "./App";
 import "./sass/main.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import ModalComponent from "./context";
+import AppComponentContext from "./context";
 
 ReactDOM.render(
   <BrowserRouter>
-    <ModalComponent>
+    <AppComponentContext>
       <React.StrictMode>
         <App />
       </React.StrictMode>
-    </ModalComponent>
+    </AppComponentContext>
   </BrowserRouter>,
   document.getElementById("root")
 );

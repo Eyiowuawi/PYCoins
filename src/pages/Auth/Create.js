@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import {AppContext} from "../../context"
 import Button from "../../components/UI/Button";
 import Label from "../../components/UI/Label";
 
 const Create = ({ history }) => {
   const [formType, setFormType] = useState("");
   const [message, setMessage] = useState("");
+  const { setRegister } = useContext(AppContext);
 
   const handleChange = (evt) => {
     console.log(evt.target.value)
@@ -17,8 +19,10 @@ const Create = ({ history }) => {
       return;
     }
     if (formType === "business") {
+      setRegister("business")
       history.push("/auth/register/business");
     } else if (formType === "personal") {
+      setRegister("individual")
       history.push("/auth/register/personal");
     }
   };
