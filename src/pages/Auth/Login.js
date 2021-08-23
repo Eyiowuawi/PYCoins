@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Input from "../../components/UI/Input";
 import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
 import formGenerator from "../../utils/formgenerator";
+import useLoginForm from "../../hooks/login";
 
 import show from "../../assets/show.svg";
 const title = "Don't have an account?";
@@ -11,33 +11,15 @@ const link = "/auth/create";
 const linkTitle = "Sign Up";
 
 const Login = ({ history }) => {
-  const [loginForm] = useState({
-    email: {
-      value: "",
-      valid: false,
-      type: "email",
-      elementType: "input",
-      placeholder: "Email",
-      label: "Email"
-    },
-    password: {
-      value: "",
-      valid: false,
-      type: "password",
-      elementType: "input",
-      placeholder: "Password",
-      image: show,
-      label: "Password"
-    },
-  });
+  const [loginForm, setLoginForm, loginFormValid, setLoginFormValid] =
+    useLoginForm();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     history.push("/");
   };
 
-
-  const form = formGenerator(loginForm)
+  const form = formGenerator(loginForm, setLoginForm, setLoginFormValid);
 
   return (
     <div className="auth_form">
@@ -48,7 +30,13 @@ const Login = ({ history }) => {
         </p>
         <form>
           {form}
-          <Button bg={"button_primary"} onclick={handleSubmit}>Sign In </Button>
+          <Button
+            disabled={loginFormValid}
+            bg={"button_primary"}
+            onclick={handleSubmit}
+          >
+            Sign In{" "}
+          </Button>
         </form>
         <Link
           to="/auth/forgotpassword"

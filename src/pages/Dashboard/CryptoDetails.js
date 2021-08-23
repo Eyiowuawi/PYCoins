@@ -49,11 +49,11 @@ const CryptoDetails = () => {
         <p className="title title-grey mt-small">TOTAL BALANCE</p>
         <p className="title title-grey mt-small">0.00 BTC</p>
         <div className="cryptodetails_btns">
-          <Button bg={"button_primary"} onclick={() => setFund(true)}>
+          <Button disabled={true} bg={"button_primary"} onclick={() => setFund(true)}>
             <img src={Plus} alt="Add" className="" />
             <span>Fund</span>
           </Button>
-          <Button bg={"button_white"} onclick={() => setWithdraw(true)}>
+          <Button disabled={true} bg={"button_white"} onclick={() => setWithdraw(true)}>
             <RightArrow fill="#48d189" />
             <span> Withdraw</span>
           </Button>

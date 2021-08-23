@@ -1,5 +1,13 @@
 import { useState } from "react";
-import show from "../assets/show.svg"
+import show from "../assets/show.svg";
+import {
+  password,
+  phoneNumberCheck,
+  required,
+  confirmPassword,
+  emailCheck,
+} from "../utils/validations";
+
 const usePersonalForm = () => {
   const [personalForm, setPersonalForm] = useState({
     firstName: {
@@ -8,8 +16,10 @@ const usePersonalForm = () => {
       elementType: "input",
       type: "text",
       placeholder: "First Name",
-      label: "First Name"
-
+      label: "First Name",
+      required: true,
+      validation: required,
+      blur: false,
     },
     lastName: {
       value: "",
@@ -17,7 +27,10 @@ const usePersonalForm = () => {
       elementType: "input",
       type: "text",
       placeholder: "Last Name",
-      label: "Last Name"
+      label: "Last Name",
+      required: true,
+      validation: required,
+      blur: false,
     },
     number: {
       value: "",
@@ -25,15 +38,22 @@ const usePersonalForm = () => {
       type: "text",
       elementType: "input",
       placeholder: "Phone Number",
-      label: "Phone Number"
+      label: "Phone Number",
+      required: true,
+      validation: phoneNumberCheck,
+      blur: false,
     },
+
     email: {
       value: "",
       valid: false,
       type: "email",
       elementType: "input",
       placeholder: "Email",
-      label: "Email"
+      label: "Email",
+      required: true,
+      blur: false,
+      validation: emailCheck,
     },
     password: {
       value: "",
@@ -43,6 +63,10 @@ const usePersonalForm = () => {
       placeholder: "Password",
       image: show,
       label: "Password",
+      required: true,
+      validation: password,
+      blur: false,
+      info: "Password must be alphanumeric, 8 characters long and must contain a  special character",
     },
     confirm: {
       value: "",
@@ -51,11 +75,16 @@ const usePersonalForm = () => {
       elementType: "input",
       image: show,
       placeholder: "Confirm Password",
-      label: "Confirm Password"
+      label: "Confirm Password",
+      required: true,
+      validation: confirmPassword,
+      blur: false,
     },
   });
 
-  return [personalForm, setPersonalForm];
+  const [formValid, setFormValid] = useState(false);
+
+  return [personalForm, setPersonalForm, formValid, setFormValid];
 };
 
 export default usePersonalForm;

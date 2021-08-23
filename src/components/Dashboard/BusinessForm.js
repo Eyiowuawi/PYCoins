@@ -8,11 +8,16 @@ import Response from "../UI/Response";
 
 import Success from "../../assets/success.svg";
 
-const BusinessForm = ({close}) => {
+const BusinessForm = ({ close }) => {
   // const { setShow } = useContext(ModalContext);
   const [success, setSuccess] = useState();
 
-  const [businessForm] = useBusinessForm();
+  const [
+    businessForm,
+    setBusinessForm,
+    businessFormValid,
+    setBusinessFormVallid,
+  ] = useBusinessForm();
 
   return (
     <Modal close={close}>
@@ -20,6 +25,9 @@ const BusinessForm = ({close}) => {
         <Business
           businessForm={businessForm}
           handleSubmit={() => setSuccess(true)}
+          businessFormUpdate={setBusinessForm}
+          businessFormValid={businessFormValid}
+          setBusinessFormVallid={setBusinessFormVallid}
         />
       )}
       {success && (

@@ -183,6 +183,10 @@ a {
   color: #787676;
 }
 
+.small-red {
+  color: red !important;
+}
+
 .small_bg {
   font-size: 1.25rem !important;
 }
@@ -236,7 +240,7 @@ a {
   font-family: "Mulish", sans-serif;
   font-style: normal;
   font-weight: bold;
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 18px;
   color: #1d1e2c;
 }
@@ -281,6 +285,8 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
 }
 
 .button_white {
@@ -294,6 +300,11 @@ a {
   background-color: #48d189;
 }
 
+.button:disabled {
+  cursor: not-allowed !important;
+  background-color: #ccc !important;
+}
+
 .form {
   width: 100%;
 }
@@ -304,38 +315,38 @@ a {
   position: relative;
 }
 
-.form_input, .form_select, .form_textarea, .form_upload-label {
+.form_textarea, .form_upload-label {
   display: block;
   width: 100%;
   font-size: 1rem;
   border: 1px solid #e5e9f2;
-  padding: 1.3rem;
+  padding: 1rem;
   border-radius: 8px;
   font-family: "Mulish", sans-serif;
   color: #30324b;
 }
 
-.form_input::-webkit-input-placeholder, .form_select::-webkit-input-placeholder, .form_textarea::-webkit-input-placeholder, .form_upload-label::-webkit-input-placeholder {
+.form_textarea::-webkit-input-placeholder, .form_upload-label::-webkit-input-placeholder {
   color: #30324b !important;
   font-family: "Mulish", sans-serif !important;
 }
 
-.form_input:-ms-input-placeholder, .form_select:-ms-input-placeholder, .form_textarea:-ms-input-placeholder, .form_upload-label:-ms-input-placeholder {
+.form_textarea:-ms-input-placeholder, .form_upload-label:-ms-input-placeholder {
   color: #30324b !important;
   font-family: "Mulish", sans-serif !important;
 }
 
-.form_input::-ms-input-placeholder, .form_select::-ms-input-placeholder, .form_textarea::-ms-input-placeholder, .form_upload-label::-ms-input-placeholder {
+.form_textarea::-ms-input-placeholder, .form_upload-label::-ms-input-placeholder {
   color: #30324b !important;
   font-family: "Mulish", sans-serif !important;
 }
 
-.form_input::placeholder, .form_select::placeholder, .form_textarea::placeholder, .form_upload-label::placeholder {
+.form_textarea::placeholder, .form_upload-label::placeholder {
   color: #30324b !important;
   font-family: "Mulish", sans-serif !important;
 }
 
-.form_input:focus, .form_select:focus, .form_textarea:focus, .form_upload-label:focus {
+.form_textarea:focus, .form_upload-label:focus {
   outline: none;
 }
 
@@ -369,8 +380,8 @@ a {
 
 .form_img {
   position: absolute;
-  top: 60%;
-  right: 30px;
+  top: 48%;
+  right: 20px;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
@@ -380,7 +391,6 @@ a {
 }
 
 .form_upload-label {
-  margin-bottom: 2rem;
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1015,7 +1025,7 @@ a {
       -ms-flex-align: center;
           align-items: center;
   border: 1px solid #e5e9f2;
-  padding: 1.3rem;
+  padding: 1rem;
   border-radius: 8px;
 }
 
@@ -1098,7 +1108,7 @@ a {
 
 .fund_wallet {
   border: 1px solid #e5e9f2;
-  padding: 1.3rem;
+  padding: 1rem;
   border-radius: 8px;
   display: -webkit-box;
   display: -ms-flexbox;

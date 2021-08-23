@@ -6,7 +6,7 @@ import { Home, Payment, Settings, Wallet } from "../../../icons";
 
 const items = [{ id: 1, title: "Payment Page", link: "/payment/pay" }];
 
-const Navigation = ({close}) => {
+const Navigation = ({ close }) => {
   const { pathname } = useLocation();
   const [show, setShow] = useState(false);
 
@@ -22,7 +22,6 @@ const Navigation = ({close}) => {
           to="/"
           exact
           title="Dashboard"
-          // onclick={() => setShow(false)}
         >
           <Home />
         </NavItem>
@@ -30,7 +29,6 @@ const Navigation = ({close}) => {
           close={close}
           to="/wallet"
           title="Wallet"
-          // onclick={() => setShow(false)}
         >
           <Wallet />
         </NavItem>
@@ -46,7 +44,7 @@ const Navigation = ({close}) => {
           </div>
           <div className={show ? "nav_show" : ""}>
             {items.map((item) => (
-              <p onClick={close}>
+              <p onClick={close} key={item.id}>
                 <NavLink
                   key={item.id}
                   activeClassName="nav_active"
@@ -63,7 +61,6 @@ const Navigation = ({close}) => {
           close={close}
           to="/settings?tab=general"
           title="Settings"
-          // onclick={() => setShow(false)}
         >
           <Settings />
         </NavItem>

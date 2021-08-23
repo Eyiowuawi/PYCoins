@@ -5,7 +5,7 @@ import usePersonalForm from "../../hooks/personalform";
 import withRegistrationType from "../../hoc/registerType";
 
 const PersonalForm = ({ history }) => {
-  const [form] = usePersonalForm();
+  const [personalForm, setPersonalForm, formValid, setFormValid] = usePersonalForm();
   const [indicate, setIndicate] = useState(false);
 
   const handleSubmit = (evt) => {
@@ -38,7 +38,13 @@ const PersonalForm = ({ history }) => {
           {indicate ? (
             <VerifyMsg />
           ) : (
-            <PersonalInfo personalform={form} formSubmit={handleSubmit} />
+            <PersonalInfo
+              personalform={personalForm}
+              updateFn={setPersonalForm}
+              formSubmit={handleSubmit}
+              formValid={formValid}
+              formValidFunc={setFormValid}
+            />
           )}
         </div>
       </div>
@@ -46,4 +52,5 @@ const PersonalForm = ({ history }) => {
   );
 };
 
-export default withRegistrationType(PersonalForm);
+// export default withRegistrationType(PersonalForm);
+export default PersonalForm;

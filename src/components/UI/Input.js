@@ -27,6 +27,10 @@ const useStyles = makeStyles(() => ({
         "&:hover fieldset": {
           borderColor: "#e5e9f2",
         },
+
+        "&.Mui-error:hover fieldset": {
+          borderColor: "#f44336",
+        },
       },
       "& label": {
         fontSize: "1rem",
@@ -112,9 +116,14 @@ const Input = ({
   placeholder,
   info,
   svg,
-  key,
+  id,
   label,
   options,
+  onchange,
+  required,
+  blur,
+  onblur,
+  valid,
 }) => {
   const classes = useStyles();
   let inputElement;
@@ -123,40 +132,51 @@ const Input = ({
       inputElement = (
         <>
           <TextField
+            error={blur && !valid}
             className={classes.root}
             label={label}
             variant="outlined"
             required
+            onChange={onchange}
+            required={required}
+            onBlur={onblur}
+            type={type}
+            value={value}
           />
-          {info && <p className="small mt-small">{info}</p>}
+          {info && <p className="small small-red">{info}</p>}
         </>
       );
       break;
 
     case "select":
       inputElement = (
-        <FormControl variant="outlined" className={classes.select}>
-          <InputLabel htmlFor="outlined-age-native-simple">Age</InputLabel>
+        <FormControl
+          variant="outlined"
+          className={classes.select}
+          required={required}
+          error={blur && !valid}
+        >
+          <InputLabel htmlFor="outlined-age-native-simple">{label}</InputLabel>
           <Select
             className={classes.menulist}
-            label="Age"
+            label={label}
             inputProps={{
-              name: "age",
+              name: label,
               id: "outlined-age-native-simple",
             }}
+            onChange={onchange}
+            onBlur={onblur}
+            value={value}
           >
-            <MenuItem value="" className={classes.menuitem}>
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10} className={classes.menuitem}>
-              Ten
-            </MenuItem>
-            <MenuItem value={20} className={classes.menuitem}>
-              Twenty
-            </MenuItem>
-            <MenuItem value={30} className={classes.menuitem}>
-              Thirty
-            </MenuItem>
+            {options.map((item) => (
+              <MenuItem
+                key={item.id}
+                value={item.value}
+                className={classes.menuitem}
+              >
+                {item.displayValue}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       );
@@ -168,7 +188,28 @@ const Input = ({
           placeholder={placeholder}
           value={value}
           rows="7"
+          required
+          value={value}
+          onChange={onchange}
+          required
         ></textarea>
+      );
+      break;
+    case "file":
+      inputElement = (
+        <>
+          <input
+            id="upload"
+            type="file"
+            className="form_upload-input"
+            onChange={onchange}
+            accept=".doc,.docx,.pdf"
+          />
+          <label htmlFor="upload" className="form_upload-label">
+            <span>{label}</span>
+          </label>
+          {info && <p className="small small-red">{info}</p>}
+        </>
       );
       break;
     default:

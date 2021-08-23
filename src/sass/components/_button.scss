@@ -9,16 +9,21 @@
   cursor: pointer;
   font-weight: 700;
   @include flex(row, center, center);
-  
+  transition: all .5s ease-in-out;
+
   &_white {
     background-color: $color-white;
     @include border($primary-color);
-  color: $primary-color
+    color: $primary-color;
   }
 
-  
   &_primary {
     color: $color-white;
     background-color: $primary-color;
+  }
+
+  &:disabled {
+    cursor: not-allowed !important;
+    background-color: #ccc !important;
   }
 }

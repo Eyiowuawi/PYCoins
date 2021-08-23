@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import {AppContext} from "../../context"
+import { AppContext } from "../../context";
 import Button from "../../components/UI/Button";
 import Label from "../../components/UI/Label";
 
@@ -7,10 +7,11 @@ const Create = ({ history }) => {
   const [formType, setFormType] = useState("");
   const [message, setMessage] = useState("");
   const { setRegister } = useContext(AppContext);
+  const [proceed, setProceed] = useState(false);
 
   const handleChange = (evt) => {
-    console.log(evt.target.value)
     setFormType(evt.target.value);
+    setProceed(true);
   };
 
   const handleRouteChange = () => {
@@ -19,10 +20,10 @@ const Create = ({ history }) => {
       return;
     }
     if (formType === "business") {
-      setRegister("business")
+      setRegister("business");
       history.push("/auth/register/business");
     } else if (formType === "personal") {
-      setRegister("individual")
+      setRegister("individual");
       history.push("/auth/register/personal");
     }
   };
@@ -53,7 +54,11 @@ const Create = ({ history }) => {
               type="radio"
               value={"personal"}
             />
-            <Button bg={"button_primary"} onclick={handleRouteChange}>
+            <Button
+              disabled={proceed}
+              bg={"button_primary"}
+              onclick={handleRouteChange}
+            >
               Continue
             </Button>
           </div>

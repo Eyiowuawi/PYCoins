@@ -14,10 +14,22 @@ const linkTitle = "Login";
 const link = "/auth/login";
 
 const BusinessForm = () => {
-  const [businessForm] = useBusinessForm();
-  const [personalForm] = usePersonalForm();
+  const [
+    businessForm,
+    setBusinessForm,
+    businessFormValid,
+    setBusinessFormVallid,
+  ] = useBusinessForm();
+  const [
+    personalForm,
+    setPersonalForm,
+    personalFormValid,
+    setPersonalFormValid,
+  ] = usePersonalForm();
   const [show_1, setShow_1, show_2, setShow_2, page, setPage] =
     useBusinessPage();
+
+  console.log(businessForm);
 
   const handleChangeForm = (evt) => {
     evt.preventDefault();
@@ -40,6 +52,9 @@ const BusinessForm = () => {
             <Business
               businessForm={businessForm}
               handleSubmit={handleChangeForm}
+              businessFormUpdate={setBusinessForm}
+              businessFormValid={businessFormValid}
+              setBusinessFormVallid={setBusinessFormVallid}
             >
               <AuthFooter title={title} linkTitle={linkTitle} link={link} />
             </Business>
@@ -48,6 +63,9 @@ const BusinessForm = () => {
             <PersonalForm
               personalform={personalForm}
               formSubmit={handleFormSubmit}
+              personalFormUpdate={setPersonalForm}
+              formValid={personalFormValid}
+              formValidFunc={setPersonalFormValid}
             />
           )}
           {show_2 && <VerifyMsg />}
@@ -57,4 +75,5 @@ const BusinessForm = () => {
   );
 };
 
-export default withRegistrationType(BusinessForm);
+// export default withRegistrationType(BusinessForm);
+export default BusinessForm;

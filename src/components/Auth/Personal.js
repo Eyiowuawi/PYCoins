@@ -6,8 +6,15 @@ import formGenerator from "./../../utils/formgenerator";
 const title = "Already have an account?";
 const linkTitle = "Login";
 const link = "/auth/login";
-const PersonalInfo = ({ personalform, formSubmit }) => {
-  const form = formGenerator(personalform);
+
+const PersonalInfo = ({
+  personalform,
+  formSubmit,
+  personalFormUpdate,
+  formValid,
+  formValidFunc,
+}) => {
+  const form = formGenerator(personalform, personalFormUpdate, formValidFunc);
 
   return (
     <>
@@ -18,7 +25,7 @@ const PersonalInfo = ({ personalform, formSubmit }) => {
       </p>
       <form onSubmit={formSubmit} className="form mt-small">
         {form}
-        <Button bg={"button_primary"} type="submit">
+        <Button disabled={formValid} bg={"button_primary"} type="submit">
           Create Account
         </Button>
       </form>
