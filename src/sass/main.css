@@ -285,8 +285,8 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .button_white {
@@ -301,8 +301,12 @@ a {
 }
 
 .button:disabled {
-  cursor: not-allowed !important;
   background-color: #ccc !important;
+  cursor: initial;
+}
+
+.button:focus {
+  outline: none;
 }
 
 .form {
@@ -1970,6 +1974,15 @@ a {
     gap: 0.7rem;
     padding: 10px;
   }
+}
+
+.Toastify__toast {
+  padding: 20px;
+}
+
+.Toastify__toast-body {
+  font-size: 1rem;
+  font-family: "Mulish", sans-serif;
 }
 
 .create {

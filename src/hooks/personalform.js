@@ -32,7 +32,7 @@ const usePersonalForm = () => {
       validation: required,
       blur: false,
     },
-    number: {
+    phoneNumber: {
       value: "",
       valid: false,
       type: "text",

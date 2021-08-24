@@ -1,12 +1,12 @@
-const Button = ({ children, onclick, type, bg, disabled }) => {
+const Button = ({ children, onclick, type, bg, disabled, isLoading }) => {
   return (
     <button
-      disabled={!disabled}
+      disabled={!disabled || isLoading}
       className={["button", bg].join(" ")}
       onClick={onclick}
       type={type}
     >
-      {children}
+      {isLoading ? "Please Wait..." : children}
     </button>
   );
 };

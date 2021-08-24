@@ -3,36 +3,38 @@ import PersonalInfo from "../../components/Auth/Personal";
 import VerifyMsg from "./Verify";
 import usePersonalForm from "../../hooks/personalform";
 import withRegistrationType from "../../hoc/registerType";
+import PersonalIndicator from "./../../components/UI/PersonalIndicator";
+import { useRegisterUser } from "../../query/useRegisterUser";
+import { useMutation } from "react-query";
+import { registerUser } from "./../../services/auth/index";
+import { toast } from "react-toastify";
 
 const PersonalForm = ({ history }) => {
-  const [personalForm, setPersonalForm, formValid, setFormValid] = usePersonalForm();
+  const [personalForm, setPersonalForm, formValid, setFormValid] =
+    usePersonalForm();
   const [indicate, setIndicate] = useState(false);
+  const { mutate, isLoading, data, isSuccess } = useMutation((data) =>
+    registerUser(data)
+  );
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    setIndicate(true);
+    const data = new FormData();
+    // for (let key in personalForm) {
+    //   data.append(`${key}`, personalForm[key].value);
+    // }
+    data.append("firstName", personalForm["firstName"].value);
+    data.append("lastName", personalForm["lastName"].value);
+    data.append("phoneNumber", personalForm["phoneNumber"].value);
+    data.append("email", personalForm["email"].value);
+    data.append("password", personalForm["password"].value);
+    data.append(`userType`, "individual");
+    mutate(data);
+    // setIndicate(true);
   };
-
   return (
     <div className="personal">
-      <div className="indicator " style={{ width: "50%" }}>
-        <div className="indicator_item">
-          <span className="indicator_item-circle">
-            <span></span>
-          </span>
-          <span className="indicator_item-line">
-            <span
-              style={
-                indicate ? { backgroundColor: "#48D189", width: "100%" } : {}
-              }
-            ></span>
-          </span>
-        </div>
-
-        <span className="indicator_item-circle">
-          <span style={indicate ? { backgroundColor: "#48D189" } : {}}></span>
-        </span>
-      </div>
+      <PersonalIndicator indicate={indicate} />
       <div className="auth_form">
         <div className="auth_form-container">
           {indicate ? (
@@ -40,10 +42,11 @@ const PersonalForm = ({ history }) => {
           ) : (
             <PersonalInfo
               personalform={personalForm}
-              updateFn={setPersonalForm}
+              personalFormUpdate={setPersonalForm}
               formSubmit={handleSubmit}
               formValid={formValid}
               formValidFunc={setFormValid}
+              isLoading={isLoading}
             />
           )}
         </div>

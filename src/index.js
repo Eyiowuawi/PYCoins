@@ -5,15 +5,24 @@ import "./sass/main.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import AppComponentContext from "./context";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.min.css";
 
+const queryClient = new QueryClient();
 ReactDOM.render(
-  <BrowserRouter>
-    <AppComponentContext>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </AppComponentContext>
-  </BrowserRouter>,
+  <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
+      <AppComponentContext>
+        <React.StrictMode>
+          <App />
+        
+          <ReactQueryDevtools />
+        </React.StrictMode>
+      </AppComponentContext>
+    </BrowserRouter>
+  </QueryClientProvider>,
   document.getElementById("root")
 );
 

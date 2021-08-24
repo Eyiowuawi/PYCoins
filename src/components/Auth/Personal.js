@@ -13,19 +13,16 @@ const PersonalInfo = ({
   personalFormUpdate,
   formValid,
   formValidFunc,
+  isLoading
 }) => {
   const form = formGenerator(personalform, personalFormUpdate, formValidFunc);
 
   return (
     <>
       <h3 className="title title-black ta">Personal Information</h3>
-      <p className="ta mt-small title title-grey">
-        Password it's at least 8 characters including a number, special
-        character and an uppercase letter.
-      </p>
       <form onSubmit={formSubmit} className="form mt-small">
         {form}
-        <Button disabled={formValid} bg={"button_primary"} type="submit">
+        <Button isLoading={isLoading} disabled={formValid } bg={"button_primary"} type="submit">
           Create Account
         </Button>
       </form>

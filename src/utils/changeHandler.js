@@ -6,7 +6,7 @@ export const changeHandler = (
   validForm
 ) => {
   let updatedFormElement = {};
-  console.log(elementID);
+  // console.log(elementID);
   if (elementID === "file") {
     updatedFormElement = {
       ...formType["file"],
