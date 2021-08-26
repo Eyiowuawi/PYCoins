@@ -27,8 +27,14 @@ const useResetPasswordForm = () => {
       rwquired: true,
     },
   });
+  const [resetPasswordValid, setResetPasswordValid] = useState(false);
 
-  return [resetPassword, setResetPassword];
+  return [
+    resetPassword,
+    setResetPassword,
+    resetPasswordValid,
+    setResetPasswordValid,
+  ];
 };
 
 export default useResetPasswordForm;

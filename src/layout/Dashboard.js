@@ -2,13 +2,14 @@ import Sidebar from "../components/UI/Sidebar";
 import Header from "../components/UI/Header";
 import { renderRoutes } from "react-router-config";
 import Popup from "./../pages/Popup/index";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import MobileSidebar from "./../components/UI/Mobilesidebar";
+import { autoLogout } from "./../services/auth/index";
 
-const DashboardLayout = ({ route }) => {
+const DashboardLayout = ({ route, history }) => {
   const [showpopup, setShowPopup] = useState(false);
   const [show, setShow] = useState(false);
+  autoLogout(history);
 
   useEffect(() => {
     const show = setTimeout(() => {

@@ -2,9 +2,15 @@ import Logo from "../../assets/Logo.svg";
 import Navigation from "./Navigation/Nav";
 
 import { Logout } from "../../icons";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { useMutation } from "react-query";
+import { logout } from "./../../services/auth/index";
 
-const Sidebar = ({show, close}) => {
+const Sidebar = ({ show, close, history }) => {
+  const { isSuccess, mutate, isLoading } = useMutation(() => logout(history), {
+    mutationKey: "logout",
+  });
+
   return (
     <div className={`sidebar ${show && "sidebar_show"}`}>
       <div className="sidebar_container">
@@ -16,13 +22,13 @@ const Sidebar = ({show, close}) => {
           <p>ID: 10123856</p>
         </div>
         <Navigation close={close} />
-        <Link to="/auth/create" className="sidebar_footer">
+        <button className="sidebar_footer" onClick={mutate}>
           <Logout />
           <p className="nav-text">Logout</p>
-        </Link>
+        </button>
       </div>
     </div>
   );
 };
 
-export default Sidebar;
+export default withRouter(Sidebar);

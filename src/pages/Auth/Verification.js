@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useLocation, Redirect, Link } from "react-router-dom";
-import { useVerifyEmail } from "../../query/useVerifyEmail";
+import { useLocation, Redirect } from "react-router-dom";
+import { useVerifyEmail } from "../../query/getVerifiedEmail";
 import { useMutation } from "react-query";
 import { resendEmailVerify } from "../../services/auth";
 import useForgotPasswordForm from "./../../hooks/forgotpasswordform";

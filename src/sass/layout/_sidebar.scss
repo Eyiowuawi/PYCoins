@@ -48,9 +48,13 @@
   }
 
   &_footer {
-    padding-top: 2rem;
+    // padding-top: 2rem;
+    width: max-content;
+    background-color: transparent;
+    border: none;
     @include flex(row, initial, center);
-    
+    cursor: pointer;
+
     span {
       margin-left: 1rem;
     }
@@ -61,7 +65,7 @@
     width: 80% !important;
     z-index: 1000 !important;
     height: 100vh !important;
-    animation: slideright .7s ease-in-out 
+    animation: slideright 0.7s ease-in-out;
   }
 }
 

@@ -4,7 +4,7 @@ import VerifyMsg from "./Verify";
 import usePersonalForm from "../../hooks/personalform";
 import withRegistrationType from "../../hoc/registerType";
 import PersonalIndicator from "./../../components/UI/PersonalIndicator";
-import { useRegisterUser } from "../../query/useVerifyEmail";
+import { useRegisterUser } from "../../query/getVerifiedEmail";
 import { useMutation } from "react-query";
 import { registerUser } from "./../../services/auth/index";
 import { toast } from "react-toastify";

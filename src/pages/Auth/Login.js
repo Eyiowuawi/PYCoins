@@ -10,7 +10,13 @@ import formGenerator from "../../utils/formgenerator";
 const Login = ({ history }) => {
   const [loginForm, setLoginForm, loginFormValid, setLoginFormValid] =
     useLoginForm();
-  const { mutate, isLoading } = useMutation((data) => loginUser(data));
+  const { mutate, isLoading, isError } = useMutation(
+    (data) => loginUser(data),
+    {
+      mutationKey: "login",
+      onSuccess: () => history.push("/"),
+    }
+  );
 
   const form = formGenerator(loginForm, setLoginForm, setLoginFormValid);
 

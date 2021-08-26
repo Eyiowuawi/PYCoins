@@ -63,7 +63,7 @@ const routes = [
         key: "forgot-password",
       },
       {
-        path: "/auth/resetpassword",
+        path: "/auth/reset/resetPassword/",
         exact: true,
         component: ResetPassword,
         key: "reset-password",

@@ -5,7 +5,7 @@ import AuthFooter from "../../components/Auth/AuthFooter";
 import formGenerator from "./../../utils/formgenerator";
 import useForgotPasswordForm from "./../../hooks/forgotpasswordform";
 import { forgotpassword } from "./../../services/auth/index";
-import { useMutation } from 'react-query';
+import { useMutation } from "react-query";
 const ForgotPassword = () => {
   const [
     forgotpasswordForm,
@@ -19,7 +19,9 @@ const ForgotPassword = () => {
     setForgotFormValid
   );
 
-  const { mutate } = useMutation((data) => forgotpassword(data));
+  const { mutate, isLoading } = useMutation((data) => forgotpassword(data), {
+    mutationKey: "forgot-password",
+  });
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -38,10 +40,15 @@ const ForgotPassword = () => {
           Enter your email address and we'll send you an email with instructions
           to reset your password.
         </p>
-        <form>
+        <form onSubmit={handleSubmit}>
           {form}
-          <Button onclick={handleSubmit} disabled={forgotFormValid} bg={"button_primary"}>
-            Reset Password{" "}
+          <Button
+            type="submit"
+            disabled={forgotFormValid}
+            bg={"button_primary"}
+            isLoading={isLoading}
+          >
+            Submit
           </Button>
         </form>
         <AuthFooter

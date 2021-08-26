@@ -1,15 +1,39 @@
 import { useState } from "react";
-import show from "../../assets/show.svg";
-
-import Input from "../../components/UI/Input";
+import { useLocation, Redirect } from "react-router-dom";
+import { useMutation } from "react-query";
 import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
 import formGenerator from "../../utils/formgenerator";
 import useResetPasswordForm from "./../../hooks/resetpasswordform";
+import { resetPassword } from "../../services/auth";
 
 const ResetPassword = () => {
-  const [resetPassword, setResetPassword] = useResetPasswordForm();
-  const form = formGenerator(resetPassword);
+  const [
+    resetPasswordForm,
+    setResetPassword,
+    resetPasswordValid,
+    setResetPasswordValid,
+  ] = useResetPasswordForm();
+  const form = formGenerator(
+    resetPasswordForm,
+    setResetPassword,
+    setResetPasswordValid
+  );
+
+  const { search } = useLocation();
+  const token = search.substring(19);
+
+  const { mutate, isLoading } = useMutation(data => resetPassword(data, token), {
+    mutationKey: "reset-password"
+  })
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    let data = {
+      password: resetPasswordForm["password"].value,
+    };
+    mutate(data);
+  };
 
   return (
     <div className="auth_form">
@@ -19,9 +43,16 @@ const ResetPassword = () => {
           Enter your new password below and must be 8 characters, special
           character and an uppercase letter.
         </p>
-        <form>
+        <form onSubmit={handleSubmit}>
           {form}
-          <Button bg={"button_primary"}>Reset Password </Button>
+          <Button
+            type="submit"
+            disabled={resetPasswordValid}
+            bg={"button_primary"}
+            isLoading={isLoading}
+          >
+            Reset Password{" "}
+          </Button>
         </form>
         <AuthFooter
           title={"Remember Your Passoword?"}

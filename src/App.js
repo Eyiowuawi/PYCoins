@@ -1,8 +1,12 @@
 import { renderRoutes } from "react-router-config";
 import routes from "./routes";
-import { ToastContainer,  Flip } from "react-toastify";
+import { ToastContainer, Flip } from "react-toastify";
+import { useEffect } from "react";
+import { autoLogout } from "./services/auth/index";
 
 function App() {
+
+
   return (
     <>
       {renderRoutes(routes)}
