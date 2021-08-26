@@ -9,7 +9,6 @@ const useLoginForm = () => {
       valid: false,
       type: "email",
       elementType: "input",
-      placeholder: "Email",
       label: "Email",
       validation: emailCheck,
       required: true,
@@ -25,7 +24,9 @@ const useLoginForm = () => {
       label: "Password",
       validation: password,
       blur: false,
-      rwquired: true,
+      required: true,
+      show: false,
+      info: "Password must be alphanumeric, 8 characters long and must contain a  special character",
     },
   });
   const [loginFormValid, setLoginFormValid] = useState(false);

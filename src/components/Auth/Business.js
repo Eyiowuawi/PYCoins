@@ -20,13 +20,13 @@ const Business = ({
   return (
     <>
       <h3 className="title title-black ta">Business Information</h3>
-      <form className="mt-small">
+      <form className="mt-small" onSubmit={handleSubmit}>
         {form}
-    
+
         <Button
           disabled={businessFormValid}
           bg={"button_primary"}
-          onclick={handleSubmit}
+          type={"submit"}
         >
           Continue
         </Button>

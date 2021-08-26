@@ -37,14 +37,13 @@
     border-radius: 50%;
     margin-right: 2rem;
 
-   
-    &-1 {
+    &[type="Bitcoin"] {
       background-color: rgba($color-bitcoin, 0.2);
     }
-    &-2 {
+    &[type="Ethereum"] {
       background-color: rgba($color-ethereum, 0.2);
     }
-    &-3 {
+    &[type="Tether"] {
       background-color: rgba($color-tether, 0.2);
     }
   }

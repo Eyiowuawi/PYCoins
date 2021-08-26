@@ -29,7 +29,7 @@ const PaymentPage = () => {
             accepting payment from my customers anywhere around the world.
           </p>
           <form className="paymentpage_form">{form}</form>
-          <Button bg="button_primary" onclick={() => setShow(true)}>
+          <Button disabled={true} bg="button_primary" onclick={() => setShow(true)}>
             Pay Now
           </Button>
         </div>

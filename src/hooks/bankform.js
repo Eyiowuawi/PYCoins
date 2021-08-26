@@ -7,10 +7,10 @@ const useBankForm = () => {
       valid: false,
       elementType: "select",
       options: [
-        { id: 1, displayValue: "Select Country" },
+        { id: 1, displayValue: "Sect Country" },
         { id: 2, displayValue: "Nigeria" },
         { id: 3, displayValue: "Togo" },
-        { id: 4, displayValue: "Finland" },
+        { id: 4, displayValue: "Fnland" },
         { id: 5, displayValue: "Somalia" },
         { id: 6, displayValue: "Afghanistan" },
       ],

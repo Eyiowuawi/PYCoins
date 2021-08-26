@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useBusinessForm from "../../hooks/businessform";
 import usePersonalForm from "../../hooks/personalform";
 import PersonalForm from "../../components/Auth/Personal";
@@ -8,10 +8,8 @@ import Business from "../../components/Auth/Business";
 import AuthFooter from "./../../components/Auth/AuthFooter";
 import withRegistrationType from "../../hoc/registerType";
 import useBusinessPage from "../../hooks/businessPage";
-
-const title = "Already have an account?";
-const linkTitle = "Login";
-const link = "/auth/login";
+import { useMutation } from "react-query";
+import { registerUser } from "./../../services/auth/index";
 
 const BusinessForm = () => {
   const [
@@ -28,8 +26,16 @@ const BusinessForm = () => {
   ] = usePersonalForm();
   const [show_1, setShow_1, show_2, setShow_2, page, setPage] =
     useBusinessPage();
+  const { mutate, isLoading, isSuccess, data } = useMutation((data) =>
+    registerUser(data)
+  );
 
-  console.log(businessForm);
+  useEffect(() => {
+    if (isSuccess && data && data.status === "success") {
+      setShow_2(true);
+      setPage("success");
+    }
+  }, [isSuccess]);
 
   const handleChangeForm = (evt) => {
     evt.preventDefault();
@@ -39,8 +45,15 @@ const BusinessForm = () => {
 
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
-    setShow_2(true);
-    setPage("Success");
+    const data = new FormData();
+    for (let key in businessForm) {
+      data.append(`${key}`, businessForm[key].value);
+    }
+    for (let key in personalForm) {
+      data.append(`${key}`, personalForm[key].value);
+    }
+    data.append(`userType`, "business");
+    mutate(data);
   };
 
   return (
@@ -56,7 +69,11 @@ const BusinessForm = () => {
               businessFormValid={businessFormValid}
               setBusinessFormVallid={setBusinessFormVallid}
             >
-              <AuthFooter title={title} linkTitle={linkTitle} link={link} />
+              <AuthFooter
+                title={"Already have an account?"}
+                linkTitle={"Login"}
+                link={"/auth/login"}
+              />
             </Business>
           )}
           {show_1 && page === "Personal" && (
@@ -66,6 +83,7 @@ const BusinessForm = () => {
               personalFormUpdate={setPersonalForm}
               formValid={personalFormValid}
               formValidFunc={setPersonalFormValid}
+              isLoading={isLoading}
             />
           )}
           {show_2 && <VerifyMsg />}

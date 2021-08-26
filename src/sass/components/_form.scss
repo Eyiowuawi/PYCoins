@@ -55,9 +55,11 @@
   }
   &_img {
     position: absolute;
-    top: 48%;
+    top:50%;
     right: 20px;
+    cursor: pointer;
     transform: translateY(-50%);
+    z-index: 100
   }
 
   &_upload {

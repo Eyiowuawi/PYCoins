@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { AppContext } from "../../context";
 import Button from "../../components/UI/Button";
 import Label from "../../components/UI/Label";
+// import Auth
+import AuthFooter from './../../components/Auth/AuthFooter';
 
 const Create = ({ history }) => {
   const [formType, setFormType] = useState("");
@@ -62,6 +64,11 @@ const Create = ({ history }) => {
               Continue
             </Button>
           </div>
+          <AuthFooter
+            title={"Already have an account?"}
+            linkTitle={"Login"}
+            link={"/auth/login"}
+          />
         </div>
       </div>
     </div>

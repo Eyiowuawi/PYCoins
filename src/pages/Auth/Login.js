@@ -1,25 +1,26 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useMutation } from "react-query";
 import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
-import formGenerator from "../../utils/formgenerator";
 import useLoginForm from "../../hooks/login";
-
-import show from "../../assets/show.svg";
-const title = "Don't have an account?";
-const link = "/auth/create";
-const linkTitle = "Sign Up";
+import { loginUser } from "../../services/auth";
+import formGenerator from "../../utils/formgenerator";
 
 const Login = ({ history }) => {
   const [loginForm, setLoginForm, loginFormValid, setLoginFormValid] =
     useLoginForm();
+  const { mutate, isLoading } = useMutation((data) => loginUser(data));
+
+  const form = formGenerator(loginForm, setLoginForm, setLoginFormValid);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    history.push("/");
-  };
+    let data = {};
+    for (let key in loginForm) data[key] = loginForm[key].value;
 
-  const form = formGenerator(loginForm, setLoginForm, setLoginFormValid);
+    mutate(data);
+  };
 
   return (
     <div className="auth_form">
@@ -28,24 +29,25 @@ const Login = ({ history }) => {
         <p className="ta mb-small title title-grey">
           Enter your email address and password to continue.
         </p>
-        <form>
+        <form onSubmit={handleSubmit}>
           {form}
           <Button
             disabled={loginFormValid}
+            isLoading={isLoading}
             bg={"button_primary"}
-            onclick={handleSubmit}
+            type="submit"
           >
             Sign In{" "}
           </Button>
         </form>
-        <Link
-          to="/auth/forgotpassword"
-          className="link ta mt-small"
-          style={{ width: "100%" }}
-        >
+        <Link to="/auth/forgotpassword" className="link ta mt-small">
           Forgot Password?
         </Link>
-        <AuthFooter title={title} link={link} linkTitle={linkTitle} />
+        <AuthFooter
+          title={"Don't have an account?"}
+          link={"/auth/create"}
+          linkTitle={"Sign Up"}
+        />
       </div>
     </div>
   );

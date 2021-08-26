@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PersonalInfo from "../../components/Auth/Personal";
 import VerifyMsg from "./Verify";
 import usePersonalForm from "../../hooks/personalform";
 import withRegistrationType from "../../hoc/registerType";
 import PersonalIndicator from "./../../components/UI/PersonalIndicator";
-import { useRegisterUser } from "../../query/useRegisterUser";
+import { useRegisterUser } from "../../query/useVerifyEmail";
 import { useMutation } from "react-query";
 import { registerUser } from "./../../services/auth/index";
 import { toast } from "react-toastify";
@@ -17,20 +17,19 @@ const PersonalForm = ({ history }) => {
     registerUser(data)
   );
 
+  useEffect(() => {
+    if (isSuccess && data && data.status === "success") setIndicate(true);
+  }, [isSuccess]);
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const data = new FormData();
-    // for (let key in personalForm) {
-    //   data.append(`${key}`, personalForm[key].value);
-    // }
-    data.append("firstName", personalForm["firstName"].value);
-    data.append("lastName", personalForm["lastName"].value);
-    data.append("phoneNumber", personalForm["phoneNumber"].value);
-    data.append("email", personalForm["email"].value);
-    data.append("password", personalForm["password"].value);
+    for (let key in personalForm)
+      data.append(`${key}`, personalForm[key].value);
+
     data.append(`userType`, "individual");
+
     mutate(data);
-    // setIndicate(true);
   };
   return (
     <div className="personal">

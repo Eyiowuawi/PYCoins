@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
 import { renderRoutes } from "react-router-config";
 import routes from "./routes";
-import { ToastContainer, Slide, Zoom, Flip, Bounce } from "react-toastify";
+import { ToastContainer,  Flip } from "react-toastify";
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
         position="top-right"
         closeOnClick={true}
         pauseOnHover={true}
-        pauseOnFocusLoss={true}
+        pauseOnFocusLoss={false}
         transition={Flip}
       />
     </>

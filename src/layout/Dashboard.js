@@ -9,18 +9,15 @@ import MobileSidebar from "./../components/UI/Mobilesidebar";
 const DashboardLayout = ({ route }) => {
   const [showpopup, setShowPopup] = useState(false);
   const [show, setShow] = useState(false);
-  const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    setTimeout(() => {
+    const show = setTimeout(() => {
       setShowPopup(true);
     }, 5000);
+
+    return () => clearTimeout(show);
   }, []);
 
-  useEffect(() => {
-    window.addEventListener("resize", () => setWidth(window.innerWidth));
-    if (width > 800) setShow(false);
-  }, [width]);
   return (
     <>
       <div className="dashboard">

@@ -1,7 +1,7 @@
 import Button from "../UI/Button";
 import Plus from "../../assets/plus.svg";
 import { House } from "../../icons";
-const Settlement = ({handlechange}) => {
+const Settlement = ({ handlechange }) => {
   return (
     <div className="settlement">
       <House width={"50"} height={"51"} fill="#48D189" />
@@ -11,7 +11,7 @@ const Settlement = ({handlechange}) => {
       <p className="title title-grey ta mb-small">
         Click on the button below to add new settlement method to your account.
       </p>
-      <Button bg={"button_primary"} onclick={handlechange}>
+      <Button disabled={true} bg={"button_primary"} onclick={handlechange}>
         <img src={Plus} alt="Add" className="" />
         <span>Add Settlement Account</span>
       </Button>

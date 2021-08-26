@@ -19,7 +19,10 @@ const Accounts = ({ showForm, goBack, name, cryptos, title, header }) => {
             <h5 className="mute">{title} </h5>
             <div className="accounts_list mt-small">
               {pathname !== "/paymentpage" && (
-                <div className="accounts_item mt-small" onClick={() => showForm("bank")}>
+                <div
+                  className="accounts_item mt-small"
+                  onClick={() => showForm("bank")}
+                >
                   <div className="accounts_img accounts_img-1">
                     <House fill="#787676" width={"14"} height="14" />
                   </div>
@@ -36,7 +39,12 @@ const Accounts = ({ showForm, goBack, name, cryptos, title, header }) => {
                   <div className={item.classname}>
                     <img src={item.img} alt={item.name} />
                   </div>
-                  <p className="title title-grey">{item.name} Wallet</p>
+                  <div className={"accounts_content"}>
+                    <p className="title title-grey">{item.name} Wallet</p>
+                    {pathname === "/paymentpage" && (
+                      <p className="title title-grey ta">{item.btc} </p>
+                    )}
+                  </div>
                   <img src={Proceed} alt="Continue" />
                 </div>
               ))}

@@ -197,7 +197,7 @@ a {
   font-weight: bold;
   color: #48d189;
   line-height: 1.125rem;
-  display: inline-block;
+  display: block;
 }
 
 .link-small {
@@ -285,8 +285,8 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .button_white {
@@ -384,10 +384,12 @@ a {
 
 .form_img {
   position: absolute;
-  top: 48%;
+  top: 50%;
   right: 20px;
+  cursor: pointer;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
+  z-index: 100;
 }
 
 .form_upload-input {
@@ -533,15 +535,15 @@ a {
   margin-right: 2rem;
 }
 
-.crypto_img-1 {
+.crypto_img[type="Bitcoin"] {
   background-color: rgba(247, 147, 26, 0.2);
 }
 
-.crypto_img-2 {
+.crypto_img[type="Ethereum"] {
   background-color: rgba(80, 80, 80, 0.2);
 }
 
-.crypto_img-3 {
+.crypto_img[type="Tether"] {
   background-color: rgba(0, 164, 120, 0.2);
 }
 
@@ -960,7 +962,24 @@ a {
   margin-right: auto;
   font-size: 1rem;
   line-height: 28px;
-  color: #30324b;
+  color: #30324B;
+}
+
+.accounts_content {
+  margin-right: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: initial;
+      -ms-flex-align: initial;
+          align-items: initial;
 }
 
 .accounts_img {
@@ -1417,6 +1436,15 @@ a {
   }
 }
 
+.auth_footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .dashboard_content {
   margin-left: 350px;
 }
@@ -1845,6 +1873,8 @@ a {
   width: 700px;
   max-width: 90%;
   margin: auto;
+  -webkit-box-shadow: 0px 1px 10px rgba(72, 209, 137, 0.1);
+          box-shadow: 0px 1px 10px rgba(72, 209, 137, 0.1);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1858,7 +1888,7 @@ a {
   -webkit-box-align: initial;
       -ms-flex-align: initial;
           align-items: initial;
-  padding: 4rem 0;
+  padding: 4rem 0 0 0;
 }
 
 .background_img {
@@ -1981,8 +2011,12 @@ a {
 }
 
 .Toastify__toast-body {
-  font-size: 1rem;
-  font-family: "Mulish", sans-serif;
+  font-size: 1rem !important;
+  font-family: "Mulish", sans-serif !important;
+}
+
+.Toastify__toast--success {
+  background-color: #48d189 !important;
 }
 
 .create {

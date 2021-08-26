@@ -6,10 +6,9 @@ export const changeHandler = (
   validForm
 ) => {
   let updatedFormElement = {};
-  // console.log(elementID);
-  if (elementID === "file") {
+  if (elementID === "businessDocument") {
     updatedFormElement = {
-      ...formType["file"],
+      ...formType["businessDocument"],
       valid: true,
       value: event.target.files[0],
       label: event.target.files[0].name,
@@ -55,3 +54,19 @@ export const handleBlur = (elementID, formType, updateFunction) => {
   return updateFunction(updatedForm);
 };
 
+
+
+export const showPassword = (elementID, formType, formUpdateFunc) => {
+  const updatedFormElement = {
+    ...formType[elementID],
+    show: !formType[elementID].show,
+    type: formType[elementID].show ? "text" : "password"
+  };
+
+  const updatedForm = {
+    ...formType,
+    [elementID]: updatedFormElement,
+  };
+
+  formUpdateFunc(updatedForm);
+};

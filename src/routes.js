@@ -18,6 +18,7 @@ import CryptoDetails from "./pages/Dashboard/CryptoDetails";
 import PaymentDetails from "./pages/Dashboard/PaymentDetails";
 
 import PaymentPage from "./pages/PaymentPage";
+import Verification from "./pages/Auth/Verification";
 
 const routes = [
   {
@@ -66,6 +67,12 @@ const routes = [
         exact: true,
         component: ResetPassword,
         key: "reset-password",
+      },
+      {
+        path: "/auth/email/verify",
+        exact: true,
+        component: Verification,
+        key: "verification",
       },
     ],
   },

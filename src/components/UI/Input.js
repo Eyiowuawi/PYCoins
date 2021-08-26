@@ -1,17 +1,15 @@
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import NativeSelect from "@material-ui/core/NativeSelect";
 import InputLabel from "@material-ui/core/InputLabel";
-import InputBase from "@material-ui/core/InputBase";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles(() => ({
   root: {
     "&": {
       width: "100%",
-      marginTop: "1rem",
+      // marginTop: "1rem",
 
       "& .MuiOutlinedInput-root": {
         fontSize: "1.1rem",
@@ -124,6 +122,8 @@ const Input = ({
   blur,
   onblur,
   valid,
+  showPassword,
+  show,
 }) => {
   const classes = useStyles();
   let inputElement;
@@ -131,18 +131,28 @@ const Input = ({
     case "input":
       inputElement = (
         <>
-          <TextField
-            error={blur && !valid}
-            className={classes.root}
-            label={label}
-            variant="outlined"
-            required
-            onChange={onchange}
-            required={required}
-            onBlur={onblur}
-            type={type}
-            value={value}
-          />
+          <div style={{position : "relative"}}>
+            <TextField
+              error={blur && !valid}
+              className={classes.root}
+              label={label}
+              variant="outlined"
+              required
+              onChange={onchange}
+              required={required}
+              onBlur={onblur}
+              type={type}
+              value={value}
+            />
+            {svg && (
+              <img
+                onClick={showPassword}
+                src={svg}
+                alt="show password"
+                className="form_img"
+              />
+            )}
+          </div>
           {info && <p className="small small-red">{info}</p>}
         </>
       );
@@ -189,9 +199,7 @@ const Input = ({
           value={value}
           rows="7"
           required
-          value={value}
           onChange={onchange}
-          required
         ></textarea>
       );
       break;
@@ -217,12 +225,7 @@ const Input = ({
       break;
   }
 
-  return (
-    <div className="form_group">
-      {inputElement}
-      {svg && <img src={svg} alt="show password" className="form_img" />}
-    </div>
-  );
+  return <div className="form_group">{inputElement}</div>;
 };
 
 export default Input;

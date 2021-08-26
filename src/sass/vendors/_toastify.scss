@@ -1,8 +1,12 @@
-.Toastify__toast{
-    padding: 20px;
+.Toastify__toast {
+  padding: 20px;
 }
 
 .Toastify__toast-body {
-  font-size: 1rem;
-  font-family: $font-family;
+  font-size: 1rem !important;
+  font-family: $font-family !important;
+}
+
+.Toastify__toast--success {
+  background-color: $primary-color !important; 
 }

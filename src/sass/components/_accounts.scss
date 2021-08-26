@@ -21,8 +21,13 @@
       font-size: 1rem;
       line-height: 28px;
 
-      color: #30324b;
+      color: #30324B;
     }
+  }
+
+  &_content {
+    margin-right: auto;
+    @include flex(column, center, initial);
   }
 
   &_img {
