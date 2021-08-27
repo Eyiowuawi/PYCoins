@@ -3,29 +3,29 @@ import { AppContext } from "../../context";
 import Button from "../../components/UI/Button";
 import Label from "../../components/UI/Label";
 // import Auth
-import AuthFooter from './../../components/Auth/AuthFooter';
+import AuthFooter from "./../../components/Auth/AuthFooter";
 
 const Create = ({ history }) => {
   const [formType, setFormType] = useState("");
   const [message, setMessage] = useState("");
-  const { setRegister } = useContext(AppContext);
   const [proceed, setProceed] = useState(false);
+  const { changeToRegister, register } = useContext(AppContext);
 
   const handleChange = (evt) => {
     setFormType(evt.target.value);
     setProceed(true);
   };
-
+  console.log(register);
   const handleRouteChange = () => {
     if (formType === "") {
       setMessage("Pls, select a category to begin registration");
       return;
     }
     if (formType === "business") {
-      setRegister("business");
+      changeToRegister();
       history.push("/auth/register/business");
     } else if (formType === "personal") {
-      setRegister("individual");
+      changeToRegister();
       history.push("/auth/register/personal");
     }
   };

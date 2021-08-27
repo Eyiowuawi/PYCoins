@@ -9,6 +9,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "react-toastify/dist/ReactToastify.css";
 import "react-toastify/dist/ReactToastify.min.css";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const queryClient = new QueryClient();
 ReactDOM.render(

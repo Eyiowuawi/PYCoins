@@ -5,11 +5,7 @@ import { Redirect } from "react-router-dom";
 const withRegistrationType = (Component) => (props) => {
   const { register } = useContext(AppContext);
 
-  return register !== "" ? (
-    <Component {...props} />
-  ) : (
-    <Redirect to="/auth/create" />
-  );
+  return register ? <Component {...props} /> : <Redirect to="/auth/create" />;
 };
 
 export default withRegistrationType;

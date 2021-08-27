@@ -19,6 +19,12 @@
       // align-items: center;
       // text-align: center;
     }
+    h3{
+      text-transform: capitalize
+    }
+  }
+  &_link{
+    @include flex(row, initial, center)
   }
 
   &_switch {

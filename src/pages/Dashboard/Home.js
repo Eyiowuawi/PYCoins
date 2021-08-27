@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import User from "../../components/Dashboard/User";
@@ -11,10 +11,17 @@ import { RightArrow } from "../../icons";
 import { transactions } from "../../constants";
 import TableResponsive from "./../../components/TableResponsive";
 import useWindowWidth from "./../../hooks/windowwidth";
+import { useUserProfile } from "./../../query/getUserProfile";
+import { AppContext } from "./../../context/index";
+import WithLoadingComponent from "./../../hoc/withLoading";
+import LandingHeader from "./../../components/Dashboard/Header";
+import LandingEmpty from "./../../components/Dashboard/Empty";
 
 const Dashboard = () => {
   const [show, setShow] = useState(false);
   const [width, setWidth] = useWindowWidth();
+  const { data, isLoading, isSuccess } = useUserProfile();
+  const { saveUser } = useContext(AppContext);
 
   const date = useMemo(() => {
     return new Date().toLocaleDateString("en-US", {
@@ -25,20 +32,17 @@ const Dashboard = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (isSuccess && data && data.data) saveUser(data.data.user);
+  }, [data, isSuccess]);
+
   return (
-    <>
+    <WithLoadingComponent isLoading={isLoading}>
       <div className="home">
-        <div className="home_container">
-          <div className="home_container-date">
-            <User date={date} />
-          </div>
-          <div className="home_container-reg">
-            <RegisterBusiness onclick={() => setShow(true)} />
-          </div>
-        </div>
+        <LandingHeader date={date} setShow={setShow} />
         <div className="home_wallets">
           <p className="title title-small">Wallet</p>
-          <Link to="/wallet">
+          <Link to="/wallet" className="home_link">
             <span className="link link-small">View All</span>
             <RightArrow fill={"#48D189"} />
           </Link>
@@ -48,22 +52,13 @@ const Dashboard = () => {
         </div>
         <div className="home_empty">
           <p className="title title-small mb-small">Recent Transactions </p>
-          {/* <Empty>
-          <img src={empty} alt="Empty State" />
-          <h3 className="title title-black mb-small mt-small">
-            Your transaction history is currently empty!
-          </h3>
-          <p className="title title-grey ">
-            Once you start receiving payments, the transaction details will
-            appear here.
-          </p>
-        </Empty> */}
+          {/* <LandingEmpty /> */}
           {width > 500 && <Table data={transactions} />}
           {width <= 500 && <TableResponsive data={transactions} />}
         </div>
       </div>
       {show && <BusinessForm close={setShow} />}
-    </>
+    </WithLoadingComponent>
   );
 };
 

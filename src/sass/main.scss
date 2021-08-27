@@ -24,6 +24,8 @@
 @import "components/tableresponsive";
 @import "components/balance";
 @import "components/paymenttableresponsive";
+@import "components/loading";
+@import "components/settings-form";
 
 @import "layout/auth";
 @import "layout/dashboard";
@@ -32,7 +34,7 @@
 @import "layout/sidebar";
 @import "layout/main";
 @import "layout/background";
-@import "layout/mobilesidebar";
+@import "layout/modal";
 @import "layout/arrowdropdown";
 
 @import "vendors/toastify";

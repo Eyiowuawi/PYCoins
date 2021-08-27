@@ -8,6 +8,7 @@
     position: relative;
   }
 
+  &_input,
   &_textarea,
   &_upload-label {
     display: block;
@@ -23,6 +24,7 @@
     }
 
     &:focus {
+      border: 1px solid $primary-color;
       outline: none;
     }
   }
@@ -55,11 +57,11 @@
   }
   &_img {
     position: absolute;
-    top:50%;
+    top: 50%;
     right: 20px;
     cursor: pointer;
     transform: translateY(-50%);
-    z-index: 100
+    z-index: 100;
   }
 
   &_upload {

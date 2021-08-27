@@ -3,7 +3,14 @@ import Logo from "../../assets/Logo.svg";
 import Hamburger from "../../assets/hamburger.svg";
 import Toggle from "./Switch";
 import Arrowdropdown from "./Arrowdropdown";
-const Header = ({showsidebar}) => {
+import { useContext, useMemo, useEffect } from "react";
+import { AppContext } from "./../../context/index";
+import { getInitials } from "./../../utils/getInitials";
+const Header = ({ showsidebar }) => {
+  const {
+    user: { firstName, lastName },
+    initials,
+  } = useContext(AppContext);
   return (
     <header className="header">
       <div className="header_container">
@@ -11,8 +18,13 @@ const Header = ({showsidebar}) => {
           <p className="header-text header-text-grey">Test</p>
           <Toggle />
           <p className="header-text header-text-grey">Live</p>
-          <div className="header_name">JD</div>
-          <p className="header-text header-text-black">John Doe</p>
+          {firstName && (
+            <>
+              <div className="header_name">{`${initials}`}</div>
+              <p className="header-text header-text-black">{`${firstName} ${lastName}`}</p>
+            </>
+          )}
+
           <Arrowdropdown />
         </div>
 

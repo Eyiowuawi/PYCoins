@@ -46,6 +46,7 @@
     height: 2.5rem;
     border-radius: 50%;
     background-color: #444854;
+    text-transform: uppercase;
     @include flex(row, center, center);
     color: #ffffff;
     font-size: 1rem;

@@ -1,8 +1,68 @@
 import Avatar from "../../assets/avatar.svg";
 import Input from "../UI/Input";
 import Button from "./../UI/Button";
+import useGeneralForm from "./../../hooks/generalform";
+import SettingsForm from "./Form";
+import { changeHandler, handleBlur } from "./../../utils/changehandler";
 
 const General = () => {
+  const [
+    personalForm,
+    setPersonalForm,
+    businessForm,
+    setBusinessForm,
+    personalFormValid,
+    setPersonalFormValid,
+    businessFormValid,
+    setBusinessFormValid,
+  ] = useGeneralForm();
+
+  const personal = [];
+  for (let key in personalForm) {
+    personal.push({
+      id: key,
+      config: personalForm[key],
+    });
+  }
+
+  const personalform = personal.map(({ id, config }) => (
+    <SettingsForm
+      key={id}
+      label={config.label}
+      type={config.type}
+      value={config.value}
+      onchange={(evt) =>
+        changeHandler(
+          evt,
+          id,
+          personalForm,
+          setPersonalForm,
+          setPersonalFormValid
+        )
+      }
+      onblur={() => handleBlur(id, personalForm, setPersonalForm)}
+      valid={config.valid}
+      blur={config.blur}
+    />
+  ));
+
+  const business = [];
+  for (let key in businessForm) {
+    business.push({
+      id: key,
+      config: businessForm[key],
+    });
+  }
+
+  const businessform = business.map(({ id, config }) => (
+    <SettingsForm
+      key={id}
+      label={config.label}
+      type={config.type}
+      value={config.value}
+    />
+  ));
+
   return (
     <div className="general">
       <h3 className="title title-black">Personal Information </h3>
@@ -16,74 +76,13 @@ const General = () => {
           </label>
         </div>
       </div>
-      <form className="mt-small general_form">
-        <div className="general_form-group">
-          <label className="title title-grey">Full Name</label>
-          <Input
-            value=""
-            type="text"
-            elementType="input"
-            placeholder="John Doe"
-          />
-        </div>
-        <div className="general_form-group">
-          <label className="title title-grey">Phone Number</label>
-          <Input
-            value=""
-            type="text"
-            elementType="input"
-            placeholder="+2348123456789"
-          />
-        </div>
-        <div className="general_form-group">
-          <label className="title title-grey">Email Address</label>
-          <Input
-            value=""
-            type="text"
-            elementType="input"
-            placeholder="johndoe@gmail.com"
-          />
-        </div>
+      <form className="mt-small settingsform">
+        {personalform}
         <Button bg={"button_primary"}>Save Changes</Button>
       </form>
       <h3 className="title title-black mt-small">Business Information</h3>
-      <form className="mt-small general_form">
-        <div className="general_form-group">
-          <label className="title title-grey">Business Name</label>
-          <Input
-            value=""
-            type="text"
-            elementType="input"
-            placeholder="Grazac Tech."
-          />
-        </div>
-        <div className="general_form-group">
-          <label className="title title-grey">Business Phone No.</label>
-          <Input
-            value=""
-            type="text"
-            elementType="input"
-            placeholder="Grazac Tech."
-          />
-        </div>
-        <div className="general_form-group">
-          <label className="title title-grey">Business Email</label>
-          <Input
-            value=""
-            type="text"
-            elementType="input"
-            placeholder="grazactechng@gmail.com"
-          />
-        </div>
-        <div className="general_form-group">
-          <label className="title title-grey">Business Address</label>
-          <Input
-            value=""
-            type="text"
-            elementType="input"
-            placeholder="No 45, Abeokuta, Ogun"
-          />
-        </div>
+      <form className="mt-small settingsform">
+        {businessform}
         <Button bg={"button_primary"}>Save Changes</Button>
       </form>
     </div>

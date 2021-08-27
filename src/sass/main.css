@@ -230,6 +230,7 @@ a {
 
 .header-text-black {
   color: #1d1e2c;
+  text-transform: capitalize;
 }
 
 .header-text-grey {
@@ -319,7 +320,7 @@ a {
   position: relative;
 }
 
-.form_textarea, .form_upload-label {
+.form_input, .form_textarea, .form_upload-label {
   display: block;
   width: 100%;
   font-size: 1rem;
@@ -330,27 +331,28 @@ a {
   color: #30324b;
 }
 
-.form_textarea::-webkit-input-placeholder, .form_upload-label::-webkit-input-placeholder {
+.form_input::-webkit-input-placeholder, .form_textarea::-webkit-input-placeholder, .form_upload-label::-webkit-input-placeholder {
   color: #30324b !important;
   font-family: "Mulish", sans-serif !important;
 }
 
-.form_textarea:-ms-input-placeholder, .form_upload-label:-ms-input-placeholder {
+.form_input:-ms-input-placeholder, .form_textarea:-ms-input-placeholder, .form_upload-label:-ms-input-placeholder {
   color: #30324b !important;
   font-family: "Mulish", sans-serif !important;
 }
 
-.form_textarea::-ms-input-placeholder, .form_upload-label::-ms-input-placeholder {
+.form_input::-ms-input-placeholder, .form_textarea::-ms-input-placeholder, .form_upload-label::-ms-input-placeholder {
   color: #30324b !important;
   font-family: "Mulish", sans-serif !important;
 }
 
-.form_textarea::placeholder, .form_upload-label::placeholder {
+.form_input::placeholder, .form_textarea::placeholder, .form_upload-label::placeholder {
   color: #30324b !important;
   font-family: "Mulish", sans-serif !important;
 }
 
-.form_textarea:focus, .form_upload-label:focus {
+.form_input:focus, .form_textarea:focus, .form_upload-label:focus {
+  border: 1px solid #48d189;
   outline: none;
 }
 
@@ -1417,6 +1419,105 @@ a {
           transform: rotate(270deg);
 }
 
+.loading {
+  min-height: calc(100vh - 76px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.settingsform {
+  margin-top: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: initial;
+      -ms-flex-align: initial;
+          align-items: initial;
+}
+
+.settingsform-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 450px) {
+  .settingsform-group {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+}
+
+.settingsform-group label {
+  font-weight: 600 !important;
+  -ms-flex-preferred-size: 250px;
+      flex-basis: 250px;
+}
+
+@media (max-width: 450px) {
+  .settingsform-group label {
+    -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+.settingsform-group .fund_wallet {
+  width: 100%;
+}
+
+.settingsform .form_group {
+  margin-bottom: 0 !important;
+}
+
+.settingsform .button {
+  -ms-flex-item-align: end !important;
+      align-self: flex-end !important;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 1rem !important;
+}
+
+@media (max-width: 485px) {
+  .settingsform .button {
+    -ms-flex-item-align: initial !important;
+        -ms-grid-row-align: initial !important;
+        align-self: initial !important;
+    width: 100%;
+  }
+}
+
 .auth_form {
   margin-top: 3rem;
   background: #ffffff;
@@ -1555,6 +1656,7 @@ a {
   height: 2.5rem;
   border-radius: 50%;
   background-color: #444854;
+  text-transform: uppercase;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1902,7 +2004,7 @@ a {
       align-self: center;
 }
 
-.mobilesidebar {
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -2185,6 +2287,26 @@ a {
   .home_name {
     margin-bottom: 2rem;
   }
+}
+
+.home_name h3 {
+  text-transform: capitalize;
+}
+
+.home_link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: initial;
+      -ms-flex-pack: initial;
+          justify-content: initial;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .home_switch {

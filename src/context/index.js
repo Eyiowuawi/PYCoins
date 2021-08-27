@@ -1,16 +1,37 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useReducer } from "react";
+import appReducer from "./reducer";
 
-export const AppContext = createContext(null);
+const initialState = {
+  register: false,
+  user: {},
+  intials: null,
+};
+export const AppContext = createContext(initialState);
 
 const AppComponent = ({ children }) => {
+  const [state, dispatch] = useReducer(appReducer, initialState);
 
-  const [register, setRegister] = useState("")
-  console.log(register)
+  const changeToRegister = () => {
+    dispatch({
+      type: "CHECK_REGISTER",
+    });
+  };
+
+  const saveUser = (user) => {
+    dispatch({
+      type: "SAVE_USER",
+      payload: user,
+    });
+  };
+
+  const contextValue = {
+    ...state,
+    changeToRegister,
+    saveUser,
+  };
 
   return (
-    <AppContext.Provider  value={{register, setRegister}}>
-      {children}
-    </AppContext.Provider>
+    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
   );
 };
 
