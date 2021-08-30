@@ -6,9 +6,9 @@ import { resendEmailVerify } from "../../services/auth";
 import useForgotPasswordForm from "./../../hooks/forgotpasswordform";
 import formGenerator from "./../../utils/formgenerator";
 import Button from "./../../components/UI/Button";
-import AuthFooter from './../../components/Auth/AuthFooter';
+import AuthFooter from "./../../components/Auth/AuthFooter";
 
-const Verification = ({history}) => {
+const Verification = ({ history }) => {
   const { search } = useLocation();
   const token = search.substring(20);
   const [
