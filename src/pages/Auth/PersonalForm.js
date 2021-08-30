@@ -6,7 +6,7 @@ import withRegistrationType from "../../hoc/registerType";
 import PersonalIndicator from "./../../components/UI/PersonalIndicator";
 import { useRegisterUser } from "../../query/getVerifiedEmail";
 import { useMutation } from "react-query";
-import { registerUser } from "./../../services/auth/index";
+import { registerUser } from "./../../services/auth";
 import { toast } from "react-toastify";
 
 const PersonalForm = ({ history }) => {

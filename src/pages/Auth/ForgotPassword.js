@@ -4,7 +4,7 @@ import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
 import formGenerator from "./../../utils/formgenerator";
 import useForgotPasswordForm from "./../../hooks/forgotpasswordform";
-import { forgotpassword } from "./../../services/auth/index";
+import { forgotpassword } from "./../../services/auth";
 import { useMutation } from "react-query";
 const ForgotPassword = () => {
   const [

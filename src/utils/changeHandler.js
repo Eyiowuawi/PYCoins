@@ -33,12 +33,15 @@ export const changeHandler = (
     ...formType,
     [elementID]: updatedFormElement,
   };
-  let formIsValid = true;
-  for (let elementID in updatedForm) {
-    formIsValid = updatedForm[elementID].valid && formIsValid;
+
+  if (validForm) {
+    let formIsValid = true;
+    for (let elementID in updatedForm) {
+      formIsValid = updatedForm[elementID].valid && formIsValid;
+    }
+    validForm(formIsValid);
   }
   formUpdate(updatedForm);
-  validForm(formIsValid);
 };
 
 export const handleBlur = (elementID, formType, updateFunction) => {
@@ -54,13 +57,11 @@ export const handleBlur = (elementID, formType, updateFunction) => {
   return updateFunction(updatedForm);
 };
 
-
-
 export const showPassword = (elementID, formType, formUpdateFunc) => {
   const updatedFormElement = {
     ...formType[elementID],
     show: !formType[elementID].show,
-    type: formType[elementID].show ? "text" : "password"
+    type: formType[elementID].show ? "text" : "password",
   };
 
   const updatedForm = {

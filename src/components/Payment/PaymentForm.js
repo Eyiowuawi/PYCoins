@@ -1,15 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Input from "../UI/Input";
 import Modal from "../UI/Modal";
-import Primary from "../UI/Label";
+import Label from "../UI/Label";
 import Button from "../UI/Button";
 import Created from "./Created";
 import formGenerator from "../../utils/formgenerator";
-const PaymentForm = ({ paymentForm, closeForm }) => {
-  const [success, setSuccess] = useState(false);
+import useAmount from "./../../hooks/amountform";
+const PaymentForm = ({
+  closeForm,
+  paymentForm,
+  paymentFormUpdate,
+  validForm,
+  validFormUpdate,
+}) => {
+  const [success, setSuccess] = useState("");
+  const [isFixed, setIsFixed] = useState("");
 
-  const form = formGenerator(paymentForm);
+  const [amountForm, setAmountForm] = useAmount();
+  const form = formGenerator(paymentForm, paymentFormUpdate);
+  const amount = formGenerator(amountForm, setAmountForm);
 
+  useEffect(() => {
+    let isValid = true;
+    for (let id in paymentForm) {
+      isValid = paymentForm[id].valid && isValid;
+    }
+    if (isFixed === "custom" && isValid) {
+      validFormUpdate(true);
+    }
+    let isAmountValid = true;
+    isAmountValid = amountForm.amount.valid && isAmountValid;
+    console.log(isValid);
+    console.log(isAmountValid);
+    console.log(isFixed);
+    if (isValid && isAmountValid && isFixed === "fixed") {
+      validFormUpdate(true);
+    }
+  }, [isFixed, paymentForm, amountForm]);
+
+  const handleChange = (evt) => {
+    if (evt.target.value === "fixed") {
+      setIsFixed("fixed");
+    } else setIsFixed("custom");
+  };
   return (
     <Modal close={closeForm}>
       {!success && (
@@ -18,26 +51,23 @@ const PaymentForm = ({ paymentForm, closeForm }) => {
           <form className="mt-small">
             {form}
             <div className="payment_amount mb-small">
-              <Primary
+              <Label
                 id={"fixed"}
                 title="Fixed Amout"
                 name={"amount"}
                 type="radio"
+                onchange={handleChange}
               />
-              <Primary
+              <Label
                 id={"custom"}
                 title="Custom Amout Amout"
                 name={"amount"}
                 type="radio"
+                onchange={handleChange}
               />
             </div>
-            <Input
-              value={""}
-              type={"number"}
-              elementType={"input"}
-              placeholder={"Enter Amount"}
-            />
-            <Button bg={"button_primary"} onclick={() => setSuccess(true)}>
+            {isFixed === "fixed" && amount}
+            <Button disabled={validForm} bg={"button_primary"}>
               Create Page
             </Button>
           </form>

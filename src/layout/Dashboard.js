@@ -4,7 +4,7 @@ import { renderRoutes } from "react-router-config";
 import Popup from "./../pages/Popup/index";
 import { useState, useEffect, useContext } from "react";
 import MobileSidebar from "./../components/UI/Mobilesidebar";
-import { autoLogout } from "./../services/auth/index";
+import { autoLogout } from "./../services/auth";
 import Loader from "./../components/UI/Loader";
 import { useUserProfile } from "./../query/getUserProfile";
 import { AppContext } from "./../context/index";

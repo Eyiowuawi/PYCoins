@@ -1,7 +1,7 @@
-import { authBaseUrl } from "../../constants/baseUrl";
+import { authBaseUrl } from "../constants/baseUrl";
 import { toast } from "react-toastify";
 import jwt from "jsonwebtoken";
-import { createAutoLogout } from "./../../utils/createautologout";
+import { createAutoLogout } from "../utils/createautologout";
 
 // TEST ACCOUNT
 
@@ -46,9 +46,10 @@ export const verifyUser = async (token) => {
     const { data } = await authBaseUrl.get(
       `/email/verify/?verification_token=${token}`
     );
-    console.log(data);
+    console.log(data)
     return data;
   } catch (error) {
+    console.log(error.response)
     if (error.response && error.response.data.status) {
       toast.error(error.response.data.message);
       throw new Error(error.response.data.message);

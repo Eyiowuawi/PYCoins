@@ -1,8 +1,9 @@
-import { userBaseUrl } from "../../constants/baseUrl";
+import { userBaseUrl } from "../constants/baseUrl";
 import { toast } from "react-toastify";
 
 export const userProfile = async () => {
   const token = localStorage.getItem("token") || null;
+  console.log(token);
   try {
     const { data } = await userBaseUrl.get("/profile", {
       headers: {

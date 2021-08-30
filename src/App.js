@@ -2,7 +2,7 @@ import { renderRoutes } from "react-router-config";
 import routes from "./routes";
 import { ToastContainer, Flip } from "react-toastify";
 import { useEffect } from "react";
-import { autoLogout } from "./services/auth/index";
+import { autoLogout } from "./services/auth";
 
 function App({ history }) {
 

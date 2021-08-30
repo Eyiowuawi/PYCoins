@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { required } from "./../utils/validations";
 
 const usePaymentForm = () => {
   const [paymentForm, setPayentForm] = useState({
@@ -8,7 +9,10 @@ const usePaymentForm = () => {
       elementType: "input",
       type: "text",
       placeholder: "Payment Name",
-      label: "Payment Name"
+      label: "Payment Name",
+      required: true,
+      validation: required,
+      blur: false,
     },
     desc: {
       value: "",
@@ -16,21 +20,31 @@ const usePaymentForm = () => {
       type: "url",
       elementType: "textarea",
       placeholder: "Description",
-      label: "Description"
+      label: "Description",
+      required: true,
+      validation: required,
+      blur: false,
     },
     currency: {
       value: "",
       valid: false,
       elementType: "select",
+      label: "Select Currency",
       options: [
-        { id: 1, displayValue: "Select Currency" },
-        { id: 4, displayValue: "NGN" },
-        { id: 5, displayValue: "Dollars" },
-        { id: 6, displayValue: "Euros" },
+        { id: 1, value: "", displayValue: "Select Currency" },
+        { id: 4, value: "NGN", displayValue: "NGN" },
+        { id: 5, value: "BTC", displayValue: "BTC" },
+        { id: 6, value: "ETH", displayValue: "ETH" },
+        { id: 8, value: "TET", displayValue: "TET" },
       ],
+      validation: required,
+      blur: false,
+      required: true,
     },
   });
-  return [paymentForm, setPayentForm];
+
+  const [paymentFormValid, setPaymentFormValid] = useState(false);
+  return [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid];
 };
 
 export default usePaymentForm;

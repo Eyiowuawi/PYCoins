@@ -4,7 +4,7 @@ import Navigation from "./Navigation/Nav";
 import { Logout } from "../../icons";
 import { Link, withRouter } from "react-router-dom";
 import { useMutation } from "react-query";
-import { logout } from "./../../services/auth/index";
+import { logout } from "./../../services/auth";
 
 const Sidebar = ({ show, close, history }) => {
   const { isSuccess, mutate, isLoading } = useMutation(() => logout(history), {

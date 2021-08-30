@@ -8,7 +8,7 @@ import formGenerator from "./../../utils/formgenerator";
 import Button from "./../../components/UI/Button";
 import AuthFooter from './../../components/Auth/AuthFooter';
 
-const Verification = () => {
+const Verification = ({history}) => {
   const { search } = useLocation();
   const token = search.substring(20);
   const [
@@ -22,8 +22,10 @@ const Verification = () => {
     setForgotPasswordForm,
     setForgotFormValid
   );
-  const { data, isSuccess, isError } = useVerifyEmail(token);
-  const { mutate, isLoading } = useMutation((data) => resendEmailVerify(data));
+  const { data, isSuccess, isError } = useVerifyEmail(token, history);
+  const { mutate, isLoading } = useMutation((data) => resendEmailVerify(data), {
+    // onSuccess: () =>history.push("/auth/login")
+  });
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -52,7 +54,7 @@ const Verification = () => {
           <AuthFooter
             title={"Don't have an account?"}
             link={"/auth/create"}
-            linkTitle={"Create account"}
+            linkTitle={"Login"}
           />
         </div>
       </div>

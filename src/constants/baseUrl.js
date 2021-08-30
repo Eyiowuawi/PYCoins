@@ -14,4 +14,4 @@ export const userBaseUrl = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-});
+})

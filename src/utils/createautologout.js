@@ -5,6 +5,6 @@ export const createAutoLogout = () => {
   const data = jwt.decode(token);
   if (!data) return false;
   const newDate = new Date(data.exp) * 1000;
-  if (newDate < Date.now()) return false;
+  if (newDate < new Date().getTime()) return false;
   return newDate;
 };

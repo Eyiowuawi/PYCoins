@@ -12,7 +12,7 @@ import {
   userProfile,
   updateUserProfile,
   updateBusinessprofile,
-} from "./../../services/user/index";
+} from "./../../services/user";
 import WithSmallLoader from "./../../hoc/withLoadingIndicator";
 import { AppContext } from "./../../context/index";
 

@@ -12,7 +12,8 @@ import useWindowWidth from "./../../hooks/windowwidth";
 
 const Payment = ({ history }) => {
   const [show, setShow] = useState(false);
-  const [paymentForm] = usePaymentForm();
+  const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
+    usePaymentForm();
   const [width, setWidth] = useWindowWidth();
 
   const handleChangePage = (id) => {
@@ -24,7 +25,11 @@ const Payment = ({ history }) => {
       <div className="payment">
         <div className="payment_container">
           <h3 className="title title-black">Payment Page</h3>
-          <Button disabled={true} bg={"button_primary"} onclick={() => setShow(true)}>
+          <Button
+            disabled={true}
+            bg={"button_primary"}
+            onclick={() => setShow(true)}
+          >
             <img src={Plus} alt="Add" />
             <span>Create New</span>
           </Button>
@@ -49,7 +54,15 @@ const Payment = ({ history }) => {
           />
         )}
       </div>
-      {show && <PaymentForm closeForm={setShow} paymentForm={paymentForm} />}
+      {show && (
+        <PaymentForm
+          closeForm={setShow}
+          paymentForm={paymentForm}
+          paymentFormUpdate={setPayentForm}
+          validForm={paymentFormValid}
+          validFormUpdate={setPaymentFormValid}
+        />
+      )}
     </>
   );
 };

@@ -9,7 +9,7 @@ import AuthFooter from "./../../components/Auth/AuthFooter";
 import withRegistrationType from "../../hoc/registerType";
 import useBusinessPage from "../../hooks/businessPage";
 import { useMutation } from "react-query";
-import { registerUser } from "./../../services/auth/index";
+import { registerUser } from "./../../services/auth";
 
 const BusinessForm = () => {
   const [
