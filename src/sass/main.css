@@ -415,6 +415,10 @@ a {
           align-items: center;
 }
 
+.form_error {
+  border: 1px solid red !important;
+}
+
 .crypto {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2989,6 +2993,12 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.general_pic img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
 }
 
 .general_upload {

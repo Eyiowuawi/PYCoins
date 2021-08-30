@@ -4,8 +4,19 @@ import Button from "./../UI/Button";
 import useGeneralForm from "./../../hooks/generalform";
 import SettingsForm from "./Form";
 import { changeHandler, handleBlur } from "./../../utils/changehandler";
+import settingsFormGenerator from "./../../utils/settingsFormGenerator";
+import { useState, useContext } from "react";
+import { useMutation, useQueryClient } from "react-query";
+import {
+  changeUserImage,
+  userProfile,
+  updateUserProfile,
+  updateBusinessprofile,
+} from "./../../services/user/index";
+import WithSmallLoader from "./../../hoc/withLoadingIndicator";
+import { AppContext } from "./../../context/index";
 
-const General = () => {
+const General = ({ profileimg }) => {
   const [
     personalForm,
     setPersonalForm,
@@ -17,74 +28,117 @@ const General = () => {
     setBusinessFormValid,
   ] = useGeneralForm();
 
-  const personal = [];
-  for (let key in personalForm) {
-    personal.push({
-      id: key,
-      config: personalForm[key],
-    });
-  }
+  const personal = settingsFormGenerator(
+    personalForm,
+    setPersonalForm,
+    setPersonalFormValid
+  );
 
-  const personalform = personal.map(({ id, config }) => (
-    <SettingsForm
-      key={id}
-      label={config.label}
-      type={config.type}
-      value={config.value}
-      onchange={(evt) =>
-        changeHandler(
-          evt,
-          id,
-          personalForm,
-          setPersonalForm,
-          setPersonalFormValid
-        )
-      }
-      onblur={() => handleBlur(id, personalForm, setPersonalForm)}
-      valid={config.valid}
-      blur={config.blur}
-    />
-  ));
+  const business = settingsFormGenerator(
+    businessForm,
+    setBusinessForm,
+    setBusinessFormValid
+  );
 
-  const business = [];
-  for (let key in businessForm) {
-    business.push({
-      id: key,
-      config: businessForm[key],
-    });
-  }
+  const { saveUser, user } = useContext(AppContext);
 
-  const businessform = business.map(({ id, config }) => (
-    <SettingsForm
-      key={id}
-      label={config.label}
-      type={config.type}
-      value={config.value}
-    />
-  ));
+  const { mutate, isLoading, data } = useMutation(
+    (img) => changeUserImage(img),
+    {
+      mutationKey: "change image",
+      onSuccess: (data) => saveUser(data.data),
+    }
+  );
 
+  const {
+    mutate: updateUserMutation,
+    data: updateUserData,
+    isLoading: updateUserLoading,
+  } = useMutation((data) => updateUserProfile(data), {
+    onSuccess: (data) => saveUser(data.data),
+  });
+
+  const {
+    mutate: upateBusinessMutation,
+    data: updateBusinessData,
+    isLoading: updateBusinessLoading,
+  } = useMutation((data) => updateBusinessprofile(data), {
+    onSuccess: (data) => saveUser(data.data),
+  });
+
+  const handleChange = (evt) => {
+    const param = new FormData();
+    const value = evt.target.files[0];
+
+    param.append("profileImage", value);
+    mutate(param);
+  };
+
+  const handleUpdateUser = (evt) => {
+    evt.preventDefault();
+    let data = {};
+    for (let key in personalForm) data[key] = personalForm[key].value;
+    updateUserMutation(data);
+  };
+
+  const handleUpdateBusiness = (evt) => {
+    evt.preventDefault();
+    let data = {};
+    for (let key in businessForm) data[key] = businessForm[key].value;
+    updateUserMutation(data);
+  };
   return (
     <div className="general">
       <h3 className="title title-black">Personal Information </h3>
-      <div className="mt-small mb-small">
+      <form className="mt-small mb-small">
         <p className="title title-grey">Photo</p>
-        <input type="file" accepts="image/*" id="photo" hidden />
-        <div className="general_pic">
-          <img src={Avatar} alt="avatar" />
-          <label htmlFor="photo" className="general_upload">
-            Change
-          </label>
-        </div>
-      </div>
-      <form className="mt-small settingsform">
-        {personalform}
-        <Button bg={"button_primary"}>Save Changes</Button>
+        <input
+          accep=".jpg, .jpeg, .png"
+          type="file"
+          accepts="image/*"
+          id="photo"
+          hidden
+          onChange={handleChange}
+        />
+        <WithSmallLoader isLoading={isLoading}>
+          <div className="general_pic">
+            <img src={profileimg ? profileimg : Avatar} alt="avatar" />
+            <label htmlFor="photo" className="general_upload">
+              Change
+            </label>
+          </div>
+        </WithSmallLoader>
       </form>
-      <h3 className="title title-black mt-small">Business Information</h3>
-      <form className="mt-small settingsform">
-        {businessform}
-        <Button bg={"button_primary"}>Save Changes</Button>
+      <form className="mt-small settingsform" onSubmit={handleUpdateUser}>
+        {personal}
+        <Button
+          disabled={personalFormValid}
+          isLoading={updateUserLoading}
+          type="submit"
+          bg={"button_primary"}
+        >
+          Save Changes
+        </Button>
       </form>
+      {user.userType === "business " && (
+        <>
+          <h3 className="title title-black mt-small">Business Information</h3>
+          <form
+            className="mt-small settingsform"
+            onSubmit={handleUpdateBusiness}
+          >
+            {business}
+            <Button
+              disabled={businessFormValid}
+              type="submit"
+              bg={"button_primary"}
+              isLoading={updateBusinessLoading}
+            >
+              Save Changes
+            </Button>
+          </form>
+        </>
+      )}
     </div>
   );
 };

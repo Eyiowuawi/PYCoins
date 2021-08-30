@@ -1,6 +1,8 @@
 import AuthLayout from "./layout/Auth";
 import DashboardLayout from "./layout/Dashboard";
 
+// import WithdrawForm from "/"
+
 // Auth
 import Create from "./pages/Auth/Create";
 import PersonalForm from "./pages/Auth/PersonalForm";
@@ -19,6 +21,7 @@ import PaymentDetails from "./pages/Dashboard/PaymentDetails";
 
 import PaymentPage from "./pages/PaymentPage";
 import Verification from "./pages/Auth/Verification";
+import WithProtectedRoute from "./hoc/protectedroutes";
 
 const routes = [
   {
@@ -78,7 +81,7 @@ const routes = [
   },
   {
     path: "/",
-    component: DashboardLayout,
+    component: WithProtectedRoute(DashboardLayout),
     routes: [
       {
         path: "/",

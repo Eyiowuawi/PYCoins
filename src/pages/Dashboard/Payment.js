@@ -24,7 +24,7 @@ const Payment = ({ history }) => {
       <div className="payment">
         <div className="payment_container">
           <h3 className="title title-black">Payment Page</h3>
-          <Button bg={"button_primary"} onclick={() => setShow(true)}>
+          <Button disabled={true} bg={"button_primary"} onclick={() => setShow(true)}>
             <img src={Plus} alt="Add" />
             <span>Create New</span>
           </Button>

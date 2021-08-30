@@ -5,6 +5,7 @@ const initialState = {
   register: false,
   user: {},
   intials: null,
+  fulname: ""
 };
 export const AppContext = createContext(initialState);
 

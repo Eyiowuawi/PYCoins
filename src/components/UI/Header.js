@@ -5,12 +5,9 @@ import Toggle from "./Switch";
 import Arrowdropdown from "./Arrowdropdown";
 import { useContext, useMemo, useEffect } from "react";
 import { AppContext } from "./../../context/index";
-import { getInitials } from "./../../utils/getInitials";
 const Header = ({ showsidebar }) => {
-  const {
-    user: { firstName, lastName },
-    initials,
-  } = useContext(AppContext);
+  const { fullname, initials } = useContext(AppContext);
+  // console.log
   return (
     <header className="header">
       <div className="header_container">
@@ -18,10 +15,10 @@ const Header = ({ showsidebar }) => {
           <p className="header-text header-text-grey">Test</p>
           <Toggle />
           <p className="header-text header-text-grey">Live</p>
-          {firstName && (
+          {fullname && (
             <>
               <div className="header_name">{`${initials}`}</div>
-              <p className="header-text header-text-black">{`${firstName} ${lastName}`}</p>
+              <p className="header-text header-text-black">{`${fullname}`}</p>
             </>
           )}
 

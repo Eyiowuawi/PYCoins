@@ -17,11 +17,9 @@ import WithLoadingComponent from "./../../hoc/withLoading";
 import LandingHeader from "./../../components/Dashboard/Header";
 import LandingEmpty from "./../../components/Dashboard/Empty";
 
-const Dashboard = () => {
+const Dashboard = ({ isLoading }) => {
   const [show, setShow] = useState(false);
   const [width, setWidth] = useWindowWidth();
-  const { data, isLoading, isSuccess } = useUserProfile();
-  const { saveUser } = useContext(AppContext);
 
   const date = useMemo(() => {
     return new Date().toLocaleDateString("en-US", {
@@ -31,10 +29,6 @@ const Dashboard = () => {
       weekday: "long",
     });
   }, []);
-
-  useEffect(() => {
-    if (isSuccess && data && data.data) saveUser(data.data.user);
-  }, [data, isSuccess]);
 
   return (
     <WithLoadingComponent isLoading={isLoading}>

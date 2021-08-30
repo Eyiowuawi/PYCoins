@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { required, phoneNumberCheck, emailCheck } from "./../utils/validations";
+import { AppContext } from "./../context/index";
 
 const useGeneralForm = () => {
+  const {
+    user: { user, business },
+  } = useContext(AppContext);
   const [personalForm, setPersonalForm] = useState({
     firstName: {
       value: "",
@@ -26,7 +30,7 @@ const useGeneralForm = () => {
       blur: false,
     },
     phoneNumber: {
-      value: "+234",
+      value: "",
       valid: false,
       type: "text",
       elementType: "input",
@@ -38,6 +42,30 @@ const useGeneralForm = () => {
       info: "Number must start with a +234",
     },
   });
+  const [personalFormValid, setPersonalFormValid] = useState(false);
+
+  useEffect(() => {
+    setPersonalForm((prevState) => {
+      return {
+        firstName: {
+          ...prevState.firstName,
+          value: user ? user.firstName : "",
+          valid: true,
+        },
+        lastName: {
+          ...prevState.lastName,
+          value: user ? user.lastName : "",
+          valid: true,
+        },
+        phoneNumber: {
+          ...prevState.phoneNumber,
+          value: user ? user.phoneNumber : "",
+          valid: true,
+        },
+      };
+    });
+    setPersonalFormValid(true);
+  }, [user]);
 
   const [businessForm, setBusinessForm] = useState({
     businessName: {
@@ -73,7 +101,29 @@ const useGeneralForm = () => {
     },
   });
 
-  const [personalFormValid, setPersonalFormValid] = useState(false);
+  useEffect(() => {
+    setBusinessForm((prevState) => {
+      return {
+        businessName: {
+          ...prevState.firstName,
+          value: business ? business.businessName : "",
+          valid: true,
+        },
+        businessEmail: {
+          ...prevState.businessEmail,
+          value: business ? business.businessEmail : "",
+          valid: true,
+        },
+        businessAddress: {
+          ...prevState.businessAddress,
+          value: business ? business.businessAddress : "",
+          valid: true,
+        },
+      };
+    });
+    setBusinessFormValid(true);
+  }, [user]);
+
   const [businessFormValid, setBusinessFormValid] = useState(false);
 
   return [
@@ -88,4 +138,4 @@ const useGeneralForm = () => {
   ];
 };
 
-export default useGeneralForm
+export default useGeneralForm;

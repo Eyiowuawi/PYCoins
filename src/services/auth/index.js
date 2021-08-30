@@ -1,6 +1,7 @@
 import { authBaseUrl } from "../../constants/baseUrl";
 import { toast } from "react-toastify";
 import jwt from "jsonwebtoken";
+import { createAutoLogout } from "./../../utils/createautologout";
 
 // TEST ACCOUNT
 
@@ -100,31 +101,20 @@ export const resetPassword = async (passoword, token) => {
 };
 
 export const logout = async (history) => {
-  try {
-    const data = await authBaseUrl.get("/logout");
-    localStorage.removeItem("token");
-    history.push("/auth/login");
-  } catch (error) {
-    console.log(error);
-    throw new Error("Error processing you request");
-  }
+  const data = await authBaseUrl.get("/logout");
+  localStorage.removeItem("token");
+  history.push("/auth/login");
 };
 
 const checkTimeout = (timer, history) => {
-  // setTimeout(logout, timer);
   setTimeout(() => {
     return logout(history);
   }, timer);
 };
 
-export const autoLogout = (history) => {
-  const token = localStorage.getItem("token");
-  if (!token) logout(history);
-  else {
-    const data = jwt.decode(token);
-    const newDate = new Date(data.exp) * 1000;
-    if (newDate < Date.now()) logout(history);
-    const timer = newDate - new Date().getTime();
-    checkTimeout(timer, history);
-  }
+export const autoLogout = async (history) => {
+  const newDate = await createAutoLogout();
+  if (!newDate) logout(history);
+  const timer = newDate - new Date().getTime();
+  checkTimeout(timer, history);
 };

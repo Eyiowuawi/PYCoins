@@ -75,4 +75,7 @@
       @include flex(row, space-between, center);
     }
   }
+  &_error{
+    border: 1px solid red !important;
+  }
 }

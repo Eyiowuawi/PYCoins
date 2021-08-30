@@ -4,7 +4,7 @@ import { ToastContainer, Flip } from "react-toastify";
 import { useEffect } from "react";
 import { autoLogout } from "./services/auth/index";
 
-function App() {
+function App({ history }) {
 
 
   return (

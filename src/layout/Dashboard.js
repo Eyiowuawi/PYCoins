@@ -13,10 +13,14 @@ const DashboardLayout = ({ route, history }) => {
   const [showpopup, setShowPopup] = useState(false);
   const [show, setShow] = useState(false);
 
-
+  const { data, isLoading, isSuccess } = useUserProfile();
+  const { saveUser } = useContext(AppContext);
   useEffect(() => {
     autoLogout(history);
   }, []);
+  useEffect(() => {
+    if (isSuccess && data && data.data) saveUser(data.data);
+  }, [data, isSuccess]);
 
   useEffect(() => {
     const show = setTimeout(() => {
@@ -35,7 +39,9 @@ const DashboardLayout = ({ route, history }) => {
           <div className="dashboard_content">
             <Header showsidebar={() => setShow(true)} />
             <main className="main">
-              <div className="main_container">{renderRoutes(route.routes)}</div>
+              <div className="main_container">
+                {renderRoutes(route.routes, { isLoading: isLoading })}
+              </div>
             </main>
           </div>
         </div>
