@@ -21,7 +21,7 @@ import PaymentDetails from "./pages/Dashboard/PaymentDetails";
 
 import PaymentPage from "./pages/PaymentPage";
 import Verification from "./pages/Auth/Verification";
-import WithProtectedRoute from "./hoc/protectedroutes";
+import WithProtectedRoute from "./hoc/withProtectedRoutes";
 
 const routes = [
   {
@@ -114,7 +114,7 @@ const routes = [
         key: "payment-pay",
       },
       {
-        path: "/payment/pay/:id",
+        path: "/payment/pay/:slug",
         exact: true,
         component: PaymentDetails,
         key: "payment-pay",

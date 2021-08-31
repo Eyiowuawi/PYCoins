@@ -15,3 +15,10 @@ export const userBaseUrl = axios.create({
     "Content-Type": "application/json",
   },
 })
+
+export const paymentlinkBaseUrl = axios.create({
+  baseURL: `${url}/paymentLink`,
+  headers: {
+    "Content-Type": "application/json",
+  }
+})

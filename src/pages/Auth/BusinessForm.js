@@ -6,7 +6,7 @@ import VerifyMsg from "./Verify";
 import Indicator from "../../components/UI/Indicator";
 import Business from "../../components/Auth/Business";
 import AuthFooter from "./../../components/Auth/AuthFooter";
-import withRegistrationType from "../../hoc/registerType";
+import withRegistrationType from "../../hoc/withRegisterType";
 import useBusinessPage from "../../hooks/businessPage";
 import { useMutation } from "react-query";
 import { registerUser } from "./../../services/auth";

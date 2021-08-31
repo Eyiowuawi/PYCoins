@@ -1,63 +1,75 @@
-import { Copy, Delete, Edit, LeftArrow } from "../../icons";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useMemo } from "react";
+import { useLocation, useRouteMatch } from "react-router-dom";
 import Back from "../../components/Back";
 import Balance from "./../../components/PaymentDetails/Balance";
 import Table from "../../components/Table";
 import { transactions } from "../../constants";
-import { useState, useEffect } from "react";
 import TransactionsDetails from "../../components/TransactionDetails";
-import Btns from "../../assets/btns.svg";
 import TableResponsive from "./../../components/TableResponsive";
 import useWindowWidth from "../../hooks/windowwidth";
+import PaymentHeader from "./../../components/PaymentDetails/Header";
+import { useGetPaymentLinkInfo } from "./../../query/getPaymentLinkInfo";
+import WithLoadingComponent from "./../../hoc/withLoading";
+import { paymentURL } from "./../../utils/addPaymentUrl";
+import { useDeletePaymentLink } from "../../query/deletePaymentLink";
+import { toast } from "react-toastify";
 
-const PaymentDetails = () => {
+const PaymentDetails = ({ history }) => {
   const [show, setShow] = useState(false);
   const [width, setWidth] = useWindowWidth();
   const [ctas, setCtas] = useState(false);
+  const { params } = useRouteMatch();
 
-  const handleClick = (evt) => {
-    evt.stopPropagation();
-    setCtas(!ctas);
+  const { data, isLoading } = useGetPaymentLinkInfo(params.slug);
+  const {
+    data: deleteData,
+    isLoading: deleteLoading,
+    mutate,
+  } = useDeletePaymentLink(data?.paymentlink._id, history);
+
+  useEffect(() => {
+    if (deleteLoading)
+      toast.info("Deleting Link", { autoClose: 50000 });
+  }, [deleteData, deleteLoading]);
+
+
+  const updatedData = useMemo(() => {
+    const url = paymentURL(params.slug);
+    const paymentData = {
+      ...data,
+      paymentlink: {
+        ...data?.paymentlink,
+        paymentURL: url,
+      },
+    };
+    return paymentData;
+  }, [data]);
+
+  const handleDelete = (evt) => {
+    evt.preventDefault();
+    mutate();
   };
-
   return (
-    <div className="paymentdetails" onClick={() => setCtas(false)}>
-      <Back to="/payment/pay" title="Back" />
-      <div className="paymentdetails_header">
-        <h3 className="title title-black">Payment Page Name</h3>
-        <div
-          className={`paymentdetails_ctas ${
-            ctas && "paymentdetails_ctas-reveal"
-          }`}
-        >
-          <div>
-            <Copy fill="#787676" />
-            <p className="title title-grey">Copy Link</p>
-          </div>
-          <div>
-            <Edit fill="#787676" />
-            <p className="title title-grey">Edit</p>
-          </div>
-          <div>
-            <Delete />
-            <p className="delete">Delete</p>
-          </div>
-        </div>
-        <div onClick={handleClick} className="paymentdetails_actions">
-          <img src={Btns} alt="Click to copy, edit or delete link" />
-        </div>
+    <WithLoadingComponent isLoading={isLoading}>
+      <div className="paymentdetails" onClick={() => setCtas(false)}>
+        <Back to="/payment/pay" title="Back" />
+        <PaymentHeader
+          handleDelete={handleDelete}
+          link={updatedData?.paymentlink}
+          ctas={ctas}
+        />
+        <h5 className="title title-black  ">Balance</h5>
+        <Balance />
+        <h3 className="title title-black mt-small mb-small">Transactions</h3>
+        {width > 500 && (
+          <Table data={transactions} onclick={() => setShow(true)} />
+        )}
+        {width <= 500 && <TableResponsive data={transactions} />}
+        {show && (
+          <TransactionsDetails close={setShow} onclick={() => setShow(true)} />
+        )}
       </div>
-      <h5 className="title title-black  ">Balance</h5>
-      <Balance />
-      <h3 className="title title-black mt-small mb-small">Transactions</h3>
-      {width > 500 && (
-        <Table data={transactions} onclick={() => setShow(true)} />
-      )}
-      {width <= 500 && <TableResponsive data={transactions} />}
-      {show && (
-        <TransactionsDetails close={setShow} onclick={() => setShow(true)} />
-      )}
-    </div>
+    </WithLoadingComponent>
   );
 };
 

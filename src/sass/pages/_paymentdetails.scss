@@ -11,9 +11,10 @@
   &_ctas {
     @include flex(row, space-between, center);
     margin-left: 1rem;
-    div {
+    button {
+      
       &:not(:last-of-type) {
-        margin-right: 1rem;
+        margin-right: 1.5rem;
       }
       @include flex(row, initial, center);
       p {

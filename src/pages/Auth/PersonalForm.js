@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PersonalInfo from "../../components/Auth/Personal";
 import VerifyMsg from "./Verify";
 import usePersonalForm from "../../hooks/personalform";
-import withRegistrationType from "../../hoc/registerType";
+import withRegistrationType from "../../hoc/withRegisterType";
 import PersonalIndicator from "./../../components/UI/PersonalIndicator";
 import { useRegisterUser } from "../../query/getVerifiedEmail";
 import { useMutation } from "react-query";

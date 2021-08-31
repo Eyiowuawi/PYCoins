@@ -44,6 +44,12 @@ a {
   text-decoration: none;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 .ta {
   text-align: center;
 }
@@ -2828,7 +2834,7 @@ a {
   margin-left: 1rem;
 }
 
-.paymentdetails_ctas div {
+.paymentdetails_ctas button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2844,11 +2850,11 @@ a {
           align-items: center;
 }
 
-.paymentdetails_ctas div:not(:last-of-type) {
-  margin-right: 1rem;
+.paymentdetails_ctas button:not(:last-of-type) {
+  margin-right: 1.5rem;
 }
 
-.paymentdetails_ctas div p {
+.paymentdetails_ctas button p {
   margin-left: 0.5rem;
 }
 

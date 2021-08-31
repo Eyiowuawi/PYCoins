@@ -13,11 +13,12 @@ const DashboardLayout = ({ route, history }) => {
   const [showpopup, setShowPopup] = useState(false);
   const [show, setShow] = useState(false);
 
+  useEffect(async () => {
+    await autoLogout(history);
+  }, []);
+
   const { data, isLoading, isSuccess } = useUserProfile();
   const { saveUser } = useContext(AppContext);
-  useEffect(() => {
-    autoLogout(history);
-  }, []);
   useEffect(() => {
     if (isSuccess && data && data.data) saveUser(data.data);
   }, [data, isSuccess]);

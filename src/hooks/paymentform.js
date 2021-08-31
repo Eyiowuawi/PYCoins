@@ -3,7 +3,7 @@ import { required } from "./../utils/validations";
 
 const usePaymentForm = () => {
   const [paymentForm, setPayentForm] = useState({
-    name: {
+    pageName: {
       value: "",
       valid: false,
       elementType: "input",
@@ -14,7 +14,7 @@ const usePaymentForm = () => {
       validation: required,
       blur: false,
     },
-    desc: {
+    description: {
       value: "",
       valid: false,
       type: "url",

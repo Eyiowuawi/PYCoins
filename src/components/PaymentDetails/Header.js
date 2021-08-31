@@ -1,0 +1,41 @@
+import { Copy, Delete, Edit, LeftArrow } from "../../icons";
+import Btns from "../../assets/btns.svg";
+import WithCopyToClipboard from "./../../hoc/withCopyToClipboard";
+
+const PaymentHeader = ({ ctas, handleClick, Btns, link, handleDelete }) => {
+  return (
+    <div className="paymentdetails_header">
+      <h3 className="title title-black">{link?.pageName}</h3>
+      <div
+        className={`paymentdetails_ctas ${
+          ctas && "paymentdetails_ctas-reveal"
+        }`}
+      >
+        <WithCopyToClipboard text={link?.paymentURL}>
+          <button>
+            <Copy fill="#787676" />
+            <p className="title title-grey">Copy Link</p>
+          </button>
+        </WithCopyToClipboard>
+        <button type="submit" role="button" aria-label="edit-button">
+          <Edit fill="#787676" />
+          <p className="title title-grey">Edit</p>
+        </button>
+        <button
+          type="submit"
+          role="button"
+          aria-label="delete-button"
+          onClick={handleDelete}
+        >
+          <Delete />
+          <p className="delete">Delete</p>
+        </button>
+      </div>
+      <div onClick={handleClick} className="paymentdetails_actions">
+        <img src={Btns} alt="Click to copy, edit or delete link" />
+      </div>
+    </div>
+  );
+};
+
+export default PaymentHeader;

@@ -3,7 +3,8 @@ import Success from "../../assets/success.svg";
 import { Copy } from "../../icons";
 import Received from "../../assets/received.svg";
 import Button from "./../UI/Button";
-const Created = () => {
+const Created = ({ data }) => {
+  console.log(data)
   return (
     <Response
       img={Success}
@@ -12,11 +13,11 @@ const Created = () => {
         now pay you directly through this payment link."
     >
       <div className="payment_created mt-small">
-        <Button bg={"button_primary"}>
+        <Button disabled={true} bg={"button_primary"}>
           <Copy fill="#FFFFFF" />
           <span> Copy Link</span>
         </Button>
-        <Button bg={"button_white"}>
+        <Button disabled={true} bg={"button_white"}>
           <img src={Received} alt="Sucess" />
           <span> View Link</span>
         </Button>

@@ -13,10 +13,10 @@ const PaymentTable = ({ data, gotoDetails }) => {
       </thead>
       <tbody>
         {data.map((item) => (
-          <tr onClick={() => gotoDetails(item.id)}>
-            <td>{item.name}</td>
+          <tr key={item._id} onClick={() => gotoDetails(item.paymentSlug)}>
+            <td>{item.pageName}</td>
             <td>{item.amount}</td>
-            <td>{item.date}</td>
+            <td>{item.createdAt}</td>
             {/* <td>
               <img src={Actions} alt={"Actions"} />
             </td> */}
