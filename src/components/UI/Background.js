@@ -1,9 +1,16 @@
+import Logo from "../../assets/Logo.svg";
+
 const Background = ({ children }) => (
   <main className="background">
     <div className="background_container">
       <div className="background_bgcolor"></div>
       <div className="background_ext"></div>
-      <div className="background_content">{children}</div>
+      <div className="background_box">
+        <div className="background_img">
+          <img src={Logo} alt="payercoins" />
+        </div>
+        <div className="background_content">{children}</div>
+      </div>
     </div>
   </main>
 );

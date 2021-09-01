@@ -1,0 +1,12 @@
+.error {
+  @include flex(column, center, center);
+  padding: 2rem 0;
+
+  .button {
+    width: 50%;
+
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+}

@@ -1,42 +1,79 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import show from "../assets/show.svg";
+import { required, emailCheck } from "./../utils/validations";
+import { useGetPaymentInfo } from "./../query/getPaymentInfo";
+import { useRouteMatch } from "react-router-dom";
+
 const usePaymentPageForm = () => {
+  const { params } = useRouteMatch();
+
+  const { data, isLoading } = useGetPaymentInfo(params.slug);
   const [paymentPageForm, setPaymentPageForm] = useState({
-    name: {
+    pageName: {
       value: "",
       valid: false,
       elementType: "input",
       type: "text",
-      placeholder: "Name",
-      label: "Name"
+      label: "Name",
+      required: true,
+      validation: required,
+      blur: false,
     },
     email: {
       value: "",
       valid: false,
       type: "email",
       elementType: "input",
-      placeholder: "Email",
-      label: "Email"
+      label: "Email",
+      required: true,
+      validation: emailCheck,
+      blur: false,
     },
     amount: {
       value: "",
       valid: false,
-      type: "text",
+      type: "number",
       elementType: "input",
-      placeholder: "Phone Number",
-      label: "Enter Amount"
+      placeholder: "Number",
+      label: "Enter Amount",
+      required: true,
+      validation: required,
+      blur: false,
+      readonly: false,
     },
     message: {
       value: "",
-      valid: false,
+      valid: true,
       type: "text",
       elementType: "textarea",
       placeholder: "Message (Optional)",
-      label: "Message"
+      label: "Message",
+      validation: required,
     },
   });
 
-  return [paymentPageForm, setPaymentPageForm];
+  const [formValid, setFormValid] = useState(false);
+
+  useEffect(() => {
+    setPaymentPageForm((prevState) => {
+      return {
+        ...prevState,
+        amount: {
+          ...prevState.amount,
+          readonly: data?.isAmountFixed ? true : false,
+        },
+      };
+    });
+  }, [data]);
+
+  return [
+    paymentPageForm,
+    setPaymentPageForm,
+    formValid,
+    setFormValid,
+    isLoading,
+    data,
+  ];
 };
 
 export default usePaymentPageForm;

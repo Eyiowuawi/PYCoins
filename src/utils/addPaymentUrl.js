@@ -1,4 +1,6 @@
-export const paymentURL = (slug) => {
-  return `https://payercoins.com/paymentpage/${slug}`;
+export const addPaymentUrl = (data) => {
+  return {
+    ...data,
+    paymenturl: `https://payercoins.com/pay/${data.paymentSlug}`,
+  };
 };
-

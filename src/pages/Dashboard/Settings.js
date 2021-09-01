@@ -33,30 +33,28 @@ const Settings = ({ isLoading }) => {
   };
 
   return (
-    <WithLoadingComponent isLoading={isLoading}>
-      <div className="settings">
-        <h3 className="title title-black mb-small">Settings</h3>
-        <nav className="settings_nav mt-small">
-          <ul className="settings_ul">
-            {settingsNav.map((item) => (
-              <SettingsNav
-                search={item.to}
-                name={item.name}
-                key={item.id}
-                handlechange={() => handleChange(item.id)}
-                active={item.active}
-              />
-            ))}
-          </ul>
-        </nav>
-        <div className="settings_pages">
-          {page === "general" && <General profileimg={profileImage} />}
-          {page === "settlements" && <Settlement />}
-          {page === "api-keys-webhooks" && <Webhooks />}
-          {page === "currency" && <Currency />}
-        </div>
+    <div className="settings">
+      <h3 className="title title-black mb-small">Settings</h3>
+      <nav className="settings_nav mt-small">
+        <ul className="settings_ul">
+          {settingsNav.map((item) => (
+            <SettingsNav
+              search={item.to}
+              name={item.name}
+              key={item.id}
+              handlechange={() => handleChange(item.id)}
+              active={item.active}
+            />
+          ))}
+        </ul>
+      </nav>
+      <div className="settings_pages">
+        {page === "general" && <General profileimg={profileImage} />}
+        {page === "settlements" && <Settlement />}
+        {page === "api-keys-webhooks" && <Webhooks />}
+        {page === "currency" && <Currency />}
       </div>
-    </WithLoadingComponent>
+    </div>
   );
 };
 

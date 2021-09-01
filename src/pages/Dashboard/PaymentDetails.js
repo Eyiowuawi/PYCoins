@@ -8,9 +8,9 @@ import TransactionsDetails from "../../components/TransactionDetails";
 import TableResponsive from "./../../components/TableResponsive";
 import useWindowWidth from "../../hooks/windowwidth";
 import PaymentHeader from "./../../components/PaymentDetails/Header";
-import { useGetPaymentLinkInfo } from "./../../query/getPaymentLinkInfo";
+import { useGetUserPaymentLink } from "../../query/getUserPaymentLink";
 import WithLoadingComponent from "./../../hoc/withLoading";
-import { paymentURL } from "./../../utils/addPaymentUrl";
+import { addPaymentUrl } from "./../../utils/addPaymentUrl";
 import { useDeletePaymentLink } from "../../query/deletePaymentLink";
 import { toast } from "react-toastify";
 
@@ -19,8 +19,8 @@ const PaymentDetails = ({ history }) => {
   const [width, setWidth] = useWindowWidth();
   const [ctas, setCtas] = useState(false);
   const { params } = useRouteMatch();
+  const { data, isLoading } = useGetUserPaymentLink(params.id);
 
-  const { data, isLoading } = useGetPaymentLinkInfo(params.slug);
   const {
     data: deleteData,
     isLoading: deleteLoading,
@@ -28,21 +28,13 @@ const PaymentDetails = ({ history }) => {
   } = useDeletePaymentLink(data?.paymentlink._id, history);
 
   useEffect(() => {
-    if (deleteLoading)
-      toast.info("Deleting Link", { autoClose: 50000 });
+    if (deleteLoading) toast.info("Deleting Link", { autoClose: false });
   }, [deleteData, deleteLoading]);
 
-
   const updatedData = useMemo(() => {
-    const url = paymentURL(params.slug);
-    const paymentData = {
-      ...data,
-      paymentlink: {
-        ...data?.paymentlink,
-        paymentURL: url,
-      },
-    };
-    return paymentData;
+    const updatedPaymentLink = data && addPaymentUrl(data?.paymentlink);
+
+    return updatedPaymentLink;
   }, [data]);
 
   const handleDelete = (evt) => {
@@ -55,7 +47,7 @@ const PaymentDetails = ({ history }) => {
         <Back to="/payment/pay" title="Back" />
         <PaymentHeader
           handleDelete={handleDelete}
-          link={updatedData?.paymentlink}
+          link={updatedData}
           ctas={ctas}
         />
         <h5 className="title title-black  ">Balance</h5>

@@ -16,8 +16,9 @@ import { AppContext } from "./../../context/index";
 import WithLoadingComponent from "./../../hoc/withLoading";
 import LandingHeader from "./../../components/Dashboard/Header";
 import LandingEmpty from "./../../components/Dashboard/Empty";
+import Error from "./../../components/Error";
 
-const Dashboard = ({ isLoading }) => {
+const Dashboard = ({ isLoading, ...props }) => {
   const [show, setShow] = useState(false);
   const [width, setWidth] = useWindowWidth();
 
@@ -31,7 +32,7 @@ const Dashboard = ({ isLoading }) => {
   }, []);
 
   return (
-    <WithLoadingComponent isLoading={isLoading}>
+    <>
       <div className="home">
         <LandingHeader date={date} setShow={setShow} />
         <div className="home_wallets">
@@ -52,7 +53,7 @@ const Dashboard = ({ isLoading }) => {
         </div>
       </div>
       {show && <BusinessForm close={setShow} />}
-    </WithLoadingComponent>
+    </>
   );
 };
 

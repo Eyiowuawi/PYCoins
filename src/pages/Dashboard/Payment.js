@@ -12,7 +12,7 @@ import useWindowWidth from "./../../hooks/windowwidth";
 import { useGetPaymentLinks } from "./../../query/getPaymentLinks";
 import { dateFormatter } from "./../../utils/dateformatter";
 import WithLoadingComponent from "./../../hoc/withLoading";
-import { paymentURL } from "./../../utils/addPaymentUrl";
+import { addPaymentUrl } from "./../../utils/addPaymentUrl";
 
 const Payment = ({ history, isLoading }) => {
   const [show, setShow] = useState(false);
@@ -26,20 +26,19 @@ const Payment = ({ history, isLoading }) => {
   useEffect(() => {
     if (data && !getLinksLoading) {
       const mappedArray = data.paymentLinks.map((item) => {
-        const date = dateFormatter(item.createdAt);
-        const url = paymentURL(item.paymentSlug);
+        const updatedData = addPaymentUrl(item);
+        const date = dateFormatter(updatedData.createdAt);
         return {
-          ...item,
+          ...updatedData,
           createdAt: date,
-          paymenturl: url,
         };
       });
       setPaymentLinks(mappedArray);
     }
   }, [data, getLinksLoading]);
 
-  const handleChangePage = (id) => {
-    history.push(`/payment/pay/${id}`);
+  const handleChangePage = (slug, id) => {
+    history.push(`/payment/pay/${slug}/${id}`);
   };
 
   return (
@@ -85,15 +84,7 @@ const Payment = ({ history, isLoading }) => {
           />
         )}
       </div>
-      {show && (
-        <PaymentForm
-          closeForm={setShow}
-          paymentForm={paymentForm}
-          paymentFormUpdate={setPayentForm}
-          validForm={paymentFormValid}
-          validFormUpdate={setPaymentFormValid}
-        />
-      )}
+      {show && <PaymentForm close={show} closeForm={setShow} />}
     </WithLoadingComponent>
   );
 };

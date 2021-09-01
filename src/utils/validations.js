@@ -4,9 +4,9 @@ export const phoneNumberCheck = (value) => {
 };
 
 export const password = (value) => {
-  const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?.!@$%^&*-]).{8,}$/;
-  // const regex = /^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?.!@$%^&*-]).{8,}$/;
-  // console.log(regex.test(value.trim()));
+  const regex =
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?.!@$%^&*-]).{8,}$/;
+
   return regex.test(value);
 };
 

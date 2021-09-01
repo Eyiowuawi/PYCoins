@@ -9,30 +9,47 @@ import Pay from "./../../components/PaymentPage/Pay";
 import PaymentProcess from "../../components/PaymentPage";
 import { useState } from "react";
 import formGenerator from "../../utils/formgenerator";
+import WithLoadingComponent from "./../../hoc/withLoading";
 
 const PaymentPage = () => {
-  const [paymentPageForm, setPaymentPageForm] = usePaymentForm();
-  const [show, setShow] = useState(false);  
+  const [
+    paymentPageForm,
+    setPaymentPageForm,
+    formValid,
+    setFormValid,
+    isLoading,
+    data,
+  ] = usePaymentForm();
+  const [show, setShow] = useState(false);
 
-  const form = formGenerator(paymentPageForm)
+  const form = formGenerator(paymentPageForm, setPaymentPageForm, setFormValid);
 
+  console.log(data);
   return (
     <>
       <Background>
-        <div className="paymentpage">
-          <div className="paymentpage_img mb-small">
-            <img src={User} alt="User" />
+        <WithLoadingComponent isLoading={isLoading}>
+          <div className="paymentpage">
+            <div className="paymentpage_img mb-small">
+              <img src={data?.paymentlink.user.profileImage} alt="User" />
+            </div>
+            <h3 className="title title-black mb-small">
+              {data?.paymentlink.pageName}
+            </h3>
+            <p className="title title-grey ta">
+              Hi, I’m John Doe. I am using this link generated with payercoins
+              to accepting payment from my customers anywhere around the world.
+            </p>
+            <form className="paymentpage_form">{form}</form>
+            <Button
+              disabled={formValid}
+              bg="button_primary"
+              onclick={() => setShow(true)}
+            >
+              Pay Now
+            </Button>
           </div>
-          <h3 className="title title-black mb-small">Payment Page Name</h3>
-          <p className="title title-grey ta">
-            Hi, I’m John Doe. I am using this link generated with payercoins to
-            accepting payment from my customers anywhere around the world.
-          </p>
-          <form className="paymentpage_form">{form}</form>
-          <Button disabled={true} bg="button_primary" onclick={() => setShow(true)}>
-            Pay Now
-          </Button>
-        </div>
+        </WithLoadingComponent>
       </Background>
       {show && <PaymentProcess close={setShow} />}
     </>

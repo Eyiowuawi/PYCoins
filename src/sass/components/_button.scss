@@ -22,6 +22,13 @@
     background-color: $primary-color;
   }
 
+  &_grey {
+    border: 1px solid #e5e9f2;
+    box-sizing: border-box;
+    border-radius: 8px;
+    color: $primary-color;
+  }
+
   &:disabled {
     // cursor: not-allowed !important;
     background-color: #ccc !important;

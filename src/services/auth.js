@@ -30,6 +30,7 @@ export const registerUser = async (params) => {
 export const loginUser = async (params) => {
   try {
     const { data } = await authBaseUrl.post("/login", params);
+    console.log(data)
     saveToLocalStorage(data.data.token);
   } catch (error) {
     if (error && error.response && error.response.data.status) {
@@ -46,10 +47,10 @@ export const verifyUser = async (token) => {
     const { data } = await authBaseUrl.get(
       `/email/verify/?verification_token=${token}`
     );
-    console.log(data)
+    console.log(data);
     return data;
   } catch (error) {
-    console.log(error.response)
+    console.log(error.response);
     if (error.response && error.response.data.status) {
       toast.error(error.response.data.message);
       throw new Error(error.response.data.message);

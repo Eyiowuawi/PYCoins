@@ -8,8 +8,11 @@ import { autoLogout } from "./../services/auth";
 import Loader from "./../components/UI/Loader";
 import { useUserProfile } from "./../query/getUserProfile";
 import { AppContext } from "./../context/index";
+import { Switch, Route, Redirect } from "react-router-dom";
+import WithLoadingComponent from "./../hoc/withLoading";
+import WithErrorComponent from './../hoc/withError';
 
-const DashboardLayout = ({ route, history }) => {
+const DashboardLayout = ({ route, history, ...props }) => {
   const [showpopup, setShowPopup] = useState(false);
   const [show, setShow] = useState(false);
 
@@ -17,7 +20,8 @@ const DashboardLayout = ({ route, history }) => {
     await autoLogout(history);
   }, []);
 
-  const { data, isLoading, isSuccess } = useUserProfile();
+  const { data, isLoading, isSuccess, isError } = useUserProfile();
+  console.log(isError);
   const { saveUser } = useContext(AppContext);
   useEffect(() => {
     if (isSuccess && data && data.data) saveUser(data.data);
@@ -39,11 +43,15 @@ const DashboardLayout = ({ route, history }) => {
           {show && <MobileSidebar close={() => setShow(false)} />}
           <div className="dashboard_content">
             <Header showsidebar={() => setShow(true)} />
-            <main className="main">
-              <div className="main_container">
-                {renderRoutes(route.routes, { isLoading: isLoading })}
-              </div>
-            </main>
+            <WithLoadingComponent isLoading={isLoading}>
+              <WithErrorComponent isError={isError}>
+                <main className="main">
+                  <div className="main_container">
+                    {renderRoutes(route.routes, { isLoading: isLoading })}
+                  </div>
+                </main>
+              </WithErrorComponent>
+            </WithLoadingComponent>
           </div>
         </div>
       </div>

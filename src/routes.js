@@ -1,7 +1,7 @@
 import AuthLayout from "./layout/Auth";
 import DashboardLayout from "./layout/Dashboard";
 
-// import WithdrawForm from "/"
+import WithProtectedRoute from "./hoc/withProtectedRoutes";
 
 // Auth
 import Create from "./pages/Auth/Create";
@@ -21,15 +21,22 @@ import PaymentDetails from "./pages/Dashboard/PaymentDetails";
 
 import PaymentPage from "./pages/PaymentPage";
 import Verification from "./pages/Auth/Verification";
-import WithProtectedRoute from "./hoc/withProtectedRoutes";
+import NotFound from "./components/UI/404";
+import { Redirect } from "react-router-dom";
 
 const routes = [
   {
-    path: "/paymentpage",
+    path: "/pay/:slug",
     exact: true,
     component: PaymentPage,
     key: "payment-page",
   },
+  {
+    path: "/pageNotFound",
+    component: NotFound,
+    exact: true,
+  },
+
   {
     path: "/auth",
     component: AuthLayout,
@@ -77,11 +84,17 @@ const routes = [
         component: Verification,
         key: "verification",
       },
+      {
+        path: "/*",
+        exact: true,
+        component: () => <Redirect to="/pageNotFound" />,
+      },
     ],
   },
   {
     path: "/",
     component: WithProtectedRoute(DashboardLayout),
+    // exact: true,
     routes: [
       {
         path: "/",
@@ -114,7 +127,7 @@ const routes = [
         key: "payment-pay",
       },
       {
-        path: "/payment/pay/:slug",
+        path: "/payment/pay/:slug/:id",
         exact: true,
         component: PaymentDetails,
         key: "payment-pay",
@@ -124,6 +137,11 @@ const routes = [
         exact: true,
         component: Settings,
         key: "settings",
+      },
+      {
+        path: "/*",
+        exact: true,
+        component: () => <Redirect to="/pageNotFound" />,
       },
     ],
   },

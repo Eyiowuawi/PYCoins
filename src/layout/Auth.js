@@ -5,9 +5,7 @@ const Auth = ({ route }) => {
   return (
     <div className="auth">
       <Background>
-        <div className="background_img">
-          <img src={Logo} alt="payercoins" />
-        </div>
+     
         {renderRoutes(route.routes)}
       </Background>
     </div>

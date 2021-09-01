@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useMemo } from "react";
+import { useState, useEffect, useContext, useMemo, memo } from "react";
 import Input from "../UI/Input";
 import Modal from "../UI/Modal";
 import Label from "../UI/Label";
@@ -6,32 +6,34 @@ import Button from "../UI/Button";
 import Created from "./Created";
 import formGenerator from "../../utils/formgenerator";
 import useAmount from "./../../hooks/amountform";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { createPaymentLink } from "./../../services/paymentlink";
 import { AppContext } from "./../../context/index";
-import { paymentURL } from "./../../utils/addPaymentUrl";
+import { addPaymentUrl } from "./../../utils/addPaymentUrl";
+import usePaymentForm from "./../../hooks/paymentform";
 
-const PaymentForm = ({
-  closeForm,
-  paymentForm,
-  paymentFormUpdate,
-  validForm,
-  validFormUpdate,
-}) => {
+const PaymentForm = ({ close, closeForm }) => {
+  const queryClient = useQueryClient();
   const [success, setSuccess] = useState("");
   const [isFixed, setIsFixed] = useState("");
+  const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
+    usePaymentForm();
 
   const {
     user: { user },
   } = useContext(AppContext);
 
   const [amountForm, setAmountForm] = useAmount();
-  const form = formGenerator(paymentForm, paymentFormUpdate);
+  const form = formGenerator(paymentForm, setPayentForm);
   const amount = formGenerator(amountForm, setAmountForm);
+  const [updatedData, setUpdatedData] = useState();
   const { mutate, isLoading, data } = useMutation(
     (data) => createPaymentLink(data),
     {
-      onSuccess: (data) => setSuccess(true),
+      onSuccess: (data) => {
+        queryClient.invalidateQueries("getpaymentlinks");
+        setSuccess(true);
+      },
     }
   );
 
@@ -41,16 +43,23 @@ const PaymentForm = ({
       isValid = paymentForm[id].valid && isValid;
     }
     if (isFixed === "custom" && isValid) {
-      validFormUpdate(true);
+      setPaymentFormValid(true);
     }
-    if (isFixed === "fixed") validFormUpdate(false);
+    if (isFixed === "fixed") setPaymentFormValid(false);
     let isAmountValid = true;
     isAmountValid = amountForm.amount.valid && isAmountValid;
 
     if (isValid && isAmountValid && isFixed === "fixed") {
-      validFormUpdate(true);
+      setPaymentFormValid(true);
     }
   }, [isFixed, paymentForm, amountForm]);
+
+  useEffect(() => {
+    if (data) {
+      const updatedData = addPaymentUrl(data?.paymentlink);
+      setUpdatedData(updatedData);
+    }
+  }, [data]);
 
   const handleChange = (evt) => {
     if (evt.target.value === "fixed") {
@@ -67,18 +76,6 @@ const PaymentForm = ({
     data["user"] = user._id;
     mutate(data);
   };
-
-  const updatedData = useMemo(() => {
-    const url = paymentURL(data.paymentSlug);
-    const paymentData = {
-      ...data,
-      paymentlink: {
-        ...data?.paymentlink,
-        paymentURL: url,
-      },
-    };
-    return paymentData;
-  }, [data]);
 
   return (
     <Modal close={closeForm}>
@@ -107,7 +104,7 @@ const PaymentForm = ({
             <Button
               isLoading={isLoading}
               type="submit"
-              disabled={validForm}
+              disabled={paymentFormValid}
               bg={"button_primary"}
             >
               Create Page

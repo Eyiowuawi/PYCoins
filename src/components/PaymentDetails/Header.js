@@ -11,7 +11,7 @@ const PaymentHeader = ({ ctas, handleClick, Btns, link, handleDelete }) => {
           ctas && "paymentdetails_ctas-reveal"
         }`}
       >
-        <WithCopyToClipboard text={link?.paymentURL}>
+        <WithCopyToClipboard text={link?.paymenturl}>
           <button>
             <Copy fill="#787676" />
             <p className="title title-grey">Copy Link</p>

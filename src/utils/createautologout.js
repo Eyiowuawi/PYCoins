@@ -7,6 +7,6 @@ export const createAutoLogout = () => {
   const newDate = new Date(data.exp) * 1000;
 
   
-  if (newDate < new Date().getTime()) return 9999;
+  if (newDate < new Date().getTime()) return false;
   else return newDate;
 };

@@ -124,6 +124,7 @@ const Input = ({
   valid,
   showPassword,
   show,
+  readonly,
 }) => {
   const classes = useStyles();
   let inputElement;
@@ -131,7 +132,7 @@ const Input = ({
     case "input":
       inputElement = (
         <>
-          <div style={{position : "relative"}}>
+          <div style={{ position: "relative" }}>
             <TextField
               error={blur && !valid}
               className={classes.root}
@@ -143,6 +144,7 @@ const Input = ({
               onBlur={onblur}
               type={type}
               value={value}
+              disabled={readonly}
             />
             {svg && (
               <img

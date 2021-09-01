@@ -1,0 +1,17 @@
+.notfound {
+  @include line;
+  background: #ffffff;
+  box-shadow: 0px 1px 10px rgba(72, 209, 137, 0.1);
+  border-radius: 10px;
+  margin-top: 3rem;
+  @include flex(column, center, center);
+  padding-bottom: 2rem;
+
+  button {
+    width: 50%;
+    margin: auto;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+}

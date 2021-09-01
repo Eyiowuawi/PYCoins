@@ -8,7 +8,7 @@ export const useDeletePaymentLink = (id, history) => {
     retry: 3,
     onSuccess: () => {
       queryClient.invalidateQueries("getpaymentlinks");
-      // history.push("/payment/pay");
+      history.push("/payment/pay");
     },
   });
 };

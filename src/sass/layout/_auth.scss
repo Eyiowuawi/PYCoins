@@ -1,8 +1,8 @@
 .auth {
   &_form {
-    margin-top: 3rem;
+    // margin-top: 3rem;
     @include card;
-    padding-bottom: 1rem;
+    // padding-bottom: 1rem;
     &-container {
       padding: 2rem;
       @media (max-width: 600px){
