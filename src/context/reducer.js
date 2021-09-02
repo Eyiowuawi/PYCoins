@@ -1,6 +1,5 @@
 import { getInitials } from "./../utils/getInitials";
 const appReducer = (state, action) => {
-  // console.log(action.type);
   switch (action.type) {
     case "CHECK_REGISTER":
       return {
@@ -8,16 +7,15 @@ const appReducer = (state, action) => {
         register: true,
       };
     case "SAVE_USER":
-      const initial = getInitials(
-        action.payload.user.firstName,
-        action.payload.user.lastName
-      );
+      const firstname = action.payload.user.firstName;
+      const lastname = action.payload.user.lastName;
+      const initial = getInitials(firstname, lastname);
+
       return {
         ...state,
-        user: action.payload,
+        profile: action.payload,
         initials: `${initial.first}${initial.last}`,
-
-        fullname: `${action.payload.user.firstName} ${action.payload.user.lastName}`,
+        fullname: `${firstname} ${lastname}`,
       };
     default:
       return state;

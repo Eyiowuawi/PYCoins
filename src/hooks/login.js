@@ -19,7 +19,6 @@ const useLoginForm = () => {
       valid: false,
       type: "password",
       elementType: "input",
-      placeholder: "Password",
       image: show,
       label: "Password",
       validation: password,

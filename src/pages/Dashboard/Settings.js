@@ -13,7 +13,7 @@ const Settings = ({ isLoading }) => {
   const { search } = useLocation();
   const [page, setPage] = useState(search.substring(5));
   const {
-    user: { profileImage },
+    profile: { user },
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Settings = ({ isLoading }) => {
         </ul>
       </nav>
       <div className="settings_pages">
-        {page === "general" && <General profileimg={profileImage} />}
+        {page === "general" && <General profileimg={user?.profileImage} />}
         {page === "settlements" && <Settlement />}
         {page === "api-keys-webhooks" && <Webhooks />}
         {page === "currency" && <Currency />}

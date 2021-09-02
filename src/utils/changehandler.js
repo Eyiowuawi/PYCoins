@@ -57,7 +57,8 @@ export const handleBlur = (elementID, formType, updateFunction) => {
   return updateFunction(updatedForm);
 };
 
-export const showPassword = (elementID, formType, formUpdateFunc) => {
+export const showPassword = (evt, elementID, formType, formUpdateFunc) => {
+  evt.stopPropagation();
   const updatedFormElement = {
     ...formType[elementID],
     show: !formType[elementID].show,

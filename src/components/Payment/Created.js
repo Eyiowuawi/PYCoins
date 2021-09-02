@@ -5,7 +5,7 @@ import Received from "../../assets/received.svg";
 import Button from "./../UI/Button";
 import WithCopyToClipboard from "./../../hoc/withCopyToClipboard";
 const Created = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   return (
     <Response
       img={Success}

@@ -13,6 +13,7 @@ export const createPaymentLink = async (params) => {
     return data.data;
   } catch (error) {
     toast.error("Error processing your request");
+    throw new Error("Error processing your request");
   }
 };
 
@@ -28,6 +29,7 @@ export const getPaymentLinks = async () => {
     return data.data;
   } catch (error) {
     toast.error("Error processing your request");
+    throw new Error("Error processing your request");
   }
 };
 

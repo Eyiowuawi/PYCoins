@@ -3,9 +3,9 @@ import appReducer from "./reducer";
 
 const initialState = {
   register: false,
-  user: {},
+  profile: {},
   intials: null,
-  fulname: ""
+  fulname: "",
 };
 export const AppContext = createContext(initialState);
 
@@ -18,10 +18,26 @@ const AppComponent = ({ children }) => {
     });
   };
 
-  const saveUser = (user) => {
+  const saveUser = (data) => {
+    let payload = {};
+    if (data.user) payload = data;
+    else {
+      payload = {
+        ...data,
+        business: {
+          ...data.business,
+          user: null,
+        },
+        user: {
+          ...data.business.user,
+        },
+      };
+    }
+    console.log(payload);
+
     dispatch({
       type: "SAVE_USER",
-      payload: user,
+      payload: payload,
     });
   };
 

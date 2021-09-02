@@ -1525,8 +1525,20 @@ button {
   width: 100%;
 }
 
-.settingsform .form_group {
-  margin-bottom: 0 !important;
+.settingsform-input {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  position: relative;
+}
+
+.settingsform-input img {
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .settingsform .button {

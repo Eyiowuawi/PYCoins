@@ -5,11 +5,16 @@ import { createAutoLogout } from "../utils/createautologout";
 
 // TEST ACCOUNT
 
+// INDIVIDUAL ACCOUNT
 // mayowad43@gmail.com
 // Dev.Dabiri1
 // dev@yopmail.com
 
-const saveToLocalStorage = (token) => {
+
+// BUSINESS ACCOUNT
+// bus@yopmail.com
+
+export const saveToLocalStorage = (token) => {
   const data = jwt.decode(token);
 
   localStorage.setItem("token", token);
@@ -30,7 +35,7 @@ export const registerUser = async (params) => {
 export const loginUser = async (params) => {
   try {
     const { data } = await authBaseUrl.post("/login", params);
-    console.log(data)
+    console.log(data);
     saveToLocalStorage(data.data.token);
   } catch (error) {
     if (error && error.response && error.response.data.status) {

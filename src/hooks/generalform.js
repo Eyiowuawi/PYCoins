@@ -1,10 +1,18 @@
 import { useState, useContext, useEffect } from "react";
-import { required, phoneNumberCheck, emailCheck } from "./../utils/validations";
+import {
+  required,
+  phoneNumberCheck,
+  emailCheck,
+  password,
+  confirmPassword,
+} from "./../utils/validations";
 import { AppContext } from "./../context/index";
+
+import show from "../assets/show.svg";
 
 const useGeneralForm = () => {
   const {
-    user: { user, business },
+    profile: { user, business },
   } = useContext(AppContext);
   const [personalForm, setPersonalForm] = useState({
     firstName: {
@@ -17,6 +25,7 @@ const useGeneralForm = () => {
       required: true,
       validation: required,
       blur: false,
+      initalValue: "",
     },
     lastName: {
       value: "",
@@ -28,6 +37,7 @@ const useGeneralForm = () => {
       required: true,
       validation: required,
       blur: false,
+      initialValue: "",
     },
     phoneNumber: {
       value: "",
@@ -39,6 +49,7 @@ const useGeneralForm = () => {
       required: true,
       validation: phoneNumberCheck,
       blur: false,
+      initialValue: "",
       info: "Number must start with a +234",
     },
   });
@@ -49,17 +60,20 @@ const useGeneralForm = () => {
       return {
         firstName: {
           ...prevState.firstName,
-          value: user ? user.firstName : "",
+          value: user ? user?.firstName : "",
+          initialValue: user ? user?.firstName : "",
           valid: true,
         },
         lastName: {
           ...prevState.lastName,
           value: user ? user.lastName : "",
+          initialValue: user ? user?.lastName : "",
           valid: true,
         },
         phoneNumber: {
           ...prevState.phoneNumber,
           value: user ? user.phoneNumber : "",
+          initialValue: user ? user?.phoneNumber : "",
           valid: true,
         },
       };
@@ -77,6 +91,7 @@ const useGeneralForm = () => {
       required: true,
       validation: required,
       blur: false,
+      initialValue: "",
     },
     businessEmail: {
       value: "",
@@ -87,6 +102,7 @@ const useGeneralForm = () => {
       label: "Business Email",
       validation: emailCheck,
       blur: false,
+      initialValue: "",
     },
     businessAddress: {
       value: "",
@@ -98,6 +114,7 @@ const useGeneralForm = () => {
       blur: false,
       required: true,
       validation: required,
+      initialValue: "",
     },
   });
 
@@ -108,16 +125,19 @@ const useGeneralForm = () => {
           ...prevState.firstName,
           value: business ? business.businessName : "",
           valid: true,
+          initialValue: business ? business.businessName : "",
         },
         businessEmail: {
           ...prevState.businessEmail,
           value: business ? business.businessEmail : "",
           valid: true,
+          initialValue: business ? business.businessEmail : "",
         },
         businessAddress: {
           ...prevState.businessAddress,
           value: business ? business.businessAddress : "",
           valid: true,
+          initialValue: business ? business.businessAddress : "",
         },
       };
     });
@@ -125,6 +145,49 @@ const useGeneralForm = () => {
   }, [user]);
 
   const [businessFormValid, setBusinessFormValid] = useState(false);
+
+  const [changePasswordForm, setChangePasswordForm] = useState({
+    currentPassword: {
+      value: "",
+      valid: false,
+      type: "password",
+      elementType: "input",
+      image: show,
+      label: "Current Password",
+      validation: password,
+      blur: false,
+      required: true,
+      show: false,
+    },
+    password: {
+      value: "",
+      valid: false,
+      type: "password",
+      elementType: "input",
+      placeholder: "New Password",
+      image: show,
+      label: "Password",
+      validation: password,
+      blur: false,
+      required: true,
+      show: false,
+      info: "Password must be alphanumeric, 8 characters long and must contain a  special character",
+    },
+    confirmPassword: {
+      value: "",
+      valid: false,
+      type: "password",
+      elementType: "input",
+      image: show,
+      label: "Confirm Password",
+      validation: confirmPassword,
+      blur: false,
+      required: true,
+      show: false,
+    },
+  });
+
+  const [changePasswordValid, setChangePasswordValid] = useState(false);
 
   return [
     personalForm,
@@ -135,6 +198,10 @@ const useGeneralForm = () => {
     setPersonalFormValid,
     businessFormValid,
     setBusinessFormValid,
+    changePasswordForm,
+    setChangePasswordForm,
+    changePasswordValid,
+    setChangePasswordValid,
   ];
 };
 

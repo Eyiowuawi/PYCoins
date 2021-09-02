@@ -12,11 +12,14 @@ import {
   userProfile,
   updateUserProfile,
   updateBusinessprofile,
+  updatePassword,
 } from "./../../services/user";
 import WithSmallLoader from "./../../hoc/withLoadingIndicator";
 import { AppContext } from "./../../context/index";
+import { logout, saveToLocalStorage } from "./../../services/auth";
+import { withRouter } from "react-router-dom";
 
-const General = ({ profileimg }) => {
+const General = ({ profileimg, history }) => {
   const [
     personalForm,
     setPersonalForm,
@@ -26,6 +29,10 @@ const General = ({ profileimg }) => {
     setPersonalFormValid,
     businessFormValid,
     setBusinessFormValid,
+    changePasswordForm,
+    setChangePasswordForm,
+    changePasswordValid,
+    setChangePasswordValid,
   ] = useGeneralForm();
 
   const personal = settingsFormGenerator(
@@ -40,13 +47,20 @@ const General = ({ profileimg }) => {
     setBusinessFormValid
   );
 
-  const { saveUser, user } = useContext(AppContext);
+  const changePassword = settingsFormGenerator(
+    changePasswordForm,
+    setChangePasswordForm,
+    setChangePasswordValid
+  );
 
+  const { saveUser, profile } = useContext(AppContext);
+  const [image, setImage] = useState(null);
   const { mutate, isLoading, data } = useMutation(
     (img) => changeUserImage(img),
     {
       mutationKey: "change image",
       onSuccess: (data) => saveUser(data.data),
+      onSettled: () => setImage(null),
     }
   );
 
@@ -66,10 +80,19 @@ const General = ({ profileimg }) => {
     onSuccess: (data) => saveUser(data.data),
   });
 
+  const {
+    mutate: updatePasswordMutation,
+    data: updatePasswordData,
+    isLoading: updatePasswordLooading,
+  } = useMutation((data) => updatePassword(data), {
+    mutationKey: "change-password",
+    onSuccess: (data) => saveToLocalStorage(data.token),
+  });
+
   const handleChange = (evt) => {
     const param = new FormData();
     const value = evt.target.files[0];
-
+    setImage(value);
     param.append("profileImage", value);
     mutate(param);
   };
@@ -77,15 +100,32 @@ const General = ({ profileimg }) => {
   const handleUpdateUser = (evt) => {
     evt.preventDefault();
     let data = {};
-    for (let key in personalForm) data[key] = personalForm[key].value;
+    for (let key in personalForm) {
+      if (personalForm[key].initialValue !== personalForm[key].value) {
+        data[key] = personalForm[key].value;
+      }
+    }
+    console.log(data);
     updateUserMutation(data);
   };
 
   const handleUpdateBusiness = (evt) => {
     evt.preventDefault();
     let data = {};
-    for (let key in businessForm) data[key] = businessForm[key].value;
+    for (let key in businessForm) {
+      if (businessForm[key].initialValue !== businessForm[key].value) {
+        data[key] = businessForm[key].value;
+      }
+    }
     updateUserMutation(data);
+  };
+
+  const handleUpdatePassword = (evt) => {
+    evt.preventDefault();
+    const data = {};
+    data["currentPassword"] = changePasswordForm["currentPassword"].value;
+    data["newPassword"] = changePasswordForm["password"].value;
+    updatePasswordMutation(data);
   };
   return (
     <div className="general">
@@ -108,6 +148,7 @@ const General = ({ profileimg }) => {
             </label>
           </div>
         </WithSmallLoader>
+        <p className="title title-grey mt-small">{image?.name}</p>
       </form>
       <form className="mt-small settingsform" onSubmit={handleUpdateUser}>
         {personal}
@@ -120,7 +161,21 @@ const General = ({ profileimg }) => {
           Save Changes
         </Button>
       </form>
-      {user.userType === "business " && (
+      <>
+        <h3 className="title title-black mt-small">Change Password</h3>
+        <form className="mt-small settingsform" onSubmit={handleUpdatePassword}>
+          {changePassword}
+          <Button
+            disabled={changePasswordValid}
+            isLoading={updatePasswordLooading}
+            type="submit"
+            bg={"button_primary"}
+          >
+            Save Changes
+          </Button>
+        </form>
+      </>
+      {/* {profile && profile.user.userType === "business " && (
         <>
           <h3 className="title title-black mt-small">Business Information</h3>
           <form
@@ -138,9 +193,9 @@ const General = ({ profileimg }) => {
             </Button>
           </form>
         </>
-      )}
+      )} */}
     </div>
   );
 };
 
-export default General;
+export default withRouter(General);

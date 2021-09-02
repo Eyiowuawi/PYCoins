@@ -20,7 +20,7 @@ const PaymentForm = ({ close, closeForm }) => {
     usePaymentForm();
 
   const {
-    user: { user },
+    profile: { user },
   } = useContext(AppContext);
 
   const [amountForm, setAmountForm] = useAmount();

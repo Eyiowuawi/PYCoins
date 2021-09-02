@@ -41,6 +41,7 @@ export const changeUserImage = async (image) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    toast.success("Photo updated successfully")
     return data;
   } catch (error) {
     console.log(error.response);
@@ -58,7 +59,6 @@ export const updateUserProfile = async (profile) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(data);
     toast.success("User profile updated Successfully");
     return data;
   } catch (error) {
@@ -81,9 +81,29 @@ export const updateBusinessprofile = async (business) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(data);
     toast.success("User profile updated Successfully");
     return data;
+  } catch (error) {
+    if (
+      error.response &&
+      (error.response.status >= 400 || error.response.status < 500)
+    )
+      toast.error(error.response.data.message);
+    throw new Error("Error processing your request");
+  }
+};
+
+export const updatePassword = async (params) => {
+  try {
+    const token = localStorage.getItem("token") || null;
+
+    const { data } = await userBaseUrl.patch("/updatePassword", params, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    toast.success("Password successfully updated");
+    return data.data;
   } catch (error) {
     if (
       error.response &&

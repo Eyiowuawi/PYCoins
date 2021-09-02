@@ -7,6 +7,8 @@ const SettingsForm = ({
   valid,
   blur,
   info,
+  image,
+  showPassword,
 }) => {
   // console.log(value);
 
@@ -15,7 +17,7 @@ const SettingsForm = ({
       <label className="title title-grey" htmlFor={label}>
         {label}
       </label>
-      <div style={{ flexGrow: 1 }}>
+      <div className="settingsform-input">
         <input
           className={`form_input ${blur && !valid && "form_error"}`}
           id={label}
@@ -25,6 +27,7 @@ const SettingsForm = ({
           onBlur={onblur}
           // valid={valid}
         />
+        {image && <img onClick={showPassword} src={image} alt="show" />}
         {info && <p className="small small-red">{info}</p>}
       </div>
     </div>

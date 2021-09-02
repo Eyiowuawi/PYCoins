@@ -10,7 +10,7 @@ import { useUserProfile } from "./../query/getUserProfile";
 import { AppContext } from "./../context/index";
 import { Switch, Route, Redirect } from "react-router-dom";
 import WithLoadingComponent from "./../hoc/withLoading";
-import WithErrorComponent from './../hoc/withError';
+import WithErrorComponent from "./../hoc/withError";
 
 const DashboardLayout = ({ route, history, ...props }) => {
   const [showpopup, setShowPopup] = useState(false);
@@ -21,8 +21,8 @@ const DashboardLayout = ({ route, history, ...props }) => {
   }, []);
 
   const { data, isLoading, isSuccess, isError } = useUserProfile();
-  console.log(isError);
-  const { saveUser } = useContext(AppContext);
+  const { saveUser, user } = useContext(AppContext);
+  // console.log(user);
   useEffect(() => {
     if (isSuccess && data && data.data) saveUser(data.data);
   }, [data, isSuccess]);

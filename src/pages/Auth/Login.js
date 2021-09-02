@@ -6,7 +6,10 @@ import AuthFooter from "../../components/Auth/AuthFooter";
 import useLoginForm from "../../hooks/login";
 import { loginUser } from "../../services/auth";
 import formGenerator from "../../utils/formgenerator";
-
+import GoogleLogin from "react-google-login";
+import jwt from "jsonwebtoken";
+import axios from "axios";
+import FacebookLogin from "react-facebook-login";
 const Login = ({ history }) => {
   const [loginForm, setLoginForm, loginFormValid, setLoginFormValid] =
     useLoginForm();
@@ -28,6 +31,9 @@ const Login = ({ history }) => {
     mutate(data);
   };
 
+  const responseFacebook = (data) => {
+    console.log(data);
+  };
   return (
     <div className="auth_form">
       <div className="auth_form-container">
@@ -49,6 +55,11 @@ const Login = ({ history }) => {
         <Link to="/auth/forgotpassword" className="link ta mt-small">
           Forgot Password?
         </Link>
+        <FacebookLogin
+          appId="1999085153577203"
+          // onClick={componentClicked}
+          callback={responseFacebook}
+        />
         <AuthFooter
           title={"Don't have an account?"}
           link={"/auth/create"}
