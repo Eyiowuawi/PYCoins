@@ -1,17 +1,13 @@
 import { renderRoutes } from "react-router-config";
 import routes from "./routes";
-import { Route, Switch } from "react-router-dom";
 import { ToastContainer, Flip } from "react-toastify";
-import { useEffect } from "react";
-import { autoLogout } from "./services/auth";
-import NotFound from "./components/UI/404";
 
 function App({ history }) {
   return (
     <>
       {renderRoutes(routes)}
       <ToastContainer
-        autoClose={8000}
+        autoClose={5000}
         position="top-right"
         closeOnClick={true}
         pauseOnHover={true}

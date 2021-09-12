@@ -77,6 +77,17 @@ const PaymentForm = ({ close, closeForm }) => {
     mutate(data);
   };
 
+  // useEffect(() => {
+  //   const close = (e) => {
+  //     if (e.key === "Escape") {
+  //
+  //       close(false);
+  //     }
+  //   };
+  //   window.addEventListener("keydown", close);
+  //   return () => window.removeEventListener("keydown", close);
+  // }, []);
+
   return (
     <Modal close={closeForm}>
       {!success && (

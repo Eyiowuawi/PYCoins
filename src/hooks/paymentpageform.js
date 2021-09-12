@@ -5,9 +5,7 @@ import { useGetPaymentInfo } from "./../query/getPaymentInfo";
 import { useRouteMatch } from "react-router-dom";
 
 const usePaymentPageForm = () => {
-  const { params } = useRouteMatch();
 
-  const { data, isLoading } = useGetPaymentInfo(params.slug);
   const [paymentPageForm, setPaymentPageForm] = useState({
     pageName: {
       value: "",
@@ -54,25 +52,24 @@ const usePaymentPageForm = () => {
 
   const [formValid, setFormValid] = useState(false);
 
-  useEffect(() => {
-    setPaymentPageForm((prevState) => {
-      return {
-        ...prevState,
-        amount: {
-          ...prevState.amount,
-          readonly: data?.isAmountFixed ? true : false,
-        },
-      };
-    });
-  }, [data]);
+  // useEffect(() => {
+  //   setPaymentPageForm((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       amount: {
+  //         ...prevState.amount,
+  //         readonly: data?.isAmountFixed ? true : false,
+  //       },
+  //     };
+  //   });
+  // }, [data]);
 
   return [
     paymentPageForm,
     setPaymentPageForm,
     formValid,
     setFormValid,
-    isLoading,
-    data,
+   
   ];
 };
 

@@ -9,7 +9,6 @@ export const createPaymentLink = async (params) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(data);
     return data.data;
   } catch (error) {
     toast.error("Error processing your request");
@@ -35,7 +34,6 @@ export const getPaymentLinks = async () => {
 
 export const getUserPaymentLink = async (id) => {
   try {
-    console.log(id);
     const token = localStorage.getItem("token");
 
     const { data } = await paymentlinkBaseUrl.get(`/single/${id}`, {
@@ -54,7 +52,7 @@ export const deletePaymentLink = async (id) => {
   try {
     const token = localStorage.getItem("token");
 
-    const req = await paymentlinkBaseUrl.delete(`/delete/${id}`, {
+    await paymentlinkBaseUrl.delete(`/delete/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -71,7 +69,11 @@ export const getPaymentInfo = async (slug) => {
     const { data } = await paymentlinkBaseUrl.get(`/${slug}`);
     return data.data;
   } catch (error) {
-    toast.error("Error processing your request");
-    throw new Error("Error processing your request");
+    if (error.response.status === 404) {
+      toast.error("Payment Link not found");
+      throw new Error("404");
+    } else {
+      toast.error("Error processing your request");
+    }
   }
 };

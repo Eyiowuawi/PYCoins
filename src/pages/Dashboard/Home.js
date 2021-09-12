@@ -17,10 +17,16 @@ import WithLoadingComponent from "./../../hoc/withLoading";
 import LandingHeader from "./../../components/Dashboard/Header";
 import LandingEmpty from "./../../components/Dashboard/Empty";
 import Error from "./../../components/Error";
+import { QueryClient, useMutation } from "react-query";
 
-const Dashboard = ({ isLoading, ...props }) => {
+import { switchToBusiness } from "../../services/user";
+import WithErrorComponent from "./../../hoc/withError";
+
+const Dashboard = ({ ...props }) => {
   const [show, setShow] = useState(false);
   const [width, setWidth] = useWindowWidth();
+
+  const queryClient = new QueryClient();
 
   const date = useMemo(() => {
     return new Date().toLocaleDateString("en-US", {
@@ -31,8 +37,19 @@ const Dashboard = ({ isLoading, ...props }) => {
     });
   }, []);
 
+  const { mutate, data, isError, isLoading } = useMutation(
+    (param) => switchToBusiness(param),
+
+    {
+      mutationKey: "switchToBusiness",
+      onSuccess: () => {
+        queryClient.invalidateQueries("getuserprofile");
+      },
+    }
+  );
+
   return (
-    <>
+    <WithErrorComponent isError={isError}>
       <div className="home">
         <LandingHeader date={date} setShow={setShow} />
         <div className="home_wallets">
@@ -52,8 +69,17 @@ const Dashboard = ({ isLoading, ...props }) => {
           {width <= 500 && <TableResponsive data={transactions} />}
         </div>
       </div>
-      {show && <BusinessForm close={setShow} />}
-    </>
+      <>
+        {show && (
+          <BusinessForm
+            close={setShow}
+            mutate={mutate}
+            isLoading={isLoading}
+            data={data}
+          />
+        )}
+      </>
+    </WithErrorComponent>
   );
 };
 

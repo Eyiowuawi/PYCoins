@@ -1,4 +1,11 @@
-const Button = ({ children, onclick, type, bg, disabled, isLoading }) => {
+const Button = ({
+  children,
+  onclick,
+  type,
+  bg,
+  disabled = true,
+  isLoading,
+}) => {
   return (
     <button
       disabled={!disabled || isLoading}

@@ -38,16 +38,8 @@
     margin: auto;
     display: flex;
 
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-basis: 50%;
-      margin-right: 2rem;
-      svg,
-      img {
-        margin-right: 1rem;
-      }
-    }
+   *:not(:last-child){
+     margin-right: 1rem
+   }
   }
 }

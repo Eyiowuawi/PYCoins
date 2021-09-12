@@ -7,7 +7,6 @@ import { useContext, useMemo, useEffect } from "react";
 import { AppContext } from "./../../context/index";
 const Header = ({ showsidebar }) => {
   const { fullname, initials } = useContext(AppContext);
-  // console.log
   return (
     <header className="header">
       <div className="header_container">

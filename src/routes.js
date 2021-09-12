@@ -1,15 +1,20 @@
+// Protected Route HOC
+import WithProtectedRoute from "./hoc/withProtectedRoutes";
+
+// Layouts
 import AuthLayout from "./layout/Auth";
 import DashboardLayout from "./layout/Dashboard";
 
-import WithProtectedRoute from "./hoc/withProtectedRoutes";
 
-// Auth
+
+// Auth Components
 import Create from "./pages/Auth/Create";
 import PersonalForm from "./pages/Auth/PersonalForm";
 import BusinessForm from "./pages/Auth/BusinessForm";
 import Login from "./pages/Auth/Login";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
 import ResetPassword from "./pages/Auth/ResetPassword";
+import Verification from "./pages/Auth/Verification";
 
 // Dashboard components
 import Home from "./pages/Dashboard/Home";
@@ -20,9 +25,8 @@ import CryptoDetails from "./pages/Dashboard/CryptoDetails";
 import PaymentDetails from "./pages/Dashboard/PaymentDetails";
 
 import PaymentPage from "./pages/PaymentPage";
-import Verification from "./pages/Auth/Verification";
+
 import NotFound from "./components/UI/404";
-import { Redirect } from "react-router-dom";
 
 const routes = [
   {
@@ -84,17 +88,11 @@ const routes = [
         component: Verification,
         key: "verification",
       },
-      {
-        path: "/*",
-        exact: true,
-        component: () => <Redirect to="/pageNotFound" />,
-      },
     ],
   },
   {
     path: "/",
     component: WithProtectedRoute(DashboardLayout),
-    // exact: true,
     routes: [
       {
         path: "/",
@@ -137,11 +135,6 @@ const routes = [
         exact: true,
         component: Settings,
         key: "settings",
-      },
-      {
-        path: "/*",
-        exact: true,
-        component: () => <Redirect to="/pageNotFound" />,
       },
     ],
   },

@@ -1177,6 +1177,31 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
+  display: flex;
+}
+
+.fund_wallet-text {
+  width: 300px;
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  margin-right: 2rem;
+  overflow-x: auto;
+}
+
+.fund_wallet-text::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.fund_wallet-svg {
+  position: absolute;
+  right: 20px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  cursor: pointer;
 }
 
 .fund_details {
@@ -1509,8 +1534,8 @@ button {
 
 .settingsform-group label {
   font-weight: 600 !important;
-  -ms-flex-preferred-size: 250px;
-      flex-basis: 250px;
+  -ms-flex-preferred-size: 200px;
+      flex-basis: 200px;
 }
 
 @media (max-width: 450px) {
@@ -1522,7 +1547,9 @@ button {
 }
 
 .settingsform-group .fund_wallet {
-  width: 100%;
+  -webkit-box-flex: 1 !important;
+      -ms-flex-positive: 1 !important;
+          flex-grow: 1 !important;
 }
 
 .settingsform-input {
@@ -1530,6 +1557,12 @@ button {
       -ms-flex-positive: 1;
           flex-grow: 1;
   position: relative;
+}
+
+@media screen and (max-width: 450px) {
+  .settingsform-input {
+    width: 100%;
+  }
 }
 
 .settingsform-input img {
@@ -1581,16 +1614,16 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-bottom: 2rem;
+  padding: 4rem;
 }
 
-.notfound button {
-  width: 50%;
+.notfound a {
+  width: 60%;
   margin: auto;
 }
 
 @media (max-width: 800px) {
-  .notfound button {
+  .notfound a {
     width: 100%;
   }
 }
@@ -1610,6 +1643,14 @@ button {
       -ms-flex-align: center;
           align-items: center;
   padding: 2rem 0;
+  height: 100vh;
+}
+
+@media (max-width: 800px) {
+  .error {
+    width: 90%;
+    margin: auto;
+  }
 }
 
 .error .button {
@@ -1618,7 +1659,7 @@ button {
 
 @media (max-width: 800px) {
   .error .button {
-    width: 100%;
+    width: 60%;
   }
 }
 
@@ -2231,6 +2272,10 @@ button {
   background-color: #48d189 !important;
 }
 
+.Toastify__toast--info {
+  background-color: #444854 !important;
+}
+
 .create {
   width: 100%;
 }
@@ -2790,23 +2835,7 @@ button {
   display: flex;
 }
 
-.payment_created button {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
-  margin-right: 2rem;
-}
-
-.payment_created button svg,
-.payment_created button img {
+.payment_created *:not(:last-child) {
   margin-right: 1rem;
 }
 
@@ -3068,7 +3097,7 @@ button {
 }
 
 .general {
-  width: 80%;
+  width: 90%;
 }
 
 @media (max-width: 1024px) and (min-width: 800px) {
@@ -3118,92 +3147,6 @@ button {
   border-radius: 6px;
   padding: 0.7rem 1.3rem;
   cursor: pointer;
-}
-
-.general_form {
-  margin-top: 4rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: initial;
-      -ms-flex-align: initial;
-          align-items: initial;
-}
-
-.general_form-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: 2rem;
-}
-
-@media (max-width: 450px) {
-  .general_form-group {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-  }
-}
-
-.general_form-group label {
-  font-weight: 600 !important;
-  -ms-flex-preferred-size: 250px;
-      flex-basis: 250px;
-}
-
-@media (max-width: 450px) {
-  .general_form-group label {
-    -ms-flex-preferred-size: 0;
-        flex-basis: 0;
-    margin-bottom: 1rem;
-  }
-}
-
-.general_form-group .fund_wallet {
-  width: 100%;
-}
-
-.general_form .form_group {
-  margin-bottom: 0 !important;
-}
-
-.general_form .button {
-  -ms-flex-item-align: end !important;
-      align-self: flex-end !important;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  padding: 1rem !important;
-}
-
-@media (max-width: 485px) {
-  .general_form .button {
-    -ms-flex-item-align: initial !important;
-        -ms-grid-row-align: initial !important;
-        align-self: initial !important;
-    width: 100%;
-  }
 }
 
 .settlements {

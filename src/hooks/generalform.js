@@ -10,13 +10,10 @@ import { AppContext } from "./../context/index";
 
 import show from "../assets/show.svg";
 
-const useGeneralForm = () => {
-  const {
-    profile: { user, business },
-  } = useContext(AppContext);
+const useGeneralForm = (profile) => {
   const [personalForm, setPersonalForm] = useState({
     firstName: {
-      value: "",
+      value: profile?.user?.firstName || "",
       valid: false,
       elementType: "input",
       type: "text",
@@ -25,10 +22,10 @@ const useGeneralForm = () => {
       required: true,
       validation: required,
       blur: false,
-      initalValue: "",
+      initialValue: profile?.user?.firstName || "",
     },
     lastName: {
-      value: "",
+      value: profile?.user?.lastName || "",
       valid: false,
       elementType: "input",
       type: "text",
@@ -37,10 +34,10 @@ const useGeneralForm = () => {
       required: true,
       validation: required,
       blur: false,
-      initialValue: "",
+      initialValue: profile?.user?.lastName || "",
     },
     phoneNumber: {
-      value: "",
+      value: profile?.user?.phoneNumber || "",
       valid: false,
       type: "text",
       elementType: "input",
@@ -49,41 +46,15 @@ const useGeneralForm = () => {
       required: true,
       validation: phoneNumberCheck,
       blur: false,
-      initialValue: "",
+      initialValue: profile?.user?.phoneNumber || "",
       info: "Number must start with a +234",
     },
   });
-  const [personalFormValid, setPersonalFormValid] = useState(false);
-
-  useEffect(() => {
-    setPersonalForm((prevState) => {
-      return {
-        firstName: {
-          ...prevState.firstName,
-          value: user ? user?.firstName : "",
-          initialValue: user ? user?.firstName : "",
-          valid: true,
-        },
-        lastName: {
-          ...prevState.lastName,
-          value: user ? user.lastName : "",
-          initialValue: user ? user?.lastName : "",
-          valid: true,
-        },
-        phoneNumber: {
-          ...prevState.phoneNumber,
-          value: user ? user.phoneNumber : "",
-          initialValue: user ? user?.phoneNumber : "",
-          valid: true,
-        },
-      };
-    });
-    setPersonalFormValid(true);
-  }, [user]);
+  const [personalFormValid, setPersonalFormValid] = useState(true);
 
   const [businessForm, setBusinessForm] = useState({
     businessName: {
-      value: "",
+      value: profile?.business?.businessName,
       valid: false,
       elementType: "input",
       type: "text",
@@ -91,21 +62,20 @@ const useGeneralForm = () => {
       required: true,
       validation: required,
       blur: false,
-      initialValue: "",
+      initialValue: profile?.business?.businessName,
     },
     businessEmail: {
-      value: "",
+      value: profile?.business?.businessEmail,
       valid: false,
       type: "email",
       elementType: "input",
-      // placeholder: "Business Email",
       label: "Business Email",
       validation: emailCheck,
       blur: false,
-      initialValue: "",
+      initialValue: profile?.business?.businessEmail,
     },
     businessAddress: {
-      value: "",
+      value: profile?.business?.businessAddress,
       valid: false,
       type: "text",
       elementType: "input",
@@ -114,37 +84,11 @@ const useGeneralForm = () => {
       blur: false,
       required: true,
       validation: required,
-      initialValue: "",
+      initialValue: profile?.business?.businessAddress,
     },
   });
 
-  useEffect(() => {
-    setBusinessForm((prevState) => {
-      return {
-        businessName: {
-          ...prevState.firstName,
-          value: business ? business.businessName : "",
-          valid: true,
-          initialValue: business ? business.businessName : "",
-        },
-        businessEmail: {
-          ...prevState.businessEmail,
-          value: business ? business.businessEmail : "",
-          valid: true,
-          initialValue: business ? business.businessEmail : "",
-        },
-        businessAddress: {
-          ...prevState.businessAddress,
-          value: business ? business.businessAddress : "",
-          valid: true,
-          initialValue: business ? business.businessAddress : "",
-        },
-      };
-    });
-    setBusinessFormValid(true);
-  }, [user]);
-
-  const [businessFormValid, setBusinessFormValid] = useState(false);
+  const [businessFormValid, setBusinessFormValid] = useState(true);
 
   const [changePasswordForm, setChangePasswordForm] = useState({
     currentPassword: {

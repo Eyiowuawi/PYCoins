@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { ModalContext } from "../../context";
+import { useState, useContext, useEffect } from "react";
 
 import Modal from "../UI/Modal";
 import Business from "../Auth/Business";
@@ -7,21 +6,17 @@ import useBusinessForm from "../../hooks/businessform";
 import Response from "../UI/Response";
 
 import Success from "../../assets/success.svg";
-import { useMutation } from "react-query";
+import { useMutation, QueryClient } from "react-query";
 import { switchToBusiness } from "../../services/user";
+import WithErrorComponent from "./../../hoc/withError";
+import { AppContext } from "./../../context/index";
 
-const BusinessForm = ({ close }) => {
-  // const { setShow } = useContext(ModalContext);
-  const [success, setSuccess] = useState();
+const BusinessForm = ({ close, mutate, isLoading, data }) => {
+  const [success, setSuccess] = useState(false);
 
-  const { mutate, data } = useMutation(
-    (param) => {
-      switchToBusiness(param);
-    },
-    {
-      mutationFn: "switch",
-    }
-  );
+  useEffect(() => {
+    if (data && data?.success === "success") setSuccess(true);
+  }, [data]);
 
   const [
     businessForm,
@@ -35,6 +30,7 @@ const BusinessForm = ({ close }) => {
     const params = new FormData();
     for (let key in businessForm)
       params.append(`${key}`, businessForm[key].value);
+    params.append("country", "Nigeria");
     mutate(params);
   };
 
@@ -45,7 +41,7 @@ const BusinessForm = ({ close }) => {
           businessForm={businessForm}
           handleSubmit={handleSubmit}
           businessFormUpdate={setBusinessForm}
-          businessFormValid={businessFormValid}
+          businessFormValid={businessFormValid || isLoading}
           setBusinessFormVallid={setBusinessFormVallid}
         />
       )}

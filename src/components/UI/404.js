@@ -1,6 +1,5 @@
 import notfound from "../../assets/404.svg";
 import Background from "./Background";
-import Logo from "../../assets/Logo.svg";
 import Button from "./Button";
 
 const NotFound = ({ history }) => {
@@ -17,14 +16,13 @@ const NotFound = ({ history }) => {
         <p className="title title-grey mb-small ">
           We can’t seem to find the page you are looking for.
         </p>
-        <Button
-          type="button"
-          onclick={goBackHome}
-          disabled={true}
-          bg="button_primary"
+        <a
+          // type="button"
+          href="https://payercoins.com"
+          className="button button_primary"
         >
           Go Back Home
-        </Button>
+        </a>
       </div>
     </Background>
   );

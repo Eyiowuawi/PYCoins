@@ -1,6 +1,6 @@
 import { Copy, Delete, Edit, LeftArrow } from "../../icons";
 import Btns from "../../assets/btns.svg";
-import WithCopyToClipboard from "./../../hoc/withCopyToClipboard";
+import handleCopy from "./../../utils/copytoclipboard";
 
 const PaymentHeader = ({ ctas, handleClick, Btns, link, handleDelete }) => {
   return (
@@ -11,12 +11,10 @@ const PaymentHeader = ({ ctas, handleClick, Btns, link, handleDelete }) => {
           ctas && "paymentdetails_ctas-reveal"
         }`}
       >
-        <WithCopyToClipboard text={link?.paymenturl}>
-          <button>
-            <Copy fill="#787676" />
-            <p className="title title-grey">Copy Link</p>
-          </button>
-        </WithCopyToClipboard>
+        <button onClick={() => handleCopy(link?.paymenturl)}>
+          <Copy fill="#787676" />
+          <p className="title title-grey">Copy Link</p>
+        </button>
         <button type="submit" role="button" aria-label="edit-button">
           <Edit fill="#787676" />
           <p className="title title-grey">Edit</p>

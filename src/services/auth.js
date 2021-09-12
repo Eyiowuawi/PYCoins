@@ -1,6 +1,6 @@
 import { authBaseUrl } from "../constants/baseUrl";
 import { toast } from "react-toastify";
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 import { createAutoLogout } from "../utils/createautologout";
 
 // TEST ACCOUNT
@@ -10,13 +10,10 @@ import { createAutoLogout } from "../utils/createautologout";
 // Dev.Dabiri1
 // dev@yopmail.com
 
-
 // BUSINESS ACCOUNT
 // bus@yopmail.com
 
 export const saveToLocalStorage = (token) => {
-  const data = jwt.decode(token);
-
   localStorage.setItem("token", token);
 };
 export const registerUser = async (params) => {
@@ -24,26 +21,16 @@ export const registerUser = async (params) => {
     const { data } = await authBaseUrl.post("/signup", params);
     return data;
   } catch (error) {
-    if (error.response && error.response.data.status) {
-      toast.error(error.response.data.message);
-    } else {
-      toast.error("Error processing your request");
-    }
+    throw new Error("Error processing your request");
   }
 };
 
 export const loginUser = async (params) => {
   try {
     const { data } = await authBaseUrl.post("/login", params);
-    console.log(data);
     saveToLocalStorage(data.data.token);
   } catch (error) {
-    if (error && error.response && error.response.data.status) {
-      toast.error(error.response.data.message);
-    } else {
-      toast.error("Error processing your request");
-    }
-    throw new Error("Error processing request");
+    throw new Error("processing error");
   }
 };
 
@@ -52,17 +39,9 @@ export const verifyUser = async (token) => {
     const { data } = await authBaseUrl.get(
       `/email/verify/?verification_token=${token}`
     );
-    console.log(data);
     return data;
   } catch (error) {
-    console.log(error.response);
-    if (error.response && error.response.data.status) {
-      toast.error(error.response.data.message);
-      throw new Error(error.response.data.message);
-    } else {
-      toast.error("Error processing your request");
-      throw new Error("Error processing request");
-    }
+    throw new Error("processing error");
   }
 };
 
@@ -72,23 +51,16 @@ export const resendEmailVerify = async (email) => {
     toast.success("Email verification sent");
     return data;
   } catch (error) {
-    if (error.response && error.response.data.status) {
-      toast.error(error.response.data.message);
-      throw new Error(error.response.data.message);
-    }
-    toast.error("Error sending email");
+    throw new Error("processing error");
   }
 };
 
 export const forgotpassword = async (params) => {
   try {
     const { data } = await authBaseUrl.post("/forgotPassword", params);
-    console.log(data);
     toast.success(data.message);
   } catch (error) {
-    console.log(error.response);
-    if (error.response) toast.error(error.response.data.message);
-    else toast.error("Error processing you request");
+    throw new Error("processing error");
   }
 };
 
@@ -98,17 +70,13 @@ export const resetPassword = async (passoword, token) => {
       `/resetPassword/${token}`,
       passoword
     );
-    console.log(data);
   } catch (error) {
-    if (error.response) {
-      toast.error(error.response.data.message);
-      toast.error("Make another request");
-    } else toast.error("Error processing you request");
+    throw new Error("processing error");
   }
 };
 
 export const logout = async (history) => {
-  const data = await authBaseUrl.get("/logout");
+  await authBaseUrl.get("/logout");
   localStorage.removeItem("token");
   history.push("/auth/login");
 };
@@ -120,8 +88,7 @@ const checkTimeout = (timer, history) => {
 };
 
 export const autoLogout = async (history) => {
-  const newDate = await createAutoLogout();
-  if (!newDate) logout(history);
-  const timer = newDate - new Date().getTime();
+  const timer = await createAutoLogout();
+  if (!timer) logout(history);
   checkTimeout(timer, history);
 };

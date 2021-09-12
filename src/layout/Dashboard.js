@@ -2,7 +2,7 @@ import Sidebar from "../components/UI/Sidebar";
 import Header from "../components/UI/Header";
 import { renderRoutes } from "react-router-config";
 import Popup from "./../pages/Popup/index";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useMemo } from "react";
 import MobileSidebar from "./../components/UI/Mobilesidebar";
 import { autoLogout } from "./../services/auth";
 import Loader from "./../components/UI/Loader";
@@ -11,21 +11,29 @@ import { AppContext } from "./../context/index";
 import { Switch, Route, Redirect } from "react-router-dom";
 import WithLoadingComponent from "./../hoc/withLoading";
 import WithErrorComponent from "./../hoc/withError";
+import { matchRoutes } from "react-router-config";
 
-const DashboardLayout = ({ route, history, ...props }) => {
+const DashboardLayout = ({ route, history, location, ...props }) => {
   const [showpopup, setShowPopup] = useState(false);
+
   const [show, setShow] = useState(false);
+
+  const branch = matchRoutes(route.routes, location.pathname);
+
+  if (branch.length < 1) history.push("/pageNotFound");
 
   useEffect(async () => {
     await autoLogout(history);
   }, []);
 
-  const { data, isLoading, isSuccess, isError } = useUserProfile();
-  const { saveUser, user } = useContext(AppContext);
-  // console.log(user);
-  useEffect(() => {
-    if (isSuccess && data && data.data) saveUser(data.data);
-  }, [data, isSuccess]);
+  const results = useUserProfile();
+
+  const isFetching = useMemo(() => {
+    return results.some((result) => result.isFetching);
+  }, [results]);
+  const isError = useMemo(() => {
+    return results.some((result) => result.isError);
+  }, [results]);
 
   useEffect(() => {
     const show = setTimeout(() => {
@@ -43,11 +51,11 @@ const DashboardLayout = ({ route, history, ...props }) => {
           {show && <MobileSidebar close={() => setShow(false)} />}
           <div className="dashboard_content">
             <Header showsidebar={() => setShow(true)} />
-            <WithLoadingComponent isLoading={isLoading}>
+            <WithLoadingComponent isLoading={isFetching}>
               <WithErrorComponent isError={isError}>
                 <main className="main">
                   <div className="main_container">
-                    {renderRoutes(route.routes, { isLoading: isLoading })}
+                    {renderRoutes(route.routes)}
                   </div>
                 </main>
               </WithErrorComponent>

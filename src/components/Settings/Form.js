@@ -10,8 +10,6 @@ const SettingsForm = ({
   image,
   showPassword,
 }) => {
-  // console.log(value);
-
   return (
     <div className="settingsform-group">
       <label className="title title-grey" htmlFor={label}>

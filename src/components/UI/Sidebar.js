@@ -3,14 +3,21 @@ import Navigation from "./Navigation/Nav";
 
 import { Logout } from "../../icons";
 import { Link, withRouter } from "react-router-dom";
-import { useMutation } from "react-query";
+import { useMutation, QueryClient } from "react-query";
 import { logout } from "./../../services/auth";
+import { AppContext } from "./../../context/index";
+import { useContext } from "react";
 
 const Sidebar = ({ show, close, history }) => {
+  const { logoutUser } = useContext(AppContext);
+  const queryClient = new QueryClient();
   const { isSuccess, mutate, isLoading } = useMutation(() => logout(history), {
     mutationKey: "logout",
+    onSuccess: () => {
+      queryClient.removeQueries("getuserprofile", { exact: true });
+      logoutUser();
+    },
   });
-
   return (
     <div className={`sidebar ${show && "sidebar_show"}`}>
       <div className="sidebar_container">

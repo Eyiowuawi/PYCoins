@@ -1,11 +1,13 @@
 import Error from "./../components/Error";
-import { useState } from 'react';
+import { useState } from "react";
 const WithErrorComponent = ({ children, isError }) => {
   const [show, setShow] = useState(true);
   return (
     <>
+      {/* isError &&
       {children}
-          {isError && show && <Error close={setShow }/>}
+      {<Error close={setShow} />} */}
+      {isError ? <Error /> : children}
     </>
   );
 };

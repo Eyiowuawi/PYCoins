@@ -12,6 +12,28 @@
   &_wallet {
     @include line;
     @include flex(row, space-between, center);
+
+    position: relative;
+    display: flex;
+
+    &-text {
+      width: 300px;
+      flex-grow: 2;
+      margin-right: 2rem;
+      overflow-x: auto;
+
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+    }
+    &-svg {
+      position: absolute;
+      right: 20px;
+      flex-grow: 1;
+      cursor: pointer;
+      // transform: translateY(-50%);
+    }
   }
 
   &_details {

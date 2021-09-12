@@ -1,6 +1,6 @@
 export const addPaymentUrl = (data) => {
   return {
     ...data,
-    paymenturl: `https://payercoins.com/pay/${data.paymentSlug}`,
+    paymenturl: `${process.env.REACT_APP_DEV_URL}/pay/${data.paymentSlug}`,
   };
 };

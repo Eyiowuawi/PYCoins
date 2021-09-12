@@ -3,9 +3,8 @@ import Success from "../../assets/success.svg";
 import { Copy } from "../../icons";
 import Received from "../../assets/received.svg";
 import Button from "./../UI/Button";
-import WithCopyToClipboard from "./../../hoc/withCopyToClipboard";
+import handleClick from "./../../utils/copytoclipboard";
 const Created = ({ data }) => {
-  // console.log(data);
   return (
     <Response
       img={Success}
@@ -14,16 +13,23 @@ const Created = ({ data }) => {
         now pay you directly through this payment link."
     >
       <div className="payment_created mt-small">
-        <WithCopyToClipboard text={data?.paymenturl}>
-          <button type="submit"  className={"button button_primary"}>
-            <Copy fill="#FFFFFF" />
-            <span> Copy Link</span>
-          </button>
-        </WithCopyToClipboard>
-        <Button disabled={true} bg={"button_white"}>
+        <button
+          type="submit"
+          className={"button button_primary"}
+          onClick={() => handleClick(data?.paymenturl)}
+        >
+          <Copy fill="#FFFFFF" />
+          <span> Copy Link</span>
+        </button>
+        <a
+          className={"button button_white"}
+          href={data?.paymenturl}
+          target="_blank"
+          rrel="noreferrer"
+        >
           <img src={Received} alt="Sucess" />
           <span> View Link</span>
-        </Button>
+        </a>
       </div>
     </Response>
   );

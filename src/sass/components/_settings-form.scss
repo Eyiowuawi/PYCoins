@@ -12,7 +12,8 @@
     margin-bottom: 2rem;
     label {
       font-weight: 600 !important;
-      flex-basis: 250px;
+      flex-basis: 200px;
+      // width: 250px;
       @media (max-width: 450px) {
         flex-basis: 0;
         margin-bottom: 1rem;
@@ -20,13 +21,18 @@
     }
 
     .fund_wallet {
-      width: 100%;
+      // width: 100%;
+      flex-grow: 1 !important;
     }
   }
 
   &-input {
     flex-grow: 1;
     position: relative;
+
+    @media screen and (max-width: 450px) {
+      width: 100%;
+    }
 
     img {
       position: absolute;

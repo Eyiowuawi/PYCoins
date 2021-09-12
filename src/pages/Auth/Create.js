@@ -15,7 +15,6 @@ const Create = ({ history }) => {
     setFormType(evt.target.value);
     setProceed(true);
   };
-  console.log(register);
   const handleRouteChange = () => {
     if (formType === "") {
       setMessage("Pls, select a category to begin registration");

@@ -1,5 +1,7 @@
 import cancel from "../../assets/cancel.svg";
+import { useEffect } from "react";
 const Modal = ({ children, close, show }) => {
+
   return (
     <div className="modal">
       <div className={`modal_container `}>

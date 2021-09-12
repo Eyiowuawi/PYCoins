@@ -18,8 +18,10 @@ import WithSmallLoader from "./../../hoc/withLoadingIndicator";
 import { AppContext } from "./../../context/index";
 import { logout, saveToLocalStorage } from "./../../services/auth";
 import { withRouter } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const General = ({ profileimg, history }) => {
+  const { saveUser, profile } = useContext(AppContext);
   const [
     personalForm,
     setPersonalForm,
@@ -33,7 +35,7 @@ const General = ({ profileimg, history }) => {
     setChangePasswordForm,
     changePasswordValid,
     setChangePasswordValid,
-  ] = useGeneralForm();
+  ] = useGeneralForm(profile);
 
   const personal = settingsFormGenerator(
     personalForm,
@@ -53,7 +55,6 @@ const General = ({ profileimg, history }) => {
     setChangePasswordValid
   );
 
-  const { saveUser, profile } = useContext(AppContext);
   const [image, setImage] = useState(null);
   const { mutate, isLoading, data } = useMutation(
     (img) => changeUserImage(img),
@@ -105,8 +106,9 @@ const General = ({ profileimg, history }) => {
         data[key] = personalForm[key].value;
       }
     }
-    console.log(data);
-    updateUserMutation(data);
+    if (Object.values(data).length < 1)
+      toast.info("Change any field to update your profile");
+    else updateUserMutation(data);
   };
 
   const handleUpdateBusiness = (evt) => {
@@ -117,7 +119,9 @@ const General = ({ profileimg, history }) => {
         data[key] = businessForm[key].value;
       }
     }
-    updateUserMutation(data);
+    if (Object.values(data).length < 1)
+      toast.info("Change any field to update your profile");
+    else updateUserMutation(data);
   };
 
   const handleUpdatePassword = (evt) => {
@@ -127,13 +131,14 @@ const General = ({ profileimg, history }) => {
     data["newPassword"] = changePasswordForm["password"].value;
     updatePasswordMutation(data);
   };
+
   return (
     <div className="general">
       <h3 className="title title-black">Personal Information </h3>
       <form className="mt-small mb-small">
         <p className="title title-grey">Photo</p>
         <input
-          accep=".jpg, .jpeg, .png"
+          accept=".jpg, .jpeg, .png"
           type="file"
           accepts="image/*"
           id="photo"
@@ -175,7 +180,7 @@ const General = ({ profileimg, history }) => {
           </Button>
         </form>
       </>
-      {/* {profile && profile.user.userType === "business " && (
+      {profile.user?.userType === "business" && (
         <>
           <h3 className="title title-black mt-small">Business Information</h3>
           <form
@@ -193,7 +198,7 @@ const General = ({ profileimg, history }) => {
             </Button>
           </form>
         </>
-      )} */}
+      )}
     </div>
   );
 };

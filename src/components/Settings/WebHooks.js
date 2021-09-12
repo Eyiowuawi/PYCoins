@@ -2,79 +2,86 @@ import { Copy, View } from "./../../icons/index";
 import ActionLabel from "./../UI/ActionLabel";
 import Input from "./../UI/Input";
 import Button from "./../UI/Button";
+import { AppContext } from "./../../context/index";
+import useWebHookForm from "../../hooks/webhookform";
+import { useContext, useMemo, useState } from "react";
+import settingsFormGenerator from "./../../utils/settingsFormGenerator";
+import { converToAsterik } from "./../../utils/asterik";
+import { toast } from "react-toastify";
+import handleCopy from "../../utils/copytoclipboard";
 
 const Webhooks = () => {
+  const { apiKeys } = useContext(AppContext);
+  const [
+    liveForm,
+    setLiveForm,
+    liveFormValid,
+    setLiveFormValid,
+    testForm,
+    setTestForm,
+    testFormValid,
+    setTestFormValid,
+  ] = useWebHookForm();
+
+  const liveform = settingsFormGenerator(
+    liveForm,
+    setLiveForm,
+    setLiveFormValid
+  );
+  const testform = settingsFormGenerator(
+    testForm,
+    setTestForm,
+    setTestFormValid
+  );
+
+  const liveScret = useMemo(() => {
+    return converToAsterik(apiKeys?.live_keys.secret);
+  }, []);
+  const [liveShow, setLiveShow] = useState(false);
+
   return (
     <div className="general">
       <div>
         <h3 className="title title-black">API Configuration - Live Mode </h3>
-        <form className="general_form">
-          <div className="general_form-group ">
+        <form className="settingsform">
+          <div className="settingsform-group ">
             <label className="title title-grey">Live Secret key</label>
-            <ActionLabel text="******************************">
+            <ActionLabel
+              text={liveShow ? apiKeys?.live_keys.secret : liveScret}
+              onclick={() => setLiveShow(!liveShow)}
+            >
               <View />
             </ActionLabel>
           </div>
-          <div className="general_form-group">
+          <div className="settingsform-group">
             <label className="title title-grey">Live Public Key</label>
-            <ActionLabel text="sD93r4H6ti519kM+u87I6On00S3k4r6pGsWnBCf">
+            <ActionLabel
+              text={apiKeys?.live_keys.public_key}
+              onclick={() => handleCopy(apiKeys?.live_keys.public_key)}
+            >
               <Copy fill="#909198" />
             </ActionLabel>
           </div>
-          <div className="general_form-group">
-            <label className="title title-grey">Live Callback URL</label>
-            <Input
-              value=""
-              type="text"
-              elementType="input"
-              placeholder="Live Webooks URL"
-            />
-          </div>
-          <div className="general_form-group">
-            <label className="title title-grey">Live Webhooks URL</label>
-            <Input
-              value=""
-              type="text"
-              elementType="input"
-              placeholder="Live Webooks URL"
-            />
-          </div>
+          {liveform}
           <Button bg={"button_primary"}>Save Changes</Button>
         </form>
       </div>
       <div className="mt-small">
         <h3 className="title title-black">API Configuration - Test Mode </h3>
-        <form className="general_form">
-          <div className="general_form-group ">
+        <form className="settingsform">
+          <div className="settingsform-group ">
             <label className="title title-grey">Test Secret key</label>
-            <ActionLabel text="******************************">
+            <ActionLabel text={apiKeys?.test_keys.secret}>
               <View />
             </ActionLabel>
           </div>
-          <div className="general_form-group">
+          <div className="settingsform-group">
             <label className="title title-grey">Test Public Key</label>
-            <ActionLabel text="sD93r4H6ti519kM+u87I6On00S3k4r6pGsWnBCf">
+            <ActionLabel text={apiKeys?.test_keys.public_key}>
               <Copy fill="#909198" />
             </ActionLabel>
           </div>
-          <div className="general_form-group">
-            <label className="title title-grey">Test Callback URL</label>
-            <Input
-              value=""
-              type="text"
-              elementType="input"
-              placeholder="Test Webooks URL"
-            />
-          </div>
-          <div className="general_form-group">
-            <label className="title title-grey">Test Webhooks URL</label>
-            <Input
-              value=""
-              type="text"
-              elementType="input"
-              placeholder="Test Webooks URL"
-            />
-          </div>
+          {testform}
           <Button bg={"button_primary"}>Save Changes</Button>
         </form>
       </div>

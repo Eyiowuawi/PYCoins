@@ -4,8 +4,9 @@ import appReducer from "./reducer";
 const initialState = {
   register: false,
   profile: {},
-  intials: null,
-  fulname: "",
+  initials: null,
+  fullname: "",
+  apiKeys: {},
 };
 export const AppContext = createContext(initialState);
 
@@ -33,7 +34,6 @@ const AppComponent = ({ children }) => {
         },
       };
     }
-    console.log(payload);
 
     dispatch({
       type: "SAVE_USER",
@@ -41,10 +41,32 @@ const AppComponent = ({ children }) => {
     });
   };
 
+  const logoutUser = () => {
+    dispatch({
+      type: "LOGOUT_USER",
+    });
+  };
+
+  const saveApiKeys = (data) => {
+    dispatch({
+      type: "SAVE_API_KEYS",
+      payload: data,
+    });
+  };
+  const switchBusiness = () => {
+    dispatch({
+      type: "SWITCH_TO_BUSINESS",
+    });
+  };
+
   const contextValue = {
     ...state,
     changeToRegister,
     saveUser,
+    logoutUser,
+    switchBusiness,
+    saveApiKeys,
+    state: state,
   };
 
   return (

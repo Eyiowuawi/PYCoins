@@ -17,19 +17,10 @@ const Navigation = ({ close }) => {
   return (
     <nav className="nav">
       <ul className="nav_items">
-        <NavItem
-          close={close}
-          to="/"
-          exact
-          title="Dashboard"
-        >
+        <NavItem close={close} to="/" exact title="Dashboard">
           <Home />
         </NavItem>
-        <NavItem
-          close={close}
-          to="/wallet"
-          title="Wallet"
-        >
+        <NavItem close={close} to="/wallet" title="Wallet">
           <Wallet />
         </NavItem>
         <li className={"nav_item"} onClick={handleShow}>
@@ -57,11 +48,7 @@ const Navigation = ({ close }) => {
             ))}
           </div>
         </li>
-        <NavItem
-          close={close}
-          to="/settings?tab=general"
-          title="Settings"
-        >
+        <NavItem close={close} to="/settings?tab=general" title="Settings">
           <Settings />
         </NavItem>
       </ul>
