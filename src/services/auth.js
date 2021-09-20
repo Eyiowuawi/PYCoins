@@ -6,7 +6,7 @@ import { createAutoLogout } from "../utils/createautologout";
 // TEST ACCOUNT
 
 // INDIVIDUAL ACCOUNT
-// mayowad43@gmail.com
+// dabiri@yopmail.com
 // Dev.Dabiri1
 // dev@yopmail.com
 
@@ -30,6 +30,7 @@ export const loginUser = async (params) => {
     const { data } = await authBaseUrl.post("/login", params);
     saveToLocalStorage(data.data.token);
   } catch (error) {
+    console.log(error.response);
     throw new Error("processing error");
   }
 };

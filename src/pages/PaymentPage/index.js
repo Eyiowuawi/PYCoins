@@ -7,12 +7,14 @@ import Button from "./../../components/UI/Button";
 import Select from "./../../components/PaymentPage/Select";
 import Pay from "./../../components/PaymentPage/Pay";
 import PaymentProcess from "../../components/PaymentPage";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import formGenerator from "../../utils/formgenerator";
 import WithLoadingComponent from "./../../hoc/withLoading";
 import { AppContext } from "./../../context/index";
 import { useRouteMatch } from "react-router-dom";
 import { useGetPaymentInfo } from "./../../query/getPaymentInfo";
+import { useGetCrypto } from "./../../query/getCryptos";
+import { cryptos } from "../../constants/index";
 
 const PaymentPage = ({ history }) => {
   const [paymentPageForm, setPaymentPageForm, formValid, setFormValid] =
@@ -27,9 +29,26 @@ const PaymentPage = ({ history }) => {
   const { data, isLoading, error, isError, status } = useGetPaymentInfo(
     params.slug
   );
+  const { data: cryptoData } = useGetCrypto();
   useEffect(() => {
     if (error?.message === "404") history.push("/pageNotFound");
   }, [error]);
+
+  console.log(cryptoData);
+  const userCryptos = useMemo(() => {
+    const availableCrypto = data?.paymentPage.availableCrypto;
+    const filteredCrypto = cryptoData?.filter((item) => {
+      return availableCrypto.includes(item.slug);
+    });
+    console.log(filteredCrypto);
+    const cryptoObject = filteredCrypto.map((crypto) => {
+      cryptos?.forEach((item) => {
+        if (item.slug === crypto.slug) console.log(true);
+      });
+    });
+    return cryptoObject;
+  }, [data, cryptoData]);
+  // console.log(userCryptos);
   return (
     <>
       <Background>
@@ -57,7 +76,7 @@ const PaymentPage = ({ history }) => {
           </div>
         </WithLoadingComponent>
       </Background>
-      {show && <PaymentProcess close={setShow} />}
+      {show && <PaymentProcess crypto={cryptoData} close={setShow} />}
     </>
   );
 };

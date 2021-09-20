@@ -125,6 +125,7 @@ const Input = ({
   showPassword,
   show,
   readonly,
+  multiple,
 }) => {
   const classes = useStyles();
   let inputElement;
@@ -179,10 +180,11 @@ const Input = ({
             onChange={onchange}
             onBlur={onblur}
             value={value}
+            multiple={multiple}
           >
             {options.map((item) => (
               <MenuItem
-                key={item.id}
+                key={item.value}
                 value={item.value}
                 className={classes.menuitem}
               >

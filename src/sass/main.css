@@ -1102,6 +1102,7 @@ button {
   opacity: 0;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+  display: block;
 }
 
 .transdetails {
@@ -3204,5 +3205,9 @@ button {
   color: #333333;
   -ms-flex-preferred-size: 300px;
       flex-basis: 300px;
+}
+
+.currency_item label {
+  margin-right: 2rem;
 }
 /*# sourceMappingURL=main.css.map */

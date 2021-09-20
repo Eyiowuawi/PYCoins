@@ -92,6 +92,7 @@ export const cryptos = [
     img: Bitcoin,
     classname: "accounts_img accounts_img-2",
     btc: "1 BTC ≈ NGN 19,444,236.15",
+    slug: "bitcoin",
   },
   {
     id: 3,
@@ -99,6 +100,7 @@ export const cryptos = [
     img: Ethereum,
     classname: "accounts_img accounts_img-3",
     btc: "1 BTC ≈ NGN 19,444,236.15",
+    slug: "eth",
   },
   {
     id: 4,
@@ -106,6 +108,7 @@ export const cryptos = [
     img: Tether,
     btc: "1 BTC ≈ NGN 19,444,236.15",
     classname: "accounts_img accounts_img-4",
+    slug: "usdt-eth",
   },
 ];
 

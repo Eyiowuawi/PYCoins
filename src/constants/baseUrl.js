@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { errorHandler } from "./../utils/errorhandler";
 
-const url = "https://obscure-basin-54525.herokuapp.com/api/v1";
+const url = "https://api.payercoins.com/api/v1";
 
 export const authBaseUrl = axios.create({
   baseURL: `${url}/auth`,
@@ -10,7 +10,7 @@ export const authBaseUrl = axios.create({
     "Content-Type": "application/json",
   },
   // timeout: 30000,
-  timeoutErrorMessage: "Request timed out, pls try again later",
+  // timeoutErrorMessage: "Request timed out, pls try again later",
 });
 
 authBaseUrl.interceptors.response.use(
@@ -19,6 +19,7 @@ authBaseUrl.interceptors.response.use(
   },
   (error) => {
     errorHandler(error);
+    return error;
   }
 );
 
@@ -59,4 +60,51 @@ export const paymentlinkBaseUrl = axios.create({
   },
 });
 
-// higher order component
+paymentlinkBaseUrl.interceptors.request.use(
+  (request) => {
+    const token = localStorage.getItem("token");
+    request.headers.Authorization = `Bearer ${token}`;
+    return request;
+  },
+  (error) => {
+    return error;
+  }
+);
+
+paymentlinkBaseUrl.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  (error) => {
+    errorHandler(error);
+    throw error;
+  }
+);
+
+export const cryptoBaseUrl = axios.create({
+  baseURL: `${url}/crypto`,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+cryptoBaseUrl.interceptors.request.use(
+  (request) => {
+    const token = localStorage.getItem("token");
+    request.headers.Authorization = `Bearer ${token}`;
+    return request;
+  },
+  (error) => {
+    return error;
+  }
+);
+
+cryptoBaseUrl.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  (error) => {
+    errorHandler(error);
+    throw error;
+  }
+);

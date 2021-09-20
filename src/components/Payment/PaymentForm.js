@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useMemo, memo } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import Input from "../UI/Input";
 import Modal from "../UI/Modal";
 import Label from "../UI/Label";
@@ -11,13 +11,19 @@ import { createPaymentLink } from "./../../services/paymentlink";
 import { AppContext } from "./../../context/index";
 import { addPaymentUrl } from "./../../utils/addPaymentUrl";
 import usePaymentForm from "./../../hooks/paymentform";
+import { useGetUserCryptos } from "./../../query/getCryptos";
 
 const PaymentForm = ({ close, closeForm }) => {
+  const userWallets = useGetUserCryptos();
+
+  const userAcceptedWallet = useMemo(() => {
+    return userWallets[1].data;
+  }, []);
   const queryClient = useQueryClient();
   const [success, setSuccess] = useState("");
   const [isFixed, setIsFixed] = useState("");
   const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
-    usePaymentForm();
+    usePaymentForm(userAcceptedWallet);
 
   const {
     profile: { user },
@@ -72,21 +78,11 @@ const PaymentForm = ({ close, closeForm }) => {
     const data = {};
     for (let key in paymentForm) data[key] = paymentForm[key].value;
     data["isAmountFixed"] = isFixed == "fixed" ? "true" : "false";
-    data["amount"] = isFixed == "fixed" ? +amountForm.amount.value : 20.0;
+    data["amount"] = isFixed == "fixed" ? +amountForm.amount.value : 0;
     data["user"] = user._id;
     mutate(data);
+    console.log(data);
   };
-
-  // useEffect(() => {
-  //   const close = (e) => {
-  //     if (e.key === "Escape") {
-  //
-  //       close(false);
-  //     }
-  //   };
-  //   window.addEventListener("keydown", close);
-  //   return () => window.removeEventListener("keydown", close);
-  // }, []);
 
   return (
     <Modal close={closeForm}>

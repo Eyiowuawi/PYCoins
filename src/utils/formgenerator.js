@@ -1,5 +1,5 @@
 import Input from "../components/UI/Input";
-import { changeHandler, handleBlur,showPassword} from "./changehandler";
+import { changeHandler, handleBlur, showPassword } from "./changehandler";
 
 const formGenerator = (formType, formFunc, validForm) => {
   const formArr = [];
@@ -31,6 +31,7 @@ const formGenerator = (formType, formFunc, validForm) => {
       blur={config.blur}
       showPassword={() => showPassword(id, formType, formFunc)}
       show={config.show}
+      multiple={config.multiple}
     />
   ));
   return form;

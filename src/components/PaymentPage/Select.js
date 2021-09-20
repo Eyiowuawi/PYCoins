@@ -3,6 +3,7 @@ import Accounts from "../Account";
 import Modal from "./../UI/Modal";
 
 const Select = ({ name, onclick }) => {
+  // const {data} =
   return (
     <Accounts
       cryptos={cryptos}

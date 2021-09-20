@@ -14,7 +14,7 @@ const useGeneralForm = (profile) => {
   const [personalForm, setPersonalForm] = useState({
     firstName: {
       value: profile?.user?.firstName || "",
-      valid: false,
+      valid: true,
       elementType: "input",
       type: "text",
       placeholder: "First Name",
@@ -26,7 +26,7 @@ const useGeneralForm = (profile) => {
     },
     lastName: {
       value: profile?.user?.lastName || "",
-      valid: false,
+      valid: true,
       elementType: "input",
       type: "text",
       placeholder: "Last Name",
@@ -38,7 +38,7 @@ const useGeneralForm = (profile) => {
     },
     phoneNumber: {
       value: profile?.user?.phoneNumber || "",
-      valid: false,
+      valid: true,
       type: "text",
       elementType: "input",
       placeholder: "Phone Number",
@@ -55,7 +55,7 @@ const useGeneralForm = (profile) => {
   const [businessForm, setBusinessForm] = useState({
     businessName: {
       value: profile?.business?.businessName,
-      valid: false,
+      valid: true,
       elementType: "input",
       type: "text",
       label: "Business Name",
@@ -66,7 +66,7 @@ const useGeneralForm = (profile) => {
     },
     businessEmail: {
       value: profile?.business?.businessEmail,
-      valid: false,
+      valid: true,
       type: "email",
       elementType: "input",
       label: "Business Email",
@@ -76,7 +76,7 @@ const useGeneralForm = (profile) => {
     },
     businessAddress: {
       value: profile?.business?.businessAddress,
-      valid: false,
+      valid: true,
       type: "text",
       elementType: "input",
       placeholder: "Business Address",

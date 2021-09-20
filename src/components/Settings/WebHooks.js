@@ -34,10 +34,15 @@ const Webhooks = () => {
     setTestFormValid
   );
 
-  const liveScret = useMemo(() => {
+  const liveSecret = useMemo(() => {
     return converToAsterik(apiKeys?.live_keys.secret);
   }, []);
   const [liveShow, setLiveShow] = useState(false);
+
+  const testSecret = useMemo(() => {
+    return converToAsterik(apiKeys?.test_keys.secret);
+  }, []);
+  const [testShow, setTestShow] = useState(false);
 
   return (
     <div className="general">
@@ -47,7 +52,7 @@ const Webhooks = () => {
           <div className="settingsform-group ">
             <label className="title title-grey">Live Secret key</label>
             <ActionLabel
-              text={liveShow ? apiKeys?.live_keys.secret : liveScret}
+              text={liveShow ? apiKeys?.live_keys.secret : liveSecret}
               onclick={() => setLiveShow(!liveShow)}
             >
               <View />
@@ -71,13 +76,19 @@ const Webhooks = () => {
         <form className="settingsform">
           <div className="settingsform-group ">
             <label className="title title-grey">Test Secret key</label>
-            <ActionLabel text={apiKeys?.test_keys.secret}>
+            <ActionLabel
+              text={testShow ? apiKeys?.test_keys.secret : testSecret}
+              onclick={() => setTestShow(!testShow)}
+            >
               <View />
             </ActionLabel>
           </div>
           <div className="settingsform-group">
             <label className="title title-grey">Test Public Key</label>
-            <ActionLabel text={apiKeys?.test_keys.public_key}>
+            <ActionLabel
+              text={apiKeys?.test_keys.public_key}
+              onclick={() => handleCopy(apiKeys?.live_keys.public_key)}
+            >
               <Copy fill="#909198" />
             </ActionLabel>
           </div>

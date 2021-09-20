@@ -2,6 +2,7 @@ import { userBaseUrl } from "../constants/baseUrl";
 import { toast } from "react-toastify";
 
 export const userProfile = async () => {
+//  const token = localStorage.getItem("token");
   try {
     const { data } = await userBaseUrl.get("/profile");
     return data.data;
@@ -30,8 +31,6 @@ export const switchToBusiness = async (params) => {
 
 export const changeUserImage = async (image) => {
   try {
-    const token = localStorage.getItem("token") || null;
-
     const { data } = await userBaseUrl.patch("/updateImage", image);
     toast.success("Photo updated successfully");
     return data;
@@ -43,8 +42,6 @@ export const changeUserImage = async (image) => {
 
 export const updateUserProfile = async (profile) => {
   try {
-    const token = localStorage.getItem("token") || null;
-
     const { data } = await userBaseUrl.patch("/updateuser", profile);
     toast.success("User profile updated Successfully");
     return data;
@@ -56,8 +53,6 @@ export const updateUserProfile = async (profile) => {
 
 export const updateBusinessprofile = async (business) => {
   try {
-    const token = localStorage.getItem("token") || null;
-
     const { data } = await userBaseUrl.patch("/updateBusiness", business);
     toast.success("User profile updated Successfully");
     return data;
@@ -69,8 +64,6 @@ export const updateBusinessprofile = async (business) => {
 
 export const updatePassword = async (params) => {
   try {
-    const token = localStorage.getItem("token") || null;
-
     const { data } = await userBaseUrl.patch("/updatePassword", params);
     toast.success("Password successfully updated");
     return data.data;

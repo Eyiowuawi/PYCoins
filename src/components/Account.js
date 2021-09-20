@@ -18,7 +18,7 @@ const Accounts = ({ showForm, goBack, name, cryptos, title, header }) => {
           <div className="accounts_container mt-small">
             <h5 className="mute">{title} </h5>
             <div className="accounts_list mt-small">
-              {pathname !== "/paymentpage" && (
+              {!pathname.includes("pay") && (
                 <div
                   className="accounts_item mt-small"
                   onClick={() => showForm("bank")}
@@ -41,7 +41,7 @@ const Accounts = ({ showForm, goBack, name, cryptos, title, header }) => {
                   </div>
                   <div className={"accounts_content"}>
                     <p className="title title-grey">{item.name} Wallet</p>
-                    {pathname === "/paymentpage" && (
+                    {pathname.includes("pay") && (
                       <p className="title title-grey ta">{item.btc} </p>
                     )}
                   </div>

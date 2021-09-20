@@ -18,8 +18,6 @@ const Login = ({ history }) => {
     }
   );
 
-
-  console.log(isError)
   const form = formGenerator(loginForm, setLoginForm, setLoginFormValid);
 
   const handleSubmit = (evt) => {
@@ -51,7 +49,7 @@ const Login = ({ history }) => {
         <Link to="/auth/forgotpassword" className="link ta mt-small">
           Forgot Password?
         </Link>
-     
+
         <AuthFooter
           title={"Don't have an account?"}
           link={"/auth/create"}

@@ -1,17 +1,11 @@
 import Loader from "react-loader-spinner";
+import SmallLoader from "./../components/UI/SmallLoader";
 
 const WithSmallLoader = ({ children, isLoading }) => {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
       {children}
-
-      <Loader
-        type="Oval"
-        color="#48d189"
-        height={30}
-        width={30}
-        visible={isLoading}
-      />
+      <SmallLoader isLoading={isLoading} />
     </div>
   );
 };

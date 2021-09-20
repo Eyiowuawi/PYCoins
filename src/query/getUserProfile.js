@@ -3,13 +3,6 @@ import { useQueries, useQuery } from "react-query";
 import { useContext } from "react";
 import { AppContext } from "./../context/index";
 
-// export const useUserProfile = () => {
-//   return useQuery("getuserprofile", () => userProfile(), {
-//     refetchOnWindowFocus: false,
-//     retry: 2,
-//   });
-// };
-
 export const useUserProfile = () => {
   const { saveUser, saveApiKeys, state } = useContext(AppContext);
 
