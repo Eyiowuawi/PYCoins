@@ -40,6 +40,11 @@ body {
   position: relative;
 }
 
+body.modal {
+  overflow: hidden;
+  position: fixed;
+}
+
 a {
   text-decoration: none;
 }
@@ -1475,16 +1480,13 @@ button {
 }
 
 .loading {
-  min-height: calc(100vh - 76px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  margin-top: 6rem;
 }
 
 .settingsform {
@@ -1643,8 +1645,8 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: 5rem;
   padding: 2rem 0;
-  height: 100vh;
 }
 
 @media (max-width: 800px) {
@@ -1662,6 +1664,22 @@ button {
   .error .button {
     width: 60%;
   }
+}
+
+.warning {
+  position: fixed !important;
+  background-color: #eb5757;
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  left: 0;
+  top: 0 !important;
+}
+
+.warning p {
+  color: #fff !important;
+  font-weight: bold !important;
+  font-size: 1.1rem;
 }
 
 .auth_form {
@@ -2123,7 +2141,7 @@ button {
           transform: translate(-50%);
   width: 700px;
   max-width: 90%;
-  padding-top: 3rem;
+  padding-top: 8rem;
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2869,6 +2887,8 @@ button {
   border-radius: 50%;
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .paymentpage .ta {

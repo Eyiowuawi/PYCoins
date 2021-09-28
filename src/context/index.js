@@ -7,6 +7,7 @@ const initialState = {
   initials: null,
   fullname: "",
   apiKeys: {},
+  environment: "",
 };
 export const AppContext = createContext(initialState);
 
@@ -59,6 +60,12 @@ const AppComponent = ({ children }) => {
     });
   };
 
+  const saveUserEnvironment = (data) => {
+    dispatch({
+      type: "SAVE_ENVIRONMENT",
+      payload: data,
+    });
+  };
   const contextValue = {
     ...state,
     changeToRegister,
@@ -66,6 +73,7 @@ const AppComponent = ({ children }) => {
     logoutUser,
     switchBusiness,
     saveApiKeys,
+    saveUserEnvironment,
     state: state,
   };
 

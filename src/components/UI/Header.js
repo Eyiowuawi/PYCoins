@@ -5,14 +5,41 @@ import Toggle from "./Switch";
 import Arrowdropdown from "./Arrowdropdown";
 import { useContext, useMemo, useEffect } from "react";
 import { AppContext } from "./../../context/index";
+import { updateEnvironment } from "../../services/crypto";
+import { useMutation, useQueryClient } from "react-query";
 const Header = ({ showsidebar }) => {
-  const { fullname, initials } = useContext(AppContext);
+  const { fullname, initials, environment, saveUserEnvironment } =
+    useContext(AppContext);
+
+  const queryClient = useQueryClient();
+  const { data, isLoading, mutate } = useMutation(
+    "updateenvironment",
+    (data) => updateEnvironment(data),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("getuserenvironment");
+        queryClient.invalidateQueries("getusercrypto");
+        queryClient.invalidateQueries("getpaymentlinks");
+      },
+    }
+  );
+
+  const toggleEnvironment = (data) => {
+    mutate({ environment: data });
+  };
   return (
     <header className="header">
       <div className="header_container">
         <div className="header_desktop">
           <p className="header-text header-text-grey">Test</p>
-          <Toggle />
+          {environment && (
+            <Toggle
+              checked={environment === "sandbox" ? false : true}
+              param={environment === "sandbox" ? "live" : "sandbox"}
+              toggle={toggleEnvironment}
+              disabled={isLoading}
+            />
+          )}
           <p className="header-text header-text-grey">Live</p>
           {fullname && (
             <>

@@ -5,7 +5,7 @@ export const getCryptos = async () => {
   try {
     const { data } = await cryptoBaseUrl.get("/");
     // console.log(data);
-    return data.cryptos;
+    return data.crypto;
   } catch (error) {
     throw new Error("Error processing request");
   }
@@ -14,7 +14,6 @@ export const getCryptos = async () => {
 export const getWallets = async () => {
   try {
     const { data } = await cryptoBaseUrl.get("/wallets");
-    console.log(data);
     return data;
   } catch (error) {
     throw new Error("Error processing request");
@@ -24,7 +23,6 @@ export const getWallets = async () => {
 export const activateWallet = async (wallet) => {
   try {
     const { data } = await cryptoBaseUrl.post("/add-wallet", wallet);
-    console.log(data.message);
     toast.success(data.message);
 
     return data.message;
@@ -37,7 +35,6 @@ export const deactivateWallet = async (wallet) => {
   try {
     const { data } = await cryptoBaseUrl.post("/remove-wallet", wallet);
     toast.success(data.message);
-    console.log(data);
     return data.message;
   } catch (error) {
     throw new Error("Error deactivating wallet");
@@ -47,8 +44,11 @@ export const deactivateWallet = async (wallet) => {
 export const updateEnvironment = async (environ) => {
   try {
     const { data } = await cryptoBaseUrl.post("/environment", environ);
-    return data;
+
+    toast.success("Your environment has been updated");
+    return data.data.environment;
   } catch (error) {
+    toast.error("Error updating your environment");
     throw new Error("Error processing your request");
   }
 };
@@ -56,10 +56,17 @@ export const updateEnvironment = async (environ) => {
 export const userAcceptedWallet = async () => {
   try {
     const { data } = await cryptoBaseUrl.get("/user-wallet");
-    // console.log(data.data.wallets.wallets);
     return data.data.wallets.wallets;
   } catch (error) {
-    console.log(error);
     throw new Error("Error Processing your request");
+  }
+};
+
+export const getEnvironment = async () => {
+  try {
+    const { data } = await cryptoBaseUrl.get("/environment");
+    return data.data.environment;
+  } catch (error) {
+    throw new Error("Error Processing request");
   }
 };

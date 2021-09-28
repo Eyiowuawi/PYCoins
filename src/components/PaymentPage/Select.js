@@ -1,9 +1,8 @@
-import { cryptos } from "../../constants";
+// import { cryptos } from "../../constants";
 import Accounts from "../Account";
 import Modal from "./../UI/Modal";
 
-const Select = ({ name, onclick }) => {
-  // const {data} =
+const Select = ({ name, onclick, cryptos }) => {
   return (
     <Accounts
       cryptos={cryptos}

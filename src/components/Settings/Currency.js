@@ -2,16 +2,21 @@ import Toggle from "./../UI/Switch";
 import { useGetUserCryptos } from "./../../query/getCryptos";
 import { activateWallet, deactivateWallet } from "../../services/crypto";
 import { useMutation, useQueryClient } from "react-query";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useContext } from "react";
 import WithLoadingComponent from "./../../hoc/withLoading";
 import { toast } from "react-toastify";
 import SmallLoader from "./../UI/SmallLoader";
+import { AppContext } from "./../../context/index";
 const Currency = () => {
+  const { environment } = useContext(AppContext);
   const [selected, setSelected] = useState("");
   const data = useGetUserCryptos();
+  // console.log(data);
   const cryptos = useMemo(() => {
-    return data[0].data;
-  }, [data]);
+    if (data[0].data) {
+      return data[0]?.data[environment];
+    }
+  }, [data, environment]);
 
   const acceptedCryptos = useMemo(() => {
     return data[1].data;
@@ -58,9 +63,9 @@ const Currency = () => {
             <div className="currency_item" key={item.uuid}>
               <p className="title title-black">{item.name}</p>
               <Toggle
-                slug={item.slug}
+                param={item.slug}
                 checked={checkIncludes(item.slug)}
-                toggleWallet={() => handleToggle(item.slug)}
+                toggle={() => handleToggle(item.slug)}
                 disabled={deactivateLoading || activateLoading}
               />
               <SmallLoader

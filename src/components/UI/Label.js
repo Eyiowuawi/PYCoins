@@ -7,6 +7,7 @@ const Label = ({ title, id, onchange, checked, ...props }) => {
         className="label_input"
         onChange={onchange}
         {...props}
+        checked={checked}
       />
       <label htmlFor={id} className="label_label">
         <span></span>

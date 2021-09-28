@@ -72,10 +72,11 @@ const Dashboard = ({ ...props }) => {
       <>
         {show && (
           <BusinessForm
-            close={setShow}
+            close={() => setShow(false)}
             mutate={mutate}
             isLoading={isLoading}
             data={data}
+            show={show}
           />
         )}
       </>

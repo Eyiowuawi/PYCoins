@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { required } from "./../utils/validations";
 
-const usePaymentForm = (userWallets) => {
+const usePaymentForm = (userWallets, editDetails) => {
   // const [options] = useState()
+
   const [paymentForm, setPayentForm] = useState({
     pageName: {
-      value: "",
+      value: editDetails ? editDetails.pageName : "",
       valid: false,
       elementType: "input",
       type: "text",
@@ -16,7 +17,7 @@ const usePaymentForm = (userWallets) => {
       blur: false,
     },
     description: {
-      value: "",
+      value: editDetails ? editDetails.desc : "",
       valid: false,
       type: "url",
       elementType: "textarea",
@@ -27,7 +28,7 @@ const usePaymentForm = (userWallets) => {
       blur: false,
     },
     currency: {
-      value: [],
+      value: editDetails ? editDetails.cryptos : [],
       valid: false,
       multiple: true,
       elementType: "select",
@@ -43,6 +44,23 @@ const usePaymentForm = (userWallets) => {
       required: true,
     },
   });
+
+  useEffect(() => {
+    setPayentForm((prevState) => {
+      return {
+        ...prevState,
+        currency: {
+          ...prevState.currency,
+          options: userWallets?.map((item) => {
+            return {
+              value: item,
+              displayValue: item,
+            };
+          }),
+        },
+      };
+    });
+  }, [userWallets]);
 
   const [paymentFormValid, setPaymentFormValid] = useState(false);
   return [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid];

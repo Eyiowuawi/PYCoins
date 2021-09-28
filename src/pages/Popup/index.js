@@ -7,9 +7,10 @@ import Settlement from "../../components/Popup/Settlement";
 import Bank from "../../components/Popup/Bank";
 import CryptoForm from "../../components/Popup/CryptoForm";
 
-const Popup = ({ closeModal }) => {
+const Popup = ({ closeModal, show }) => {
   const [account, setAccount] = useState("");
   const [name, setName] = useState("");
+  console.log(show);
 
   const handleBack = () => {
     setName("");

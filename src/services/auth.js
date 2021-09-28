@@ -30,7 +30,6 @@ export const loginUser = async (params) => {
     const { data } = await authBaseUrl.post("/login", params);
     saveToLocalStorage(data.data.token);
   } catch (error) {
-    console.log(error.response);
     throw new Error("processing error");
   }
 };
@@ -42,6 +41,7 @@ export const verifyUser = async (token) => {
     );
     return data;
   } catch (error) {
+    console.log(error, "FROM ENDPOINT");
     throw new Error("processing error");
   }
 };

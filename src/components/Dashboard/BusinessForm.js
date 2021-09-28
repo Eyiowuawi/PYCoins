@@ -11,7 +11,8 @@ import { switchToBusiness } from "../../services/user";
 import WithErrorComponent from "./../../hoc/withError";
 import { AppContext } from "./../../context/index";
 
-const BusinessForm = ({ close, mutate, isLoading, data }) => {
+const BusinessForm = ({ close, mutate, isLoading, data, show }) => {
+  console.log(show);
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {

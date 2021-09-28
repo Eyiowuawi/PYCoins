@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { required } from "./../utils/validations";
 
-const useAmount = () => {
+const useAmount = (amt) => {
   const [amountForm, setAmountForm] = useState({
     amount: {
-      value: "",
+      value: amt ? amt : "",
       type: "number",
       label: "Enter your amount",
       elementType: "input",

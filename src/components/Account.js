@@ -30,11 +30,11 @@ const Accounts = ({ showForm, goBack, name, cryptos, title, header }) => {
                   <img src={Proceed} alt="Continue" />
                 </div>
               )}
-              {cryptos.map((item) => (
+              {cryptos?.map((item) => (
                 <div
                   key={item.name}
                   className="accounts_item mt-small"
-                  onClick={() => showForm(item.name)}
+                  onClick={() => showForm(item.slug)}
                 >
                   <div className={item.classname}>
                     <img src={item.img} alt={item.name} />

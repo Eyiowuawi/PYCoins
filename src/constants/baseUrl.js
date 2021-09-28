@@ -19,7 +19,7 @@ authBaseUrl.interceptors.response.use(
   },
   (error) => {
     errorHandler(error);
-    return error;
+    throw error;
   }
 );
 
@@ -100,6 +100,34 @@ cryptoBaseUrl.interceptors.request.use(
 );
 
 cryptoBaseUrl.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  (error) => {
+    errorHandler(error);
+    throw error;
+  }
+);
+
+export const base = axios.create({
+  baseURL: `${url}`,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// base.interceptors.request.use(
+//   (request) => {
+//     const token = localStorage.getItem("token");
+//     request.headers.Authorization = `Bearer ${token}`;
+//     return request;
+//   },
+//   (error) => {
+//     return error;
+//   }
+// );
+
+base.interceptors.response.use(
   (config) => {
     return config;
   },

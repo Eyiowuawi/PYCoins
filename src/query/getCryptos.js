@@ -19,5 +19,9 @@ export const useGetUserCryptos = () => {
 };
 
 export const useGetCrypto = () => {
-  return useQuery("getcrypto", () => getCryptos());
+  return useQuery("getcryptos", () => getCryptos());
+};
+
+export const useGetUserWallets = () => {
+  return useQuery("getuserwallets", () => userAcceptedWallet());
 };

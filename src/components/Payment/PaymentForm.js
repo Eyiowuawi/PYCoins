@@ -11,40 +11,39 @@ import { createPaymentLink } from "./../../services/paymentlink";
 import { AppContext } from "./../../context/index";
 import { addPaymentUrl } from "./../../utils/addPaymentUrl";
 import usePaymentForm from "./../../hooks/paymentform";
-import { useGetUserCryptos } from "./../../query/getCryptos";
+import { useGetUserWallets } from "./../../query/getCryptos";
 
-const PaymentForm = ({ close, closeForm }) => {
-  const userWallets = useGetUserCryptos();
-
-  const userAcceptedWallet = useMemo(() => {
-    return userWallets[1].data;
-  }, []);
-  const queryClient = useQueryClient();
-  const [success, setSuccess] = useState("");
+const PaymentForm = ({
+  paymentForm,
+  setPaymentForm,
+  paymentFormValid,
+  setPaymentFormValid,
+  amountForm,
+  setAmountForm,
+  show,
+  handleClose,
+  isEditMode,
+  amountType,
+  handleSubmit,
+  data,
+  isLoading,
+}) => {
   const [isFixed, setIsFixed] = useState("");
-  const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
-    usePaymentForm(userAcceptedWallet);
 
-  const {
-    profile: { user },
-  } = useContext(AppContext);
+  const form = formGenerator(paymentForm, setPaymentForm);
 
-  const [amountForm, setAmountForm] = useAmount();
-  const form = formGenerator(paymentForm, setPayentForm);
   const amount = formGenerator(amountForm, setAmountForm);
+
   const [updatedData, setUpdatedData] = useState();
-  const { mutate, isLoading, data } = useMutation(
-    (data) => createPaymentLink(data),
-    {
-      onSuccess: (data) => {
-        queryClient.invalidateQueries("getpaymentlinks");
-        setSuccess(true);
-      },
-    }
-  );
+
+  useEffect(() => {
+    if (amountType === "fixed") setIsFixed("fixed");
+    else setIsFixed("custom");
+  }, [amountType]);
 
   useEffect(() => {
     let isValid = true;
+
     for (let id in paymentForm) {
       isValid = paymentForm[id].valid && isValid;
     }
@@ -52,7 +51,9 @@ const PaymentForm = ({ close, closeForm }) => {
       setPaymentFormValid(true);
     }
     if (isFixed === "fixed") setPaymentFormValid(false);
+
     let isAmountValid = true;
+
     isAmountValid = amountForm.amount.valid && isAmountValid;
 
     if (isValid && isAmountValid && isFixed === "fixed") {
@@ -63,6 +64,7 @@ const PaymentForm = ({ close, closeForm }) => {
   useEffect(() => {
     if (data) {
       const updatedData = addPaymentUrl(data?.paymentlink);
+
       setUpdatedData(updatedData);
     }
   }, [data]);
@@ -73,23 +75,16 @@ const PaymentForm = ({ close, closeForm }) => {
     } else setIsFixed("custom");
   };
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    const data = {};
-    for (let key in paymentForm) data[key] = paymentForm[key].value;
-    data["isAmountFixed"] = isFixed == "fixed" ? "true" : "false";
-    data["amount"] = isFixed == "fixed" ? +amountForm.amount.value : 0;
-    data["user"] = user._id;
-    mutate(data);
-    console.log(data);
+  const handleSubmitHandler = (evt) => {
+    handleSubmit(evt, isFixed);
   };
 
   return (
-    <Modal close={closeForm}>
-      {!success && (
+    <Modal show={show} close={handleClose}>
+      {!data && (
         <>
           <h3 className="title title-black">Payment Page</h3>
-          <form className="mt-small" onSubmit={handleSubmit}>
+          <form className="mt-small" onSubmit={handleSubmitHandler}>
             {form}
             <div className="payment_amount mb-small">
               <Label
@@ -98,6 +93,7 @@ const PaymentForm = ({ close, closeForm }) => {
                 name={"amount"}
                 type="radio"
                 onchange={handleChange}
+                // checked={amountType === "fixed" && true}
               />
               <Label
                 id={"custom"}
@@ -105,6 +101,7 @@ const PaymentForm = ({ close, closeForm }) => {
                 name={"amount"}
                 type="radio"
                 onchange={handleChange}
+                // checked={amountType === "custom" && true}
               />
             </div>
             {isFixed === "fixed" && amount}
@@ -114,12 +111,12 @@ const PaymentForm = ({ close, closeForm }) => {
               disabled={paymentFormValid}
               bg={"button_primary"}
             >
-              Create Page
+              {isEditMode ? `Update Page` : "Create Page"}
             </Button>
           </form>
         </>
       )}
-      {success && <Created data={updatedData} />}
+      {data && <Created data={updatedData} />}
     </Modal>
   );
 };

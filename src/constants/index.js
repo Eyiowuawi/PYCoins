@@ -100,7 +100,7 @@ export const cryptos = [
     img: Ethereum,
     classname: "accounts_img accounts_img-3",
     btc: "1 BTC ≈ NGN 19,444,236.15",
-    slug: "eth",
+    slug: "ethereum",
   },
   {
     id: 4,

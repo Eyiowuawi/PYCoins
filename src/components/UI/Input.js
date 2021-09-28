@@ -182,7 +182,7 @@ const Input = ({
             value={value}
             multiple={multiple}
           >
-            {options.map((item) => (
+            {options?.map((item) => (
               <MenuItem
                 key={item.value}
                 value={item.value}

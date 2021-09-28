@@ -42,6 +42,13 @@ const appReducer = (state, action) => {
         initials: null,
         fullname: "",
       };
+
+    case "SAVE_ENVIRONMENT":
+      return {
+        ...state,
+        environment: action.payload,
+      };
+
     default:
       return state;
   }

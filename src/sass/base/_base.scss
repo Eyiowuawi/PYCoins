@@ -7,39 +7,38 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-
-
-html{
+html {
   font-size: 16px;
   font-family: $font-family;
 
-  @include respond(tab-land){
-    font-size: 14px
+  @include respond(tab-land) {
+    font-size: 14px;
   }
-  @include respond(tab-port){
-    font-size: 12px
+  @include respond(tab-port) {
+    font-size: 12px;
   }
-  @include respond(phone){
-    font-size: 10px
+  @include respond(phone) {
+    font-size: 10px;
   }
-
-  
 }
 
-body{
+body {
   box-sizing: border-box;
   font-size: 16px;
   font-family: $font-family;
   background-color: $color-white;
   position: relative;
 }
-
-a{
+body.modal {
+  overflow: hidden;
+  position: fixed;
+}
+a {
   text-decoration: none;
 }
 
-button{
+button {
   background-color: transparent;
   border: none;
-  cursor: pointer
+  cursor: pointer;
 }

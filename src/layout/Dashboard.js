@@ -12,6 +12,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import WithLoadingComponent from "./../hoc/withLoading";
 import WithErrorComponent from "./../hoc/withError";
 import { matchRoutes } from "react-router-config";
+import { useGetUserEnvironment } from "../query/getUserEnvironment";
 
 const DashboardLayout = ({ route, history, location, ...props }) => {
   const [showpopup, setShowPopup] = useState(false);
@@ -25,6 +26,8 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
   useEffect(async () => {
     await autoLogout(history);
   }, []);
+
+  const { data, isLoading } = useGetUserEnvironment();
 
   const results = useUserProfile();
 

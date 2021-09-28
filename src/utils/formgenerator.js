@@ -32,6 +32,7 @@ const formGenerator = (formType, formFunc, validForm) => {
       showPassword={() => showPassword(id, formType, formFunc)}
       show={config.show}
       multiple={config.multiple}
+      readonly={config.readonly}
     />
   ));
   return form;

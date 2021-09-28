@@ -4,10 +4,10 @@ import { required, emailCheck } from "./../utils/validations";
 import { useGetPaymentInfo } from "./../query/getPaymentInfo";
 import { useRouteMatch } from "react-router-dom";
 
-const usePaymentPageForm = () => {
-
+const usePaymentPageForm = (data) => {
+  // console.log(data);
   const [paymentPageForm, setPaymentPageForm] = useState({
-    pageName: {
+    name: {
       value: "",
       valid: false,
       elementType: "input",
@@ -52,25 +52,21 @@ const usePaymentPageForm = () => {
 
   const [formValid, setFormValid] = useState(false);
 
-  // useEffect(() => {
-  //   setPaymentPageForm((prevState) => {
-  //     return {
-  //       ...prevState,
-  //       amount: {
-  //         ...prevState.amount,
-  //         readonly: data?.isAmountFixed ? true : false,
-  //       },
-  //     };
-  //   });
-  // }, [data]);
+  useEffect(() => {
+    setPaymentPageForm((prevState) => {
+      return {
+        ...prevState,
+        amount: {
+          ...prevState.amount,
+          readonly: data?.amountType === "fixed" ? true : false,
+          value: data?.amountType === "fixed" ? data?.amount : "",
+          valid: data?.amountType === "fixed" ? true : false,
+        },
+      };
+    });
+  }, [data]);
 
-  return [
-    paymentPageForm,
-    setPaymentPageForm,
-    formValid,
-    setFormValid,
-   
-  ];
+  return [paymentPageForm, setPaymentPageForm, formValid, setFormValid];
 };
 
 export default usePaymentPageForm;

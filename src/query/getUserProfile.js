@@ -11,14 +11,14 @@ export const useUserProfile = () => {
       queryKey: ["getuserprofile", 1],
       queryFn: () => userProfile(),
       refetchOnWindowFocus: false,
-      retry: 2,
+      retry: false,
       onSuccess: (data) => saveUser(data),
     },
     {
       queryKey: ["getuserprofile", 2],
       queryFn: () => getApiKeys(),
       refetchOnWindowFocus: false,
-      retry: 2,
+      retry: false,
       onSuccess: (data) => saveApiKeys(data),
     },
   ]);

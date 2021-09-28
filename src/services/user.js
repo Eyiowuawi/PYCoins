@@ -2,7 +2,7 @@ import { userBaseUrl } from "../constants/baseUrl";
 import { toast } from "react-toastify";
 
 export const userProfile = async () => {
-//  const token = localStorage.getItem("token");
+  //  const token = localStorage.getItem("token");
   try {
     const { data } = await userBaseUrl.get("/profile");
     return data.data;
@@ -16,7 +16,7 @@ export const getApiKeys = async () => {
     const { data } = await userBaseUrl.get("/keys");
     return data.data.apiKey;
   } catch (error) {
-    console.log(error);
+    return error;
   }
 };
 
