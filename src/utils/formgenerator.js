@@ -23,10 +23,10 @@ const formGenerator = (formType, formFunc, validForm) => {
       svg={config.image}
       options={config.options}
       label={config.label}
-      onchange={(event) =>
+      onChange={(event) =>
         changeHandler(event, id, formType, formFunc, validForm)
       }
-      onblur={(event) => handleBlur(id, formType, formFunc)}
+      onBlur={(event) => handleBlur(id, formType, formFunc)}
       required={config.required}
       blur={config.blur}
       showPassword={() => showPassword(id, formType, formFunc)}
