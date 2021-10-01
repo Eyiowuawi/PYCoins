@@ -70,3 +70,20 @@ export const processPaymentLink = async ({ environ, paymentData, ref }) => {
     throw new Error("Error processing payment");
   }
 };
+
+export const getProcessedPayment = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const data = await base.get(
+      "/sandbox/page/e8db4e366fbce6c2aa1c73a232bd7510bf057338ec5eb90b661d5ded8479c9fa6a4ed0d254b74b9a",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};

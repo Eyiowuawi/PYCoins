@@ -11,6 +11,7 @@ const Business = ({
   businessFormUpdate,
   businessFormValid,
   setBusinessFormVallid,
+  isLoading,
 }) => {
   const form = formGenerator(
     businessForm,
@@ -25,6 +26,7 @@ const Business = ({
 
         <Button
           disabled={businessFormValid}
+          isLoading={isLoading}
           bg={"button_primary"}
           type={"submit"}
         >

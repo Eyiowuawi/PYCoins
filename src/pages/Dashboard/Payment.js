@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, memo } from "react";
 import Plus from "../../assets/plus.svg";
 import Empty from "../../components/Empty";
 import Button from "../../components/UI/Button";
@@ -19,20 +19,10 @@ import useAmount from "./../../hooks/amountform";
 import { createPaymentLink } from "./../../services/paymentlink";
 import { useQueryClient } from "react-query";
 import { useMutation } from "react-query";
+import useForceUpdate from "use-force-update";
 
 const Payment = ({ history, isLoading }) => {
-  const { data: userData } = useGetUserWallets();
-
-  const userAcceptedWallet = useMemo(() => {
-    return userData;
-  }, [userData]);
-
   const [show, setShow] = useState(false);
-
-  const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
-    usePaymentForm(userAcceptedWallet);
-
-  const [amountForm, setAmountForm] = useAmount();
 
   const [width, setWidth] = useWindowWidth();
 
@@ -41,6 +31,8 @@ const Payment = ({ history, isLoading }) => {
   const { data, isLoading: getLinksLoading } = useGetPaymentLinks();
 
   const { data: walletData } = useGetWallets();
+
+  const forceUpdate = useForceUpdate();
 
   useEffect(() => {
     if (data && !getLinksLoading) {
@@ -55,34 +47,17 @@ const Payment = ({ history, isLoading }) => {
       setPaymentLinks(mappedArray);
     }
   }, [data, getLinksLoading]);
-  const queryClient = useQueryClient();
 
-  const {
-    mutate,
-    isLoading: createLoading,
-    data: createData,
-    isSuccess,
-  } = useMutation((data) => createPaymentLink(data), {
-    onSuccess: (data) => {
-      queryClient.invalidateQueries("getpaymentlinks");
-    },
-  });
   const handleChangePage = (slug, id) => {
     history.push(`/payment/pay/${slug}/${id}`);
   };
-  const handleClose = () => {
-    console.log("closed");
-    setShow(!show);
-  };
 
-  const handleCreateLink = (evt, isFixed) => {
-    evt.preventDefault();
-    const data = {};
-    for (let key in paymentForm) data[key] = paymentForm[key].value;
-    data["isAmountFixed"] = isFixed == "fixed" ? true : false;
-    data["amount"] = isFixed == "fixed" ? +amountForm.amount.value : 0;
-    mutate(data);
-  };
+  // const handleCreateLink = (evt, isFixed) => {
+  //   evt.preventDefault();
+  //   mutate(data)
+  //   // mutate(data);
+  // };
+  // console.log(show);
 
   return (
     <WithLoadingComponent isLoading={isLoading || getLinksLoading}>
@@ -127,21 +102,7 @@ const Payment = ({ history, isLoading }) => {
           />
         )}
       </div>
-      {show && (
-        <PaymentForm
-          paymentForm={paymentForm}
-          setPaymentForm={setPayentForm}
-          paymentFormValid={paymentFormValid}
-          setPaymentFormValid={setPaymentFormValid}
-          amountForm={amountForm}
-          setAmountForm={setAmountForm}
-          show={show}
-          handleClose={handleClose}
-          handleSubmit={handleCreateLink}
-          data={createData}
-          isLoading={createLoading}
-        />
-      )}
+      {show && <PaymentForm show={show} setShow={setShow} />}
     </WithLoadingComponent>
   );
 };

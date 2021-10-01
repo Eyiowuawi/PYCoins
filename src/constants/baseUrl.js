@@ -58,6 +58,8 @@ export const paymentlinkBaseUrl = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  timeout: 30000,
+  timeoutErrorMessage: "Request timed out, pls try again later",
 });
 
 paymentlinkBaseUrl.interceptors.request.use(

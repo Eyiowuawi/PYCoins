@@ -19,6 +19,7 @@ import Warning from "../../components/PaymentPage/Warning";
 import { processPaymentLink } from "../../services/paymentlink";
 import { useMutation } from "react-query";
 import WithErrorComponent from "./../../hoc/withError";
+import pusher from "./../../utils/pusher";
 
 const PaymentPage = ({ history }) => {
   const { params } = useRouteMatch();
@@ -28,7 +29,7 @@ const PaymentPage = ({ history }) => {
   const [paymentPageForm, setPaymentPageForm, formValid, setFormValid] =
     usePaymentForm(data?.paymentPage);
   const [show, setShow] = useState(false);
-  const { fullname } = useContext(AppContext);
+  // const { fullname } = useContext(AppContext);
 
   const form = formGenerator(paymentPageForm, setPaymentPageForm, setFormValid);
 
@@ -73,7 +74,17 @@ const PaymentPage = ({ history }) => {
     isLoading: processLinkLoading,
     isError: processLinkError,
   } = useMutation("processpagelink", (data) => processPaymentLink(data), {
-    onSuccess: () => setName("pay"),
+    onSuccess: (message) => {
+      console.log(message);
+      setName("pay");
+      const channel = pusher.subscribe(
+        `payment-notification-${data?.paymentlink.environment}`
+      );
+      console.log(channel);
+      channel.bind(`payment-${message.reference}`, function (data) {
+        console.log(data);
+      });
+    },
   });
 
   const handleProcessPaymentLink = (slug) => {

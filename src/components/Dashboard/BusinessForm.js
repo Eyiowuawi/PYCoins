@@ -11,14 +11,17 @@ import { switchToBusiness } from "../../services/user";
 import WithErrorComponent from "./../../hoc/withError";
 import { AppContext } from "./../../context/index";
 
-const BusinessForm = ({ close, mutate, isLoading, data, show }) => {
-  console.log(show);
-  const [success, setSuccess] = useState(false);
+const BusinessForm = ({ close, isLoading, data, show, submit, success }) => {
+  // const [success, setSuccess] = useState(false);
 
-  useEffect(() => {
-    if (data && data?.success === "success") setSuccess(true);
-  }, [data]);
+  // useEffect(() => {
+  //   if (data && success ) setSuccess(true);
+  // }, [data, succes]);
 
+  console.log(data, "FROM DATA");
+  console.log(isLoading, "FROM ISLOADING");
+  console.log(success, "FROM SUCCESS");
+  // console.log(data, "FROM DATA")
   const [
     businessForm,
     setBusinessForm,
@@ -32,7 +35,7 @@ const BusinessForm = ({ close, mutate, isLoading, data, show }) => {
     for (let key in businessForm)
       params.append(`${key}`, businessForm[key].value);
     params.append("country", "Nigeria");
-    mutate(params);
+    submit(evt, params);
   };
 
   return (
@@ -42,7 +45,8 @@ const BusinessForm = ({ close, mutate, isLoading, data, show }) => {
           businessForm={businessForm}
           handleSubmit={handleSubmit}
           businessFormUpdate={setBusinessForm}
-          businessFormValid={businessFormValid || isLoading}
+          businessFormValid={businessFormValid}
+          isLoading={isLoading}
           setBusinessFormVallid={setBusinessFormVallid}
         />
       )}

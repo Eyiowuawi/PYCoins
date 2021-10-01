@@ -37,7 +37,7 @@ const Dashboard = ({ ...props }) => {
     });
   }, []);
 
-  const { mutate, data, isError, isLoading } = useMutation(
+  const { mutate, data, isError, isLoading, isSuccess } = useMutation(
     (param) => switchToBusiness(param),
 
     {
@@ -47,6 +47,11 @@ const Dashboard = ({ ...props }) => {
       },
     }
   );
+
+  const handleSubmit = (evt, data) => {
+    evt.preventDefault();
+    mutate(data);
+  };
 
   return (
     <WithErrorComponent isError={isError}>
@@ -73,10 +78,11 @@ const Dashboard = ({ ...props }) => {
         {show && (
           <BusinessForm
             close={() => setShow(false)}
-            mutate={mutate}
             isLoading={isLoading}
             data={data}
             show={show}
+            submit={handleSubmit}
+            success={isSuccess}
           />
         )}
       </>

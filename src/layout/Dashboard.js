@@ -13,7 +13,7 @@ import WithLoadingComponent from "./../hoc/withLoading";
 import WithErrorComponent from "./../hoc/withError";
 import { matchRoutes } from "react-router-config";
 import { useGetUserEnvironment } from "../query/getUserEnvironment";
-
+import { getProcessedPayment } from "../services/paymentlink";
 const DashboardLayout = ({ route, history, location, ...props }) => {
   const [showpopup, setShowPopup] = useState(false);
 
@@ -25,6 +25,7 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
 
   useEffect(async () => {
     await autoLogout(history);
+    await getProcessedPayment();
   }, []);
 
   const { data, isLoading } = useGetUserEnvironment();

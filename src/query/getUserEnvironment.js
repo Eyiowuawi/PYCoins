@@ -9,5 +9,7 @@ export const useGetUserEnvironment = () => {
 
   return useQuery("getuserenvironment", () => getEnvironment(), {
     onSuccess: (data) => saveUserEnvironment(data),
+    refetchOnWindowFocus: false,
+    retry: false,
   });
 };

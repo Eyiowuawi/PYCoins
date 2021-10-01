@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useMemo } from "react";
+import { useState, useEffect, useContext, useMemo, memo } from "react";
 import Input from "../UI/Input";
 import Modal from "../UI/Modal";
 import Label from "../UI/Label";
@@ -14,20 +14,22 @@ import usePaymentForm from "./../../hooks/paymentform";
 import { useGetUserWallets } from "./../../query/getCryptos";
 
 const PaymentForm = ({
-  paymentForm,
-  setPaymentForm,
-  paymentFormValid,
-  setPaymentFormValid,
-  amountForm,
-  setAmountForm,
   show,
-  handleClose,
   isEditMode,
   amountType,
   handleSubmit,
-  data,
-  isLoading,
+  setShow,
 }) => {
+  const { data: userData } = useGetUserWallets();
+
+  const userAcceptedWallet = useMemo(() => {
+    return userData;
+  }, [userData]);
+
+  const [paymentForm, setPaymentForm, paymentFormValid, setPaymentFormValid] =
+    usePaymentForm(userAcceptedWallet);
+  const [amountForm, setAmountForm] = useAmount();
+
   const [isFixed, setIsFixed] = useState("");
 
   const form = formGenerator(paymentForm, setPaymentForm);
@@ -36,9 +38,22 @@ const PaymentForm = ({
 
   const [updatedData, setUpdatedData] = useState();
 
+  const [name, setName] = useState("");
+
+  const { mutate, isLoading, data, isSuccess } = useMutation(
+    (data) => createPaymentLink(data),
+    {
+      onSuccess: (data) => {
+        queryClient.invalidateQueries("getpaymentlinks");
+        setName("success");
+      },
+    }
+  );
+
   useEffect(() => {
     if (amountType === "fixed") setIsFixed("fixed");
-    else setIsFixed("custom");
+    else if (amountType === "custom") setIsFixed("custom");
+    else setIsFixed("");
   }, [amountType]);
 
   useEffect(() => {
@@ -69,6 +84,8 @@ const PaymentForm = ({
     }
   }, [data]);
 
+  const queryClient = useQueryClient();
+
   const handleChange = (evt) => {
     if (evt.target.value === "fixed") {
       setIsFixed("fixed");
@@ -76,12 +93,28 @@ const PaymentForm = ({
   };
 
   const handleSubmitHandler = (evt) => {
-    handleSubmit(evt, isFixed);
+    evt.preventDefault();
+    const data = {};
+    for (let key in paymentForm) data[key] = paymentForm[key].value;
+    data["isAmountFixed"] = isFixed == "fixed" ? true : false;
+    data["amount"] = isFixed == "fixed" ? +amountForm.amount.value : 0;
+    // handleSubmit(evt, isFixed);
+    mutate(data);
+  };
+
+  const handleClose = () => {
+    setShow(!show);
+  };
+
+  const handleCreateLink = (evt, isFixed) => {
+    // evt.preventDefault();
+
+    mutate(data);
   };
 
   return (
     <Modal show={show} close={handleClose}>
-      {!data && (
+      {name == "" && (
         <>
           <h3 className="title title-black">Payment Page</h3>
           <form className="mt-small" onSubmit={handleSubmitHandler}>
@@ -116,9 +149,11 @@ const PaymentForm = ({
           </form>
         </>
       )}
-      {data && <Created data={updatedData} />}
+      {name === "success" && <Created data={updatedData} />}
     </Modal>
   );
 };
 
-export default PaymentForm;
+export default memo(PaymentForm, (prevProps, nextProps) => {
+  return prevProps.show !== nextProps.show;
+});

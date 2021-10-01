@@ -25,6 +25,7 @@ const PaymentDetails = ({ history }) => {
   const [ctas, setCtas] = useState(false);
   const { params } = useRouteMatch();
   const { data, isLoading } = useGetUserPaymentLink(params.id);
+  console.log(data);
 
   const editDetails = useMemo(() => {
     const editParams = {
