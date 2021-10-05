@@ -18,7 +18,7 @@ const CryptoDetails = () => {
   const { search } = useLocation();
   const currency = search.substring(10);
 
-  const crypto = cryptos.find((item) => item.name === currency);
+  const crypto = cryptos.find((item) => item.slug === currency);
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWidth(window.innerWidth);

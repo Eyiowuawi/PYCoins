@@ -56,8 +56,10 @@ const PaymentPage = ({ history }) => {
         return availableCrypto?.includes(item.slug);
       });
 
-    const addedCrypto = addClassName(filteredCrypto);
-    return addedCrypto;
+    if (filteredCrypto?.length > 0) {
+      const addedCrypto = addClassName(filteredCrypto);
+      return addedCrypto;
+    }
   }, [data, cryptoData]);
 
   const [name, setName] = useState("");

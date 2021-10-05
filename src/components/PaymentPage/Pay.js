@@ -3,6 +3,7 @@ import QRCode from "../../assets/qrcode.png";
 import ActionLabel from "./../UI/ActionLabel";
 import handleCopy from "./../../utils/copytoclipboard";
 import QrcodeGenerator from "../QrCode";
+import SmallLoader from "./../UI/SmallLoader";
 const Pay = ({ goBack, data }) => {
   return (
     <div className="">
@@ -39,6 +40,10 @@ const Pay = ({ goBack, data }) => {
             </ActionLabel>
           </div>
         </div>
+      </div>
+      <div className="paymentpage_loader">
+        <SmallLoader isLoading={true} />
+        <p className="title title-grey ta"> Awaiting Payment </p>
       </div>
     </div>
   );
