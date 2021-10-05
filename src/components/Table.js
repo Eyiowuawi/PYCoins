@@ -6,22 +6,19 @@ const Table = ({ data, onclick }) => {
     <table className="table">
       <thead>
         <tr>
-          <th>Transaction</th>
+          <th>Name</th>
+          <th>Email</th>
           <th>Amount</th>
           <th>Date</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
-        {data.map((item) => (
-          <tr key={item.id} onClick={onclick}>
-            <td>
-              <div className={item.type === "Sent" ? "sent" : "received"}>
-                <img src={item.type === "Sent" ? Sent : Received} alt="Icon" />
-              </div>
-              <p>{item.name}</p>
-            </td>
-            <td>{item.amount}</td>
+        {data?.map((item) => (
+          <tr key={item.id} onClick={() => onclick(item.id)}>
+            <td>{item.name}</td>
+            <td>{item.email}</td>
+            <td>{Math.round(item.amount)}</td>
             <td>{item.date}</td>
             <td>
               <span

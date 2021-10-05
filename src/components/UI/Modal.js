@@ -1,7 +1,6 @@
 import cancel from "../../assets/cancel.svg";
 import { useEffect } from "react";
 const Modal = ({ children, close, show }) => {
-  // console.log(show);
   useEffect(() => {
     // if (show) document.body.style.position = "fixed";
     // else document.body.style.position = "relative";

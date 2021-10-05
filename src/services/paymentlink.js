@@ -6,7 +6,6 @@ export const createPaymentLink = async (params) => {
     const { data } = await paymentlinkBaseUrl.post("/create", params);
     return data.data;
   } catch (error) {
-    // toast.error("Error processing your request");
     throw new Error("Error processing your request");
   }
 };
@@ -16,7 +15,6 @@ export const getPaymentLinks = async () => {
     const { data } = await paymentlinkBaseUrl.get("/?page=1&limit=10");
     return data.data;
   } catch (error) {
-    // toast.error("Error processing your request");
     throw new Error("Error processing your request");
   }
 };
@@ -59,6 +57,13 @@ export const getPaymentInfo = async (slug) => {
   }
 };
 
+export const getPaymentLinkTransactions = async (id) => {
+  try {
+    const { data } = await paymentlinkBaseUrl.get(`/transactions/${id}`);
+    return data.data.paymentPage;
+  } catch (error) {}
+};
+
 export const processPaymentLink = async ({ environ, paymentData, ref }) => {
   try {
     const { data } = await base.post(
@@ -82,7 +87,6 @@ export const getProcessedPayment = async () => {
         },
       }
     );
-    console.log(data);
   } catch (error) {
     console.log(error);
   }

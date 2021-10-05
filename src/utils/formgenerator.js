@@ -29,7 +29,7 @@ const formGenerator = (formType, formFunc, validForm) => {
       onblur={(event) => handleBlur(id, formType, formFunc)}
       required={config.required}
       blur={config.blur}
-      showPassword={() => showPassword(id, formType, formFunc)}
+      showPassword={(evt) => showPassword(evt, id, formType, formFunc)}
       show={config.show}
       multiple={config.multiple}
       readonly={config.readonly}

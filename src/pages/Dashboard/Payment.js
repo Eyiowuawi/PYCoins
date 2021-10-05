@@ -36,7 +36,7 @@ const Payment = ({ history, isLoading }) => {
 
   useEffect(() => {
     if (data && !getLinksLoading) {
-      const mappedArray = data.paymentLinks.map((item) => {
+      const mappedArray = data?.paymentLinks?.map((item) => {
         const updatedData = addPaymentUrl(item);
         const date = dateFormatter(updatedData.createdAt);
         return {
@@ -57,7 +57,6 @@ const Payment = ({ history, isLoading }) => {
   //   mutate(data)
   //   // mutate(data);
   // };
-  // console.log(show);
 
   return (
     <WithLoadingComponent isLoading={isLoading || getLinksLoading}>
@@ -73,7 +72,7 @@ const Payment = ({ history, isLoading }) => {
             <span>Create New</span>
           </Button>
         </div>
-        {paymentLinks.length < 1 && (
+        {paymentLinks?.length < 1 && (
           <Empty>
             <img src={Link} alt="Empty State" />
             <h3 className="title title-black mb-small mt-small">
@@ -85,7 +84,7 @@ const Payment = ({ history, isLoading }) => {
             </p>
           </Empty>
         )}
-        {paymentLinks.length > 0 && (
+        {paymentLinks?.length > 0 && (
           <>
             {width > 400 && (
               <PaymentTable
@@ -95,12 +94,14 @@ const Payment = ({ history, isLoading }) => {
             )}
           </>
         )}
-        {width <= 400 && (
-          <PaymentTableResponsive
-            gotoDetails={handleChangePage}
-            data={paymentLinks}
-          />
-        )}
+        <>
+          {width <= 400 && (
+            <PaymentTableResponsive
+              gotoDetails={handleChangePage}
+              data={paymentLinks}
+            />
+          )}
+        </>
       </div>
       {show && <PaymentForm show={show} setShow={setShow} />}
     </WithLoadingComponent>

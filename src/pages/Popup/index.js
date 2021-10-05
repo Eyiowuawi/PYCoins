@@ -10,7 +10,6 @@ import CryptoForm from "../../components/Popup/CryptoForm";
 const Popup = ({ closeModal, show }) => {
   const [account, setAccount] = useState("");
   const [name, setName] = useState("");
-  console.log(show);
 
   const handleBack = () => {
     setName("");

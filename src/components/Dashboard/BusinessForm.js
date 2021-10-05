@@ -18,10 +18,6 @@ const BusinessForm = ({ close, isLoading, data, show, submit, success }) => {
   //   if (data && success ) setSuccess(true);
   // }, [data, succes]);
 
-  console.log(data, "FROM DATA");
-  console.log(isLoading, "FROM ISLOADING");
-  console.log(success, "FROM SUCCESS");
-  // console.log(data, "FROM DATA")
   const [
     businessForm,
     setBusinessForm,

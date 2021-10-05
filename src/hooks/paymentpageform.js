@@ -5,7 +5,6 @@ import { useGetPaymentInfo } from "./../query/getPaymentInfo";
 import { useRouteMatch } from "react-router-dom";
 
 const usePaymentPageForm = (data) => {
-  // console.log(data);
   const [paymentPageForm, setPaymentPageForm] = useState({
     name: {
       value: "",

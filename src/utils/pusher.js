@@ -7,3 +7,4 @@ const pusher = new Pusher(process.env.REACT_APP_PUSHER_APP_KEY, {
 pusher.connection.bind("connected", (data) => console.log(data));
 
 export default pusher;
+// importScripts("https://js.pusher.com/beams/service-worker.js");

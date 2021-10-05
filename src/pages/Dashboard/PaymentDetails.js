@@ -3,7 +3,7 @@ import { useLocation, useRouteMatch } from "react-router-dom";
 import Back from "../../components/Back";
 import Balance from "./../../components/PaymentDetails/Balance";
 import Table from "../../components/Table";
-import { transactions } from "../../constants";
+// import { transactions } from "../../constants";
 import TransactionsDetails from "../../components/TransactionDetails";
 import TableResponsive from "./../../components/TableResponsive";
 import useWindowWidth from "../../hooks/windowwidth";
@@ -18,6 +18,9 @@ import { useGetUserWallets } from "./../../query/getCryptos";
 import usePaymentForm from "./../../hooks/paymentform";
 import useAmount from "./../../hooks/amountform";
 import PaymentForm from "./../../components/Payment/PaymentForm";
+import { useGetPaymentTransactions } from "./../../query/getPaymentTransactions";
+
+import { formatTransactions } from "../../utils/formatTransaction";
 
 const PaymentDetails = ({ history }) => {
   const [show, setShow] = useState(false);
@@ -25,7 +28,13 @@ const PaymentDetails = ({ history }) => {
   const [ctas, setCtas] = useState(false);
   const { params } = useRouteMatch();
   const { data, isLoading } = useGetUserPaymentLink(params.id);
-  console.log(data);
+  const { data: paymentData } = useGetPaymentTransactions(params.id);
+
+  const transactions = useMemo(() => {
+    if (paymentData?.length > 0) {
+      return formatTransactions(paymentData);
+    }
+  }, [paymentData]);
 
   const editDetails = useMemo(() => {
     const editParams = {
@@ -38,12 +47,16 @@ const PaymentDetails = ({ history }) => {
     return editParams;
   }, [data]);
   const { data: userData } = useGetUserWallets();
+
   const userAcceptedWallet = useMemo(() => {
     return userData;
   }, [userData]);
+
   const [isEdit, setIsEdit] = useState(false);
+
   const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
     usePaymentForm(userAcceptedWallet, editDetails);
+
   const [amountForm, setAmountForm] = useAmount(data?.paymentPage.amount);
 
   const {
@@ -75,6 +88,14 @@ const PaymentDetails = ({ history }) => {
     evt.preventDefault();
     disableMutate();
   };
+
+  const [selected, setSelected] = useState({});
+
+  const selectedTransaction = (id) => {
+    const transaction = transactions.find((item) => item.id === id);
+    setSelected(transaction);
+    setShow(true);
+  };
   return (
     <>
       <WithLoadingComponent isLoading={isLoading}>
@@ -91,13 +112,13 @@ const PaymentDetails = ({ history }) => {
           <Balance />
           <h3 className="title title-black mt-small mb-small">Transactions</h3>
           {width > 500 && (
-            <Table data={transactions} onclick={() => setShow(true)} />
+            <Table data={transactions} onclick={selectedTransaction} />
           )}
           {width <= 500 && <TableResponsive data={transactions} />}
           {show && (
             <TransactionsDetails
-              close={setShow}
-              onclick={() => setShow(true)}
+              close={() => setShow(false)}
+              details={selected}
             />
           )}
         </div>

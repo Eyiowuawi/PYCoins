@@ -2,10 +2,10 @@ import Tether from "../../assets/tether.svg";
 import Bitcoin from "../../assets/bitcoin.svg";
 import Ethereum from "../../assets/ethereum.svg";
 
-const Cryptocurrency = () => {
+const Cryptocurrency = ({ wallets }) => {
   return (
     <div className="crypto">
-      <div className="crypto_item">
+      {/* <div className="crypto_item">
         <div className="crypto_img crypto_img-1">
           <img src={Bitcoin} alt="Bitcoin" />
         </div>
@@ -31,7 +31,21 @@ const Cryptocurrency = () => {
           <p className="title title-grey">Tether Wallet</p>
           <p className="title title-grey">1,060 USD₮</p>
         </div>
-      </div>
+      </div> */}
+
+      {wallets?.map((item) => (
+        <div className="crypto_item">
+          <div className="crypto_img crypto_img-3">
+            <img src={item.img} alt="Bitcoin" />
+          </div>
+          <div className="crypto_content">
+            <p className="title title-grey">{item.name} Wallet</p>
+            <p className="title title-grey">
+              {Math.trunc(item.balance)} {item.symbol}
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

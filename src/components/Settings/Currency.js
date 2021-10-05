@@ -11,7 +11,6 @@ const Currency = () => {
   const { environment } = useContext(AppContext);
   const [selected, setSelected] = useState("");
   const data = useGetUserCryptos();
-  // console.log(data);
   const cryptos = useMemo(() => {
     if (data[0].data) {
       return data[0]?.data[environment];

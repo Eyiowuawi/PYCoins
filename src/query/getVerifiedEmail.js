@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import { verifyUser } from "../services/auth";
+import { toast } from "react-toastify";
 
 export const useVerifyEmail = (token, history) => {
   const req = useQuery(
@@ -11,7 +12,10 @@ export const useVerifyEmail = (token, history) => {
       retry: false,
       refetchOnMount: false,
       refetchOnWindowFocus: false,
-      onSuccess : () => history.push("/auth/login")
+      onSuccess: () => {
+        toast.success("Email verified. Redirecting");
+        history.push("/auth/login");
+      },
     }
   );
   return req;

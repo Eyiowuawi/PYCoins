@@ -41,7 +41,6 @@ export const verifyUser = async (token) => {
     );
     return data;
   } catch (error) {
-    console.log(error, "FROM ENDPOINT");
     throw new Error("processing error");
   }
 };

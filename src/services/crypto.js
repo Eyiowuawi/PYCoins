@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 export const getCryptos = async () => {
   try {
     const { data } = await cryptoBaseUrl.get("/");
-    // console.log(data);
     return data.crypto;
   } catch (error) {
     throw new Error("Error processing request");
@@ -14,7 +13,7 @@ export const getCryptos = async () => {
 export const getWallets = async () => {
   try {
     const { data } = await cryptoBaseUrl.get("/wallets");
-    return data;
+    return data.wallets;
   } catch (error) {
     throw new Error("Error processing request");
   }

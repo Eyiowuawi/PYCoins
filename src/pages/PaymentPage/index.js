@@ -20,6 +20,7 @@ import { processPaymentLink } from "../../services/paymentlink";
 import { useMutation } from "react-query";
 import WithErrorComponent from "./../../hoc/withError";
 import pusher from "./../../utils/pusher";
+import { addClassName } from "./../../utils/addClassName";
 
 const PaymentPage = ({ history }) => {
   const { params } = useRouteMatch();
@@ -29,17 +30,21 @@ const PaymentPage = ({ history }) => {
   const [paymentPageForm, setPaymentPageForm, formValid, setFormValid] =
     usePaymentForm(data?.paymentPage);
   const [show, setShow] = useState(false);
-  // const { fullname } = useContext(AppContext);
 
   const form = formGenerator(paymentPageForm, setPaymentPageForm, setFormValid);
 
   const { data: cryptoData } = useGetCrypto();
   const [processError, setProcessError] = useState();
+
   useEffect(() => {
     if (error?.message === "404") history.push("/pageNotFound");
     if (error?.message === "Error processing payment page")
       setProcessError(true);
   }, [error]);
+
+  useEffect(() => {
+    Notification.requestPermission();
+  }, []);
 
   const userCryptos = useMemo(() => {
     const environment = data?.paymentlink.environment;
@@ -50,20 +55,9 @@ const PaymentPage = ({ history }) => {
       cryptoData[environment]?.filter((item) => {
         return availableCrypto?.includes(item.slug);
       });
-    const joinedArr = [];
-    if (filteredCrypto?.length > 0) {
-      for (let item of filteredCrypto) {
-        for (let key of cryptos) {
-          if (key.slug === item.slug) {
-            joinedArr.push({
-              ...item,
-              ...key,
-            });
-          }
-        }
-      }
-    }
-    return joinedArr;
+
+    const addedCrypto = addClassName(filteredCrypto);
+    return addedCrypto;
   }, [data, cryptoData]);
 
   const [name, setName] = useState("");
@@ -80,6 +74,7 @@ const PaymentPage = ({ history }) => {
       const channel = pusher.subscribe(
         `payment-notification-${data?.paymentlink.environment}`
       );
+      console.log(message.reference);
       console.log(channel);
       channel.bind(`payment-${message.reference}`, function (data) {
         console.log(data);
@@ -87,13 +82,13 @@ const PaymentPage = ({ history }) => {
     },
   });
 
-  const handleProcessPaymentLink = (slug) => {
+  const handleProcessPaymentLink = async (slug) => {
     const paymentData = {};
     for (let key in paymentPageForm) {
       if (key === "amount") paymentData[key] = +paymentPageForm[key].value;
       else paymentData[key] = paymentPageForm[key].value;
     }
-    const { uuid } = userCryptos.find((item) => item.slug === slug);
+    const { uuid } = await userCryptos.find((item) => item.slug === slug);
     paymentData["crypto"] = uuid;
     const ref = data.paymentPage.reference;
     const environ = data.paymentlink.environment;
@@ -111,7 +106,6 @@ const PaymentPage = ({ history }) => {
               </div>
               <h3 className="title title-black mb-small">
                 {data?.paymentlink.pageName}
-                {/* Dabiri Mayowa */}
               </h3>
               <p className="title title-grey ta">
                 I am using this link generated with payercoins to accepting

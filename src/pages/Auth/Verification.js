@@ -35,8 +35,6 @@ const Verification = ({ history }) => {
     mutate(data);
   };
 
-  console.log(isError);
-
   if (isError) {
     return (
       <div className="auth_form">

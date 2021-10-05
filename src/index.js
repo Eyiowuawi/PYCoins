@@ -11,6 +11,8 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-toastify/dist/ReactToastify.min.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
+// worker;
+
 const queryClient = new QueryClient();
 ReactDOM.render(
   <QueryClientProvider client={queryClient}>
@@ -18,7 +20,7 @@ ReactDOM.render(
       <AppComponentContext>
         <React.StrictMode>
           <App />
-        
+
           <ReactQueryDevtools />
         </React.StrictMode>
       </AppComponentContext>

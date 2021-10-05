@@ -5,8 +5,6 @@ import WithProtectedRoute from "./hoc/withProtectedRoutes";
 import AuthLayout from "./layout/Auth";
 import DashboardLayout from "./layout/Dashboard";
 
-
-
 // Auth Components
 import Create from "./pages/Auth/Create";
 import PersonalForm from "./pages/Auth/PersonalForm";

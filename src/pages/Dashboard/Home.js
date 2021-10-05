@@ -21,6 +21,8 @@ import { QueryClient, useMutation } from "react-query";
 
 import { switchToBusiness } from "../../services/user";
 import WithErrorComponent from "./../../hoc/withError";
+import { useGetWallets } from "./../../query/getWallets";
+import { addClassName } from "./../../utils/addClassName";
 
 const Dashboard = ({ ...props }) => {
   const [show, setShow] = useState(false);
@@ -37,7 +39,13 @@ const Dashboard = ({ ...props }) => {
     });
   }, []);
 
-  const { mutate, data, isError, isLoading, isSuccess } = useMutation(
+  const {
+    mutate,
+    data,
+    isError,
+    isLoading: switchLoading,
+    isSuccess,
+  } = useMutation(
     (param) => switchToBusiness(param),
 
     {
@@ -48,45 +56,64 @@ const Dashboard = ({ ...props }) => {
     }
   );
 
+  const { data: walletData, isLoading } = useGetWallets();
+
+  console.log(walletData);
+  const wallets = useMemo(() => {
+    const mappedWallet = walletData?.map((item) => {
+      return {
+        ...item,
+        ...item.crypto,
+      };
+    });
+
+    if (mappedWallet?.length > 0) {
+      const addedWallet = addClassName(mappedWallet);
+      return addedWallet;
+    }
+  }, [walletData]);
+
   const handleSubmit = (evt, data) => {
     evt.preventDefault();
     mutate(data);
   };
 
   return (
-    <WithErrorComponent isError={isError}>
-      <div className="home">
-        <LandingHeader date={date} setShow={setShow} />
-        <div className="home_wallets">
-          <p className="title title-small">Wallet</p>
-          <Link to="/wallet" className="home_link">
-            <span className="link link-small">View All</span>
-            <RightArrow fill={"#48D189"} />
-          </Link>
+    <WithLoadingComponent isLoading={isLoading}>
+      <WithErrorComponent isError={isError}>
+        <div className="home">
+          <LandingHeader date={date} setShow={setShow} />
+          <div className="home_wallets">
+            <p className="title title-small">Wallet</p>
+            <Link to="/wallet" className="home_link">
+              <span className="link link-small">View All</span>
+              <RightArrow fill={"#48D189"} />
+            </Link>
+          </div>
+          <div className="home_container-crypto">
+            <CryptoCurrency wallets={wallets} />
+          </div>
+          <div className="home_empty">
+            <p className="title title-small mb-small">Recent Transactions </p>
+            {/* <LandingEmpty /> */}
+            {width > 500 && <Table data={transactions} />}
+            {width <= 500 && <TableResponsive data={transactions} />}
+          </div>
         </div>
-        <div className="home_container-crypto">
-          <CryptoCurrency />
-        </div>
-        <div className="home_empty">
-          <p className="title title-small mb-small">Recent Transactions </p>
-          {/* <LandingEmpty /> */}
-          {width > 500 && <Table data={transactions} />}
-          {width <= 500 && <TableResponsive data={transactions} />}
-        </div>
-      </div>
-      <>
-        {show && (
-          <BusinessForm
-            close={() => setShow(false)}
-            isLoading={isLoading}
-            data={data}
-            show={show}
-            submit={handleSubmit}
-            success={isSuccess}
-          />
-        )}
-      </>
-    </WithErrorComponent>
+        <>
+          {show && (
+            <BusinessForm
+              close={() => setShow(false)}
+              isLoading={switchLoading}
+              data={data}
+              show={show}
+              submit={handleSubmit}
+              success={isSuccess}
+            />
+          )}
+        </>
+      </WithErrorComponent>
+    </WithLoadingComponent>
   );
 };
 
