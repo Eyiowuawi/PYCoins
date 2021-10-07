@@ -18,7 +18,7 @@ const Table = ({ data, onclick }) => {
           <tr key={item.id} onClick={() => onclick(item.id)}>
             <td>{item.name}</td>
             <td>{item.email}</td>
-            <td>{Math.round(item.amount)}</td>
+            <td>{parseFloat(item.amount).toFixed(6)}</td>
             <td>{item.date}</td>
             <td>
               <span

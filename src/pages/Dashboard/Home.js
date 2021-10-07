@@ -57,6 +57,7 @@ const Dashboard = ({ ...props }) => {
   );
 
   const { data: walletData, isLoading } = useGetWallets();
+  console.log(walletData);
 
   const wallets = useMemo(() => {
     const mappedWallet = walletData?.map((item) => {

@@ -23,7 +23,7 @@ const Cryptocurrency = ({ wallets }) => {
           </div>
           <div className="wallets_crypto-footer">
             <p className="title title-grey">
-              {Math.trunc(item.balance)} {item.symbol}
+              {parseFloat(item.balance).toFixed(6)} {item.symbol}
             </p>
             <img src={Continue} alt="proceed" />
           </div>

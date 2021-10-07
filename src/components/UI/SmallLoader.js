@@ -1,12 +1,13 @@
 import Loader from "react-loader-spinner";
-const SmallLoader = ({ isLoading }) => {
+const SmallLoader = ({ isLoading, height, width }) => {
   return (
     <Loader
       type="Oval"
       color="#48d189"
-      height={30}
-      width={30}
+      height={height}
+      width={width}
       visible={isLoading}
+      // radius={0}
     />
   );
 };

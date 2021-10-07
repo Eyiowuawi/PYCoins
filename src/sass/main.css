@@ -1250,9 +1250,9 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: initial;
       -ms-flex-align: initial;
           align-items: initial;
@@ -1278,6 +1278,11 @@ button {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 3rem;
+}
+
+.tableresponsive_item .name {
+  -ms-flex-preferred-size: 100px;
+      flex-basis: 100px;
 }
 
 .tableresponsive_sign {
@@ -2962,6 +2967,10 @@ button {
   margin-top: 1rem;
 }
 
+.paymentpage_loader p {
+  font-weight: bold;
+}
+
 .paymentdetails {
   width: 100%;
 }
@@ -3048,23 +3057,25 @@ button {
     -webkit-box-shadow: 0px 1px 10px rgba(120, 118, 118, 0.15);
             box-shadow: 0px 1px 10px rgba(120, 118, 118, 0.15);
     border-radius: 5px;
-    padding: 1rem 0;
-    width: 130px;
+    padding: 1rem 0 0 0;
+    width: 150px;
+    margin-left: 0 !important;
   }
-  .paymentdetails_ctas div {
-    -ms-flex-item-align: stretch;
-        -ms-grid-row-align: stretch;
-        align-self: stretch;
-    padding: 0.7rem 0;
-    border-bottom: 1px solid #f8f8f8;
+  .paymentdetails_ctas button {
+    width: 100%;
+    margin-right: 0 !important;
+    padding: 0.7rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
-  .paymentdetails_ctas div:not(:last-of-type) {
-    margin-right: 0;
+  .paymentdetails_ctas button:not(:last-child) {
+    border-bottom: 1px solid #e5e9f2;
     margin-bottom: 1rem;
   }
-  .paymentdetails_ctas div svg {
-    -ms-flex-preferred-size: 25%;
-        flex-basis: 25%;
+  .paymentdetails_ctas button svg {
+    -ms-flex-preferred-size: 30%;
+        flex-basis: 30%;
   }
 }
 

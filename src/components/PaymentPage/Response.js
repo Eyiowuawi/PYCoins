@@ -1,13 +1,21 @@
 import Response from "./../UI/Response";
 
-import Img from "../../assets/success.svg";
+import success from "../../assets/success.svg";
 import failed from "../../assets/failed.svg";
 
-const Success = () => (
+const Success = ({ event }) => (
   <Response
-    img={failed}
-    title="Payment Successfull"
-    text="Your payment of NGN 10,000 was successful."
+    img={event === "Payment Completed" ? success : failed}
+    title={
+      event === "Payment Completed"
+        ? "Payment Successful"
+        : "Payment Incomplete"
+    }
+    text={
+      event === "Payment Completed"
+        ? "Your payment  was successful."
+        : "You made an imcomplete Payment"
+    }
   />
 );
 

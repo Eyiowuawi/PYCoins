@@ -4,17 +4,11 @@ import Sent from "../assets/sent.svg";
 const TableResponsive = ({ data, onclick }) => {
   return (
     <div className="tableresponsive">
-      {data.map((item) => (
+      {data?.map((item) => (
         <div key={item.id} className="tableresponsive_item" onClick={onclick}>
-          <div
-            className={`tableresponsive_sign ${
-              item.type === "Sent" ? "sent" : "received"
-            }`}
-          >
-            <img src={item.type === "Sent" ? Sent : Received} alt="Icon" />
-          </div>
+          <p className="td name">{item.name}</p>
           <div className="tableresponsive_details">
-            <p className="td"> {item.name} </p>
+            <p className="td"> {item.email} </p>
             <p className="td">{item.amount}</p>
           </div>
           <div className="tableresponsive_amount">

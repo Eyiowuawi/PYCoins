@@ -19,19 +19,18 @@
   <script>
 
     // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
 
-    var pusher = new Pusher('83be85a052a3b53cd783', {
-      cluster: 'us2'
-    });
+    // var pusher = new Pusher('83be85a052a3b53cd783', {
+    //   cluster: 'us2'
+    // });
 
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-      alert(JSON.stringify(data));
-    });
+    // var channel = pusher.subscribe('my-channel');
+    // channel.bind('my-event', function(data) {
+    //   alert(JSON.stringify(data));
+    // });
   </script>
 </head>
-  <title>Payercoins dashboard</title>
+<title>Payercoins dashboard</title>
 </head>
 
 <body>

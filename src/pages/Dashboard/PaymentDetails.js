@@ -30,6 +30,11 @@ const PaymentDetails = ({ history }) => {
   const { data, isLoading } = useGetUserPaymentLink(params.id);
   const { data: paymentData } = useGetPaymentTransactions(params.id);
 
+  const handleClick = (evt) => {
+    evt.stopPropagation();
+    setCtas(!ctas);
+  };
+
   const transactions = useMemo(() => {
     if (paymentData?.length > 0) {
       return formatTransactions(paymentData);
@@ -107,6 +112,7 @@ const PaymentDetails = ({ history }) => {
             ctas={ctas}
             handleDisable={handleDisable}
             handleEdit={() => setIsEdit(true)}
+            click={handleClick}
           />
           <h5 className="title title-black  ">Balance</h5>
           <Balance />

@@ -11,15 +11,16 @@ const PaymentProcess = ({
   close,
   cryptos,
   handlePayment,
-  name,
+  // name,
   processPageData,
-  setName,
+  setEvent,
   isLoading,
   isError,
+  event,
 }) => {
   const handleClose = () => {
     close(false);
-    setName("");
+    setEvent("");
   };
   return (
     <Modal close={handleClose}>
@@ -28,13 +29,20 @@ const PaymentProcess = ({
           cryptos={cryptos}
           header="Select Payment Method"
           title="PAY WITH"
-          name={name}
+          name={event}
           showForm={handlePayment}
         />
-        {name !== "" && (
-          <Pay data={processPageData} goBack={() => setName("")} />
+        {(event === "Awaiting Payment" || event === "Payment Seen") && (
+          <Pay
+            event={event}
+            data={processPageData}
+            goBack={() => setEvent("")}
+          />
         )}
       </WithLoadingComponent>
+      {(event === "Payment Completed" || event === "Payment Incomplete ") && (
+        <Success event={event} />
+      )}
     </Modal>
   );
 };

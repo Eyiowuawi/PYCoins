@@ -1,5 +1,5 @@
 .tableresponsive {
-  @include flex(column, flex-start, initial);
+  @include flex(column, center, initial);
 
   &_item {
     @include border(#e5e9f2);
@@ -12,6 +12,11 @@
     @include flex(row, flex-start, center);
 
     margin-bottom: 3rem;
+
+    .name {
+      // color: red;
+      flex-basis: 100px;
+    }
   }
 
   &_sign {

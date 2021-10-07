@@ -48,7 +48,7 @@ const Header = ({ showsidebar }) => {
             </>
           )}
 
-          <Arrowdropdown />
+          {/* <Arrowdropdown /> */}
         </div>
 
         <div className="header_mobile">
@@ -57,10 +57,8 @@ const Header = ({ showsidebar }) => {
             <img src={Logo} alt="Payercoins Logo" />
           </div>
           <div className="header_name_container">
-            <div className="header_name">JD</div>
-            <div className="header_mobile_arrow">
-              <Arrowdropdown />
-            </div>
+            <div className="header_name">{`${initials}`}</div>
+            <div className="header_mobile_arrow">{/* <Arrowdropdown /> */}</div>
           </div>
         </div>
       </div>

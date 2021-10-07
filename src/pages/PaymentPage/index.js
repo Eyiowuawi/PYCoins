@@ -21,6 +21,8 @@ import { useMutation } from "react-query";
 import WithErrorComponent from "./../../hoc/withError";
 import pusher from "./../../utils/pusher";
 import { addClassName } from "./../../utils/addClassName";
+import Pusher from "pusher-js";
+import { toast } from "react-toastify";
 
 const PaymentPage = ({ history }) => {
   const { params } = useRouteMatch();
@@ -62,7 +64,8 @@ const PaymentPage = ({ history }) => {
     }
   }, [data, cryptoData]);
 
-  const [name, setName] = useState("");
+  const [event, setEvent] = useState("");
+  // const [event, setEvent] = useState("Awaiting Payment");
 
   const {
     data: processLinkData,
@@ -71,18 +74,52 @@ const PaymentPage = ({ history }) => {
     isError: processLinkError,
   } = useMutation("processpagelink", (data) => processPaymentLink(data), {
     onSuccess: (message) => {
-      console.log(message);
-      setName("pay");
+      console.log("message");
+      setEvent("Awaiting Payment");
+
+      // setTimeout(() => {
+      //   setEvent("Payment Seen");
+      // }, 5000);
+      // setTimeout(() => {
+      //   setEvent("Payment Completed");
+      // }, 10000);
+
       const channel = pusher.subscribe(
         `payment-notification-${data?.paymentlink.environment}`
       );
-      console.log(message.reference);
-      console.log(channel);
-      channel.bind(`payment-${message.reference}`, function (data) {
+
+      channel.bind(`payment-${message.reference}`, function (details) {
+        const { data } = details;
         console.log(data);
+        if (data.event === "PAYMENT_SEEN") {
+          setEvent("Payment Seen");
+          let notification = new Notification("Payercoins", {
+            body: "Your payment has been seen",
+          });
+          toast.info("Your payment has been seen");
+        }
+        if (data.event === "PAYMENT_COMPLETED") {
+          setEvent("Payment Completed");
+          let notification = new Notification("Payercoins", {
+            body: "Your payment has been successfully completed",
+          });
+          toast.success("Your payment has been successfully completed");
+        }
+        if (data.event === "PAYMENT_INCOMPLETE") {
+          setEvent("Payment Incomplete ");
+          let notification = new Notification("Payercoins", {
+            body: "You made an incomplete payment",
+          });
+          toast.info("You made an incomplete payment");
+        }
       });
     },
   });
+
+  // Testing Purposes
+  // useEffect(() => {
+
+  // }, [])
 
   const handleProcessPaymentLink = async (slug) => {
     const paymentData = {};
@@ -131,11 +168,13 @@ const PaymentPage = ({ history }) => {
           cryptos={userCryptos}
           close={setShow}
           handlePayment={handleProcessPaymentLink}
-          name={name}
+          event={event}
+          setEvent={setEvent}
           processPageData={processLinkData}
-          setName={setName}
+          event={event}
           isLoading={processLinkLoading}
           isError={processLinkError}
+          event={event}
         />
       )}
     </>

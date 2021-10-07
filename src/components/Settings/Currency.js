@@ -72,6 +72,8 @@ const Currency = () => {
                   (deactivateLoading || activateLoading) &&
                   item.slug === selected
                 }
+                height={30}
+                width={30}
               />
             </div>
           ))}

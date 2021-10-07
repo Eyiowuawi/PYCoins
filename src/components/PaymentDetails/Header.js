@@ -1,10 +1,10 @@
 import { Copy, Delete, Edit, LeftArrow, Disable } from "../../icons";
-import Btns from "../../assets/btns.svg";
+import actionBtn from "../../assets/btns.svg";
 import handleCopy from "./../../utils/copytoclipboard";
 
 const PaymentHeader = ({
   ctas,
-  handleClick,
+  click,
   Btns,
   link,
   handleDelete,
@@ -23,7 +23,7 @@ const PaymentHeader = ({
           <Copy fill="#787676" />
           <p className="title title-grey">Copy Link</p>
         </button>
-        <button
+        {/* <button
           type="submit"
           role="button"
           aria-label="edit-button"
@@ -31,7 +31,7 @@ const PaymentHeader = ({
         >
           <Edit fill="#787676" />
           <p className="title title-grey">Edit</p>
-        </button>
+        </button> */}
         <button
           type="submit"
           role="button"
@@ -51,8 +51,8 @@ const PaymentHeader = ({
           <p className="delete">Delete</p>
         </button>
       </div>
-      <div onClick={handleClick} className="paymentdetails_actions">
-        <img src={Btns} alt="Click to copy, edit or delete link" />
+      <div onClick={click} className="paymentdetails_actions">
+        <img src={actionBtn} alt="Click to copy, edit or delete link" />
       </div>
     </div>
   );

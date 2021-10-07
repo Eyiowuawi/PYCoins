@@ -4,7 +4,7 @@ import ActionLabel from "./../UI/ActionLabel";
 import handleCopy from "./../../utils/copytoclipboard";
 import QrcodeGenerator from "../QrCode";
 import SmallLoader from "./../UI/SmallLoader";
-const Pay = ({ goBack, data }) => {
+const Pay = ({ goBack, data, event }) => {
   return (
     <div className="">
       <div className="popupform_back" onClick={goBack}>
@@ -42,8 +42,8 @@ const Pay = ({ goBack, data }) => {
         </div>
       </div>
       <div className="paymentpage_loader">
-        <SmallLoader isLoading={true} />
-        <p className="title title-grey ta"> Awaiting Payment </p>
+        <SmallLoader isLoading={true} height={50} width={50} />
+        <p className="title title-grey ta"> {event} </p>
       </div>
     </div>
   );
