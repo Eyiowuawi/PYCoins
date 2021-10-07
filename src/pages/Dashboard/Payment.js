@@ -19,7 +19,6 @@ import useAmount from "./../../hooks/amountform";
 import { createPaymentLink } from "./../../services/paymentlink";
 import { useQueryClient } from "react-query";
 import { useMutation } from "react-query";
-import useForceUpdate from "use-force-update";
 
 const Payment = ({ history, isLoading }) => {
   const [show, setShow] = useState(false);
@@ -31,8 +30,6 @@ const Payment = ({ history, isLoading }) => {
   const { data, isLoading: getLinksLoading } = useGetPaymentLinks();
 
   const { data: walletData } = useGetWallets();
-
-  const forceUpdate = useForceUpdate();
 
   useEffect(() => {
     if (data && !getLinksLoading) {
