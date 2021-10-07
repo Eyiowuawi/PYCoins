@@ -44,6 +44,7 @@ const PaymentDetails = ({ history }) => {
   }, [paymentData]);
 
   console.log(transactions, "TRA");
+  
 
   const editDetails = useMemo(() => {
     const editParams = {
