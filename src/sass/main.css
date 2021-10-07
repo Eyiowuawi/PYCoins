@@ -714,13 +714,14 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 1px solid #E5E9F2;
+  border: 1px solid #e5e9f2;
   border-radius: 5px;
   padding: 8rem 0;
 }
 
 .empty p {
-  width: 35%;
+  width: 300px;
+  max-width: 90%;
   text-align: center;
 }
 

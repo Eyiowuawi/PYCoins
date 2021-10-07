@@ -2,11 +2,12 @@
   background-color: $color-white;
   @include flex(column, center, center);
 
-  @include border(#E5E9F2);
+  @include border(#e5e9f2);
   border-radius: 5px;
   padding: 8rem 0;
-  p{
-      width: 35%;
-      text-align: center;
+  p {
+    width: 300px;
+    max-width: 90%;
+    text-align: center;
   }
 }
