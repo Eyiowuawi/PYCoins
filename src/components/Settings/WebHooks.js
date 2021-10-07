@@ -71,7 +71,7 @@ const Webhooks = () => {
           <Button bg={"button_primary"}>Save Changes</Button>
         </form>
       </div>
-      <div className="mt-small">
+      <div className="mt-bg">
         <h3 className="title title-black">API Configuration - Test Mode </h3>
         <form className="settingsform">
           <div className="settingsform-group ">
@@ -83,7 +83,7 @@ const Webhooks = () => {
               <View />
             </ActionLabel>
           </div>
-          <div className="settingsform-group mt-bg">
+          <div className="settingsform-group ">
             <label className="title title-grey">Test Public Key</label>
             <ActionLabel
               text={apiKeys?.test_keys.public_key}

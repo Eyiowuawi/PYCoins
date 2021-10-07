@@ -76,7 +76,7 @@ button {
 }
 
 .mt-bg {
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
 
 @-webkit-keyframes slideup {
@@ -357,7 +357,7 @@ button {
 .form_input, .form_textarea, .form_upload-label {
   display: block;
   width: 100%;
-  font-size: 1rem;
+  font-size: 1.5rem;
   border: 1px solid #e5e9f2;
   padding: 1rem;
   border-radius: 8px;
@@ -3053,7 +3053,7 @@ button {
 
 .settings {
   width: 100%;
-  padding-bottom: 3rem;
+  padding-bottom: 5rem;
 }
 
 .settings_nav {
