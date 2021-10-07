@@ -4,22 +4,27 @@ import Toggle from "./Switch";
 
 import { Link } from "react-router-dom";
 
-const Arrowdropdown = () => {
+const Arrowdropdown = ({ checked, param, toggle, disabled }) => {
   return (
     <div className="dropdown">
-      <Arrow />
       <div className="dropdown_container">
-        <div className="dropdown_mobile">
+        <div className="dropdown_env">
           <p className="header-text header-text-grey">Test</p>
-          <Toggle className="dropdown_toggle" />
+          <Toggle
+            className="dropdown_toggle"
+            checked={checked}
+            param={param}
+            toggle={toggle}
+            disabled={disabled}
+            height={25}
+            width={50}
+          />
           <p className="header-text header-text-grey">Live</p>
         </div>
-        <div className="dropdown_logout">
-          <Link to="/auth/create" className="sidebar_footer">
-            <Logout />
-            <p className="dropdown_logout_text">Logout</p>
-          </Link>
-        </div>
+        <Link to="/auth/create" className="sidebar_footer">
+          <Logout />
+          <p className="header-text header-text-grey">Logout</p>
+        </Link>
       </div>
     </div>
   );

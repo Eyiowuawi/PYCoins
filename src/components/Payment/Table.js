@@ -12,7 +12,7 @@ const PaymentTable = ({ data, gotoDetails }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item) => (
+        {data?.map((item) => (
           <tr
             key={item._id}
             onClick={() => gotoDetails(item.paymentSlug, item._id)}

@@ -18,7 +18,7 @@
   }
 
   &_container {
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
   }
 
   &_desktop {
@@ -38,6 +38,10 @@
     justify-content: space-between;
     @include respond(tab-port) {
       display: flex;
+    }
+
+    &_arrow {
+      position: relative;
     }
   }
 
@@ -59,104 +63,3 @@
     }
   }
 }
-/*media query mobile*/
-// @media only screen and (max-width: 800px) {
-//   .header_mobile {
-//     display: flex;
-
-//     padding: 20px;
-//   }
-//   .header_mobile-container,
-//   .header_name_container {
-//     display: flex;
-//     flex-direction: row;
-//     gap: 10px;
-//   }
-//   .header_mobile-bars,
-//   .header_logo,
-//   .header_name,
-//   .header_mobile_arrow {
-//     padding: 10px;
-//   }
-// }
-
-// @media only screen and (max-width: 700px) {
-//   .header {
-//     width:100%;
-//   }
-//   .header_desktop {
-//     display:none;
-//   }
-
-// }
-
-// @media only screen and (max-width: 600px) {
-//   .header {
-//     width: 100%;
-//   }
-//   .header_desktop {
-//     display: none;
-//   }
-//   .header_mobile {
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     justify-content: space-between;
-//     padding: 20px;
-//   }
-//   .header_mobile-container,
-//   .header_name_container {
-//     display: flex;
-//     flex-direction: row;
-//   }
-//   .header_mobile-bars,
-//   .header_logo,
-//   .header_name,
-//   .header_mobile_arrow {
-//     padding: 10px;
-//   }
-
-//   .header_container {
-//     display: none;
-//   }
-
-//   .header_mobile {
-//     display: flex;
-//   }
-// }
-
-// @media only screen and (max-width: 360px) {
-//   .header {
-//     width: 100%;
-//   }
-//   .header_desktop {
-//     display: none;
-//   }
-//   .header_mobile {
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     justify-content: space-between;
-//     padding: 20px;
-//   }
-//   .header_mobile-container,
-//   .header_name_container {
-//     display: flex;
-//     flex-direction: row;
-//   }
-//   .header_mobile-bars,
-//   .header_logo,
-//   .header_name,
-//   .header_mobile_arrow {
-//     padding: 10px;
-//   }
-//   .header_container {
-//     display: none;
-//   }
-//   .header_mobile {
-//     display: flex;
-//   }
-//   .header_container {
-//     display: none;
-//   }
-// }

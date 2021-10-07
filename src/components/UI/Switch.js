@@ -1,7 +1,14 @@
 import Switch from "react-switch";
 import { useState } from "react";
 
-const Toggle = ({ checked = false, toggle, param, disabled }) => {
+const Toggle = ({
+  checked = false,
+  toggle,
+  param,
+  disabled,
+  height,
+  width,
+}) => {
   return (
     <label className="toggle">
       <Switch
@@ -12,6 +19,8 @@ const Toggle = ({ checked = false, toggle, param, disabled }) => {
         checkedIcon={false}
         uncheckedIcon={false}
         disabled={disabled}
+        height={height}
+        width={width}
       />
     </label>
   );

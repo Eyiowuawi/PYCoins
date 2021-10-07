@@ -19,6 +19,8 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
 
   const [show, setShow] = useState(false);
 
+  const [dropdown, setDropdown] = useState(false);
+
   const branch = matchRoutes(route.routes, location.pathname);
 
   if (branch.length < 1) history.push("/pageNotFound");
@@ -26,6 +28,14 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
   useEffect(async () => {
     await autoLogout(history);
     await getProcessedPayment();
+  }, []);
+
+  useEffect(() => {
+    const show = setTimeout(() => {
+      setShowPopup(true);
+    }, 5000);
+
+    return () => clearTimeout(show);
   }, []);
 
   const { data, isLoading } = useGetUserEnvironment();
@@ -39,14 +49,6 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
     return results.some((result) => result.isError);
   }, [results]);
 
-  useEffect(() => {
-    const show = setTimeout(() => {
-      setShowPopup(true);
-    }, 5000);
-
-    return () => clearTimeout(show);
-  }, []);
-
   return (
     <>
       <div className="dashboard">
@@ -54,10 +56,14 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
           <Sidebar show={show} close={() => setShow(false)} />
           {show && <MobileSidebar close={() => setShow(false)} />}
           <div className="dashboard_content">
-            <Header showsidebar={() => setShow(true)} />
+            <Header
+              showsidebar={() => setShow(true)}
+              dropdown={dropdown}
+              close={() => setDropdown(!dropdown)}
+            />
             <WithLoadingComponent isLoading={isFetching}>
               <WithErrorComponent isError={isError}>
-                <main className="main">
+                <main className="main" onClick={() => setDropdown(false)}>
                   <div className="main_container">
                     {renderRoutes(route.routes)}
                   </div>
