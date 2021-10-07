@@ -35,8 +35,8 @@ const usePaymentForm = (userWallets, editDetails) => {
       label: "Select Currency",
       options: userWallets?.map((item) => {
         return {
-          value: item,
-          displayValue: item,
+          value: item.toUpperCase(),
+          displayValue: item.toUpperCase(),
         };
       }),
       validation: required,
@@ -54,7 +54,7 @@ const usePaymentForm = (userWallets, editDetails) => {
           options: userWallets?.map((item) => {
             return {
               value: item,
-              displayValue: item,
+              displayValue: item.toUpperCase(),
             };
           }),
         },

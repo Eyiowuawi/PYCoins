@@ -6,7 +6,7 @@ const Cryptocurrency = ({ wallets }) => {
   return (
     <div className="crypto">
       {wallets?.map((item) => (
-        <div className="crypto_item">
+        <div className="crypto_item" key={item._id}>
           <div className="crypto_img crypto_img-3">
             <img src={item.img} alt="Bitcoin" />
           </div>

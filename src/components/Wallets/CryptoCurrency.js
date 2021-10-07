@@ -14,6 +14,7 @@ const Cryptocurrency = ({ wallets }) => {
             search: `?currency=${item.slug}`,
           }}
           className="wallets_crypto-item"
+          key={item._id}
         >
           <div className="wallets_crypto-header">
             <div className="crypto_img crypto_img-2">

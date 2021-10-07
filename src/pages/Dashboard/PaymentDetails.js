@@ -43,6 +43,8 @@ const PaymentDetails = ({ history }) => {
     }
   }, [paymentData]);
 
+  console.log(paymentData);
+
   const editDetails = useMemo(() => {
     const editParams = {
       pageName: data?.paymentPage.metaData.name,
