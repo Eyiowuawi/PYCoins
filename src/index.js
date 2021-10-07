@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import AppComponentContext from "./context";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+// import { ReactQueryDevtools } from "react-query/devtools";
 import "react-toastify/dist/ReactToastify.css";
 import "react-toastify/dist/ReactToastify.min.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -21,7 +21,7 @@ ReactDOM.render(
         <React.StrictMode>
           <App />
 
-          <ReactQueryDevtools />
+          {/* <ReactQueryDevtools /> */}
         </React.StrictMode>
       </AppComponentContext>
     </BrowserRouter>

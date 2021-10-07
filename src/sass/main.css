@@ -64,7 +64,7 @@ button {
 }
 
 .mb-smaller {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mt-small {
@@ -72,7 +72,11 @@ button {
 }
 
 .ml-small {
-  margin-left: .3rem;
+  margin-left: 0.3rem;
+}
+
+.mt-bg {
+  margin-top: 3rem;
 }
 
 @-webkit-keyframes slideup {
@@ -3049,6 +3053,7 @@ button {
 
 .settings {
   width: 100%;
+  padding-bottom: 3rem;
 }
 
 .settings_nav {
@@ -3094,7 +3099,7 @@ button {
   background-color: #333333;
   color: #ffffff;
   border-radius: 100px;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 .settings_pages {

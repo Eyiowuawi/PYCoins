@@ -1,6 +1,6 @@
 .settings {
   width: 100%;
-
+  padding-bottom: 3rem;
   &_nav {
     width: 100%;
   }
@@ -13,10 +13,9 @@
     @include flex(row, stretch, center);
     overflow-x: auto;
 
-
-    &::-webkit-scrollbar{
+    &::-webkit-scrollbar {
       width: 0;
-      height: 0
+      height: 0;
     }
   }
 
@@ -28,16 +27,14 @@
     }
   }
 
-
-  &_active{
-     background-color:$color-black;
-     color: $color-white;
-     border-radius: 100px;
-     padding: .5rem
+  &_active {
+    background-color: $color-black;
+    color: $color-white;
+    border-radius: 100px;
+    padding: 0.5rem;
   }
 
-  &_pages{
-      margin-top: 4rem;
-    
+  &_pages {
+    margin-top: 4rem;
   }
 }

@@ -166,7 +166,7 @@ const General = ({ profileimg, history }) => {
           Save Changes
         </Button>
       </form>
-      <>
+      <div className="mt-bg">
         <h3 className="title title-black mt-small">Change Password</h3>
         <form className="mt-small settingsform" onSubmit={handleUpdatePassword}>
           {changePassword}
@@ -179,9 +179,9 @@ const General = ({ profileimg, history }) => {
             Save Changes
           </Button>
         </form>
-      </>
+      </div>
       {profile.user?.userType === "business" && (
-        <>
+        <div className="mt-bg">
           <h3 className="title title-black mt-small">Business Information</h3>
           <form
             className="mt-small settingsform"
@@ -197,7 +197,7 @@ const General = ({ profileimg, history }) => {
               Save Changes
             </Button>
           </form>
-        </>
+        </div>
       )}
     </div>
   );
