@@ -30,7 +30,8 @@ const PaymentDetails = ({ history }) => {
   const [ctas, setCtas] = useState(false);
   const { params } = useRouteMatch();
   const { data, isLoading } = useGetUserPaymentLink(params.id);
-  const { data: paymentData } = useGetPaymentTransactions(params.id);
+  const { data: paymentData, isFetching: linkFetching } =
+    useGetPaymentTransactions(params.id);
 
   const handleClick = (evt) => {
     evt.stopPropagation();
@@ -44,7 +45,6 @@ const PaymentDetails = ({ history }) => {
   }, [paymentData]);
 
   console.log(transactions, "TRA");
-  
 
   const editDetails = useMemo(() => {
     const editParams = {
@@ -107,7 +107,7 @@ const PaymentDetails = ({ history }) => {
   };
   return (
     <>
-      <WithLoadingComponent isLoading={isLoading}>
+      <WithLoadingComponent isLoading={linkFetching}>
         <div className="paymentdetails" onClick={() => setCtas(false)}>
           <Back to="/payment/pay" title="Back" />
           <PaymentHeader
