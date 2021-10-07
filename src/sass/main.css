@@ -2845,6 +2845,12 @@ button {
           align-items: center;
 }
 
+@media (max-width: 767px) {
+  .paymentpage {
+    padding: 1rem;
+  }
+}
+
 .paymentpage_img {
   border: 3px solid #ffffff;
   height: 100px;
@@ -2861,7 +2867,7 @@ button {
 
 .paymentpage .ta {
   width: 80%;
-  font-size: 20px;
+  font-size: 1.4rem;
   font-weight: 600;
 }
 
