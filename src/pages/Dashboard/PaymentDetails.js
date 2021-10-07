@@ -43,7 +43,7 @@ const PaymentDetails = ({ history }) => {
     }
   }, [paymentData]);
 
-  console.log(paymentData);
+  console.log(transactions, "TRA");
 
   const editDetails = useMemo(() => {
     const editParams = {
@@ -121,7 +121,7 @@ const PaymentDetails = ({ history }) => {
           <Balance />
           <h3 className="title title-black mt-small mb-small">Transactions</h3>
 
-          {transactions?.length < 1 && (
+          {(transactions?.length < 1 || !transactions) && (
             <Empty>
               <img src={empty} alt="Empty State" />
               <h3 className="title title-black mb-small mt-small">
@@ -133,7 +133,7 @@ const PaymentDetails = ({ history }) => {
               </p>
             </Empty>
           )}
-          {transactions?.length > 0 && (
+          {(transactions?.length < 1 || !transactions) && (
             <>
               {width > 500 && (
                 <Table data={transactions} onclick={selectedTransaction} />

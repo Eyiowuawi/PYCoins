@@ -38,8 +38,11 @@
     margin: auto;
     display: flex;
 
-   *:not(:last-child){
-     margin-right: 1rem
-   }
+    *:not(:last-child) {
+      margin-right: 1.5rem;
+    }
+    @media screen and(max-width: 700px) {
+      width: 90% !important;
+    }
   }
 }
