@@ -3,6 +3,7 @@ import { useLocation, useRouteMatch } from "react-router-dom";
 import Back from "../../components/Back";
 import Balance from "./../../components/PaymentDetails/Balance";
 import Table from "../../components/Table";
+import Empty from "../../components/Empty";
 // import { transactions } from "../../constants";
 import TransactionsDetails from "../../components/TransactionDetails";
 import TableResponsive from "./../../components/TableResponsive";
@@ -19,6 +20,7 @@ import usePaymentForm from "./../../hooks/paymentform";
 import useAmount from "./../../hooks/amountform";
 import PaymentForm from "./../../components/Payment/PaymentForm";
 import { useGetPaymentTransactions } from "./../../query/getPaymentTransactions";
+import empty from "../../assets/empty.svg";
 
 import { formatTransactions } from "../../utils/formatTransaction";
 
@@ -45,12 +47,11 @@ const PaymentDetails = ({ history }) => {
     const editParams = {
       pageName: data?.paymentPage.metaData.name,
       desc: data?.paymentPage.metaData.description,
-
       cryptos: data?.paymentPage.availableCrypto,
-      // amount: data?.paymentPage.amount,
     };
     return editParams;
   }, [data]);
+
   const { data: userData } = useGetUserWallets();
 
   const userAcceptedWallet = useMemo(() => {
@@ -117,10 +118,27 @@ const PaymentDetails = ({ history }) => {
           <h5 className="title title-black  ">Balance</h5>
           <Balance />
           <h3 className="title title-black mt-small mb-small">Transactions</h3>
-          {width > 500 && (
-            <Table data={transactions} onclick={selectedTransaction} />
+
+          {transactions?.length < 1 && (
+            <Empty>
+              <img src={empty} alt="Empty State" />
+              <h3 className="title title-black mb-small mt-small">
+                You don't have any transaction yet
+              </h3>
+              <p className="title title-grey ">
+                Create a payment link to start requesting money from friends,
+                family, customers or anyone anywhere around the world.
+              </p>
+            </Empty>
           )}
-          {width <= 500 && <TableResponsive data={transactions} />}
+          {transactions?.length > 0 && (
+            <>
+              {width > 500 && (
+                <Table data={transactions} onclick={selectedTransaction} />
+              )}
+              {width <= 500 && <TableResponsive data={transactions} />}
+            </>
+          )}
           {show && (
             <TransactionsDetails
               close={() => setShow(false)}
