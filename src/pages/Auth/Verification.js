@@ -4,7 +4,7 @@ import { useVerifyEmail } from "../../query/getVerifiedEmail";
 import { useMutation } from "react-query";
 import { resendEmailVerify } from "../../services/auth";
 import useForgotPasswordForm from "./../../hooks/forgotpasswordform";
-import formGenerator from "./../../utils/formgenerator";
+import formGenerator from "./../../utils/formGenerator";
 import Button from "./../../components/UI/Button";
 import AuthFooter from "./../../components/Auth/AuthFooter";
 

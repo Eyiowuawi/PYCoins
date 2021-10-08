@@ -8,7 +8,7 @@ import Select from "./../../components/PaymentPage/Select";
 import Pay from "./../../components/PaymentPage/Pay";
 import PaymentProcess from "../../components/PaymentPage";
 import { useState, useMemo } from "react";
-import formGenerator from "../../utils/formgenerator";
+import formGenerator from "../../utils/formGenerator";
 import WithLoadingComponent from "./../../hoc/withLoading";
 import { AppContext } from "./../../context/index";
 import { useRouteMatch } from "react-router-dom";

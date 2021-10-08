@@ -1,3 +1,4 @@
+import { lazy } from "react";
 // Protected Route HOC
 import WithProtectedRoute from "./hoc/withProtectedRoutes";
 
@@ -6,25 +7,24 @@ import AuthLayout from "./layout/Auth";
 import DashboardLayout from "./layout/Dashboard";
 
 // Auth Components
-import Create from "./pages/Auth/Create";
-import PersonalForm from "./pages/Auth/PersonalForm";
-import BusinessForm from "./pages/Auth/BusinessForm";
-import Login from "./pages/Auth/Login";
-import ForgotPassword from "./pages/Auth/ForgotPassword";
-import ResetPassword from "./pages/Auth/ResetPassword";
-import Verification from "./pages/Auth/Verification";
+const Login = lazy(() => import("./pages/Auth/Login"));
+const Create = lazy(() => import("./pages/Auth/Create"));
+const PersonalForm = lazy(() => import("./pages/Auth/PersonalForm"));
+const BusinessForm = lazy(() => import("./pages/Auth/BusinessForm"));
+const ForgotPassword = lazy(() => import("./pages/Auth/ForgotPassword"));
+const ResetPassword = lazy(() => import("./pages/Auth/ResetPassword"));
+const Verification = lazy(() => import("./pages/Auth/Verification"));
 
-// Dashboard components
-import Home from "./pages/Dashboard/Home";
-import Payment from "./pages/Dashboard/Payment";
-import Wallet from "./pages/Dashboard/Wallet";
-import Settings from "./pages/Dashboard/Settings";
-import CryptoDetails from "./pages/Dashboard/CryptoDetails";
-import PaymentDetails from "./pages/Dashboard/PaymentDetails";
+// Dashboard Components
+const Home = lazy(() => import("./pages/Dashboard/Home"));
+const Payment = lazy(() => import("./pages/Dashboard/Payment"));
+const Wallet = lazy(() => import("./pages/Dashboard/Wallet"));
+const CryptoDetails = lazy(() => import("./pages/Dashboard/CryptoDetails"));
+const PaymentDetails = lazy(() => import("./pages/Dashboard/PaymentDetails"));
+const Settings = lazy(() => import("./pages/Dashboard/Settings"));
 
-import PaymentPage from "./pages/PaymentPage";
-
-import NotFound from "./components/UI/404";
+const PaymentPage = lazy(() => import("./pages/PaymentPage"));
+const NotFound = lazy(() => import("./components/UI/404"));
 
 const routes = [
   {

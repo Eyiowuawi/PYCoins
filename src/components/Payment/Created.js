@@ -3,7 +3,7 @@ import Success from "../../assets/success.svg";
 import { Copy } from "../../icons";
 import Received from "../../assets/received.svg";
 import Button from "./../UI/Button";
-import handleClick from "./../../utils/copytoclipboard";
+import handleClick from "../../utils/copyToClipboard";
 const Created = ({ data }) => {
   return (
     <Response

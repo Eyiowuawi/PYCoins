@@ -3,7 +3,7 @@ import { useLocation, Redirect } from "react-router-dom";
 import { useMutation } from "react-query";
 import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
-import formGenerator from "../../utils/formgenerator";
+import formGenerator from "../../utils/formGenerator";
 import useResetPasswordForm from "./../../hooks/resetpasswordform";
 import { resetPassword } from "../../services/auth";
 
@@ -23,9 +23,12 @@ const ResetPassword = () => {
   const { search } = useLocation();
   const token = search.substring(19);
 
-  const { mutate, isLoading } = useMutation(data => resetPassword(data, token), {
-    mutationKey: "reset-password"
-  })
+  const { mutate, isLoading } = useMutation(
+    (data) => resetPassword(data, token),
+    {
+      mutationKey: "reset-password",
+    }
+  );
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

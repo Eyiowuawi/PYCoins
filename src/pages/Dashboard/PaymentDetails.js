@@ -32,19 +32,10 @@ const PaymentDetails = ({ history }) => {
   const { data, isLoading } = useGetUserPaymentLink(params.id);
   const { data: paymentData, isFetching: linkFetching } =
     useGetPaymentTransactions(params.id);
+  const [isEdit, setIsEdit] = useState(false);
 
-  const handleClick = (evt) => {
-    evt.stopPropagation();
-    setCtas(!ctas);
-  };
 
-  const transactions = useMemo(() => {
-    if (paymentData?.length > 0) {
-      return formatTransactions(paymentData);
-    }
-  }, [paymentData]);
 
-  console.log(transactions, "TRA");
 
   const editDetails = useMemo(() => {
     const editParams = {
@@ -60,8 +51,26 @@ const PaymentDetails = ({ history }) => {
   const userAcceptedWallet = useMemo(() => {
     return userData;
   }, [userData]);
+  
 
-  const [isEdit, setIsEdit] = useState(false);
+  
+  const transactions = useMemo(() => {
+    if (paymentData?.length > 0) {
+      return formatTransactions(paymentData);
+    }
+  }, [paymentData]);
+
+  console.log(transactions)
+
+
+  
+  const updatedData = useMemo(() => {
+    const updatedPaymentLink = data && addPaymentUrl(data?.paymentlink);
+
+    return updatedPaymentLink;
+  }, [data]);
+
+
 
   const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
     usePaymentForm(userAcceptedWallet, editDetails);
@@ -82,11 +91,14 @@ const PaymentDetails = ({ history }) => {
       toast.info("Deleting Link", { autoClose: !deleteLoading });
   }, [deleteLoading]);
 
-  const updatedData = useMemo(() => {
-    const updatedPaymentLink = data && addPaymentUrl(data?.paymentlink);
 
-    return updatedPaymentLink;
-  }, [data]);
+
+  // Function Handlers
+
+   const handleClick = (evt) => {
+    evt.stopPropagation();
+    setCtas(!ctas);
+  };
 
   const handleDelete = (evt) => {
     evt.preventDefault();
@@ -134,7 +146,7 @@ const PaymentDetails = ({ history }) => {
               </p>
             </Empty>
           )}
-          {(transactions?.length < 1 || !transactions) && (
+          {(transactions?.length > 0 ) && (
             <>
               {width > 500 && (
                 <Table data={transactions} onclick={selectedTransaction} />

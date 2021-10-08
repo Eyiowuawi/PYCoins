@@ -4,7 +4,7 @@ import Modal from "../UI/Modal";
 import Label from "../UI/Label";
 import Button from "../UI/Button";
 import Created from "./Created";
-import formGenerator from "../../utils/formgenerator";
+import formGenerator from "../../utils/formGenerator";
 import useAmount from "./../../hooks/amountform";
 import { useMutation, useQueryClient } from "react-query";
 import { createPaymentLink } from "./../../services/paymentlink";

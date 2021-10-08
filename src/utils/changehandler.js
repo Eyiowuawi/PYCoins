@@ -1,3 +1,5 @@
+import show from "../assets/show.svg";
+import hide from "../assets/hide.svg";
 export const changeHandler = (
   event,
   elementID,
@@ -58,11 +60,12 @@ export const handleBlur = (elementID, formType, updateFunction) => {
 };
 
 export const showPassword = (evt, elementID, formType, formUpdateFunc) => {
-  evt.stopPropagation();
+  // evt.stopPropagation();
   const updatedFormElement = {
     ...formType[elementID],
     show: !formType[elementID].show,
     type: formType[elementID].show ? "text" : "password",
+    image: formType[elementID].show ? hide : show,
   };
 
   const updatedForm = {

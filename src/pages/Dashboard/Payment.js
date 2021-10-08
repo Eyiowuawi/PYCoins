@@ -10,7 +10,7 @@ import { paymentTable } from "../../constants";
 import PaymentTableResponsive from "./../../components/Payment/PaymentTable";
 import useWindowWidth from "./../../hooks/windowwidth";
 import { useGetPaymentLinks } from "./../../query/getPaymentLinks";
-import { dateFormatter } from "./../../utils/dateformatter";
+import { dateFormatter } from "./../../utils/dateFormatter";
 import WithLoadingComponent from "./../../hoc/withLoading";
 import { addPaymentUrl } from "./../../utils/addPaymentUrl";
 import { useGetWallets } from "./../../query/getWallets";

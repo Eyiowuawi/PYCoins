@@ -95,9 +95,9 @@ const Dashboard = ({ ...props }) => {
           </div>
           <div className="home_empty">
             <p className="title title-small mb-small">Recent Transactions </p>
-            {/* <LandingEmpty /> */}
-            {width > 500 && <Table data={transactions} />}
-            {width <= 500 && <TableResponsive data={transactions} />}
+            <LandingEmpty />
+            {/* {width > 500 && <Table data={transactions} onclick={() => {}} />}
+            {width <= 500 && <TableResponsive data={transactions} />} */}
           </div>
         </div>
         <>

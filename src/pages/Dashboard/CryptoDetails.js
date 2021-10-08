@@ -9,6 +9,7 @@ import WithDraw from "../../components/CryptoDetails/Withdraw";
 import Back from "../../components/Back";
 import TableResponsive from "./../../components/TableResponsive";
 import Details from "./../../components/CryptoDetails/details";
+import LandingEmpty from "./../../components/Dashboard/Empty";
 const CryptoDetails = () => {
   const [show, setShow] = useState(false);
   const [fund, setFund] = useState(false);
@@ -30,10 +31,10 @@ const CryptoDetails = () => {
       <div className="cryptodetails">
         <Back to="/wallet" title="Wallet" />
         <Details crypto={crypto} setFund={setFund} setWithdraw={setWithdraw} />
-
         <div className="mt-small">
           <h3 className="title title-black mb-small">Transaction </h3>
-          {width > 500 && (
+          <LandingEmpty />
+          {/* {width > 500 && (
             <Table data={transactions} onclick={() => setShow(true)} />
           )}
           {width <= 500 && (
@@ -41,10 +42,11 @@ const CryptoDetails = () => {
               data={transactions}
               onclick={() => setShow(true)}
             />
-          )}
+          )} */}
         </div>
       </div>
-      {show && <TransactionsDetails close={setShow} />}
+
+      {show && <TransactionsDetails close={() => setShow(false)} />}
       {fund && <FundWallet close={setFund} />}
       {withdraw && <WithDraw currency={currency} close={setWithdraw} />}
     </>

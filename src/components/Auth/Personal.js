@@ -1,7 +1,7 @@
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import AuthFooter from "./AuthFooter";
-import formGenerator from "./../../utils/formgenerator";
+import formGenerator from "./../../utils/formGenerator";
 
 const PersonalInfo = ({
   personalform,

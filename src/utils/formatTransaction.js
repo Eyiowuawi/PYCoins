@@ -1,4 +1,4 @@
-import { dateFormatter } from "./dateformatter";
+import { dateFormatter } from "./dateFormatter";
 export const formatTransactions = (data) => {
   const real = [];
   data.forEach((item) => {

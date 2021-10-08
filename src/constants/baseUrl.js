@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { errorHandler } from "./../utils/errorhandler";
+import { errorHandler } from "../utils/errorHandler";
 
 const url = "https://api.payercoins.com/api/v1";
 

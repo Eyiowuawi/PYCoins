@@ -1,7 +1,7 @@
 import { authBaseUrl } from "../constants/baseUrl";
 import { toast } from "react-toastify";
 // import jwt from "jsonwebtoken";
-import { createAutoLogout } from "../utils/createautologout";
+import { createAutoLogout } from "../utils/createAutoLogout";
 
 // TEST ACCOUNT
 

@@ -3,7 +3,7 @@ import Input from "../UI/Input";
 import Button from "./../UI/Button";
 import useGeneralForm from "./../../hooks/generalform";
 import SettingsForm from "./Form";
-import { changeHandler, handleBlur } from "../../utils/changehandler";
+import { changeHandler, handleBlur } from "../../utils/changeHandler";
 import settingsFormGenerator from "./../../utils/settingsFormGenerator";
 import { useState, useContext } from "react";
 import { useMutation, useQueryClient } from "react-query";

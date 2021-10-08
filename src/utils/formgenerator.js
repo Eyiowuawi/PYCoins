@@ -1,5 +1,5 @@
 import Input from "../components/UI/Input";
-import { changeHandler, handleBlur, showPassword } from "./changehandler";
+import { changeHandler, handleBlur, showPassword } from "./changeHandler";
 
 const formGenerator = (formType, formFunc, validForm) => {
   const formArr = [];

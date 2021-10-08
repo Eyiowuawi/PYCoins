@@ -8,7 +8,7 @@ import { useContext, useMemo, useState } from "react";
 import settingsFormGenerator from "./../../utils/settingsFormGenerator";
 import { converToAsterik } from "./../../utils/asterik";
 import { toast } from "react-toastify";
-import handleCopy from "../../utils/copytoclipboard";
+import handleCopy from "../../utils/copyToClipboard";
 
 const Webhooks = () => {
   const { apiKeys } = useContext(AppContext);

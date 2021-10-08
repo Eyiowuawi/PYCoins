@@ -2,7 +2,7 @@ import Button from "../UI/Button";
 import Input from "../UI/Input";
 
 import upload from "../../assets/upload.svg";
-import formGenerator from "../../utils/formgenerator";
+import formGenerator from "../../utils/formGenerator";
 
 const Business = ({
   businessForm,

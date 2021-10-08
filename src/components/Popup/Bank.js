@@ -3,7 +3,7 @@ import Input from "../UI/Input";
 import { LeftArrow } from "../../icons";
 import Button from "../UI/Button";
 import Primary from "../UI/Label";
-import formGenerator from './../../utils/formgenerator';
+import formGenerator from "../../utils/formGenerator";
 const Bank = ({ goBack }) => {
   const [bankForm] = useBankForm();
 
@@ -25,7 +25,7 @@ const Bank = ({ goBack }) => {
   //     placeholder={config.placeholder}
   //   />
   // ));
-  const form = formGenerator(bankForm)
+  const form = formGenerator(bankForm);
 
   return (
     <div className="popupform">

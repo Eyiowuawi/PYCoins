@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
-import formGenerator from "./../../utils/formgenerator";
+import formGenerator from "./../../utils/formGenerator";
 import useForgotPasswordForm from "./../../hooks/forgotpasswordform";
 import { forgotpassword } from "./../../services/auth";
 import { useMutation } from "react-query";

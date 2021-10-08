@@ -1,6 +1,6 @@
 import { Copy, Delete, Edit, LeftArrow, Disable } from "../../icons";
 import actionBtn from "../../assets/btns.svg";
-import handleCopy from "./../../utils/copytoclipboard";
+import handleCopy from "../../utils/copyToClipboard";
 
 const PaymentHeader = ({
   ctas,

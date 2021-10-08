@@ -5,7 +5,8 @@ import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
 import useLoginForm from "../../hooks/login";
 import { loginUser } from "../../services/auth";
-import formGenerator from "../../utils/formgenerator";
+import formGenerator from "../../utils/formGenerator";
+import { Helmet } from "react-helmet";
 
 const Login = ({ history }) => {
   const [loginForm, setLoginForm, loginFormValid, setLoginFormValid] =
@@ -17,6 +18,8 @@ const Login = ({ history }) => {
       onSuccess: () => history.push("/"),
     }
   );
+
+  console.log(loginForm);
 
   const form = formGenerator(loginForm, setLoginForm, setLoginFormValid);
 
@@ -30,6 +33,9 @@ const Login = ({ history }) => {
 
   return (
     <div className="auth_form">
+      <Helmet>
+        <title>Payercoins - Login</title>
+      </Helmet>
       <div className="auth_form-container">
         <h3 className="ta mb-small title title-black">Login to your account</h3>
         <p className="ta mb-small title title-grey">
