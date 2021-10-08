@@ -1,5 +1,5 @@
 import SettingsForm from "../components/Settings/Form";
-import { changeHandler, handleBlur, showPassword } from "./changehandler";
+import { changeHandler, handleBlur, showPassword } from "./changeHandler";
 
 const settingsFormGenerator = (formType, formFunc, validForm) => {
   const formArr = [];
