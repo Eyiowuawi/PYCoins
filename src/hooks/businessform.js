@@ -62,6 +62,7 @@ const useBusinessForm = () => {
       blur: false,
       required: true,
       closeMenuOnSelect: true,
+      selected: null,
     },
 
     businessURL: {

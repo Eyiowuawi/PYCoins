@@ -100,8 +100,7 @@ const PaymentForm = ({
     for (let key in paymentForm) data[key] = paymentForm[key].value;
     data["isAmountFixed"] = isFixed == "fixed" ? true : false;
     data["amount"] = isFixed == "fixed" ? +amountForm.amount.value : 0;
-    // handleSubmit(evt, isFixed);
-    // console.log(data);
+
     mutate(data);
   };
 

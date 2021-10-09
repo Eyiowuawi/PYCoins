@@ -108,10 +108,12 @@ export const selectHandler = (
       valid: isValid,
       selected: option,
     };
+
     const updatedForm = {
       ...formType,
       [elementID]: updatedFormElement,
     };
+    formUpdateFunc(updatedForm);
     if (validForm) {
       let formIsValid = true;
       for (let elementID in updatedForm) {
@@ -119,6 +121,5 @@ export const selectHandler = (
       }
       validForm(formIsValid);
     }
-    formUpdateFunc(updatedForm);
   }
 };
