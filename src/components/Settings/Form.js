@@ -16,16 +16,25 @@ const SettingsForm = ({
         {label}
       </label>
       <div className="settingsform-input">
-        <input
-          className={`form_input ${blur && !valid && "form_error"}`}
-          id={label}
-          type={type}
-          value={value}
-          onChange={onchange}
-          onBlur={onblur}
-          // valid={valid}
-        />
-        {image && <img onClick={showPassword} src={image} alt="show" />}
+        <div style={{ position: "relative" }}>
+          <input
+            className={`form_input ${blur && !valid && "form_error"}`}
+            id={label}
+            type={type}
+            value={value}
+            onChange={onchange}
+            onBlur={onblur}
+            // valid={valid}
+          />
+          {image && (
+            <img
+              onClick={showPassword}
+              src={image}
+              alt="show"
+              className="form_img"
+            />
+          )}
+        </div>
         {info && <p className="small small-red">{info}</p>}
       </div>
     </div>

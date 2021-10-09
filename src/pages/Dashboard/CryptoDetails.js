@@ -47,8 +47,10 @@ const CryptoDetails = () => {
       </div>
 
       {show && <TransactionsDetails close={() => setShow(false)} />}
-      {fund && <FundWallet close={setFund} />}
-      {withdraw && <WithDraw currency={currency} close={setWithdraw} />}
+      {fund && <FundWallet close={() => setFund(false)} />}
+      {withdraw && (
+        <WithDraw currency={currency} close={() => setWithdraw(false)} />
+      )}
     </>
   );
 };

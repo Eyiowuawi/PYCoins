@@ -6,10 +6,10 @@ import { Link, withRouter } from "react-router-dom";
 import { useMutation, QueryClient } from "react-query";
 import { logout } from "./../../services/auth";
 import { AppContext } from "./../../context/index";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 const Sidebar = ({ show, close, history }) => {
-  const { logoutUser } = useContext(AppContext);
+  const { logoutUser, profile } = useContext(AppContext);
   const queryClient = new QueryClient();
   const { isSuccess, mutate, isLoading } = useMutation(() => logout(history), {
     mutationKey: "logout",
@@ -18,6 +18,22 @@ const Sidebar = ({ show, close, history }) => {
       logoutUser();
     },
   });
+
+  const detail = useMemo(() => {
+    const data = {
+      name:
+        profile?.user?.userType === "individual"
+          ? `${profile?.user?.firstName} ${profile?.user?.lastName}`
+          : `${profile?.business?.lastName}`,
+
+      id:
+        profile?.user?.userType === "individual"
+          ? `${profile?.user?._id}`
+          : `${profile?.business?._id}`,
+    };
+    return data;
+  }, [profile]);
+  console.log(profile);
   return (
     <div className={`sidebar ${show && "sidebar_show"}`}>
       <div className="sidebar_container">
@@ -25,8 +41,12 @@ const Sidebar = ({ show, close, history }) => {
           <img src={Logo} alt="Payercoins Logo" />
         </Link>
         <div className="sidebar_name">
-          <h5>Business Name</h5>
-          <p>ID: 10123856</p>
+          {profile && (
+            <>
+              <h5>{detail.name}</h5>
+              <p>ID: {detail.id}</p>
+            </>
+          )}
         </div>
         <Navigation close={close} />
         <button className="sidebar_footer" onClick={mutate}>

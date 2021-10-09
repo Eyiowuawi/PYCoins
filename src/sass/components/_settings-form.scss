@@ -4,7 +4,7 @@
 
   &-group {
     @include flex(row, flex-start, center);
-
+    // position: relative;
     @media (max-width: 450px) {
       flex-direction: column;
       align-items: flex-start;
@@ -21,7 +21,6 @@
     }
 
     .fund_wallet {
-      // width: 100%;
       flex-grow: 1 !important;
     }
   }

@@ -5,11 +5,15 @@ const TableResponsive = ({ data, onclick }) => {
   return (
     <div className="tableresponsive">
       {data?.map((item) => (
-        <div key={item.id} className="tableresponsive_item" onClick={onclick}>
+        <div
+          key={item.id}
+          className="tableresponsive_item"
+          onClick={() => onclick(item.id)}
+        >
           <p className="td name">{item.name}</p>
           <div className="tableresponsive_details">
             <p className="td"> {item.email} </p>
-            <p className="td">{item.amount}</p>
+            <p className="td">{parseFloat(item.amount).toFixed(6)}</p>
           </div>
           <div className="tableresponsive_amount">
             <p

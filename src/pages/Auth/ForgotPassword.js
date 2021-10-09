@@ -6,7 +6,7 @@ import formGenerator from "./../../utils/formGenerator";
 import useForgotPasswordForm from "./../../hooks/forgotpasswordform";
 import { forgotpassword } from "./../../services/auth";
 import { useMutation } from "react-query";
-const ForgotPassword = () => {
+const ForgotPassword = ({ history }) => {
   const [
     forgotpasswordForm,
     setForgotPasswordForm,
@@ -21,6 +21,7 @@ const ForgotPassword = () => {
 
   const { mutate, isLoading } = useMutation((data) => forgotpassword(data), {
     mutationKey: "forgot-password",
+    onSuccess: () => history.push("/auth/login"),
   });
 
   const handleSubmit = (evt) => {

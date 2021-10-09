@@ -33,12 +33,7 @@ const usePaymentForm = (userWallets, editDetails) => {
       multiple: true,
       elementType: "select",
       label: "Select Currency",
-      options: userWallets?.map((item) => {
-        return {
-          value: item.toUpperCase(),
-          label: item.toUpperCase(),
-        };
-      }),
+      options: [],
       validation: notEmptyArray,
       blur: false,
       required: true,

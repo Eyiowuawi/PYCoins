@@ -147,7 +147,11 @@ const PaymentPage = ({ history }) => {
               </Button>
               <div className="paymentpage_powered">
                 <span className="title title-grey"> Powered by</span>
-                <a href={"https://payercoins.com"} target="_blank">
+                <a
+                  href={"https://payercoins.com"}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   {" "}
                   <img src={Logo} alt="payercoins" />
                 </a>

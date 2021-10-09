@@ -6,8 +6,9 @@ import AuthFooter from "../../components/Auth/AuthFooter";
 import formGenerator from "../../utils/formGenerator";
 import useResetPasswordForm from "./../../hooks/resetpasswordform";
 import { resetPassword } from "../../services/auth";
+import { toast } from "react-toastify";
 
-const ResetPassword = () => {
+const ResetPassword = ({ history }) => {
   const [
     resetPasswordForm,
     setResetPassword,
@@ -22,11 +23,16 @@ const ResetPassword = () => {
 
   const { search } = useLocation();
   const token = search.substring(19);
+  console.log(token);
 
   const { mutate, isLoading } = useMutation(
     (data) => resetPassword(data, token),
     {
       mutationKey: "reset-password",
+      onSuccess: () => {
+        toast.success("Password reset was successful. Redirecting...");
+        history.push("/auth/login");
+      },
     }
   );
 

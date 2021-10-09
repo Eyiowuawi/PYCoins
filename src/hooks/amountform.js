@@ -6,7 +6,7 @@ const useAmount = (amt) => {
     amount: {
       value: amt ? amt : "",
       type: "number",
-      label: "Enter your amount",
+      label: "Enter your amount (USD)",
       elementType: "input",
       validation: required,
       required: true,

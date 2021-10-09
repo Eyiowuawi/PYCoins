@@ -18,7 +18,7 @@ const PaymentTable = ({ data, gotoDetails }) => {
             onClick={() => gotoDetails(item.paymentSlug, item._id)}
           >
             <td>{item.pageName}</td>
-            <td>{item.amount}</td>
+            <td>{parseFloat(item.amount).toFixed(6)}</td>
             <td>{item.createdAt}</td>
             {/* <td>
               <img src={Actions} alt={"Actions"} />

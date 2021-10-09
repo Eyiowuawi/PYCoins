@@ -36,25 +36,27 @@ const BusinessForm = ({ close, isLoading, data, show, submit, success }) => {
 
   return (
     <Modal close={close}>
-      {!success && (
-        <Business
-          businessForm={businessForm}
-          handleSubmit={handleSubmit}
-          businessFormUpdate={setBusinessForm}
-          businessFormValid={businessFormValid}
-          isLoading={isLoading}
-          setBusinessFormVallid={setBusinessFormVallid}
-        />
-      )}
-      {success && (
-        <Response
-          img={Success}
-          title="Verification Submitted"
-          text="Your business document has been submitted successfully and in
+      <div className="home_businessForm">
+        {!success && (
+          <Business
+            businessForm={businessForm}
+            handleSubmit={handleSubmit}
+            businessFormUpdate={setBusinessForm}
+            businessFormValid={businessFormValid}
+            isLoading={isLoading}
+            setBusinessFormVallid={setBusinessFormVallid}
+          />
+        )}
+        {success && (
+          <Response
+            img={Success}
+            title="Verification Submitted"
+            text="Your business document has been submitted successfully and in
         currently in progress. You wil receive an email after being verified
         by the team."
-        />
-      )}
+          />
+        )}
+      </div>
     </Modal>
   );
 };

@@ -199,7 +199,7 @@ button {
 }
 
 .small-red {
-  color: red !important;
+  color: #787676 !important;
 }
 
 .small_bg {
@@ -232,7 +232,7 @@ button {
   margin-top: 0.2rem;
   margin-left: 1rem;
   color: #909198;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   line-height: 23px;
   font-family: "Mulish", sans-serif;
@@ -716,7 +716,7 @@ button {
           align-items: center;
   border: 1px solid #e5e9f2 !important;
   border-radius: 5px;
-  padding: 8rem 0;
+  padding: 6rem 3rem;
 }
 
 .empty p {
@@ -1197,7 +1197,7 @@ button {
   -webkit-box-flex: 2;
       -ms-flex-positive: 2;
           flex-grow: 2;
-  margin-right: 2rem;
+  margin-right: 3rem;
   overflow-x: auto;
 }
 
@@ -1286,8 +1286,8 @@ button {
 }
 
 .tableresponsive_item .name {
-  -ms-flex-preferred-size: 100px;
-      flex-basis: 100px;
+  -ms-flex-preferred-size: 50px;
+      flex-basis: 50px;
 }
 
 .tableresponsive_sign {
@@ -2045,7 +2045,7 @@ button {
 .sidebar_name {
   margin: 2.5rem 0;
   background-color: #ffffff;
-  padding: 1rem;
+  padding: 1rem 0.7rem;
   border: 1px solid #e5e9f2 !important;
   border-radius: 5px;
 }
@@ -2056,10 +2056,11 @@ button {
   font-weight: auto;
   line-height: 1.2rem;
   margin-bottom: 1rem;
+  text-transform: capitalize;
 }
 
 .sidebar_name P {
-  font-size: 13px;
+  font-size: 12px;
   line-height: 16px;
   color: #909198;
 }
@@ -2239,11 +2240,8 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   padding: 3rem 1.5rem;
-  gap: 0.7rem;
+  gap: 1rem;
 }
 
 .dropdown_env {
@@ -2300,7 +2298,7 @@ button {
   border-radius: 8px !important;
   font-family: "Mulish", sans-serif;
   color: #30324b;
-  padding: 0.5rem !important;
+  padding: 1rem 0.7rem !important;
   background-color: transparent;
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
@@ -2340,6 +2338,11 @@ button {
 
 .react-select__menu {
   font-size: 1rem;
+}
+
+.react-select__value-container--is-multi div:hover {
+  color: #fafafa;
+  background-color: #48d189;
 }
 
 .create {
@@ -2575,6 +2578,14 @@ button {
 
 .home_empty {
   margin-top: 5rem;
+}
+
+.home_businessForm {
+  width: 100%;
+}
+
+.home_businessForm h3 {
+  text-align: left !important;
 }
 
 @media only screen and (max-width: 800px) {

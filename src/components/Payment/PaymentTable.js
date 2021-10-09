@@ -9,7 +9,7 @@ const PaymentTableResponsive = ({ data, gotoDetails }) => {
         >
           <div>
             <p className="td mb-smaller">{item.pageName}</p>
-            <p className="td">${item.amount}</p>
+            <p className="td">${parseFloat(item.amount).toFixed(6)}</p>
           </div>
           <div>
             <Arrow />

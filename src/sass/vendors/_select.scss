@@ -4,7 +4,7 @@
     @include line;
     font-family: $font-family;
     color: #30324b;
-    padding: 0.5rem !important;
+    padding: 1rem 0.7rem !important;
     background-color: transparent;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
@@ -42,5 +42,18 @@
   }
   &__menu {
     font-size: 1rem;
+  }
+
+  &__value-container--is-multi {
+    div {
+      // background-color: red !important;
+      // width: 100px;
+      // padding: 0.4rem 0 !important;
+
+      &:hover {
+        color: #fafafa;
+        background-color: $primary-color;
+      }
+    }
   }
 }

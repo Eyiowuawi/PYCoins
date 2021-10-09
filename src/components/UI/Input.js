@@ -118,6 +118,7 @@ const Input = ({
           onChange={selectHandler}
           onBlur={onblur}
           closeMenuOnSelect={closeMenu}
+          isSearchable={false}
         />
       );
       break;
@@ -136,16 +137,19 @@ const Input = ({
     case "file":
       inputElement = (
         <>
-          <input
-            id="upload"
-            type="file"
-            className="form_upload-input"
-            onChange={onchange}
-            accept=".doc,.docx,.pdf"
-          />
-          <label htmlFor="upload" className="form_upload-label">
-            <span>{label}</span>
-          </label>
+          <div style={{ position: "relative" }}>
+            <input
+              id="upload"
+              type="file"
+              className="form_upload-input"
+              onChange={onchange}
+              accept=".doc,.docx,.pdf"
+            />
+            <label htmlFor="upload" className="form_upload-label">
+              <span>{label}</span>
+            </label>
+            <img src={svg} alt="upload image" className="form_img" />
+          </div>
           {info && <p className="small small-red">{info}</p>}
         </>
       );

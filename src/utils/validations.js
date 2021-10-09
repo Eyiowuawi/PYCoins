@@ -15,7 +15,10 @@ export const required = (value) => {
 };
 
 export const confirmPassword = (cpassword, fpassword) => {
-  return fpassword === cpassword;
+  const regex =
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?.!@$%^&*-]).{8,}$/;
+
+  return fpassword === cpassword && regex.test(cpassword);
 };
 
 export const emailCheck = (value) => {

@@ -138,7 +138,12 @@ const PaymentDetails = ({ history }) => {
               {width > 500 && (
                 <Table data={transactions} onclick={selectedTransaction} />
               )}
-              {width <= 500 && <TableResponsive data={transactions} />}
+              {width <= 500 && (
+                <TableResponsive
+                  data={transactions}
+                  onclick={selectedTransaction}
+                />
+              )}
             </>
           )}
           {show && (

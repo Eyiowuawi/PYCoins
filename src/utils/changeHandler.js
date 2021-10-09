@@ -23,7 +23,6 @@ export const changeHandler = (
     isValid =
       formType[elementID].validation(event.target.value, passwordValue) &&
       isValid;
-
     updatedFormElement = {
       ...formType[elementID],
       value: event.target.value,

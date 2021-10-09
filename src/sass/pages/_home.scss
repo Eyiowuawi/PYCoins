@@ -1,6 +1,5 @@
 .home {
   width: 100%;
-
   position: relative;
   &_container {
     @include flex(row, space-between, center);
@@ -19,12 +18,12 @@
       // align-items: center;
       // text-align: center;
     }
-    h3{
-      text-transform: capitalize
+    h3 {
+      text-transform: capitalize;
     }
   }
-  &_link{
-    @include flex(row, initial, center)
+  &_link {
+    @include flex(row, initial, center);
   }
 
   &_switch {
@@ -32,7 +31,7 @@
     @include border(#e5e9f2);
     align-self: stretch;
     border-radius: 10px;
-    padding:  1.5rem;
+    padding: 1.5rem;
     cursor: pointer;
 
     img {
@@ -53,15 +52,22 @@
   &_empty {
     margin-top: 5rem;
   }
+
+  &_businessForm {
+    width: 100%;
+    h3 {
+      text-align: left !important;
+    }
+  }
 }
 @media only screen and (max-width: 800px) {
-    .home {
-        margin-top: 2rem;
-    }
+  .home {
+    margin-top: 2rem;
+  }
 }
 
 @media only screen and (min-width: 480px) {
-    .home {
-        padding-top: 2.5rem;
-    }
+  .home {
+    padding-top: 2.5rem;
+  }
 }
