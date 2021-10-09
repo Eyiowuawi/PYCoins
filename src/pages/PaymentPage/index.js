@@ -22,7 +22,7 @@ import usePaymentForm from "../../hooks/paymentPageForm";
 
 import { useGetCrypto } from "./../../query/getCryptos";
 
-import { processPaymentLink } from "../../services/paymentLink";
+import { processPaymentLink } from "../../services/userPaymentLink";
 
 import Logo from "../../assets/Logo.svg";
 

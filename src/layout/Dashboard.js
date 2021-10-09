@@ -10,7 +10,7 @@ import Sidebar from "../components/UI/Sidebar";
 import Header from "../components/UI/Header";
 import MobileSidebar from "./../components/UI/Mobilesidebar";
 
-import { getProcessedPayment } from "../services/paymentLink";
+import { getProcessedPayment } from "../services/userPaymentLink";
 import { autoLogout } from "./../services/auth";
 
 import { useUserProfile } from "./../query/getUserProfile";

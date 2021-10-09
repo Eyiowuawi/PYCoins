@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { getPaymentInfo } from "../services/paymentLink";
+import { getPaymentInfo } from "../services/userPaymentLink";
 
 export const useGetPaymentInfo = (slug) => {
   return useQuery("getpaymentlinksinfo", () => getPaymentInfo(slug), {

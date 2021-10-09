@@ -13,9 +13,9 @@ import useSettingsNav from "../../hooks/settingsNav";
 import { AppContext } from "./../../context/index";
 
 const Settings = ({ isLoading }) => {
-  const [page, setPage] = useState(search.substring(5));
-
   const { search } = useLocation();
+
+  const [page, setPage] = useState(search.substring(5));
 
   const [settingsNav, setSettingsNav] = useSettingsNav();
 

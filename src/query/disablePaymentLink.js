@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import { disablePaymentLink } from "../services/paymentLink";
+import { disablePaymentLink } from "../services/userPaymentLink";
 
 export const useDisablePaymentLink = (id, history) => {
   return useMutation("disablepaymentlink", () => disablePaymentLink(id), {

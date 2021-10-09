@@ -46,9 +46,6 @@ const PaymentDetails = ({ history }) => {
 
   const { data: userData } = useGetUserWallets();
 
-  const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
-    usePaymentForm(userAcceptedWallet, editDetails);
-
   const [amountForm, setAmountForm] = useAmount(data?.paymentPage.amount);
 
   const { isLoading: deleteLoading, mutate: deleteMutate } =
@@ -70,6 +67,9 @@ const PaymentDetails = ({ history }) => {
   const userAcceptedWallet = useMemo(() => {
     return userData;
   }, [userData]);
+
+  const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
+    usePaymentForm(userAcceptedWallet, editDetails);
 
   const transactions = useMemo(() => {
     if (paymentData?.length > 0) {

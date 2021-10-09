@@ -12,7 +12,7 @@ import Button from "../UI/Button";
 
 import formGenerator from "../../utils/formGenerator";
 import { addPaymentUrl } from "./../../utils/addPaymentUrl";
-import { createPaymentLink } from "../../services/paymentLink";
+import { createPaymentLink } from "../../services/userPaymentLink";
 
 import { useGetUserWallets } from "./../../query/getCryptos";
 
@@ -31,14 +31,14 @@ const PaymentForm = ({
 
   const queryClient = useQueryClient();
 
-  const [paymentForm, setPaymentForm, paymentFormValid, setPaymentFormValid] =
-    usePaymentForm(userAcceptedWallet);
-
   const [amountForm, setAmountForm] = useAmount();
 
   const userAcceptedWallet = useMemo(() => {
     return userData;
   }, [userData]);
+
+  const [paymentForm, setPaymentForm, paymentFormValid, setPaymentFormValid] =
+    usePaymentForm(userAcceptedWallet);
 
   const { mutate, isLoading, data } = useMutation(
     (data) => createPaymentLink(data),
