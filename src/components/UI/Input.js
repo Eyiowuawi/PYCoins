@@ -117,10 +117,7 @@ const Input = ({
           value={selected}
           onChange={selectHandler}
           onBlur={onblur}
-          // closeMenuOnSelect={closeMenu}
-          closeMenuOnSelect={false}
-          autoFocus
-          closeMenuOnScroll={false}
+          closeMenuOnSelect={closeMenu}
         />
       );
       break;
