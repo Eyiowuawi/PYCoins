@@ -1,0 +1,46 @@
+.react-select {
+  &__control {
+    font-size: 1rem;
+    @include line;
+    font-family: $font-family;
+    color: #30324b;
+    padding: 0.5rem !important;
+    background-color: transparent;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -ms-appearance: none !important;
+    -o-appearance: none !important;
+    appearance: none !important;
+    background-position-x: 98% !important;
+    background-repeat: no-repeat;
+    background-position-y: 50% !important;
+    background-image: url("../assets/select.svg");
+
+    &--is-focused {
+      border: none !important;
+      outline: none;
+      box-shadow: 0 0 0 1px #e5e9f2 !important;
+    }
+  }
+
+  &__placeholder {
+    color: #30324b !important;
+    font-family: $font-family !important;
+  }
+
+  &__indicators {
+    display: none !important;
+  }
+
+  &__menu {
+    position: relative;
+    z-index: 100000 !important;
+  }
+
+  &__single-value {
+    color: rgba(0, 0, 0, 0.87) !important;
+  }
+  &__menu {
+    font-size: 1rem;
+  }
+}

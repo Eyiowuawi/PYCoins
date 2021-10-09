@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { required, emailCheck } from "../utils/validations";
+import { required, emailCheck, urlValidator } from "../utils/validations";
 import upload from "../assets/upload.svg";
 
 const useBusinessForm = () => {
@@ -20,16 +20,17 @@ const useBusinessForm = () => {
       label: "Industry of Business",
       elementType: "select",
       options: [
-        { id: 1, displayValue: "Role at Business", value: "" },
-        { id: 2, displayValue: "Nigeria", value: "Nigeria" },
-        { id: 3, displayValue: "Togo", value: "Togo" },
-        { id: 4, displayValue: "Finland", value: "Finland" },
-        { id: 5, displayValue: "Somalia", value: "Somalia" },
-        { id: 6, displayValue: "Afghanistan", value: "Afghanistan" },
+        { id: 2, label: "Agriculture", value: "Agriculture" },
+        { id: 3, label: "Production", value: "Production" },
+        { id: 4, label: "Management", value: "Management" },
+        { id: 5, label: "Services", value: "Services" },
+        { id: 6, label: "Finance", value: "Finance" },
       ],
       validation: required,
       blur: false,
       required: true,
+      multiple: false,
+      closeMenuOnSelect: true,
     },
     businessEmail: {
       value: "",
@@ -47,28 +48,32 @@ const useBusinessForm = () => {
       elementType: "select",
       label: "Role at Business",
       options: [
-        { id: 1, displayValue: "Role at Business", value: "" },
-        { id: 2, displayValue: "Nigeria", value: "Nigeria" },
-        { id: 3, displayValue: "Togo", value: "Togo" },
-        { id: 4, displayValue: "Finland", value: "Finland" },
-        { id: 5, displayValue: "Somalia", value: "Somalia" },
-        { id: 6, displayValue: "Afghanistan", value: "Afghanistan" },
+        { id: 2, label: "Supervisor", value: "Supervisor" },
+        { id: 3, label: "Manager", value: "Manager" },
+        {
+          id: 4,
+          label: "Chief Executive Office",
+          value: "Chief Executive Office",
+        },
+        { id: 5, label: "Staff", value: "Staff" },
+        { id: 6, label: "Others", value: "Others" },
       ],
       validation: required,
       blur: false,
       required: true,
+      closeMenuOnSelect: true,
     },
 
     businessURL: {
       value: "",
       valid: false,
-      type: "url",
+      type: "text",
       elementType: "input",
       placeholder: "Website URL",
       label: "Business URL",
       blur: false,
       required: true,
-      validation: required,
+      validation: urlValidator,
     },
     description: {
       value: "",

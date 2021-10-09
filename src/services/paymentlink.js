@@ -87,7 +87,5 @@ export const getProcessedPayment = async () => {
         },
       }
     );
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };

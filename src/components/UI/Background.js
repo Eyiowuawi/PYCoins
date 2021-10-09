@@ -6,9 +6,6 @@ const Background = ({ children }) => (
       <div className="background_bgcolor"></div>
       <div className="background_ext"></div>
       <div className="background_box">
-        <div className="background_img">
-          <img src={Logo} alt="payercoins" />
-        </div>
         <div className="background_content">{children}</div>
       </div>
     </div>

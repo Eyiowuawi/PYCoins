@@ -19,8 +19,6 @@ const Login = ({ history }) => {
     }
   );
 
-  console.log(loginForm);
-
   const form = formGenerator(loginForm, setLoginForm, setLoginFormValid);
 
   const handleSubmit = (evt) => {

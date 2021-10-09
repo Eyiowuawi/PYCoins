@@ -32,7 +32,7 @@ const usePaymentPageForm = (data) => {
       type: "number",
       elementType: "input",
       placeholder: "Number",
-      label: "Enter Amount",
+      label: "Enter Amount ($)",
       required: true,
       validation: required,
       blur: false,

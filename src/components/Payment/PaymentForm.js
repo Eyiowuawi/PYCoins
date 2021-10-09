@@ -64,6 +64,8 @@ const PaymentForm = ({
     }
     if (isFixed === "custom" && isValid) {
       setPaymentFormValid(true);
+    } else {
+      setPaymentFormValid(false);
     }
     if (isFixed === "fixed") setPaymentFormValid(false);
 
@@ -99,6 +101,7 @@ const PaymentForm = ({
     data["isAmountFixed"] = isFixed == "fixed" ? true : false;
     data["amount"] = isFixed == "fixed" ? +amountForm.amount.value : 0;
     // handleSubmit(evt, isFixed);
+    // console.log(data);
     mutate(data);
   };
 

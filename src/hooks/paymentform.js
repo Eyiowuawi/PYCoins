@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { required } from "./../utils/validations";
+import { required, notEmptyArray } from "./../utils/validations";
 
 const usePaymentForm = (userWallets, editDetails) => {
   // const [options] = useState()
@@ -36,12 +36,13 @@ const usePaymentForm = (userWallets, editDetails) => {
       options: userWallets?.map((item) => {
         return {
           value: item.toUpperCase(),
-          displayValue: item.toUpperCase(),
+          label: item.toUpperCase(),
         };
       }),
-      validation: required,
+      validation: notEmptyArray,
       blur: false,
       required: true,
+      closeMenuOnSelect: false,
     },
   });
 
@@ -54,7 +55,7 @@ const usePaymentForm = (userWallets, editDetails) => {
           options: userWallets?.map((item) => {
             return {
               value: item,
-              displayValue: item.toUpperCase(),
+              label: item.toUpperCase(),
             };
           }),
         },

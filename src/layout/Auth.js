@@ -6,7 +6,13 @@ const Auth = ({ route, history, location }) => {
   if (branch.length < 1) history.push("/pageNotFound");
   return (
     <div className="auth">
-      <Background>{renderRoutes(route.routes)}</Background>
+      <Background>
+        <div className="auth_img">
+          <img src={Logo} alt="payercoins" />
+        </div>
+
+        {renderRoutes(route.routes)}
+      </Background>
     </div>
   );
 };

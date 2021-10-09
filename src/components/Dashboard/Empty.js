@@ -5,7 +5,7 @@ const LandingEmpty = () => {
   return (
     <Empty>
       <img src={empty} alt="Empty State" />
-      <h3 className="title title-black mb-small mt-small">
+      <h3 className="title title-black mb-small mt-small ta ">
         Your transaction history is currently empty!
       </h3>
       <p className="title title-grey ">

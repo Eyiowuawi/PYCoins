@@ -20,7 +20,6 @@ const Wallet = () => {
     }
   }, [walletData]);
 
-  console.log(wallets);
   return (
     <WithLoadingComponent isLoading={isLoading}>
       <div className="wallets">

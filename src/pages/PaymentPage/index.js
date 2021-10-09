@@ -23,15 +23,17 @@ import pusher from "./../../utils/pusher";
 import { addClassName } from "./../../utils/addClassName";
 import Pusher from "pusher-js";
 import { toast } from "react-toastify";
+import Logo from "../../assets/Logo.svg";
 
 const PaymentPage = ({ history }) => {
   const { params } = useRouteMatch();
   const { data, isLoading, error, isError, status } = useGetPaymentInfo(
     params.slug
   );
+  const [show, setShow] = useState(false);
+
   const [paymentPageForm, setPaymentPageForm, formValid, setFormValid] =
     usePaymentForm(data?.paymentPage);
-  const [show, setShow] = useState(false);
 
   const form = formGenerator(paymentPageForm, setPaymentPageForm, setFormValid);
 
@@ -74,15 +76,7 @@ const PaymentPage = ({ history }) => {
     isError: processLinkError,
   } = useMutation("processpagelink", (data) => processPaymentLink(data), {
     onSuccess: (message) => {
-      console.log("message");
       setEvent("Awaiting Payment");
-
-      // setTimeout(() => {
-      //   setEvent("Payment Seen");
-      // }, 5000);
-      // setTimeout(() => {
-      //   setEvent("Payment Completed");
-      // }, 10000);
 
       const channel = pusher.subscribe(
         `payment-notification-${data?.paymentlink.environment}`
@@ -90,7 +84,6 @@ const PaymentPage = ({ history }) => {
 
       channel.bind(`payment-${message.reference}`, function (details) {
         const { data } = details;
-        console.log(data);
         if (data.event === "PAYMENT_SEEN") {
           setEvent("Payment Seen");
           let notification = new Notification("Payercoins", {
@@ -115,11 +108,6 @@ const PaymentPage = ({ history }) => {
       });
     },
   });
-
-  // Testing Purposes
-  // useEffect(() => {
-
-  // }, [])
 
   const handleProcessPaymentLink = async (slug) => {
     const paymentData = {};
@@ -147,8 +135,7 @@ const PaymentPage = ({ history }) => {
                 {data?.paymentlink.pageName}
               </h3>
               <p className="title title-grey ta">
-                I am using this link generated with payercoins to accepting
-                payment from my customers anywhere around the world.
+                {data?.paymentPage.metaData.description}
               </p>
               <form className="paymentpage_form">{form}</form>
               <Button
@@ -158,6 +145,13 @@ const PaymentPage = ({ history }) => {
               >
                 Pay Now
               </Button>
+              <div className="paymentpage_powered">
+                <span className="title title-grey"> Powered by</span>
+                <a href={"https://payercoins.com"} target="_blank">
+                  {" "}
+                  <img src={Logo} alt="payercoins" />
+                </a>
+              </div>
             </div>
           </WithErrorComponent>
         </WithLoadingComponent>

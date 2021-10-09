@@ -34,9 +34,6 @@ const PaymentDetails = ({ history }) => {
     useGetPaymentTransactions(params.id);
   const [isEdit, setIsEdit] = useState(false);
 
-
-
-
   const editDetails = useMemo(() => {
     const editParams = {
       pageName: data?.paymentPage.metaData.name,
@@ -51,26 +48,18 @@ const PaymentDetails = ({ history }) => {
   const userAcceptedWallet = useMemo(() => {
     return userData;
   }, [userData]);
-  
 
-  
   const transactions = useMemo(() => {
     if (paymentData?.length > 0) {
       return formatTransactions(paymentData);
     }
   }, [paymentData]);
 
-  console.log(transactions)
-
-
-  
   const updatedData = useMemo(() => {
     const updatedPaymentLink = data && addPaymentUrl(data?.paymentlink);
 
     return updatedPaymentLink;
   }, [data]);
-
-
 
   const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
     usePaymentForm(userAcceptedWallet, editDetails);
@@ -91,11 +80,9 @@ const PaymentDetails = ({ history }) => {
       toast.info("Deleting Link", { autoClose: !deleteLoading });
   }, [deleteLoading]);
 
-
-
   // Function Handlers
 
-   const handleClick = (evt) => {
+  const handleClick = (evt) => {
     evt.stopPropagation();
     setCtas(!ctas);
   };
@@ -146,7 +133,7 @@ const PaymentDetails = ({ history }) => {
               </p>
             </Empty>
           )}
-          {(transactions?.length > 0 ) && (
+          {transactions?.length > 0 && (
             <>
               {width > 500 && (
                 <Table data={transactions} onclick={selectedTransaction} />

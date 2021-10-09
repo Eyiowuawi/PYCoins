@@ -16,8 +16,8 @@ const Arrowdropdown = ({ checked, param, toggle, disabled }) => {
             param={param}
             toggle={toggle}
             disabled={disabled}
-            height={25}
-            width={50}
+            height={20}
+            width={40}
           />
           <p className="header-text header-text-grey">Live</p>
         </div>

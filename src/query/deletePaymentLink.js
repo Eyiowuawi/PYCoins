@@ -2,7 +2,6 @@ import { deletePaymentLink } from "../services/paymentlink";
 import { useMutation, useQueryClient } from "react-query";
 
 export const useDeletePaymentLink = (id, history) => {
-  console.log(id);
   const queryClient = useQueryClient();
   return useMutation("getpaymentlinksinfo", () => deletePaymentLink(id), {
     refetchOnWindowFocus: false,

@@ -75,3 +75,50 @@ export const showPassword = (evt, elementID, formType, formUpdateFunc) => {
 
   formUpdateFunc(updatedForm);
 };
+
+export const selectHandler = (
+  option,
+  elementID,
+  formType,
+  formUpdateFunc,
+  validForm
+) => {
+  let isValid = true;
+  if (Array.isArray(option)) {
+    isValid = formType[elementID].validation(option) && isValid;
+
+    const updatedFormElement = {
+      ...formType[elementID],
+      value: option.map((item) => item.value),
+      valid: isValid,
+      selected: option,
+    };
+    const updatedForm = {
+      ...formType,
+      [elementID]: updatedFormElement,
+    };
+
+    formUpdateFunc(updatedForm);
+  } else {
+    isValid = formType[elementID].validation(option.value) && isValid;
+
+    const updatedFormElement = {
+      ...formType[elementID],
+      value: option.value,
+      valid: isValid,
+      selected: option,
+    };
+    const updatedForm = {
+      ...formType,
+      [elementID]: updatedFormElement,
+    };
+    if (validForm) {
+      let formIsValid = true;
+      for (let elementID in updatedForm) {
+        formIsValid = updatedForm[elementID].valid && formIsValid;
+      }
+      validForm(formIsValid);
+    }
+    formUpdateFunc(updatedForm);
+  }
+};

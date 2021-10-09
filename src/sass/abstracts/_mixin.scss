@@ -12,13 +12,13 @@
 }
 
 @mixin border($color) {
-  border: 1px solid $color;
+  border: 1px solid $color !important;
 }
 
 @mixin line {
   @include border(#e5e9f2);
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 8px !important;
 }
 
 @mixin respond($breakpoint) {
