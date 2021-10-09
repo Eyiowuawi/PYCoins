@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { emailCheck} from "../utils/validations";
+
+import { emailCheck } from "../utils/validations";
 
 const useForgotPasswordForm = () => {
   const [forgotpasswordForm, setForgotPasswordForm] = useState({

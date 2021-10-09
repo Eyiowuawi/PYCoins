@@ -7,7 +7,6 @@ const SmallLoader = ({ isLoading, height, width }) => {
       height={height}
       width={width}
       visible={isLoading}
-      // radius={0}
     />
   );
 };

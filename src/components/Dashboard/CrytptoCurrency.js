@@ -1,7 +1,3 @@
-import Tether from "../../assets/tether.svg";
-import Bitcoin from "../../assets/bitcoin.svg";
-import Ethereum from "../../assets/ethereum.svg";
-
 const Cryptocurrency = ({ wallets }) => {
   return (
     <div className="crypto">

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { required } from "./../utils/validations";
+
+import { required } from "../utils/validations";
 
 const useWebHookForm = () => {
   const [liveForm, setLiveForm] = useState({

@@ -1,38 +1,62 @@
 import { useState, useEffect, useMemo } from "react";
-import { useLocation, useRouteMatch } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
+
+import WithLoadingComponent from "./../../hoc/withLoading";
+
 import Back from "../../components/Back";
 import Balance from "./../../components/PaymentDetails/Balance";
 import Table from "../../components/Table";
 import Empty from "../../components/Empty";
-// import { transactions } from "../../constants";
 import TransactionsDetails from "../../components/TransactionDetails";
 import TableResponsive from "./../../components/TableResponsive";
-import useWindowWidth from "../../hooks/windowwidth";
 import PaymentHeader from "./../../components/PaymentDetails/Header";
+import PaymentForm from "./../../components/Payment/PaymentForm";
+
 import { useGetUserPaymentLink } from "../../query/getUserPaymentLink";
-import WithLoadingComponent from "./../../hoc/withLoading";
-import { addPaymentUrl } from "./../../utils/addPaymentUrl";
+import { useGetUserWallets } from "../../query/getCryptos";
 import { useDeletePaymentLink } from "../../query/deletePaymentLink";
 import { useDisablePaymentLink } from "../../query/disablePaymentLink";
-import { toast } from "react-toastify";
-import { useGetUserWallets } from "./../../query/getCryptos";
-import usePaymentForm from "./../../hooks/paymentform";
-import useAmount from "./../../hooks/amountform";
-import PaymentForm from "./../../components/Payment/PaymentForm";
-import { useGetPaymentTransactions } from "./../../query/getPaymentTransactions";
-import empty from "../../assets/empty.svg";
+import { useGetPaymentTransactions } from "../../query/getPaymentTransactions";
 
+import useWindowWidth from "../../hooks/windowWidth";
+import useAmount from "../../hooks/amountForm";
+import usePaymentForm from "../../hooks/paymentForm";
+
+import { addPaymentUrl } from "./../../utils/addPaymentUrl";
 import { formatTransactions } from "../../utils/formatTransaction";
+
+import empty from "../../assets/empty.svg";
 
 const PaymentDetails = ({ history }) => {
   const [show, setShow] = useState(false);
-  const [width, setWidth] = useWindowWidth();
   const [ctas, setCtas] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [selected, setSelected] = useState({});
+
   const { params } = useRouteMatch();
-  const { data, isLoading } = useGetUserPaymentLink(params.id);
+
+  const [width] = useWindowWidth();
+
+  const { data } = useGetUserPaymentLink(params.id);
+
   const { data: paymentData, isFetching: linkFetching } =
     useGetPaymentTransactions(params.id);
-  const [isEdit, setIsEdit] = useState(false);
+
+  const { data: userData } = useGetUserWallets();
+
+  const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
+    usePaymentForm(userAcceptedWallet, editDetails);
+
+  const [amountForm, setAmountForm] = useAmount(data?.paymentPage.amount);
+
+  const { isLoading: deleteLoading, mutate: deleteMutate } =
+    useDeletePaymentLink(data?.paymentlink._id, history);
+
+  const { mutate: disableMutate } = useDisablePaymentLink(
+    data?.paymentlink._id
+  );
 
   const editDetails = useMemo(() => {
     const editParams = {
@@ -42,8 +66,6 @@ const PaymentDetails = ({ history }) => {
     };
     return editParams;
   }, [data]);
-
-  const { data: userData } = useGetUserWallets();
 
   const userAcceptedWallet = useMemo(() => {
     return userData;
@@ -60,20 +82,6 @@ const PaymentDetails = ({ history }) => {
 
     return updatedPaymentLink;
   }, [data]);
-
-  const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
-    usePaymentForm(userAcceptedWallet, editDetails);
-
-  const [amountForm, setAmountForm] = useAmount(data?.paymentPage.amount);
-
-  const {
-    data: deleteData,
-    isLoading: deleteLoading,
-    mutate: deleteMutate,
-  } = useDeletePaymentLink(data?.paymentlink._id, history);
-
-  const { isLoading: disableLoading, mutate: disableMutate } =
-    useDisablePaymentLink(data?.paymentlink._id);
 
   useEffect(() => {
     if (deleteLoading)
@@ -97,8 +105,6 @@ const PaymentDetails = ({ history }) => {
     disableMutate();
   };
 
-  const [selected, setSelected] = useState({});
-
   const selectedTransaction = (id) => {
     const transaction = transactions.find((item) => item.id === id);
     setSelected(transaction);
@@ -108,6 +114,9 @@ const PaymentDetails = ({ history }) => {
     <>
       <WithLoadingComponent isLoading={linkFetching}>
         <div className="paymentdetails" onClick={() => setCtas(false)}>
+          <Helmet>
+            <title>{updatedData?.pageName} - Payercoins</title>
+          </Helmet>
           <Back to="/payment/pay" title="Back" />
           <PaymentHeader
             handleDelete={handleDelete}

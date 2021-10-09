@@ -1,5 +1,3 @@
-import Actions from "../../assets/actions.svg";
-
 const PaymentTable = ({ data, gotoDetails }) => {
   return (
     <table className="table">

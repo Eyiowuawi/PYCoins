@@ -1,4 +1,4 @@
-import useBankForm from "../hooks/bankform";
+import useBankForm from "../hooks/bankForm";
 import Input from "./UI/Input";
 import { LeftArrow } from "../icons";
 import Button from "./UI/Button";

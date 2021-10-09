@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { verifyUser } from "../services/auth";
 import { toast } from "react-toastify";
+import { verifyUser } from "../services/auth";
 
 export const useVerifyEmail = (token, history) => {
   const req = useQuery(

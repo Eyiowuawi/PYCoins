@@ -1,7 +1,11 @@
-import User from "./User";
-import RegisterBusiness from "./../RegisterBusiness";
-import { AppContext } from "./../../context/index";
 import { useContext } from "react";
+
+import User from "./User";
+
+import RegisterBusiness from "./../RegisterBusiness";
+
+import { AppContext } from "./../../context/index";
+
 const LandingHeader = ({ date, setShow }) => {
   const {
     profile: { user },

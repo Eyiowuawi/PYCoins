@@ -1,15 +1,12 @@
-import { useState, useContext, useEffect } from "react";
-
 import Modal from "../UI/Modal";
+
 import Business from "../Auth/Business";
-import useBusinessForm from "../../hooks/businessform";
+
+import useBusinessForm from "../../hooks/businessForm";
+
 import Response from "../UI/Response";
 
 import Success from "../../assets/success.svg";
-import { useMutation, QueryClient } from "react-query";
-import { switchToBusiness } from "../../services/user";
-import WithErrorComponent from "./../../hoc/withError";
-import { AppContext } from "./../../context/index";
 
 const BusinessForm = ({ close, isLoading, data, show, submit, success }) => {
   // const [success, setSuccess] = useState(false);

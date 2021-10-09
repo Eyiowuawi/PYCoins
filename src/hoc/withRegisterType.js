@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { AppContext } from "../context";
 import { Redirect } from "react-router-dom";
+
+import { AppContext } from "../context";
 
 const withRegistrationType = (Component) => (props) => {
   const { register } = useContext(AppContext);

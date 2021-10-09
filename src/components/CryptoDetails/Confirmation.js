@@ -1,5 +1,6 @@
-import { LeftArrow } from "../../icons";
 import Button from "../UI/Button";
+
+import { LeftArrow } from "../../icons";
 
 const Confirmation = ({ success, goBack }) => {
   return (

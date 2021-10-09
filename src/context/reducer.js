@@ -1,4 +1,5 @@
 import { getInitials } from "./../utils/getInitials";
+
 const appReducer = (state, action) => {
   switch (action.type) {
     case "CHECK_REGISTER":

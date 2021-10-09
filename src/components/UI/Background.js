@@ -1,5 +1,3 @@
-import Logo from "../../assets/Logo.svg";
-
 const Background = ({ children }) => (
   <main className="background">
     <div className="background_container">

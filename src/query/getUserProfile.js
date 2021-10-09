@@ -1,10 +1,10 @@
-import { userProfile, getApiKeys } from "../services/user";
-import { useQueries, useQuery } from "react-query";
+import { useQueries } from "react-query";
 import { useContext } from "react";
 import { AppContext } from "./../context/index";
+import { userProfile, getApiKeys } from "../services/user";
 
 export const useUserProfile = () => {
-  const { saveUser, saveApiKeys, state } = useContext(AppContext);
+  const { saveUser, saveApiKeys } = useContext(AppContext);
 
   return useQueries([
     {

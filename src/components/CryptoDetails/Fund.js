@@ -1,8 +1,9 @@
 import Modal from "../UI/Modal";
-import QRCode from "../../assets/qrcode.png";
-// import Copy from "../../assets/copy.svg";
-import { Copy } from "../../icons";
 import ActionLabel from "./../UI/ActionLabel";
+
+import QRCode from "../../assets/qrcode.png";
+
+import { Copy } from "../../icons";
 
 const FundWallet = ({ close }) => {
   return (
@@ -13,7 +14,10 @@ const FundWallet = ({ close }) => {
           <img src={QRCode} alt="Barcode Scanner" />
         </div>
         <p className="title title-grey">WALLET ADDRESS</p>
-        <ActionLabel style="mt-small" text="3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5">
+        <ActionLabel
+          className="mt-small"
+          text="3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5"
+        >
           <Copy fill="#909198" />
         </ActionLabel>
         <div className="fund_details mt-small">

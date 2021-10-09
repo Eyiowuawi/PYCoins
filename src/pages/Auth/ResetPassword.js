@@ -1,14 +1,20 @@
-import { useState } from "react";
-import { useLocation, Redirect } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useMutation } from "react-query";
+import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
+
 import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
+
 import formGenerator from "../../utils/formGenerator";
-import useResetPasswordForm from "./../../hooks/resetpasswordform";
+
+import useResetPasswordForm from "../../hooks/resetPasswordForm";
+
 import { resetPassword } from "../../services/auth";
-import { toast } from "react-toastify";
 
 const ResetPassword = ({ history }) => {
+  const { search } = useLocation();
+
   const [
     resetPasswordForm,
     setResetPassword,
@@ -21,9 +27,7 @@ const ResetPassword = ({ history }) => {
     setResetPasswordValid
   );
 
-  const { search } = useLocation();
   const token = search.substring(19);
-  console.log(token);
 
   const { mutate, isLoading } = useMutation(
     (data) => resetPassword(data, token),
@@ -46,6 +50,9 @@ const ResetPassword = ({ history }) => {
 
   return (
     <div className="auth_form">
+      <Helmet>
+        <title>Reset Password - Payercoins</title>
+      </Helmet>
       <div className="auth_form-container">
         <h3 className="ta mb-small title title-black">Create New Password</h3>
         <p className="ta mb-small title title-grey">

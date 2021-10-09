@@ -1,8 +1,7 @@
-import { Logout } from "../../icons";
-import { Arrow } from "../../icons";
-import Toggle from "./Switch";
-
 import { Link } from "react-router-dom";
+
+import { Logout } from "../../icons";
+import Toggle from "./Switch";
 
 const Arrowdropdown = ({ checked, param, toggle, disabled }) => {
   return (

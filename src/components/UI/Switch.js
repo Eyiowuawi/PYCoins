@@ -1,5 +1,4 @@
 import Switch from "react-switch";
-import { useState } from "react";
 
 const Toggle = ({
   checked = false,

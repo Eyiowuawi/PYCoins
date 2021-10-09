@@ -1,16 +1,26 @@
-import Toggle from "./../UI/Switch";
-import { useGetUserCryptos } from "./../../query/getCryptos";
-import { activateWallet, deactivateWallet } from "../../services/crypto";
 import { useMutation, useQueryClient } from "react-query";
 import { useMemo, useState, useContext } from "react";
+
 import WithLoadingComponent from "./../../hoc/withLoading";
-import { toast } from "react-toastify";
-import SmallLoader from "./../UI/SmallLoader";
+
 import { AppContext } from "./../../context/index";
+
+import Toggle from "./../UI/Switch";
+import SmallLoader from "./../UI/SmallLoader";
+
+import { useGetUserCryptos } from "./../../query/getCryptos";
+
+import { activateWallet, deactivateWallet } from "../../services/crypto";
+
 const Currency = () => {
-  const { environment } = useContext(AppContext);
   const [selected, setSelected] = useState("");
+
+  const { environment } = useContext(AppContext);
+
   const data = useGetUserCryptos();
+
+  const queryClient = useQueryClient();
+
   const cryptos = useMemo(() => {
     if (data[0].data) {
       return data[0]?.data[environment];
@@ -20,33 +30,30 @@ const Currency = () => {
   const acceptedCryptos = useMemo(() => {
     return data[1].data;
   }, [data]);
-  const queryClient = useQueryClient();
 
   const isFetching = useMemo(() => {
     return data.some((item) => item.isLoading);
   }, [data]);
 
-  const {
-    data: deactivateData,
-    mutate: deactivateMutate,
-    isLoading: deactivateLoading,
-  } = useMutation("deactivate-wallet", (wallet) => deactivateWallet(wallet), {
-    onSuccess: (data) => queryClient.invalidateQueries("getusercrypto"),
-  });
-  const {
-    data: activateData,
-    mutate: activateMutate,
-    isLoading: activateLoading,
-  } = useMutation("activate-wallet", (wallet) => activateWallet(wallet), {
-    onSuccess: (data) => queryClient.invalidateQueries("getusercrypto"),
-  });
+  const { mutate: deactivateMutate, isLoading: deactivateLoading } =
+    useMutation("deactivate-wallet", (wallet) => deactivateWallet(wallet), {
+      onSuccess: (data) => queryClient.invalidateQueries("getusercrypto"),
+    });
 
-  const checkIncludes = (wallet) => {
+  const { mutate: activateMutate, isLoading: activateLoading } = useMutation(
+    "activate-wallet",
+    (wallet) => activateWallet(wallet),
+    {
+      onSuccess: (data) => queryClient.invalidateQueries("getusercrypto"),
+    }
+  );
+
+  const handleCheckIncludes = (wallet) => {
     return acceptedCryptos?.includes(wallet) ? true : false;
   };
 
   const handleToggle = (slug) => {
-    if (checkIncludes(slug)) deactivateMutate({ wallet: slug });
+    if (handleCheckIncludes(slug)) deactivateMutate({ wallet: slug });
     else activateMutate({ wallet: slug });
     setSelected(slug);
   };
@@ -63,7 +70,7 @@ const Currency = () => {
               <p className="title title-black">{item.name}</p>
               <Toggle
                 param={item.slug}
-                checked={checkIncludes(item.slug)}
+                checked={handleCheckIncludes(item.slug)}
                 toggle={() => handleToggle(item.slug)}
                 disabled={deactivateLoading || activateLoading}
               />

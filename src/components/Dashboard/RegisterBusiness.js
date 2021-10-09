@@ -1,5 +1,6 @@
-import UserSwitch from "../../assets/user-switch.svg";
 import { RightArrow } from "../../icons";
+
+import UserSwitch from "../../assets/user-switch.svg";
 
 const RegisterBusiness = ({ date, onclick }) => {
   return (
@@ -14,8 +15,5 @@ const RegisterBusiness = ({ date, onclick }) => {
     </div>
   );
 };
-
-
-
 
 export default RegisterBusiness;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import show from "../assets/show.svg";
+
 import {
   password,
   phoneNumberCheck,
@@ -7,6 +7,8 @@ import {
   confirmPassword,
   emailCheck,
 } from "../utils/validations";
+
+import show from "../assets/show.svg";
 
 const usePersonalForm = () => {
   const [personalForm, setPersonalForm] = useState({

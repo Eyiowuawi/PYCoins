@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-import Tether from "../../assets/tether.svg";
-import Bitcoin from "../../assets/bitcoin.svg";
-import Ethereum from "../../assets/ethereum.svg";
+
 import Continue from "../../assets/continue.svg";
 
 const Cryptocurrency = ({ wallets }) => {

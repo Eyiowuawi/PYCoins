@@ -1,10 +1,6 @@
-import { Suspense } from "react";
 import { renderRoutes } from "react-router-config";
-import routes from "./routes";
 import { ToastContainer, Flip } from "react-toastify";
-import Pusher from "pusher-js";
-import { useEffect, useContext } from "react";
-import { AppContext } from "./context/index";
+import routes from "./routes";
 
 function App({ history }) {
   return (

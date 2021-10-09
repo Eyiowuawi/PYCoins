@@ -1,9 +1,10 @@
 import Button from "./../UI/Button";
 
 import Plus from "../../assets/plus.svg";
+
 import { RightArrow } from "./../../icons/index";
 
-const Details = ({  crypto, setFund, setWithdraw }) => (
+const Details = ({ crypto, setFund, setWithdraw }) => (
   <>
     <div className="cryptodetails_name">
       <div type={crypto.name} className={"crypto_img"}>

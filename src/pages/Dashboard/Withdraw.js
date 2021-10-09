@@ -1,10 +1,13 @@
 import { useState } from "react";
+
 import Accounts from "../../components/Account";
 import Response from "../../components/Response";
 import Modal from "../../components/UI/Modal";
 import WithdrawForm from "../../components/WithdrawForm";
 import Confirmation from "./../../components/Confirmation";
+
 import Success from "../../assets/success.svg";
+
 import { cryptos } from "../../constants";
 
 const WithDraw = ({ currency, close }) => {

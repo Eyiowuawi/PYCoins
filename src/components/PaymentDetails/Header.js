@@ -1,5 +1,7 @@
-import { Copy, Delete, Edit, LeftArrow, Disable } from "../../icons";
+import { Copy, Delete, Disable } from "../../icons";
+
 import actionBtn from "../../assets/btns.svg";
+
 import handleCopy from "../../utils/copyToClipboard";
 
 const PaymentHeader = ({
@@ -34,19 +36,13 @@ const PaymentHeader = ({
         </button> */}
         <button
           type="submit"
-          role="button"
           aria-label="disable-button"
           onClick={handleDisable}
         >
           <Disable />
           <p className="title title-grey">Disable</p>
         </button>
-        <button
-          type="submit"
-          role="button"
-          aria-label="delete-button"
-          onClick={handleDelete}
-        >
+        <button type="submit" aria-label="delete-button" onClick={handleDelete}>
           <Delete />
           <p className="delete">Delete</p>
         </button>

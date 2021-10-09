@@ -1,17 +1,23 @@
-import Logo from "../../assets/Logo.svg";
+import { useContext, useMemo } from "react";
+import { useMutation, QueryClient } from "react-query";
+import { Link, withRouter } from "react-router-dom";
+
+import { AppContext } from "./../../context/index";
+
 import Navigation from "./Navigation/Nav";
 
 import { Logout } from "../../icons";
-import { Link, withRouter } from "react-router-dom";
-import { useMutation, QueryClient } from "react-query";
+
 import { logout } from "./../../services/auth";
-import { AppContext } from "./../../context/index";
-import { useContext, useMemo } from "react";
+
+import Logo from "../../assets/Logo.svg";
 
 const Sidebar = ({ show, close, history }) => {
   const { logoutUser, profile } = useContext(AppContext);
+
   const queryClient = new QueryClient();
-  const { isSuccess, mutate, isLoading } = useMutation(() => logout(history), {
+
+  const { mutate } = useMutation(() => logout(history), {
     mutationKey: "logout",
     onSuccess: () => {
       queryClient.removeQueries("getuserprofile", { exact: true });
@@ -33,7 +39,7 @@ const Sidebar = ({ show, close, history }) => {
     };
     return data;
   }, [profile]);
-  console.log(profile);
+
   return (
     <div className={`sidebar ${show && "sidebar_show"}`}>
       <div className="sidebar_container">

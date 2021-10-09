@@ -1,19 +1,24 @@
-import { Arrow } from "../../icons";
-import Logo from "../../assets/Logo.svg";
-import Hamburger from "../../assets/hamburger.svg";
-import Toggle from "./Switch";
-import Arrowdropdown from "./Arrowdropdown";
-import { useContext, useMemo, useEffect, useState } from "react";
-import { AppContext } from "./../../context/index";
-import { updateEnvironment } from "../../services/crypto";
+import { useContext } from "react";
 import { useMutation, useQueryClient } from "react-query";
 
+import { AppContext } from "./../../context/index";
+
+import Toggle from "./Switch";
+import Arrowdropdown from "./Arrowdropdown";
+
+import { Arrow } from "../../icons";
+
+import { updateEnvironment } from "../../services/crypto";
+
+import Hamburger from "../../assets/hamburger.svg";
+import Logo from "../../assets/Logo.svg";
+
 const Header = ({ showsidebar, dropdown, close }) => {
-  const { fullname, initials, environment, saveUserEnvironment } =
-    useContext(AppContext);
+  const { fullname, initials, environment } = useContext(AppContext);
 
   const queryClient = useQueryClient();
-  const { data, isLoading, mutate } = useMutation(
+
+  const { isLoading, mutate } = useMutation(
     "updateenvironment",
     (data) => updateEnvironment(data),
     {
@@ -52,7 +57,7 @@ const Header = ({ showsidebar, dropdown, close }) => {
         </div>
 
         <div className="header_mobile">
-          <img onClick={showsidebar} src={Hamburger} />
+          <img onClick={showsidebar} src={Hamburger} alt="sidebar" />
           <div className="header_logo">
             <img src={Logo} alt="Payercoins Logo" />
           </div>

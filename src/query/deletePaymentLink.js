@@ -1,5 +1,5 @@
-import { deletePaymentLink } from "../services/paymentlink";
 import { useMutation, useQueryClient } from "react-query";
+import { deletePaymentLink } from "../services/paymentLink";
 
 export const useDeletePaymentLink = (id, history) => {
   const queryClient = useQueryClient();

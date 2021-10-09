@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { Helmet } from "react-helmet";
+import { useMutation } from "react-query";
 
 import Button from "../../components/UI/Button";
 import AuthFooter from "../../components/Auth/AuthFooter";
-import formGenerator from "./../../utils/formGenerator";
-import useForgotPasswordForm from "./../../hooks/forgotpasswordform";
+
+import useForgotPasswordForm from "../../hooks/forgotPasswordForm";
+
 import { forgotpassword } from "./../../services/auth";
-import { useMutation } from "react-query";
+
+import formGenerator from "./../../utils/formGenerator";
+
 const ForgotPassword = ({ history }) => {
   const [
     forgotpasswordForm,
@@ -35,6 +39,9 @@ const ForgotPassword = ({ history }) => {
 
   return (
     <div className="auth_form">
+      <Helmet>
+        <title>Forogot Password - Payercoins</title>
+      </Helmet>
       <div className="auth_form-container ta">
         <h3 className=" mb-small title title-black">Forgot Password</h3>
         <p className=" mb-small title title-grey">

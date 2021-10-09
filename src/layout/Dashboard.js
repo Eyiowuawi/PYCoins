@@ -1,21 +1,22 @@
-import Sidebar from "../components/UI/Sidebar";
-import Header from "../components/UI/Header";
-import { renderRoutes } from "react-router-config";
-import Popup from "./../pages/Popup/index";
 import { useState, useEffect, useMemo } from "react";
-import MobileSidebar from "./../components/UI/Mobilesidebar";
-import { autoLogout } from "./../services/auth";
-import Loader from "./../components/UI/Loader";
-import { useUserProfile } from "./../query/getUserProfile";
-import { AppContext } from "./../context/index";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { renderRoutes, matchRoutes } from "react-router-config";
+
 import WithLoadingComponent from "./../hoc/withLoading";
 import WithErrorComponent from "./../hoc/withError";
-import { matchRoutes } from "react-router-config";
-import { useGetUserEnvironment } from "../query/getUserEnvironment";
-import { getProcessedPayment } from "../services/paymentlink";
+
+// import Popup from "./../pages/Popup/index";
+
+import Sidebar from "../components/UI/Sidebar";
+import Header from "../components/UI/Header";
+import MobileSidebar from "./../components/UI/Mobilesidebar";
+
+import { getProcessedPayment } from "../services/paymentLink";
+import { autoLogout } from "./../services/auth";
+
+import { useUserProfile } from "./../query/getUserProfile";
+
 const DashboardLayout = ({ route, history, location, ...props }) => {
-  const [showpopup, setShowPopup] = useState(false);
+  // const [showpopup, setShowPopup] = useState(false);
 
   const [show, setShow] = useState(false);
 
@@ -25,21 +26,6 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
 
   if (branch.length < 1) history.push("/pageNotFound");
 
-  useEffect(async () => {
-    await autoLogout(history);
-    await getProcessedPayment();
-  }, []);
-
-  useEffect(() => {
-    const show = setTimeout(() => {
-      setShowPopup(true);
-    }, 5000);
-
-    return () => clearTimeout(show);
-  }, []);
-
-  const { data, isLoading } = useGetUserEnvironment();
-
   const results = useUserProfile();
 
   const isFetching = useMemo(() => {
@@ -48,6 +34,23 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
   const isError = useMemo(() => {
     return results.some((result) => result.isError);
   }, [results]);
+
+  useEffect(() => {
+    const startApp = async () => {
+      await autoLogout(history);
+      await getProcessedPayment();
+    };
+
+    startApp();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // useEffect(() => {
+  //   const show = setTimeout(() => {
+  //     setShowPopup(true);
+  //   }, 5000);
+
+  //   return () => clearTimeout(show);
+  // }, []);
 
   return (
     <>

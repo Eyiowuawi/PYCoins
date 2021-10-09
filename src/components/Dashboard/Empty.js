@@ -1,6 +1,7 @@
 import Empty from "./../UI/Empty";
 
 import empty from "../../assets/empty.svg";
+
 const LandingEmpty = () => {
   return (
     <Empty>

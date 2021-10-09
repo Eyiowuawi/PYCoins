@@ -1,17 +1,6 @@
 import { authBaseUrl } from "../constants/baseUrl";
 import { toast } from "react-toastify";
-// import jwt from "jsonwebtoken";
 import { createAutoLogout } from "../utils/createAutoLogout";
-
-// TEST ACCOUNT
-
-// INDIVIDUAL ACCOUNT
-// dabiri@yopmail.com
-// Dev.Dabiri1
-// dev@yopmail.com
-
-// BUSINESS ACCOUNT
-// bus@yopmail.com
 
 export const saveToLocalStorage = (token) => {
   localStorage.setItem("token", token);
@@ -66,10 +55,7 @@ export const forgotpassword = async (params) => {
 
 export const resetPassword = async (passoword, token) => {
   try {
-    const { data } = await authBaseUrl.put(
-      `/resetPassword/${token}`,
-      passoword
-    );
+    await authBaseUrl.put(`/resetPassword/${token}`, passoword);
   } catch (error) {
     throw new Error("processing error");
   }

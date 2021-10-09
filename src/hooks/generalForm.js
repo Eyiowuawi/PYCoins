@@ -1,12 +1,12 @@
-import { useState, useContext, useEffect } from "react";
+import { useState } from "react";
+
 import {
   required,
   phoneNumberCheck,
   emailCheck,
   password,
   confirmPassword,
-} from "./../utils/validations";
-import { AppContext } from "./../context/index";
+} from "../utils/validations";
 
 import show from "../assets/show.svg";
 

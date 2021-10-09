@@ -1,4 +1,4 @@
-import { paymentlinkBaseUrl, base } from "./../constants/baseUrl";
+import { paymentlinkBaseUrl, base } from "../constants/baseUrl";
 import { toast } from "react-toastify";
 
 export const createPaymentLink = async (params) => {
@@ -87,5 +87,8 @@ export const getProcessedPayment = async () => {
         },
       }
     );
-  } catch (error) {}
+    return data;
+  } catch (error) {
+    throw new Error("Error processing your request");
+  }
 };

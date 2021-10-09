@@ -1,15 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import "./sass/main.css";
-import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import AppComponentContext from "./context";
 import { QueryClientProvider, QueryClient } from "react-query";
-// import { ReactQueryDevtools } from "react-query/devtools";
 import "react-toastify/dist/ReactToastify.css";
 import "react-toastify/dist/ReactToastify.min.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import App from "./App";
+import AppComponentContext from "./context";
+import reportWebVitals from "./reportWebVitals";
+import "./sass/main.css";
 
 // worker;
 
@@ -20,8 +19,6 @@ ReactDOM.render(
       <AppComponentContext>
         <React.StrictMode>
           <App />
-
-          {/* <ReactQueryDevtools /> */}
         </React.StrictMode>
       </AppComponentContext>
     </BrowserRouter>

@@ -1,35 +1,30 @@
-import { useState, useEffect, useMemo, memo } from "react";
-import Plus from "../../assets/plus.svg";
+import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
+
+import WithLoadingComponent from "./../../hoc/withLoading";
+
 import Empty from "../../components/Empty";
 import Button from "../../components/UI/Button";
-import Link from "../../assets/link.svg";
 import PaymentForm from "../../components/Payment/PaymentForm";
-import usePaymentForm from "../../hooks/paymentform";
 import PaymentTable from "../../components/Payment/Table";
-import { paymentTable } from "../../constants";
 import PaymentTableResponsive from "./../../components/Payment/PaymentTable";
-import useWindowWidth from "./../../hooks/windowwidth";
+
 import { useGetPaymentLinks } from "./../../query/getPaymentLinks";
+
+import useWindowWidth from "../../hooks/windowWidth";
+
 import { dateFormatter } from "./../../utils/dateFormatter";
-import WithLoadingComponent from "./../../hoc/withLoading";
 import { addPaymentUrl } from "./../../utils/addPaymentUrl";
-import { useGetWallets } from "./../../query/getWallets";
-import { useGetUserWallets } from "./../../query/getCryptos";
-import useAmount from "./../../hooks/amountform";
-import { createPaymentLink } from "./../../services/paymentlink";
-import { useQueryClient } from "react-query";
-import { useMutation } from "react-query";
+
+import Plus from "../../assets/plus.svg";
+import Link from "../../assets/link.svg";
 
 const Payment = ({ history, isLoading }) => {
   const [show, setShow] = useState(false);
-
-  const [width, setWidth] = useWindowWidth();
-
   const [paymentLinks, setPaymentLinks] = useState([]);
 
+  const [width] = useWindowWidth();
   const { data, isLoading: getLinksLoading } = useGetPaymentLinks();
-
-  const { data: walletData } = useGetWallets();
 
   useEffect(() => {
     if (data && !getLinksLoading) {
@@ -58,6 +53,9 @@ const Payment = ({ history, isLoading }) => {
   return (
     <WithLoadingComponent isLoading={isLoading || getLinksLoading}>
       <div className="payment">
+        <Helmet>
+          <title>Payment Links - Payercoins</title>
+        </Helmet>
         <div className="payment_container">
           <h3 className="title title-black">Payment Page</h3>
           <Button

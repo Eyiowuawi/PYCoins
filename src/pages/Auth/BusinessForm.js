@@ -1,14 +1,20 @@
-import { useState, useEffect } from "react";
-import useBusinessForm from "../../hooks/businessform";
-import usePersonalForm from "../../hooks/personalform";
-import PersonalForm from "../../components/Auth/Personal";
+import { useEffect } from "react";
+import { Helmet } from "react-helmet";
+import { useMutation } from "react-query";
+
+import withRegistrationType from "../../hoc/withRegisterType";
+
 import VerifyMsg from "./Verify";
+
+import PersonalForm from "../../components/Auth/Personal";
 import Indicator from "../../components/UI/Indicator";
 import Business from "../../components/Auth/Business";
 import AuthFooter from "./../../components/Auth/AuthFooter";
-import withRegistrationType from "../../hoc/withRegisterType";
+
+import useBusinessForm from "../../hooks/businessForm";
+import usePersonalForm from "../../hooks/personalForm";
 import useBusinessPage from "../../hooks/businessPage";
-import { useMutation } from "react-query";
+
 import { registerUser } from "./../../services/auth";
 
 const BusinessForm = () => {
@@ -18,14 +24,17 @@ const BusinessForm = () => {
     businessFormValid,
     setBusinessFormVallid,
   ] = useBusinessForm();
+
   const [
     personalForm,
     setPersonalForm,
     personalFormValid,
     setPersonalFormValid,
   ] = usePersonalForm();
+
   const [show_1, setShow_1, show_2, setShow_2, page, setPage] =
     useBusinessPage();
+
   const { mutate, isLoading, isSuccess, data } = useMutation((data) =>
     registerUser(data)
   );
@@ -35,7 +44,7 @@ const BusinessForm = () => {
       setShow_2(true);
       setPage("success");
     }
-  }, [isSuccess]);
+  }, [isSuccess]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleChangeForm = (evt) => {
     evt.preventDefault();
@@ -58,6 +67,9 @@ const BusinessForm = () => {
 
   return (
     <div className="business">
+      <Helmet>
+        <title>Business - Payercoins</title>
+      </Helmet>
       <Indicator show_1={show_1} show_2={show_2} />
       <div className="auth_form">
         <div className="auth_form-container">

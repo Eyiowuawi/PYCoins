@@ -1,25 +1,32 @@
-import { Copy, View } from "./../../icons/index";
-import ActionLabel from "./../UI/ActionLabel";
-import Input from "./../UI/Input";
-import Button from "./../UI/Button";
-import { AppContext } from "./../../context/index";
-import useWebHookForm from "../../hooks/webhookform";
 import { useContext, useMemo, useState } from "react";
+
+import { AppContext } from "./../../context/index";
+
+import useWebHookForm from "../../hooks/webHookForm";
+
+import ActionLabel from "./../UI/ActionLabel";
+import Button from "./../UI/Button";
+
 import settingsFormGenerator from "./../../utils/settingsFormGenerator";
 import { converToAsterik } from "./../../utils/asterik";
-import { toast } from "react-toastify";
 import handleCopy from "../../utils/copyToClipboard";
 
+import { Copy, View } from "./../../icons/index";
+
 const Webhooks = () => {
+  const [liveShow, setLiveShow] = useState(false);
+  const [testShow, setTestShow] = useState(false);
+
   const { apiKeys } = useContext(AppContext);
+
   const [
     liveForm,
     setLiveForm,
-    liveFormValid,
+    // liveFormValid,
     setLiveFormValid,
     testForm,
     setTestForm,
-    testFormValid,
+    // testFormValid,
     setTestFormValid,
   ] = useWebHookForm();
 
@@ -36,13 +43,11 @@ const Webhooks = () => {
 
   const liveSecret = useMemo(() => {
     return converToAsterik(apiKeys?.live_keys.secret);
-  }, []);
-  const [liveShow, setLiveShow] = useState(false);
+  }, [apiKeys]);
 
   const testSecret = useMemo(() => {
     return converToAsterik(apiKeys?.test_keys.secret);
-  }, []);
-  const [testShow, setTestShow] = useState(false);
+  }, [apiKeys]);
 
   return (
     <div className="general">

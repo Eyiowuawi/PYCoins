@@ -1,25 +1,31 @@
 import { useEffect, useState } from "react";
-import PersonalInfo from "../../components/Auth/Personal";
-import VerifyMsg from "./Verify";
-import usePersonalForm from "../../hooks/personalform";
-import withRegistrationType from "../../hoc/withRegisterType";
-import PersonalIndicator from "./../../components/UI/PersonalIndicator";
-import { useRegisterUser } from "../../query/getVerifiedEmail";
+import { Helmet } from "react-helmet";
 import { useMutation } from "react-query";
+
+import withRegistrationType from "../../hoc/withRegisterType";
+
+import VerifyMsg from "./Verify";
+
+import PersonalInfo from "../../components/Auth/Personal";
+import PersonalIndicator from "./../../components/UI/PersonalIndicator";
+
+import usePersonalForm from "../../hooks/personalForm";
+
 import { registerUser } from "./../../services/auth";
-import { toast } from "react-toastify";
 
 const PersonalForm = ({ history }) => {
+  const [indicate, setIndicate] = useState(false);
+
   const [personalForm, setPersonalForm, formValid, setFormValid] =
     usePersonalForm();
-  const [indicate, setIndicate] = useState(false);
+
   const { mutate, isLoading, data, isSuccess } = useMutation((data) =>
     registerUser(data)
   );
 
   useEffect(() => {
     if (isSuccess && data && data.status === "success") setIndicate(true);
-  }, [isSuccess]);
+  }, [isSuccess]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -33,6 +39,9 @@ const PersonalForm = ({ history }) => {
   };
   return (
     <div className="personal">
+      <Helmet>
+        <title>Personal - Payercoins</title>
+      </Helmet>
       <PersonalIndicator indicate={indicate} />
       <div className="auth_form">
         <div className="auth_form-container">

@@ -1,17 +1,14 @@
-// import Select from "./Select";
+import WithLoadingComponent from "./../../hoc/withLoading";
+
 import Pay from "./Pay";
 import Modal from "./../UI/Modal";
 import Success from "./Response";
-import { useState } from "react";
-import { useGetCrypto } from "../../query/getCryptos";
 import Accounts from "./../Account";
-import WithLoadingComponent from "./../../hoc/withLoading";
-import WithErrorComponent from "./../../hoc/withError";
+
 const PaymentProcess = ({
   close,
   cryptos,
   handlePayment,
-  // name,
   processPageData,
   setEvent,
   isLoading,

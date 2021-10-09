@@ -1,8 +1,9 @@
-import { LeftArrow } from "../icons";
 import Button from "./UI/Button";
 import Input from "./UI/Input";
 
-const WithdrawForm = ({ withdraw, goBack}) => {
+import { LeftArrow } from "../icons";
+
+const WithdrawForm = ({ withdraw, goBack }) => {
   return (
     <div className="popupform">
       <div className="popupform_back" onClick={goBack}>

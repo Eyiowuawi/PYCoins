@@ -1,4 +1,3 @@
-import Loader from "react-loader-spinner";
 import SmallLoader from "./../components/UI/SmallLoader";
 
 const WithSmallLoader = ({ children, isLoading }) => {

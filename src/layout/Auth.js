@@ -1,9 +1,13 @@
-import Logo from "../assets/Logo.svg";
-import Background from "../components/UI/Background";
 import { renderRoutes, matchRoutes } from "react-router-config";
+
+import Background from "../components/UI/Background";
+
+import Logo from "../assets/Logo.svg";
+
 const Auth = ({ route, history, location }) => {
   const branch = matchRoutes(route.routes, location.pathname);
   if (branch.length < 1) history.push("/pageNotFound");
+
   return (
     <div className="auth">
       <Background>

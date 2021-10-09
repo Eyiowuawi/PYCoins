@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { required } from "./../utils/validations";
+import { required } from "../utils/validations";
 
 const useAmount = (amt) => {
   const [amountForm, setAmountForm] = useState({

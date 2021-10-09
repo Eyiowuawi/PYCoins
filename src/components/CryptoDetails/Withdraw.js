@@ -1,10 +1,14 @@
 import { useState } from "react";
+
 import Accounts from "../Account";
-import Response from "../UI/Response";
-import Modal from "../UI/Modal";
-import WithdrawForm from "./WithdrawForm";
 import Confirmation from "./Confirmation";
+
+import WithdrawForm from "./WithdrawForm";
+import Modal from "../UI/Modal";
+import Response from "../UI/Response";
+
 import Success from "../../assets/success.svg";
+
 import { cryptos } from "../../constants";
 
 const WithDraw = ({ currency, close, show }) => {
@@ -82,9 +86,15 @@ const WithDraw = ({ currency, close, show }) => {
         </>
       );
       break;
+    default:
+      return null;
   }
 
-  return <Modal show={show} close={close}>{renderElement}</Modal>;
+  return (
+    <Modal show={show} close={close}>
+      {renderElement}
+    </Modal>
+  );
 };
 
 export default WithDraw;

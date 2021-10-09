@@ -1,16 +1,22 @@
-import { useEffect } from "react";
-import { useLocation, Redirect } from "react-router-dom";
-import { useVerifyEmail } from "../../query/getVerifiedEmail";
+import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { useMutation } from "react-query";
-import { resendEmailVerify } from "../../services/auth";
-import useForgotPasswordForm from "./../../hooks/forgotpasswordform";
-import formGenerator from "./../../utils/formGenerator";
+
 import Button from "./../../components/UI/Button";
 import AuthFooter from "./../../components/Auth/AuthFooter";
+
+import useForgotPasswordForm from "../../hooks/forgotPasswordForm";
+
+import { useVerifyEmail } from "../../query/getVerifiedEmail";
+
+import { resendEmailVerify } from "../../services/auth";
+
+import formGenerator from "./../../utils/formGenerator";
 
 const Verification = ({ history }) => {
   const { search } = useLocation();
   const token = search.substring(20);
+
   const [
     forgotpasswordForm,
     setForgotPasswordForm,
@@ -22,10 +28,8 @@ const Verification = ({ history }) => {
     setForgotPasswordForm,
     setForgotFormValid
   );
-  const { data, isSuccess, isError } = useVerifyEmail(token, history);
-  const { mutate, isLoading } = useMutation((data) => resendEmailVerify(data), {
-    // onSuccess: () =>history.push("/auth/login")
-  });
+  const { isError } = useVerifyEmail(token, history);
+  const { mutate, isLoading } = useMutation((data) => resendEmailVerify(data));
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -38,6 +42,9 @@ const Verification = ({ history }) => {
   if (isError) {
     return (
       <div className="auth_form">
+        <Helmet>
+          <title>Verify Email - Payercoins</title>
+        </Helmet>
         <div className="auth_form-container ta">
           <h3 className=" mb-small title title-black">Resend Email</h3>
           <form onSubmit={handleSubmit}>

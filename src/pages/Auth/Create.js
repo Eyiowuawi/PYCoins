@@ -1,20 +1,24 @@
 import { useState, useContext } from "react";
-import { AppContext } from "../../context";
+import { Helmet } from "react-helmet";
+
 import Button from "../../components/UI/Button";
 import Label from "../../components/UI/Label";
-// import Auth
 import AuthFooter from "./../../components/Auth/AuthFooter";
+
+import { AppContext } from "../../context";
 
 const Create = ({ history }) => {
   const [formType, setFormType] = useState("");
   const [message, setMessage] = useState("");
   const [proceed, setProceed] = useState(false);
-  const { changeToRegister, register } = useContext(AppContext);
+
+  const { changeToRegister } = useContext(AppContext);
 
   const handleChange = (evt) => {
     setFormType(evt.target.value);
     setProceed(true);
   };
+
   const handleRouteChange = () => {
     if (formType === "") {
       setMessage("Pls, select a category to begin registration");
@@ -31,6 +35,9 @@ const Create = ({ history }) => {
 
   return (
     <div className="auth_form">
+      <Helmet>
+        <title>Create - Payercoins</title>
+      </Helmet>
       <div className="auth_form-container">
         <div className="create">
           <h3 className="ta mb-small title title-black">Create your Account</h3>

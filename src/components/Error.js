@@ -1,5 +1,3 @@
-import Modal from "./UI/Modal";
-
 import error from "../assets/error.svg";
 import Button from "./UI/Button";
 const Error = ({ close }) => {

@@ -1,4 +1,5 @@
 import { Arrow } from "../../icons";
+
 const PaymentTableResponsive = ({ data, gotoDetails }) => {
   return (
     <div className="paymenttableresponsive">

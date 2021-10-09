@@ -1,5 +1,5 @@
-import { getPaymentLinkTransactions } from "../services/paymentlink";
 import { useQuery } from "react-query";
+import { getPaymentLinkTransactions } from "../services/paymentLink";
 
 export const useGetPaymentTransactions = (id) => {
   return useQuery(

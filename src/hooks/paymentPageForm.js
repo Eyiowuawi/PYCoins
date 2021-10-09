@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import show from "../assets/show.svg";
-import { required, emailCheck } from "./../utils/validations";
-import { useGetPaymentInfo } from "./../query/getPaymentInfo";
-import { useRouteMatch } from "react-router-dom";
+
+import { required, emailCheck } from "../utils/validations";
 
 const usePaymentPageForm = (data) => {
   const [paymentPageForm, setPaymentPageForm] = useState({

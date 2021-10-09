@@ -1,32 +1,31 @@
-import { useMemo, useState, useEffect, useContext } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-
-import User from "../../components/Dashboard/User";
-import RegisterBusiness from "../../components/Dashboard/RegisterBusiness";
-import CryptoCurrency from "../../components/Dashboard/CrytptoCurrency";
-import Table from "../../components/Table";
-import BusinessForm from "../../components/Dashboard/BusinessForm";
-import { RightArrow } from "../../icons";
-// import Empty from "../../components/Empty"
-import { transactions } from "../../constants";
-import TableResponsive from "./../../components/TableResponsive";
-import useWindowWidth from "./../../hooks/windowwidth";
-import { useUserProfile } from "./../../query/getUserProfile";
-import { AppContext } from "./../../context/index";
-import WithLoadingComponent from "./../../hoc/withLoading";
-import LandingHeader from "./../../components/Dashboard/Header";
-import LandingEmpty from "./../../components/Dashboard/Empty";
-import Error from "./../../components/Error";
+import { Helmet } from "react-helmet";
 import { QueryClient, useMutation } from "react-query";
 
-import { switchToBusiness } from "../../services/user";
+import WithLoadingComponent from "./../../hoc/withLoading";
 import WithErrorComponent from "./../../hoc/withError";
+
+import CryptoCurrency from "../../components/Dashboard/CrytptoCurrency";
+import BusinessForm from "../../components/Dashboard/BusinessForm";
+// import Table from "../../components/Table";
+// import TableResponsive from "./../../components/TableResponsive";
+// import useWindowWidth from "./../../hooks/windowwidth";
+import LandingHeader from "./../../components/Dashboard/Header";
+import LandingEmpty from "./../../components/Dashboard/Empty";
+
+import { switchToBusiness } from "../../services/user";
+
+import { RightArrow } from "../../icons";
+
 import { useGetWallets } from "./../../query/getWallets";
+
 import { addClassName } from "./../../utils/addClassName";
 
 const Dashboard = ({ ...props }) => {
   const [show, setShow] = useState(false);
-  const [width, setWidth] = useWindowWidth();
+  // const [width, setWidth] = useWindowWidth();
+  const { data: walletData, isLoading } = useGetWallets();
 
   const queryClient = new QueryClient();
 
@@ -38,6 +37,20 @@ const Dashboard = ({ ...props }) => {
       weekday: "long",
     });
   }, []);
+
+  const wallets = useMemo(() => {
+    const mappedWallet = walletData?.map((item) => {
+      return {
+        ...item,
+        ...item.crypto,
+      };
+    });
+
+    if (mappedWallet?.length > 0) {
+      const addedWallet = addClassName(mappedWallet);
+      return addedWallet;
+    }
+  }, [walletData]);
 
   const {
     mutate,
@@ -56,22 +69,6 @@ const Dashboard = ({ ...props }) => {
     }
   );
 
-  const { data: walletData, isLoading } = useGetWallets();
-
-  const wallets = useMemo(() => {
-    const mappedWallet = walletData?.map((item) => {
-      return {
-        ...item,
-        ...item.crypto,
-      };
-    });
-
-    if (mappedWallet?.length > 0) {
-      const addedWallet = addClassName(mappedWallet);
-      return addedWallet;
-    }
-  }, [walletData]);
-
   const handleSubmit = (evt, data) => {
     evt.preventDefault();
     mutate(data);
@@ -81,6 +78,9 @@ const Dashboard = ({ ...props }) => {
     <WithLoadingComponent isLoading={isLoading}>
       <WithErrorComponent isError={isError}>
         <div className="home">
+          <Helmet>
+            <title>Home - Payercoins</title>
+          </Helmet>
           <LandingHeader date={date} setShow={setShow} />
           <div className="home_wallets">
             <p className="title title-small">Wallet</p>

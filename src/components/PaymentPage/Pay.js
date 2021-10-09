@@ -1,9 +1,12 @@
 import { Copy, LeftArrow } from "../../icons";
-import QRCode from "../../assets/qrcode.png";
+
 import ActionLabel from "./../UI/ActionLabel";
-import handleCopy from "./../../utils/copyToClipboard";
-import QrcodeGenerator from "../QrCode";
 import SmallLoader from "./../UI/SmallLoader";
+
+import handleCopy from "./../../utils/copyToClipboard";
+
+import QrcodeGenerator from "../QrCode";
+
 const Pay = ({ goBack, data, event }) => {
   return (
     <div className="">

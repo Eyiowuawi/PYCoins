@@ -1,25 +1,27 @@
-import { useState, useMemo, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
-import { LeftArrow } from "../../icons";
-import { cryptos, transactions } from "../../constants";
-import Table from "./../../components/Table";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 import TransactionsDetails from "./../../components/TransactionDetails";
 import FundWallet from "../../components/CryptoDetails/Fund";
 import WithDraw from "../../components/CryptoDetails/Withdraw";
 import Back from "../../components/Back";
-import TableResponsive from "./../../components/TableResponsive";
+// import Table from "./../../components/Table";
+// import TableResponsive from "./../../components/TableResponsive";
 import Details from "./../../components/CryptoDetails/details";
 import LandingEmpty from "./../../components/Dashboard/Empty";
+
+import { cryptos } from "../../constants";
 const CryptoDetails = () => {
   const [show, setShow] = useState(false);
   const [fund, setFund] = useState(false);
   const [withdraw, setWithdraw] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
-
   const { search } = useLocation();
   const currency = search.substring(10);
 
   const crypto = cryptos.find((item) => item.slug === currency);
+
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWidth(window.innerWidth);
@@ -29,6 +31,9 @@ const CryptoDetails = () => {
   return (
     <>
       <div className="cryptodetails">
+        <Helmet>
+          <title>{currency} - Payercoins</title>
+        </Helmet>
         <Back to="/wallet" title="Wallet" />
         <Details crypto={crypto} setFund={setFund} setWithdraw={setWithdraw} />
         <div className="mt-small">

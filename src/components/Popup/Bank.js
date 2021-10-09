@@ -1,5 +1,4 @@
-import useBankForm from "../../hooks/bankform";
-import Input from "../UI/Input";
+import useBankForm from "../../hooks/bankForm";
 import { LeftArrow } from "../../icons";
 import Button from "../UI/Button";
 import Primary from "../UI/Label";
@@ -7,24 +6,6 @@ import formGenerator from "../../utils/formGenerator";
 const Bank = ({ goBack }) => {
   const [bankForm] = useBankForm();
 
-  // const formArr = [];
-  // for (let key in bankForm) {
-  //   formArr.push({
-  //     key,
-  //     config: bankForm[key],
-  //   });
-  // }
-
-  // const form = formArr.map(({ key, config }) => (
-  //   <Input
-  //     key={key}
-  //     value={config.value}
-  //     elementType={config.elementType}
-  //     valid={config.valid}
-  //     options={config.options}
-  //     placeholder={config.placeholder}
-  //   />
-  // ));
   const form = formGenerator(bankForm);
 
   return (

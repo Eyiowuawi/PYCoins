@@ -1,12 +1,8 @@
 import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-// import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
+
 import { makeStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select, { StylesConfig } from "react-select";
+import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import { useState } from "react";
 
 const animatedComponents = makeAnimated();
 
@@ -39,7 +35,6 @@ const useStyles = makeStyles(() => ({
         color: "#30324b",
       },
       " & label.Mui-focused": {
-        // fontSize: "1.2rem",
         color: "#48d189",
         fontFamily: "Mulish , sans-serif",
       },
@@ -83,7 +78,6 @@ const Input = ({
               className={classes.root}
               label={label}
               variant="outlined"
-              required
               onChange={onchange}
               required={required}
               onBlur={onblur}
@@ -148,7 +142,7 @@ const Input = ({
             <label htmlFor="upload" className="form_upload-label">
               <span>{label}</span>
             </label>
-            <img src={svg} alt="upload image" className="form_img" />
+            <img src={svg} alt="upload document" className="form_img" />
           </div>
           {info && <p className="small small-red">{info}</p>}
         </>

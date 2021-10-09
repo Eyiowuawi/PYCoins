@@ -1,11 +1,6 @@
-import { useState } from "react";
 import { House } from "../icons";
 import Proceed from "../assets/proceed.svg";
-import Ethereum from "../assets/ethereum.svg";
-import Bitcoin from "../assets/bitcoin.svg";
-import Tether from "../assets/tether.svg";
-import Bank from "./Popup/Bank";
-import CryptoForm from "./Popup/CryptoForm";
+
 import { useLocation } from "react-router-dom";
 
 const Accounts = ({ showForm, goBack, name, cryptos, title, header }) => {

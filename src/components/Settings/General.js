@@ -1,27 +1,33 @@
-import Avatar from "../../assets/avatar.svg";
-import Input from "../UI/Input";
-import Button from "./../UI/Button";
-import useGeneralForm from "./../../hooks/generalform";
-import SettingsForm from "./Form";
-import { changeHandler, handleBlur } from "../../utils/changeHandler";
-import settingsFormGenerator from "./../../utils/settingsFormGenerator";
 import { useState, useContext } from "react";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
+import { withRouter } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import WithSmallLoader from "./../../hoc/withLoadingIndicator";
+
+import { AppContext } from "./../../context/index";
+
+import Button from "./../UI/Button";
+
+import useGeneralForm from "../../hooks/generalForm";
+
+import settingsFormGenerator from "./../../utils/settingsFormGenerator";
+
 import {
   changeUserImage,
-  userProfile,
   updateUserProfile,
   updateBusinessprofile,
   updatePassword,
 } from "./../../services/user";
-import WithSmallLoader from "./../../hoc/withLoadingIndicator";
-import { AppContext } from "./../../context/index";
-import { logout, saveToLocalStorage } from "./../../services/auth";
-import { withRouter } from "react-router-dom";
-import { toast } from "react-toastify";
+import { saveToLocalStorage } from "./../../services/auth";
+
+import Avatar from "../../assets/avatar.svg";
 
 const General = ({ profileimg, history }) => {
+  const [image, setImage] = useState(null);
+
   const { saveUser, profile } = useContext(AppContext);
+
   const [
     personalForm,
     setPersonalForm,
@@ -55,40 +61,29 @@ const General = ({ profileimg, history }) => {
     setChangePasswordValid
   );
 
-  const [image, setImage] = useState(null);
-  const { mutate, isLoading, data } = useMutation(
-    (img) => changeUserImage(img),
-    {
-      mutationKey: "change image",
-      onSuccess: (data) => saveUser(data.data),
-      onSettled: () => setImage(null),
-    }
-  );
-
-  const {
-    mutate: updateUserMutation,
-    data: updateUserData,
-    isLoading: updateUserLoading,
-  } = useMutation((data) => updateUserProfile(data), {
+  const { mutate, isLoading } = useMutation((img) => changeUserImage(img), {
+    mutationKey: "change image",
     onSuccess: (data) => saveUser(data.data),
+    onSettled: () => setImage(null),
   });
 
+  const { mutate: updateUserMutation, isLoading: updateUserLoading } =
+    useMutation((data) => updateUserProfile(data), {
+      onSuccess: (data) => saveUser(data.data),
+    });
+
   const {
-    mutate: upateBusinessMutation,
-    data: updateBusinessData,
+    // mutate: upateBusinessMutation,
     isLoading: updateBusinessLoading,
   } = useMutation((data) => updateBusinessprofile(data), {
     onSuccess: (data) => saveUser(data.data),
   });
 
-  const {
-    mutate: updatePasswordMutation,
-    data: updatePasswordData,
-    isLoading: updatePasswordLooading,
-  } = useMutation((data) => updatePassword(data), {
-    mutationKey: "change-password",
-    onSuccess: (data) => saveToLocalStorage(data.token),
-  });
+  const { mutate: updatePasswordMutation, isLoading: updatePasswordLooading } =
+    useMutation((data) => updatePassword(data), {
+      mutationKey: "change-password",
+      onSuccess: (data) => saveToLocalStorage(data.token),
+    });
 
   const handleChange = (evt) => {
     const param = new FormData();

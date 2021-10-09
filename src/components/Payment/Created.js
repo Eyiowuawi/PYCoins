@@ -1,8 +1,10 @@
 import Response from "../UI/Response";
+
 import Success from "../../assets/success.svg";
-import { Copy } from "../../icons";
 import Received from "../../assets/received.svg";
-import Button from "./../UI/Button";
+
+import { Copy } from "../../icons";
+
 import handleClick from "../../utils/copyToClipboard";
 const Created = ({ data }) => {
   return (
@@ -25,7 +27,7 @@ const Created = ({ data }) => {
           className={"button button_white"}
           href={data?.paymenturl}
           target="_blank"
-          rrel="noreferrer"
+          rel="noreferrer"
         >
           <img src={Received} alt="Sucess" />
           <span> View Link</span>

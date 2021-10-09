@@ -1,54 +1,47 @@
-import Background from "./../../components/UI/Background";
-import User from "../../assets/user.png";
-import { useContext, useEffect } from "react";
-import usePaymentForm from "../../hooks/paymentpageform";
-import Input from "./../../components/UI/Input";
-import Button from "./../../components/UI/Button";
-import Select from "./../../components/PaymentPage/Select";
-import Pay from "./../../components/PaymentPage/Pay";
-import PaymentProcess from "../../components/PaymentPage";
-import { useState, useMemo } from "react";
-import formGenerator from "../../utils/formGenerator";
-import WithLoadingComponent from "./../../hoc/withLoading";
-import { AppContext } from "./../../context/index";
-import { useRouteMatch } from "react-router-dom";
-import { useGetPaymentInfo } from "./../../query/getPaymentInfo";
-import { useGetCrypto } from "./../../query/getCryptos";
-import { cryptos } from "../../constants/index";
-import Warning from "../../components/PaymentPage/Warning";
-import { processPaymentLink } from "../../services/paymentlink";
+import { useState, useMemo, useEffect } from "react";
 import { useMutation } from "react-query";
+import { toast } from "react-toastify";
+import { useRouteMatch } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 import WithErrorComponent from "./../../hoc/withError";
+import WithLoadingComponent from "./../../hoc/withLoading";
+
+import Background from "./../../components/UI/Background";
+import PaymentProcess from "../../components/PaymentPage";
+import Button from "./../../components/UI/Button";
+import Warning from "../../components/PaymentPage/Warning";
+
+import { useGetPaymentInfo } from "./../../query/getPaymentInfo";
+
+import formGenerator from "../../utils/formGenerator";
 import pusher from "./../../utils/pusher";
 import { addClassName } from "./../../utils/addClassName";
-import Pusher from "pusher-js";
-import { toast } from "react-toastify";
+
+import usePaymentForm from "../../hooks/paymentPageForm";
+
+import { useGetCrypto } from "./../../query/getCryptos";
+
+import { processPaymentLink } from "../../services/paymentLink";
+
 import Logo from "../../assets/Logo.svg";
 
 const PaymentPage = ({ history }) => {
+  const [processError, setProcessError] = useState();
+  const [event, setEvent] = useState("");
+
   const { params } = useRouteMatch();
-  const { data, isLoading, error, isError, status } = useGetPaymentInfo(
-    params.slug
-  );
+
+  const { data, isLoading, error } = useGetPaymentInfo(params.slug);
+
   const [show, setShow] = useState(false);
 
   const [paymentPageForm, setPaymentPageForm, formValid, setFormValid] =
     usePaymentForm(data?.paymentPage);
 
-  const form = formGenerator(paymentPageForm, setPaymentPageForm, setFormValid);
-
   const { data: cryptoData } = useGetCrypto();
-  const [processError, setProcessError] = useState();
 
-  useEffect(() => {
-    if (error?.message === "404") history.push("/pageNotFound");
-    if (error?.message === "Error processing payment page")
-      setProcessError(true);
-  }, [error]);
-
-  useEffect(() => {
-    Notification.requestPermission();
-  }, []);
+  const form = formGenerator(paymentPageForm, setPaymentPageForm, setFormValid);
 
   const userCryptos = useMemo(() => {
     const environment = data?.paymentlink.environment;
@@ -65,9 +58,6 @@ const PaymentPage = ({ history }) => {
       return addedCrypto;
     }
   }, [data, cryptoData]);
-
-  const [event, setEvent] = useState("");
-  // const [event, setEvent] = useState("Awaiting Payment");
 
   const {
     data: processLinkData,
@@ -86,21 +76,21 @@ const PaymentPage = ({ history }) => {
         const { data } = details;
         if (data.event === "PAYMENT_SEEN") {
           setEvent("Payment Seen");
-          let notification = new Notification("Payercoins", {
+          new Notification("Payercoins", {
             body: "Your payment has been seen",
           });
           toast.info("Your payment has been seen");
         }
         if (data.event === "PAYMENT_COMPLETED") {
           setEvent("Payment Completed");
-          let notification = new Notification("Payercoins", {
+          new Notification("Payercoins", {
             body: "Your payment has been successfully completed",
           });
           toast.success("Your payment has been successfully completed");
         }
         if (data.event === "PAYMENT_INCOMPLETE") {
           setEvent("Payment Incomplete ");
-          let notification = new Notification("Payercoins", {
+          new Notification("Payercoins", {
             body: "You made an incomplete payment",
           });
           toast.info("You made an incomplete payment");
@@ -108,6 +98,16 @@ const PaymentPage = ({ history }) => {
       });
     },
   });
+
+  useEffect(() => {
+    if (error?.message === "404") history.push("/pageNotFound");
+    if (error?.message === "Error processing payment page")
+      setProcessError(true);
+  }, [error]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    Notification.requestPermission();
+  }, []);
 
   const handleProcessPaymentLink = async (slug) => {
     const paymentData = {};
@@ -128,6 +128,9 @@ const PaymentPage = ({ history }) => {
         <WithLoadingComponent isLoading={isLoading}>
           <WithErrorComponent isError={processError}>
             <div className="paymentpage">
+              <Helmet>
+                <title> {data?.paymentlink.pageName} - Payercoins</title>
+              </Helmet>
               <div className="paymentpage_img mb-small">
                 <img src={data?.paymentlink.user.profileImage} alt="User" />
               </div>
@@ -166,10 +169,8 @@ const PaymentPage = ({ history }) => {
           cryptos={userCryptos}
           close={setShow}
           handlePayment={handleProcessPaymentLink}
-          event={event}
           setEvent={setEvent}
           processPageData={processLinkData}
-          event={event}
           isLoading={processLinkLoading}
           isError={processLinkError}
           event={event}

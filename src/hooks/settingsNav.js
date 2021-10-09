@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
+
 import { useLocation } from "react-router-dom";
-const nav = ["general", "settlements", "api-keys-webhooks", "currency"];
 
 const useSettingsNav = () => {
   const { search } = useLocation();
@@ -25,7 +25,7 @@ const useSettingsNav = () => {
         return item;
       })
     );
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return [settingsNav, setSettingsNav];
 };
