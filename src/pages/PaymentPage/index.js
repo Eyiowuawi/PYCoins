@@ -129,7 +129,7 @@ const PaymentPage = ({ history }) => {
           <WithErrorComponent isError={processError}>
             <div className="paymentpage">
               <Helmet>
-                <title> {data?.paymentlink.pageName} - Payercoins</title>
+                <title> Make a payment - Payercoins</title>
               </Helmet>
               <div className="paymentpage_img mb-small">
                 <img src={data?.paymentlink.user.profileImage} alt="User" />
