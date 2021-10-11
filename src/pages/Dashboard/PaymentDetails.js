@@ -1,7 +1,6 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { useRouteMatch } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { toast } from "react-toastify";
 
 import WithLoadingComponent from "./../../hoc/withLoading";
 
@@ -51,8 +50,10 @@ const PaymentDetails = ({ history }) => {
 
   const [amountForm, setAmountForm] = useAmount(data?.paymentPage.amount);
 
-  const { isLoading: deleteLoading, mutate: deleteMutate } =
-    useDeletePaymentLink(data?.paymentlink._id, history);
+  const { mutate: deleteMutate } = useDeletePaymentLink(
+    data?.paymentlink._id,
+    history
+  );
 
   const { mutate: disableMutate } = useDisablePaymentLink(
     data?.paymentlink._id

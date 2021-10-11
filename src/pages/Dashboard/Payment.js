@@ -54,7 +54,7 @@ const Payment = ({ history, isLoading }) => {
     <WithLoadingComponent isLoading={isLoading || getLinksLoading}>
       <div className="payment">
         <Helmet>
-          <title>Payment Links - Payercoins</title>
+          <title>Payment Page - Payercoins</title>
         </Helmet>
         <div className="payment_container">
           <h3 className="title title-black">Payment Page</h3>

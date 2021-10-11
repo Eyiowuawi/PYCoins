@@ -40,13 +40,7 @@ const Header = ({ showsidebar, dropdown, close }) => {
     <header className="header">
       <div className="header_container">
         <div className="header_desktop">
-          <p
-            className={`${
-              environment === "sandbox" && "header_live"
-            } header-text`}
-          >
-            Test
-          </p>
+          <p className={"header_text"}>Test</p>
           {environment && (
             <Toggle
               checked={environment === "sandbox" ? false : true}
