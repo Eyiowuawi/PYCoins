@@ -12,6 +12,7 @@ import { updateEnvironment } from "../../services/crypto";
 
 import Hamburger from "../../assets/hamburger.svg";
 import Logo from "../../assets/Logo.svg";
+import { toast } from "react-toastify";
 
 const Header = ({ showsidebar, dropdown, close }) => {
   const { fullname, initials, environment } = useContext(AppContext);
@@ -22,10 +23,11 @@ const Header = ({ showsidebar, dropdown, close }) => {
     "updateenvironment",
     (data) => updateEnvironment(data),
     {
-      onSuccess: () => {
+      onSuccess: (data) => {
         queryClient.invalidateQueries("getuserenvironment");
         queryClient.invalidateQueries("getusercrypto");
         queryClient.invalidateQueries("getpaymentlinks");
+        toast.success(`Switched Integration: ${data}`);
       },
     }
   );
@@ -38,7 +40,13 @@ const Header = ({ showsidebar, dropdown, close }) => {
     <header className="header">
       <div className="header_container">
         <div className="header_desktop">
-          <p className="header-text header-text-grey">Test</p>
+          <p
+            className={`${
+              environment === "sandbox" && "header_live"
+            } header-text`}
+          >
+            Test
+          </p>
           {environment && (
             <Toggle
               checked={environment === "sandbox" ? false : true}
@@ -47,7 +55,11 @@ const Header = ({ showsidebar, dropdown, close }) => {
               disabled={isLoading}
             />
           )}
-          <p className="header-text header-text-grey">Live</p>
+          <p
+            className={`${environment === "live" && "header_live"} header-text`}
+          >
+            Live
+          </p>
           {fullname && (
             <>
               <div className="header_name">{`${initials}`}</div>

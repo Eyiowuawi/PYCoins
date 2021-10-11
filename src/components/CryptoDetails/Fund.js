@@ -4,6 +4,7 @@ import ActionLabel from "./../UI/ActionLabel";
 import QRCode from "../../assets/qrcode.png";
 
 import { Copy } from "../../icons";
+import handleCopy from "./../../utils/copyToClipboard";
 
 const FundWallet = ({ close }) => {
   return (
@@ -17,13 +18,14 @@ const FundWallet = ({ close }) => {
         <ActionLabel
           className="mt-small"
           text="3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5"
+          onclick={() => handleCopy("3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5")}
         >
           <Copy fill="#909198" />
         </ActionLabel>
-        <div className="fund_details mt-small">
+        {/* <div className="fund_details mt-small">
           <p className="title title-grey">BTC BALANCE</p>
           <p className="title title-grey">0 BTC = NGN 0.00</p>
-        </div>
+        </div> */}
       </div>
     </Modal>
   );

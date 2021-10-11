@@ -28,12 +28,14 @@ import { addPaymentUrl } from "./../../utils/addPaymentUrl";
 import { formatTransactions } from "../../utils/formatTransaction";
 
 import empty from "../../assets/empty.svg";
+import Delete from "./../../components/UI/Delete";
 
 const PaymentDetails = ({ history }) => {
   const [show, setShow] = useState(false);
   const [ctas, setCtas] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [selected, setSelected] = useState({});
+  const [showDelete, setShowDelete] = useState(false);
 
   const { params } = useRouteMatch();
 
@@ -43,6 +45,7 @@ const PaymentDetails = ({ history }) => {
 
   const { data: paymentData, isFetching: linkFetching } =
     useGetPaymentTransactions(params.id);
+  // console.log(paymentData);
 
   const { data: userData } = useGetUserWallets();
 
@@ -83,12 +86,13 @@ const PaymentDetails = ({ history }) => {
     return updatedPaymentLink;
   }, [data]);
 
-  useEffect(() => {
-    if (deleteLoading)
-      toast.info("Deleting Link", { autoClose: !deleteLoading });
-  }, [deleteLoading]);
-
-  // Function Handlers
+  const available = useMemo(() => {
+    return paymentData
+      ?.filter((item) => item.confirmedAmountInUsd)
+      .reduce((sum, item) => {
+        return sum + +item.confirmedAmountInUsd;
+      }, 0);
+  }, [paymentData]);
 
   const handleClick = (evt) => {
     evt.stopPropagation();
@@ -97,7 +101,7 @@ const PaymentDetails = ({ history }) => {
 
   const handleDelete = (evt) => {
     evt.preventDefault();
-    deleteMutate();
+    setShowDelete(true);
   };
 
   const handleDisable = (evt) => {
@@ -115,7 +119,7 @@ const PaymentDetails = ({ history }) => {
       <WithLoadingComponent isLoading={linkFetching}>
         <div className="paymentdetails" onClick={() => setCtas(false)}>
           <Helmet>
-            <title>{updatedData?.pageName} - Payercoins</title>
+            <title>Payment Page - Payercoins</title>
           </Helmet>
           <Back to="/payment/pay" title="Back" />
           <PaymentHeader
@@ -127,7 +131,7 @@ const PaymentDetails = ({ history }) => {
             click={handleClick}
           />
           <h5 className="title title-black  ">Balance</h5>
-          <Balance />
+          <Balance available={available} data={paymentData} />
           <h3 className="title title-black mt-small mb-small">Transactions</h3>
 
           {(transactions?.length < 1 || !transactions) && (
@@ -176,6 +180,10 @@ const PaymentDetails = ({ history }) => {
           handleClose={() => setIsEdit(false)}
           amountType={data?.paymentPage.amountType}
         />
+      )}
+
+      {showDelete && (
+        <Delete close={() => setShowDelete(false)} mutate={deleteMutate} />
       )}
     </>
   );

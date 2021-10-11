@@ -1,5 +1,4 @@
 const Cryptocurrency = ({ wallets }) => {
-  console.log(wallets);
   return (
     <div className="crypto">
       {wallets?.map((item) => (

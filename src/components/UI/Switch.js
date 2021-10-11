@@ -14,6 +14,7 @@ const Toggle = ({
         onChange={() => toggle(param)}
         checked={checked}
         offColor="#E4E8F1"
+        // offHandleColor="#ff0000"
         onColor="#48D189"
         checkedIcon={false}
         uncheckedIcon={false}

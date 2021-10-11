@@ -44,8 +44,7 @@ export const updateEnvironment = async (environ) => {
   try {
     const { data } = await cryptoBaseUrl.post("/environment", environ);
 
-    toast.success("Your environment has been updated");
-    return data.data.environment;
+    return data.message;
   } catch (error) {
     toast.error("Error updating your environment");
     throw new Error("Error processing your request");

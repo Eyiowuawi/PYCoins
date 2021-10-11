@@ -104,7 +104,7 @@ export const cryptos = [
   },
   {
     id: 4,
-    name: "Tether",
+    name: "USDT (ERC20)",
     img: Tether,
     btc: "1 BTC ≈ NGN 19,444,236.15",
     classname: "accounts_img accounts_img-4",

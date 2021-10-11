@@ -335,6 +335,11 @@ button {
   color: #48d189;
 }
 
+.button_remove {
+  background-color: #eb5757;
+  color: white;
+}
+
 .button:disabled {
   background-color: #ccc !important;
   cursor: initial;
@@ -1692,6 +1697,50 @@ button {
   font-size: 1.1rem;
 }
 
+.remove {
+  padding-top: 3rem !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.remove img {
+  margin-bottom: 1rem;
+}
+
+.remove p {
+  font-size: 1.2rem !important;
+}
+
+.remove p:first-of-type {
+  color: #333333 !important;
+  margin-bottom: 2rem;
+}
+
+.remove button {
+  margin-top: 2rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  width: 50%;
+}
+
+@media screen and (max-width: 500px) {
+  .remove button {
+    width: 90%;
+  }
+}
+
 .auth_form {
   background: #ffffff;
   -webkit-box-shadow: 0px 1px 10px rgba(72, 209, 137, 0.1);
@@ -1815,7 +1864,7 @@ button {
           align-items: center;
 }
 
-.header_desktop * {
+.header_desktop *:not(label) {
   margin-right: 32px;
 }
 
@@ -1883,6 +1932,14 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.header_test {
+  color: #eb5757;
+}
+
+.header_live {
+  color: #48d189;
 }
 
 .nav {
@@ -2342,7 +2399,6 @@ button {
 
 .react-select__value-container--is-multi div:hover {
   color: #fafafa;
-  background-color: #48d189;
 }
 
 .create {

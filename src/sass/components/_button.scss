@@ -29,6 +29,11 @@
     color: $primary-color;
   }
 
+  &_remove {
+    background-color: #eb5757;
+    color: white;
+  }
+
   &:disabled {
     // cursor: not-allowed !important;
     background-color: #ccc !important;

@@ -14,6 +14,7 @@ import { getProcessedPayment } from "../services/userPaymentLink";
 import { autoLogout } from "./../services/auth";
 
 import { useUserProfile } from "./../query/getUserProfile";
+import { useGetUserEnvironment } from "./../query/getUserEnvironment";
 
 const DashboardLayout = ({ route, history, location, ...props }) => {
   // const [showpopup, setShowPopup] = useState(false);
@@ -25,6 +26,8 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
   const branch = matchRoutes(route.routes, location.pathname);
 
   if (branch.length < 1) history.push("/pageNotFound");
+
+  useGetUserEnvironment();
 
   const results = useUserProfile();
 

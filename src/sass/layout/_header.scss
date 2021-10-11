@@ -23,7 +23,7 @@
 
   &_desktop {
     @include flex(row, flex-end, center);
-    & * {
+    & *:not(label) {
       margin-right: 32px;
     }
     @include respond(tab-port) {
@@ -61,5 +61,13 @@
       display: flex;
       align-items: center;
     }
+  }
+
+  &_test {
+    color: #eb5757;
+  }
+
+  &_live {
+    color: $primary-color;
   }
 }
