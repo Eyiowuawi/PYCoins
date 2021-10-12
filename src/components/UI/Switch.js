@@ -23,6 +23,8 @@ const Toggle = ({
         disabled={disabled}
         height={height}
         width={width}
+        // handleDiameter={10}
+        // borderRadius={30}
       />
     </label>
   );

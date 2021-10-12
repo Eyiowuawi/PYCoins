@@ -84,8 +84,8 @@ const Header = ({ showsidebar, dropdown, close }) => {
                 disabled={isLoading}
                 offHandleColor="#EB4335"
                 offColor="#FDF0EF"
-                height={30}
-                width={50}
+                // height={20}
+                // width={50}
               />
             )}
             <p
