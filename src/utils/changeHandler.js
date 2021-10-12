@@ -5,29 +5,52 @@ export const changeHandler = (
   elementID,
   formType,
   formUpdate,
-  validForm
+  validForm,
+  options
 ) => {
   let updatedFormElement = {};
-  if (elementID === "businessDocument") {
-    updatedFormElement = {
-      ...formType["businessDocument"],
-      valid: true,
-      value: event.target.files[0],
-      label: event.target.files[0].name,
-    };
+  let isValid = true;
+
+  if (Array.isArray(event)) {
+    if (elementID === "currency") {
+      isValid = formType[elementID].validation(event) && isValid;
+      updatedFormElement = {
+        ...formType[elementID],
+        value: event.map((item) => item.value),
+        valid: isValid,
+        selected: event,
+      };
+    } else {
+      isValid = formType[elementID].validation(event[0].value) && isValid;
+      updatedFormElement = {
+        ...formType[elementID],
+        value: event[0].value,
+        valid: isValid,
+        selected: event,
+      };
+    }
   } else {
-    let passwordValue = formType["password"]
-      ? formType["password"].value
-      : null;
-    let isValid = true;
-    isValid =
-      formType[elementID].validation(event.target.value, passwordValue) &&
-      isValid;
-    updatedFormElement = {
-      ...formType[elementID],
-      value: event.target.value,
-      valid: isValid,
-    };
+    if (elementID === "businessDocument") {
+      updatedFormElement = {
+        ...formType["businessDocument"],
+        valid: true,
+        value: event.target.files[0],
+        label: event.target.files[0].name,
+      };
+    } else {
+      let passwordValue = formType["password"]
+        ? formType["password"].value
+        : null;
+      let isValid = true;
+      isValid =
+        formType[elementID].validation(event.target.value, passwordValue) &&
+        isValid;
+      updatedFormElement = {
+        ...formType[elementID],
+        value: event.target.value,
+        valid: isValid,
+      };
+    }
   }
 
   const updatedForm = {
@@ -59,7 +82,6 @@ export const handleBlur = (elementID, formType, updateFunction) => {
 };
 
 export const showPassword = (evt, elementID, formType, formUpdateFunc) => {
-  // evt.stopPropagation();
   const updatedFormElement = {
     ...formType[elementID],
     show: !formType[elementID].show,
@@ -75,37 +97,22 @@ export const showPassword = (evt, elementID, formType, formUpdateFunc) => {
   formUpdateFunc(updatedForm);
 };
 
-export const selectHandler = (
-  option,
+export const removeItem = (
+  event,
   elementID,
   formType,
   formUpdateFunc,
   validForm
 ) => {
-  let isValid = true;
-  if (Array.isArray(option)) {
-    isValid = formType[elementID].validation(option) && isValid;
+  if (elementID === "currency") {
+    let isValid = true;
+    isValid = formType[elementID].validation(event) && isValid;
 
     const updatedFormElement = {
       ...formType[elementID],
-      value: option.map((item) => item.value),
+      value: event.map((item) => item.value),
       valid: isValid,
-      selected: option,
-    };
-    const updatedForm = {
-      ...formType,
-      [elementID]: updatedFormElement,
-    };
-
-    formUpdateFunc(updatedForm);
-  } else {
-    isValid = formType[elementID].validation(option.value) && isValid;
-
-    const updatedFormElement = {
-      ...formType[elementID],
-      value: option.value,
-      valid: isValid,
-      selected: option,
+      selected: event,
     };
 
     const updatedForm = {
@@ -113,12 +120,5 @@ export const selectHandler = (
       [elementID]: updatedFormElement,
     };
     formUpdateFunc(updatedForm);
-    if (validForm) {
-      let formIsValid = true;
-      for (let elementID in updatedForm) {
-        formIsValid = updatedForm[elementID].valid && formIsValid;
-      }
-      validForm(formIsValid);
-    }
   }
 };

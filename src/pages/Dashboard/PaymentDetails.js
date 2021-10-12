@@ -17,6 +17,7 @@ import { useGetUserPaymentLink } from "../../query/getUserPaymentLink";
 import { useGetUserWallets } from "../../query/getCryptos";
 import { useDeletePaymentLink } from "../../query/deletePaymentLink";
 import { useDisablePaymentLink } from "../../query/disablePaymentLink";
+import { useEnablePaymentLink } from "../../query/enablePaymentLink";
 import { useGetPaymentTransactions } from "../../query/getPaymentTransactions";
 
 import useWindowWidth from "../../hooks/windowWidth";
@@ -28,6 +29,7 @@ import { formatTransactions } from "../../utils/formatTransaction";
 
 import empty from "../../assets/empty.svg";
 import Delete from "./../../components/UI/Delete";
+import WithErrorComponent from "./../../hoc/withError";
 
 const PaymentDetails = ({ history }) => {
   const [show, setShow] = useState(false);
@@ -42,9 +44,11 @@ const PaymentDetails = ({ history }) => {
 
   const { data } = useGetUserPaymentLink(params.id);
 
-  const { data: paymentData, isFetching: linkFetching } =
-    useGetPaymentTransactions(params.id);
-  // console.log(paymentData);
+  const {
+    data: paymentData,
+    isFetching: linkFetching,
+    isError: linkError,
+  } = useGetPaymentTransactions(params.id);
 
   const { data: userData } = useGetUserWallets();
 
@@ -58,6 +62,8 @@ const PaymentDetails = ({ history }) => {
   const { mutate: disableMutate } = useDisablePaymentLink(
     data?.paymentlink._id
   );
+
+  const { mutate: enableMutate } = useEnablePaymentLink(data?.paymentlink._id);
 
   const editDetails = useMemo(() => {
     const editParams = {
@@ -118,55 +124,60 @@ const PaymentDetails = ({ history }) => {
   return (
     <>
       <WithLoadingComponent isLoading={linkFetching}>
-        <div className="paymentdetails" onClick={() => setCtas(false)}>
-          <Helmet>
-            <title>Payment Page - Payercoins</title>
-          </Helmet>
-          <Back to="/payment/pay" title="Back" />
-          <PaymentHeader
-            handleDelete={handleDelete}
-            link={updatedData}
-            ctas={ctas}
-            handleDisable={handleDisable}
-            handleEdit={() => setIsEdit(true)}
-            click={handleClick}
-          />
-          <h5 className="title title-black  ">Balance</h5>
-          <Balance available={available} data={paymentData} />
-          <h3 className="title title-black mt-small mb-small">Transactions</h3>
-
-          {(transactions?.length < 1 || !transactions) && (
-            <Empty>
-              <img src={empty} alt="Empty State" />
-              <h3 className="title title-black mb-small mt-small">
-                You don't have any transaction yet
-              </h3>
-              <p className="title title-grey ">
-                Create a payment link to start requesting money from friends,
-                family, customers or anyone anywhere around the world.
-              </p>
-            </Empty>
-          )}
-          {transactions?.length > 0 && (
-            <>
-              {width > 500 && (
-                <Table data={transactions} onclick={selectedTransaction} />
-              )}
-              {width <= 500 && (
-                <TableResponsive
-                  data={transactions}
-                  onclick={selectedTransaction}
-                />
-              )}
-            </>
-          )}
-          {show && (
-            <TransactionsDetails
-              close={() => setShow(false)}
-              details={selected}
+        <WithErrorComponent isError={linkError}>
+          <div className="paymentdetails" onClick={() => setCtas(false)}>
+            <Helmet>
+              <title>Payment Page - Payercoins</title>
+            </Helmet>
+            <Back to="/payment/pay" title="Back" />
+            <PaymentHeader
+              handleDelete={handleDelete}
+              link={updatedData}
+              ctas={ctas}
+              handleDisable={handleDisable}
+              handleEnable={enableMutate}
+              handleEdit={() => setIsEdit(true)}
+              click={handleClick}
             />
-          )}
-        </div>
+            <h5 className="title title-black  ">Balance</h5>
+            <Balance available={available} data={paymentData} />
+            <h3 className="title title-black mt-small mb-small">
+              Transactions
+            </h3>
+
+            {(transactions?.length < 1 || !transactions) && (
+              <Empty>
+                <img src={empty} alt="Empty State" />
+                <h3 className="title title-black mb-small mt-small">
+                  You don't have any transaction yet
+                </h3>
+                <p className="title title-grey ">
+                  Create a payment link to start requesting money from friends,
+                  family, customers or anyone anywhere around the world.
+                </p>
+              </Empty>
+            )}
+            {transactions?.length > 0 && (
+              <>
+                {width > 500 && (
+                  <Table data={transactions} onclick={selectedTransaction} />
+                )}
+                {width <= 500 && (
+                  <TableResponsive
+                    data={transactions}
+                    onclick={selectedTransaction}
+                  />
+                )}
+              </>
+            )}
+            {show && (
+              <TransactionsDetails
+                close={() => setShow(false)}
+                details={selected}
+              />
+            )}
+          </div>
+        </WithErrorComponent>
       </WithLoadingComponent>
       {isEdit && (
         <PaymentForm

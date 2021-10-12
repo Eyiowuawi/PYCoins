@@ -1,6 +1,6 @@
 import { Copy, Delete, Disable } from "../../icons";
 
-import actionBtn from "../../assets/btns.svg";
+import actionBtn from "../../assets/More.svg";
 
 import handleCopy from "../../utils/copyToClipboard";
 
@@ -12,10 +12,14 @@ const PaymentHeader = ({
   handleDelete,
   handleDisable,
   handleEdit,
+  handleEnable,
 }) => {
   return (
     <div className="paymentdetails_header">
-      <h3 className="title title-black">{link?.pageName}</h3>
+      <div className="paymentdetails_status">
+        <h3 className="title title-black">{link?.pageName}</h3>
+        {link?.isDisabled && <span>Disabled</span>}
+      </div>
       <div
         className={`paymentdetails_ctas ${
           ctas && "paymentdetails_ctas-reveal"
@@ -37,10 +41,12 @@ const PaymentHeader = ({
         <button
           type="submit"
           aria-label="disable-button"
-          onClick={handleDisable}
+          onClick={link?.isDisabled ? handleEnable : handleDisable}
         >
           <Disable />
-          <p className="title title-grey">Disable</p>
+          <p className="title title-grey">
+            {link?.isDisabled ? "Enable" : "Disable"}
+          </p>
         </button>
         <button type="submit" aria-label="delete-button" onClick={handleDelete}>
           <Delete />

@@ -5,7 +5,7 @@ import { required, notEmptyArray } from "../utils/validations";
 const usePaymentForm = (userWallets, editDetails) => {
   // const [options] = useState()
 
-  const [paymentForm, setPayentForm] = useState({
+  const [paymentForm, setPaymentForm] = useState({
     pageName: {
       value: editDetails ? editDetails.pageName : "",
       valid: false,
@@ -31,19 +31,19 @@ const usePaymentForm = (userWallets, editDetails) => {
     currency: {
       value: editDetails ? editDetails.cryptos : [],
       valid: false,
-      multiple: true,
       elementType: "select",
       label: "Select Currency",
       options: [],
       validation: notEmptyArray,
       blur: false,
-      required: true,
       closeMenuOnSelect: false,
+      selected: [],
+      singleSelect: false,
     },
   });
 
   useEffect(() => {
-    setPayentForm((prevState) => {
+    setPaymentForm((prevState) => {
       return {
         ...prevState,
         currency: {
@@ -51,7 +51,7 @@ const usePaymentForm = (userWallets, editDetails) => {
           options: userWallets?.map((item) => {
             return {
               value: item,
-              label: item.toUpperCase(),
+              label: item,
             };
           }),
         },
@@ -60,7 +60,7 @@ const usePaymentForm = (userWallets, editDetails) => {
   }, [userWallets]);
 
   const [paymentFormValid, setPaymentFormValid] = useState(false);
-  return [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid];
+  return [paymentForm, setPaymentForm, paymentFormValid, setPaymentFormValid];
 };
 
 export default usePaymentForm;

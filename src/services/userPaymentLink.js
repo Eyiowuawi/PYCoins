@@ -40,12 +40,24 @@ export const deletePaymentLink = async (id) => {
   }
 };
 
+export const enablePaymentLink = async (id) => {
+  try {
+    await paymentlinkBaseUrl.patch(`/update/${id}`, {
+      isDisabled: false,
+    });
+    toast.success("Payment link has been enabled");
+  } catch (error) {
+    toast.error("Error enabling payment link");
+  }
+};
+
 export const disablePaymentLink = async (id) => {
   try {
     await paymentlinkBaseUrl.put(`/disable/${id}`);
     toast.success("Payment link has been disabled");
     return true;
   } catch (error) {
+    toast.error("Error disabling payment link");
     throw new Error("Error processing your request");
   }
 };
@@ -55,7 +67,7 @@ export const getPaymentInfo = async (slug) => {
     return data.data;
   } catch (error) {
     if (error.response) {
-      throw new Error(error.response.status);
+      throw new Error(error.response.data.message);
     } else throw new Error("Error processing payment page");
   }
 };
@@ -64,7 +76,9 @@ export const getPaymentLinkTransactions = async (id) => {
   try {
     const { data } = await paymentlinkBaseUrl.get(`/transactions/${id}`);
     return data.data.paymentPage;
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(`Error`);
+  }
 };
 
 export const processPaymentLink = async ({ environ, paymentData, ref }) => {

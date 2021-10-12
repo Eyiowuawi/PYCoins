@@ -1,10 +1,8 @@
 import TextField from "@material-ui/core/TextField";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
 
-const animatedComponents = makeAnimated();
+import MultipleSelect from "multiselect-react-dropdown";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -61,7 +59,7 @@ const Input = ({
   show,
   readonly,
   multiple,
-  selectHandler,
+  removeSelect,
   selected,
   closeMenu,
 }) => {
@@ -101,18 +99,23 @@ const Input = ({
 
     case "select":
       inputElement = (
-        <Select
+        <MultipleSelect
           options={options}
-          isMulti={multiple}
-          components={animatedComponents}
-          className={`react-select-container `}
-          classNamePrefix="react-select"
+          singleSelect={multiple}
+          // components={animatedComponents}
+          // className={`react-select-container `}
+          // classNamePrefix="react-select"
           placeholder={label}
-          value={selected}
-          onChange={selectHandler}
-          onBlur={onblur}
-          closeMenuOnSelect={closeMenu}
+          selectedValues={selected}
+          displayValue={"label"}
+          onSelect={onchange}
+          // onBlur={onblur}
+          closeOnSelect={closeMenu}
           isSearchable={false}
+          avoidHighlightFirstOption={true}
+          emptyRecordMsg="No crypto available"
+          hidePlaceholder={true}
+          onRemove={removeSelect}
         />
       );
       break;

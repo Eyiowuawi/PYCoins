@@ -73,6 +73,7 @@ const Currency = () => {
                 checked={handleCheckIncludes(item.slug)}
                 toggle={() => handleToggle(item.slug)}
                 disabled={deactivateLoading || activateLoading}
+                offColor="#E4E8F1"
               />
               <SmallLoader
                 isLoading={

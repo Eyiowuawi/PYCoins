@@ -3,7 +3,7 @@ import {
   changeHandler,
   handleBlur,
   showPassword,
-  selectHandler,
+  removeItem,
 } from "./changeHandler";
 
 const formGenerator = (formType, formFunc, validForm) => {
@@ -32,14 +32,14 @@ const formGenerator = (formType, formFunc, validForm) => {
         changeHandler(event, id, formType, formFunc, validForm)
       }
       onblur={(event) => handleBlur(id, formType, formFunc)}
-      selectHandler={(option) =>
-        selectHandler(option, id, formType, formFunc, validForm)
+      removeSelect={(option) =>
+        removeItem(option, id, formType, formFunc, validForm)
       }
       required={config.required}
       blur={config.blur}
       showPassword={(evt) => showPassword(evt, id, formType, formFunc)}
       show={config.show}
-      multiple={config.multiple}
+      multiple={config.singleSelect}
       readonly={config.readonly}
       selected={config.selected}
       closeMenu={config.closeMenuOnSelect}

@@ -8,7 +8,7 @@ const Balance = ({ data, available }) => {
       <div className="balance_item">
         <img src={Available} alt="available balance" />
         <div className="balance_content">
-          <p className="title title-grey mb-smaller">Available</p>
+          <p className="title title-grey mb-smaller">Total Amount Received</p>
           <p className="mute mb-smaller">
             {parseFloat(available).toFixed(6)} USD
           </p>
@@ -16,18 +16,18 @@ const Balance = ({ data, available }) => {
         </div>
       </div>
       <div className="balance_item">
-        <img src={Ledger} alt="available balance" />
-        <div className="balance_content">
-          <p className="title title-grey mb-smaller">Ledger Balance</p>
-          <p className="mute mb-smaller">500, 000 USD</p>
-          {/* <p className="title title-grey mb-smaller">205,655.00 NGN</p> */}
-        </div>
-      </div>
-      <div className="balance_item">
         <img src={Customer} alt="available balance" />
         <div className="balance_content">
           <p className="title title-grey mb-smaller">Total Customers</p>
           <p className="mute">{data?.length}</p>
+        </div>
+      </div>
+      <div className="balance_item">
+        <img src={Ledger} alt="available balance" />
+        <div className="balance_content">
+          <p className="title title-grey mb-smaller">Number of Visitors</p>
+          <p className="mute mb-smaller">0</p>
+          {/* <p className="title title-grey mb-smaller">205,655.00 NGN</p> */}
         </div>
       </div>
     </div>

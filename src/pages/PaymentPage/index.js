@@ -36,6 +36,14 @@ const PaymentPage = ({ history }) => {
 
   const [show, setShow] = useState(false);
 
+  useEffect(() => {
+    if (error?.message === "404") history.push("/pageNotFound");
+    if (error?.message === "Payment Link Has been disabled!")
+      history.push("/pageNotFound");
+    if (error?.message === "Error processing payment page")
+      setProcessError(true);
+  }, [error]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const [paymentPageForm, setPaymentPageForm, formValid, setFormValid] =
     usePaymentForm(data?.paymentPage);
 
@@ -100,12 +108,6 @@ const PaymentPage = ({ history }) => {
   });
 
   useEffect(() => {
-    if (error?.message === "404") history.push("/pageNotFound");
-    if (error?.message === "Error processing payment page")
-      setProcessError(true);
-  }, [error]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
     Notification.requestPermission();
   }, []);
 
@@ -140,7 +142,7 @@ const PaymentPage = ({ history }) => {
               <p className="title title-grey ta">
                 {data?.paymentPage.metaData.description}
               </p>
-              <form className="paymentpage_form">{form}</form>
+              {!error && <form className="paymentpage_form">{form}</form>}
               <Button
                 disabled={formValid}
                 bg="button_primary"

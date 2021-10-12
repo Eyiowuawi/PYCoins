@@ -1,59 +1,111 @@
-.react-select {
-  &__control {
-    font-size: 1rem;
-    @include line;
-    font-family: $font-family;
-    color: #30324b;
-    padding: 1rem 0.7rem !important;
-    background-color: transparent;
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    -ms-appearance: none !important;
-    -o-appearance: none !important;
-    appearance: none !important;
-    background-position-x: 98% !important;
-    background-repeat: no-repeat;
-    background-position-y: 50% !important;
-    background-image: url("../assets/select.svg");
+// .react-select {
+//   &__control {
+//     font-size: 0.8rem;
+//     @include line;
+//     font-family: $font-family;
+//     color: #30324b;
+//     padding: 1rem 0.7rem !important;
+//     background-color: transparent;
+//     -webkit-appearance: none !important;
+//     -moz-appearance: none !important;
+//     -ms-appearance: none !important;
+//     -o-appearance: none !important;
+//     appearance: none !important;
+//     background-position-x: 98% !important;
+//     background-repeat: no-repeat;
+//     background-position-y: 50% !important;
+//     background-image: url("../assets/select.svg");
 
-    &--is-focused {
-      border: none !important;
-      outline: none;
-      box-shadow: 0 0 0 1px #e5e9f2 !important;
-    }
-  }
+//     &--is-focused {
+//       border: none !important;
+//       outline: none;
+//       box-shadow: 0 0 0 1px #e5e9f2 !important;
+//     }
+//   }
 
-  &__placeholder {
-    color: #30324b !important;
-    font-family: $font-family !important;
-  }
+//   &__placeholder {
+//     color: #30324b !important;
+//     font-family: $font-family !important;
+//   }
 
-  &__indicators {
-    display: none !important;
-  }
+//   &__indicators {
+//     display: none !important;
+//   }
 
-  &__menu {
-    position: relative;
-    z-index: 100000 !important;
-  }
+//   &__menu {
+//     position: relative;
+//     z-index: 100000 !important;
+//   }
 
-  &__single-value {
-    color: rgba(0, 0, 0, 0.87) !important;
-  }
-  &__menu {
-    font-size: 1rem;
-  }
+//   &__single-value {
+//     color: rgba(0, 0, 0, 0.87) !important;
+//   }
+//   &__menu {
+//     font-size: 1rem;
+//     text-transform: capitalize;
+//   }
 
-  &__value-container--is-multi {
-    div {
-      // background-color: red !important;
-      // width: 100px;
-      // padding: 0.4rem 0 !important;
+//   &__value-container--is-multi {
+//     div {
+//       // background-color: red !important;
+//       // width: 100px;
+//       // padding: 0.4rem 0 !important;
+//       font-size: 1.1rem;
+//       text-transform: capitalize;
+//       &:hover {
+//         color: #fafafa;
+//         // background-color: $primary-color;
+//       }
+//     }
+//   }
+// }
 
-      &:hover {
-        color: #fafafa;
-        // background-color: $primary-color;
-      }
-    }
+.searchWrapper {
+  font-size: 0.8rem;
+  @include line;
+  font-family: $font-family;
+  color: #30324b;
+  padding: 1rem !important;
+  background-color: transparent;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  -ms-appearance: none !important;
+  -o-appearance: none !important;
+  appearance: none !important;
+  background-position-x: 98% !important;
+  background-repeat: no-repeat;
+  background-position-y: 50% !important;
+  background-image: url("../assets/select.svg");
+}
+
+.icon_down_dir {
+  display: none !important;
+}
+
+.singleChip {
+  background-color: transparent !important;
+}
+.singleChip .closeIcon {
+  display: none !important;
+}
+.chip {
+  font-size: 1rem !important;
+  font-family: $font-family;
+  // padding: 0 !important;
+  background-color: $primary-color;
+}
+.searchBox::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.87) !important;
+  font-family: $font-family;
+  font-size: 1rem !important;
+}
+
+.optionContainer li {
+  font-size: 1rem !important;
+  padding: 1rem;
+
+  &:hover {
+    background-color: $primary-color;
+    color: white;
   }
 }

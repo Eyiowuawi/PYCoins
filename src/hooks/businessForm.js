@@ -28,10 +28,10 @@ const useBusinessForm = () => {
         { id: 5, label: "Services", value: "Services" },
         { id: 6, label: "Finance", value: "Finance" },
       ],
+      singleSelect: true,
       validation: required,
       blur: false,
       required: true,
-      multiple: false,
       closeMenuOnSelect: true,
     },
     businessEmail: {
@@ -65,6 +65,7 @@ const useBusinessForm = () => {
       required: true,
       closeMenuOnSelect: true,
       selected: null,
+      singleSelect: true,
     },
 
     businessURL: {

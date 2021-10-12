@@ -40,8 +40,9 @@
       display: flex;
     }
 
-    &_arrow {
-      position: relative;
+    &-env {
+      @include flex(row, center, center);
+      gap: 1.6rem;
     }
   }
 
@@ -56,7 +57,7 @@
     font-size: 1rem;
     font-family: $font-family;
     margin-right: 20px;
-
+    margin-left: 30px;
     &_container {
       display: flex;
       align-items: center;
@@ -64,7 +65,7 @@
   }
 
   &_test {
-    color: #eb5757;
+    color: #eb4335;
   }
 
   &_live {
