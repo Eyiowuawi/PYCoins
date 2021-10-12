@@ -138,9 +138,10 @@ const PaymentDetails = ({ history }) => {
               handleEnable={enableMutate}
               handleEdit={() => setIsEdit(true)}
               click={handleClick}
+              
             />
             <h5 className="title title-black  ">Balance</h5>
-            <Balance available={available} data={paymentData} />
+            <Balance available={available} data={paymentData} customers={transactions?.length}/>
             <h3 className="title title-black mt-small mb-small">
               Transactions
             </h3>

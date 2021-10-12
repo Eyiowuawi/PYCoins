@@ -28,7 +28,7 @@
   &_name {
     margin: 2.5rem 0;
     background-color: $color-white;
-    padding: 1rem 0.7rem;
+    padding: 1.5rem 0.7rem;
     @include border(#e5e9f2);
     border-radius: 5px;
 
@@ -45,11 +45,13 @@
       font-size: 12px;
       line-height: 16px;
       color: $color-sidebar;
+      white-space: pre-wrap;
+      word-wrap: break-word;
     }
   }
 
   &_footer {
-    // padding-top: 2rem;
+    padding-top: 2rem;
     width: max-content;
     background-color: transparent;
     border: none;

@@ -109,3 +109,21 @@ export const getProcessedPayment = async () => {
     throw new Error("Error processing your request");
   }
 };
+
+export const getRates = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const { data } = await base.get(
+      "/live/payment/crypto/rate?cryptos=BTC,ETH&currencies=USD",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    // console.log(data);
+    return data.rates;
+  } catch (error) {
+    throw new Error("Error processing your request");
+  }
+};

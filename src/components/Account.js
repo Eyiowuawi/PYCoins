@@ -37,7 +37,9 @@ const Accounts = ({ showForm, goBack, name, cryptos, title, header }) => {
                   <div className={"accounts_content"}>
                     <p className="title title-grey">{item.name} Wallet</p>
                     {pathname.includes("pay") && (
-                      <p className="title title-grey ta">{item.btc} </p>
+                      <p className="title title-grey ta">
+                        1{item.rate} = ${item.rateValue}{" "}
+                      </p>
                     )}
                   </div>
                   <img src={Proceed} alt="Continue" />

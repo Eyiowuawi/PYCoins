@@ -13,6 +13,7 @@ import Button from "./../../components/UI/Button";
 import Warning from "../../components/PaymentPage/Warning";
 
 import { useGetPaymentInfo } from "./../../query/getPaymentInfo";
+import { useGetRates } from "./../../query/getRates";
 
 import formGenerator from "../../utils/formGenerator";
 import pusher from "./../../utils/pusher";
@@ -33,6 +34,8 @@ const PaymentPage = ({ history }) => {
   const { params } = useRouteMatch();
 
   const { data, isLoading, error } = useGetPaymentInfo(params.slug);
+  // console.log(data);
+  const { data: rates } = useGetRates();
 
   const [show, setShow] = useState(false);
 
@@ -66,6 +69,27 @@ const PaymentPage = ({ history }) => {
       return addedCrypto;
     }
   }, [data, cryptoData]);
+
+  const addedRates = useMemo(() => {
+    const joinedArr = [];
+
+    if (userCryptos) {
+      for (let item of userCryptos) {
+        for (let key in rates) {
+          if (item.rate === key) {
+            joinedArr.push({
+              ...item,
+              rateValue: rates[key].USD,
+            });
+          }
+        }
+      }
+    }
+
+    return joinedArr;
+  }, [rates, userCryptos]);
+
+  console.log(addedRates);
 
   const {
     data: processLinkData,
@@ -168,7 +192,7 @@ const PaymentPage = ({ history }) => {
       {data?.paymentlink.environment === "sandbox" && <Warning />}
       {show && (
         <PaymentProcess
-          cryptos={userCryptos}
+          cryptos={addedRates}
           close={setShow}
           handlePayment={handleProcessPaymentLink}
           setEvent={setEvent}

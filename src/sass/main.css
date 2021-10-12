@@ -236,6 +236,7 @@ button {
 
 .header-text {
   font-family: "Mulish", sans-serif;
+  font-size: 1rem;
 }
 
 .header-text-black {
@@ -1833,7 +1834,7 @@ button {
 }
 
 .header_container {
-  padding: 1.5rem 2rem;
+  padding: 1.5rem;
 }
 
 .header_desktop {
@@ -1900,7 +1901,7 @@ button {
           align-items: center;
 }
 
-.header_mobile-env * {
+.header_mobile-env *:not(label) {
   margin-right: 1rem;
 }
 
@@ -2107,7 +2108,7 @@ button {
 .sidebar_name {
   margin: 2.5rem 0;
   background-color: #ffffff;
-  padding: 1rem 0.7rem;
+  padding: 1.5rem 0.7rem;
   border: 1px solid #e5e9f2 !important;
   border-radius: 5px;
 }
@@ -2125,9 +2126,12 @@ button {
   font-size: 12px;
   line-height: 16px;
   color: #909198;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .sidebar_footer {
+  padding-top: 2rem;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;

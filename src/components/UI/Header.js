@@ -41,7 +41,7 @@ const Header = ({ showsidebar, dropdown, close }) => {
               environment === "sandbox" && "header_test"
             } header-text`}
           >
-            Test
+            Test mode
           </p>
           {environment && (
             <Toggle
@@ -56,7 +56,7 @@ const Header = ({ showsidebar, dropdown, close }) => {
           <p
             className={`${environment === "live" && "header_live"} header-text`}
           >
-            Live
+            Live mode
           </p>
           {fullname && (
             <>
@@ -74,7 +74,7 @@ const Header = ({ showsidebar, dropdown, close }) => {
                 environment === "sandbox" && "header_test"
               } header-text`}
             >
-              Test
+              Test mode
             </p>
             {environment && (
               <Toggle
@@ -84,8 +84,8 @@ const Header = ({ showsidebar, dropdown, close }) => {
                 disabled={isLoading}
                 offHandleColor="#EB4335"
                 offColor="#FDF0EF"
-                // height={20}
-                // width={50}
+                height={20}
+                width={50}
               />
             )}
             <p
@@ -93,7 +93,7 @@ const Header = ({ showsidebar, dropdown, close }) => {
                 environment === "live" && "header_live"
               } header-text`}
             >
-              Live
+              Live mode
             </p>
             <div className="header_name_container">
               {fullname && <div className="header_name">{`${initials}`}</div>}

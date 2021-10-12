@@ -91,24 +91,24 @@ export const cryptos = [
     name: "Bitcoin",
     img: Bitcoin,
     classname: "accounts_img accounts_img-2",
-    btc: "1 BTC ≈ NGN 19,444,236.15",
     slug: "bitcoin",
+    rate: "BTC",
   },
   {
     id: 3,
     name: "Ethereum",
     img: Ethereum,
     classname: "accounts_img accounts_img-3",
-    btc: "1 BTC ≈ NGN 19,444,236.15",
     slug: "ethereum",
+    rate: "ETH",
   },
   {
     id: 4,
     name: "USDT (ERC20)",
     img: Tether,
-    btc: "1 BTC ≈ NGN 19,444,236.15",
     classname: "accounts_img accounts_img-4",
     slug: "usdt-eth",
+    rate: "USDT-ETH",
   },
 ];
 

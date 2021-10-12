@@ -18,7 +18,7 @@
   }
 
   &_container {
-    padding: 1.5rem 2rem;
+    padding: 1.5rem;
   }
 
   &_desktop {
@@ -42,7 +42,7 @@
 
     &-env {
       @include flex(row, center, center);
-      * {
+      *:not(label) {
         margin-right: 1rem;
       }
     }
