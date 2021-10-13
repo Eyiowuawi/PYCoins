@@ -22,7 +22,7 @@ const Settlements = () => {
         </div>
       </div>
       {show && (
-        <Modal close={setShow}>
+        <Modal close={() => setShow(false)}>
           <Accounts
             showForm={handleChange}
             name={name}

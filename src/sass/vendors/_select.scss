@@ -91,7 +91,7 @@
 .chip {
   font-size: 1rem !important;
   font-family: $font-family;
-  // padding: 0 !important;
+  text-transform: capitalize;
   background-color: $primary-color;
 }
 .searchBox::-webkit-input-placeholder {
@@ -103,6 +103,7 @@
 .optionContainer li {
   font-size: 1rem !important;
   padding: 1rem;
+  text-transform: capitalize;
 
   &:hover {
     background-color: $primary-color;

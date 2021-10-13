@@ -30,7 +30,7 @@ const Sidebar = ({ show, close, history }) => {
       name:
         profile?.user?.userType === "individual"
           ? `${profile?.user?.firstName} ${profile?.user?.lastName}`
-          : `${profile?.business?.lastName}`,
+          : `${profile?.business?.businessName}`,
 
       id:
         profile?.user?.userType === "individual"
@@ -39,6 +39,8 @@ const Sidebar = ({ show, close, history }) => {
     };
     return data;
   }, [profile]);
+
+  console.log(profile);
 
   return (
     <div className={`sidebar ${show && "sidebar_show"}`}>

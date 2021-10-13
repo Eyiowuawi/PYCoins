@@ -64,7 +64,7 @@ const Dashboard = ({ ...props }) => {
     {
       mutationKey: "switchToBusiness",
       onSuccess: () => {
-        queryClient.invalidateQueries("getuserprofile");
+        queryClient.invalidateQueries(["getuserprofile", 1]);
       },
     }
   );

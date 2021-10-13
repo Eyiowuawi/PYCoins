@@ -52,16 +52,17 @@ const usePersonalForm = () => {
       elementType: "select",
       label: "Country",
       options: [
-        { id: 1, displayValue: "Role at Business", value: "" },
-        { id: 2, displayValue: "Nigeria", value: "Nigeria" },
-        { id: 3, displayValue: "Togo", value: "Togo" },
-        { id: 4, displayValue: "Finland", value: "Finland" },
-        { id: 5, displayValue: "Somalia", value: "Somalia" },
-        { id: 6, displayValue: "Afghanistan", value: "Afghanistan" },
+        { id: 2, label: "Nigeria", value: "Nigeria" },
+        { id: 3, label: "Togo", value: "Togo" },
+        { id: 4, label: "Finland", value: "Finland" },
+        { id: 5, label: "Somalia", value: "Somalia" },
+        { id: 6, label: "Afghanistan", value: "Afghanistan" },
       ],
+      singleSelect: true,
       validation: required,
       blur: false,
       required: true,
+      closeMenuOnSelect: true,
     },
 
     email: {

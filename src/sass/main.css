@@ -1624,6 +1624,10 @@ button {
   padding: 4rem;
 }
 
+.notfound img {
+  width: 100%;
+}
+
 .notfound a {
   width: 60%;
   margin: auto;
@@ -1675,7 +1679,7 @@ button {
   background-color: #eb5757;
   width: 100%;
   text-align: center;
-  padding: 1rem 0;
+  padding: 1rem;
   left: 0;
   top: 0 !important;
 }
@@ -2379,6 +2383,7 @@ button {
 .chip {
   font-size: 1rem !important;
   font-family: "Mulish", sans-serif;
+  text-transform: capitalize;
   background-color: #48d189;
 }
 
@@ -2391,6 +2396,7 @@ button {
 .optionContainer li {
   font-size: 1rem !important;
   padding: 1rem;
+  text-transform: capitalize;
 }
 
 .optionContainer li:hover {

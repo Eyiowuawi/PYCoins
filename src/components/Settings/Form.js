@@ -24,6 +24,7 @@ const SettingsForm = ({
             value={value}
             onChange={onchange}
             onBlur={onblur}
+            style={{ textTransform: "capitalize" }}
             // valid={valid}
           />
           {image && (

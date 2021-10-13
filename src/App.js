@@ -7,7 +7,7 @@ function App({ history }) {
     <>
       {renderRoutes(routes)}
       <ToastContainer
-        autoClose={5000}
+        autoClose={3000}
         position="top-right"
         closeOnClick={true}
         pauseOnHover={true}
