@@ -108,7 +108,7 @@ export const cryptos = [
     img: Tether,
     classname: "accounts_img accounts_img-4",
     slug: "usdt-eth",
-    rate: "USDT-ETH",
+    rate: "USDT",
   },
 ];
 

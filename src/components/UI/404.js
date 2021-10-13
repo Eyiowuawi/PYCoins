@@ -2,7 +2,7 @@ import Background from "./Background";
 
 import notfound from "../../assets/404.svg";
 
-const NotFound = ({ history }) => {
+const NotFound = () => {
   return (
     <Background>
       <div className="notfound">
