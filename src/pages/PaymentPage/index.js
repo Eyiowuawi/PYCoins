@@ -34,7 +34,6 @@ const PaymentPage = ({ history }) => {
   const { params } = useRouteMatch();
 
   const { data, isLoading, error } = useGetPaymentInfo(params.slug);
-  // console.log(data);
   const { data: rates } = useGetRates();
 
   const [show, setShow] = useState(false);
@@ -88,8 +87,6 @@ const PaymentPage = ({ history }) => {
 
     return joinedArr;
   }, [rates, userCryptos]);
-
-  console.log(addedRates);
 
   const {
     data: processLinkData,

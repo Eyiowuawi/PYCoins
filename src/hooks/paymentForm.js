@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { required, notEmptyArray } from "../utils/validations";
 
 const usePaymentForm = (userWallets, editDetails) => {
-  // const [options] = useState()
-
   const [paymentForm, setPaymentForm] = useState({
     pageName: {
       value: editDetails ? editDetails.pageName : "",

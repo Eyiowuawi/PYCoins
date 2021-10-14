@@ -45,7 +45,6 @@ export const enablePaymentLink = async (id) => {
     await paymentlinkBaseUrl.patch(`/update/${id}`, {
       isDisabled: false,
     });
-    toast.success("Payment link has been enabled");
   } catch (error) {
     toast.error("Error enabling payment link");
   }
@@ -54,7 +53,6 @@ export const enablePaymentLink = async (id) => {
 export const disablePaymentLink = async (id) => {
   try {
     await paymentlinkBaseUrl.put(`/disable/${id}`);
-    toast.success("Payment link has been disabled");
     return true;
   } catch (error) {
     toast.error("Error disabling payment link");
@@ -93,22 +91,22 @@ export const processPaymentLink = async ({ environ, paymentData, ref }) => {
   }
 };
 
-export const getProcessedPayment = async () => {
-  const token = localStorage.getItem("token");
-  try {
-    const data = await base.get(
-      "/sandbox/page/e8db4e366fbce6c2aa1c73a232bd7510bf057338ec5eb90b661d5ded8479c9fa6a4ed0d254b74b9a",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return data;
-  } catch (error) {
-    throw new Error("Error processing your request");
-  }
-};
+// export const getProcessedPayment = async () => {
+//   const token = localStorage.getItem("token");
+//   try {
+//     const data = await base.get(
+//       "/sandbox/page/e8db4e366fbce6c2aa1c73a232bd7510bf057338ec5eb90b661d5ded8479c9fa6a4ed0d254b74b9a",
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     );
+//     return data;
+//   } catch (error) {
+//     throw new Error("Error processing your request");
+//   }
+// };
 
 export const getRates = async () => {
   const token = localStorage.getItem("token");
@@ -121,7 +119,6 @@ export const getRates = async () => {
         },
       }
     );
-    console.log(data);
     return data.rates;
   } catch (error) {
     throw new Error("Error processing your request");

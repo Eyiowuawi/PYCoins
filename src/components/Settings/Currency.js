@@ -27,8 +27,6 @@ const Currency = () => {
     }
   }, [data, environment]);
 
-  console.log(cryptos);
-
   const acceptedCryptos = useMemo(() => {
     return data[1].data;
   }, [data]);

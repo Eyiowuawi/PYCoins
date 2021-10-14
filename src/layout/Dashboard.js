@@ -10,7 +10,7 @@ import Sidebar from "../components/UI/Sidebar";
 import Header from "../components/UI/Header";
 import MobileSidebar from "./../components/UI/Mobilesidebar";
 
-import { getProcessedPayment } from "../services/userPaymentLink";
+// import { getProcessedPayment } from "../services/userPaymentLink";
 import { autoLogout } from "./../services/auth";
 
 import { useUserProfile } from "./../query/getUserProfile";
@@ -41,7 +41,7 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
   useEffect(() => {
     const startApp = async () => {
       await autoLogout(history);
-      await getProcessedPayment();
+      // await getProcessedPayment();
     };
 
     startApp();

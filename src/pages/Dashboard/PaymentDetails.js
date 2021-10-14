@@ -42,13 +42,15 @@ const PaymentDetails = ({ history }) => {
 
   const [width] = useWindowWidth();
 
-  const { data } = useGetUserPaymentLink(params.id);
+  const { data, isFetching: linkFetching } = useGetUserPaymentLink(params.id);
 
   const {
     data: paymentData,
-    isFetching: linkFetching,
+    isFetching: transLoading,
     isError: linkError,
   } = useGetPaymentTransactions(params.id);
+
+  console.log(paymentData);
 
   const { data: userData } = useGetUserWallets();
 
@@ -123,7 +125,7 @@ const PaymentDetails = ({ history }) => {
   };
   return (
     <>
-      <WithLoadingComponent isLoading={linkFetching}>
+      <WithLoadingComponent isLoading={transLoading}>
         <WithErrorComponent isError={linkError}>
           <div className="paymentdetails" onClick={() => setCtas(false)}>
             <Helmet>
@@ -138,10 +140,13 @@ const PaymentDetails = ({ history }) => {
               handleEnable={enableMutate}
               handleEdit={() => setIsEdit(true)}
               click={handleClick}
-              
             />
             <h5 className="title title-black  ">Balance</h5>
-            <Balance available={available} data={paymentData} customers={transactions?.length}/>
+            <Balance
+              available={available}
+              data={paymentData}
+              customers={transactions?.length}
+            />
             <h3 className="title title-black mt-small mb-small">
               Transactions
             </h3>

@@ -40,8 +40,6 @@ const Sidebar = ({ show, close, history }) => {
     return data;
   }, [profile]);
 
-  console.log(profile);
-
   return (
     <div className={`sidebar ${show && "sidebar_show"}`}>
       <div className="sidebar_container">
