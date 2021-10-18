@@ -15,6 +15,7 @@ import { autoLogout } from "./../services/auth";
 
 import { useUserProfile } from "./../query/getUserProfile";
 import { useGetUserEnvironment } from "./../query/getUserEnvironment";
+import { toast } from "react-toastify";
 
 const DashboardLayout = ({ route, history, location, ...props }) => {
   // const [showpopup, setShowPopup] = useState(false);
@@ -35,8 +36,16 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
     return results.some((result) => result.isFetching);
   }, [results]);
   const isError = useMemo(() => {
-    return results.some((result) => result.isError);
+    const error = results.some((result) => result.isError);
+    // error && toast.error("Error processing your request");
+    return error;
   }, [results]);
+  // console.log(isError, "IS ERROR");
+
+  // useMemo(() => {
+  //   console.log(isError);
+  //   isError && toast.error("Error processing your request");
+  // }, [isError]);
 
   useEffect(() => {
     const startApp = async () => {

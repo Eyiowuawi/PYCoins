@@ -50,8 +50,6 @@ const PaymentDetails = ({ history }) => {
     isError: linkError,
   } = useGetPaymentTransactions(params.id);
 
-  console.log(paymentData);
-
   const { data: userData } = useGetUserWallets();
 
   const [amountForm, setAmountForm] = useAmount(data?.paymentPage.amount);

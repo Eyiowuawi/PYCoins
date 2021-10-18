@@ -68,3 +68,13 @@ export const getEnvironment = async () => {
     throw new Error("Error Processing request");
   }
 };
+
+export const requestWithdrawal = async (details) => {
+  try {
+    const { data } = await cryptoBaseUrl.post("/request-withdrawal", details);
+    console.log(data);
+    return data;
+  } catch (error) {
+    throw new Error("Error processing your request");
+  }
+};

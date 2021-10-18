@@ -42,9 +42,7 @@ export const deletePaymentLink = async (id) => {
 
 export const enablePaymentLink = async (id) => {
   try {
-    await paymentlinkBaseUrl.patch(`/update/${id}`, {
-      isDisabled: false,
-    });
+    await paymentlinkBaseUrl.put(`/enable/${id}`);
   } catch (error) {
     toast.error("Error enabling payment link");
   }

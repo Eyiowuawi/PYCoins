@@ -1,8 +1,8 @@
-import Button from "./../UI/Button";
+import Button from "../UI/Button";
 
 import Plus from "../../assets/plus.svg";
 
-import { RightArrow } from "./../../icons/index";
+import { RightArrow } from "../../icons/index";
 
 const Details = ({ crypto, setFund, setWithdraw }) => (
   <>

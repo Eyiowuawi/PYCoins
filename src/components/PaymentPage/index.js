@@ -18,17 +18,20 @@ const PaymentProcess = ({
   const handleClose = () => {
     close(false);
     setEvent("");
+    window.location.reload();
   };
   return (
     <Modal close={handleClose}>
       <WithLoadingComponent isLoading={isLoading}>
-        <Accounts
-          cryptos={cryptos}
-          header="Select Payment Method"
-          title="PAY WITH"
-          name={event}
-          showForm={handlePayment}
-        />
+        {event === "" && (
+          <Accounts
+            cryptos={cryptos}
+            header="Select Payment Method"
+            title="PAY WITH"
+            name={event}
+            showForm={handlePayment}
+          />
+        )}
         {(event === "Awaiting Payment" || event === "Payment Seen") && (
           <Pay
             event={event}
