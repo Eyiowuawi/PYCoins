@@ -137,3 +137,31 @@ base.interceptors.response.use(
     throw error;
   }
 );
+
+export const otpBaseUrl = axios.create({
+  baseURL: `${url}/users`,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+otpBaseUrl.interceptors.request.use(
+  (request) => {
+    const token = localStorage.getItem("token");
+    request.headers.Authorization = `Bearer ${token}`;
+    return request;
+  },
+  (error) => {
+    return error;
+  }
+);
+
+otpBaseUrl.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  (error) => {
+    errorHandler(error);
+    throw error;
+  }
+);

@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 
 import Currency from "../../components/Settings/Currency";
 import General from "../../components/Settings/General";
@@ -12,10 +12,10 @@ import useSettingsNav from "../../hooks/settingsNav";
 
 import { AppContext } from "./../../context/index";
 
-const Settings = ({ isLoading }) => {
-  const { search } = useLocation();
+const navs = ["general", "currency", "settlements", "api-keys-webhooks"];
 
-  const [page, setPage] = useState(search.substring(5));
+const Settings = ({ isLoading, history }) => {
+  const { search } = useLocation();
 
   const [settingsNav, setSettingsNav] = useSettingsNav();
 
@@ -23,10 +23,19 @@ const Settings = ({ isLoading }) => {
     profile: { user },
   } = useContext(AppContext);
 
-  useEffect(() => {
-    const page = search.substring(5);
-    setPage(page);
+  const page = useMemo(() => {
+    let page = search.substring(5);
+    if (!navs.includes(page)) {
+      history.push({ pathname: "settings", search: "?tab=general" });
+      // setSettingsNav()
+    }
+    return page;
   }, [search]);
+
+  // useEffect(() => {
+
+  //   if(!navs.includes(search))
+  // }, [search])
 
   const handleChange = (id) => {
     setSettingsNav(

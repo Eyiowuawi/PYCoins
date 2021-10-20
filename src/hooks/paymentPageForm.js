@@ -56,7 +56,10 @@ const usePaymentPageForm = (data) => {
         amount: {
           ...prevState.amount,
           readonly: data?.amountType === "fixed" ? true : false,
-          value: data?.amountType === "fixed" ? data?.amount : "",
+          value:
+            data?.amountType === "fixed"
+              ? parseFloat(data?.amount).toFixed(6)
+              : "",
           valid: data?.amountType === "fixed" ? true : false,
         },
       };

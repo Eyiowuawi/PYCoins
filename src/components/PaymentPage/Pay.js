@@ -26,7 +26,6 @@ const Pay = ({ goBack, data, event }) => {
           <div className="mb-small">
             <p className="title title-grey mb-smaller">AMOUNT</p>
             <ActionLabel
-              // style="mt-small"
               text={`${data?.amount.amountInCrypto} (${data?.amount.currency.sign}${data?.amount.amountInUsd})`}
               onclick={() => handleCopy(data?.amount.amountInCrypto)}
             >

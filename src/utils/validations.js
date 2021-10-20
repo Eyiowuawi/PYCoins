@@ -37,3 +37,7 @@ export const urlValidator = (value) => {
 
   return regex.test(value);
 };
+
+export const otpValidator = (value) => {
+  return value.length === 6;
+};

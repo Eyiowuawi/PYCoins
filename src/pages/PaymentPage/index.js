@@ -26,6 +26,7 @@ import { useGetCrypto } from "./../../query/getCryptos";
 import { processPaymentLink } from "../../services/userPaymentLink";
 
 import Logo from "../../assets/Logo.svg";
+import { formatRates } from "../../utils/formatRate";
 
 const PaymentPage = ({ history }) => {
   const [processError, setProcessError] = useState();
@@ -68,6 +69,9 @@ const PaymentPage = ({ history }) => {
       return addedCrypto;
     }
   }, [data, cryptoData]);
+
+  // console.log(rates);
+  formatRates("62626.624287808045");
 
   const addedRates = useMemo(() => {
     const joinedArr = [];
@@ -118,7 +122,7 @@ const PaymentPage = ({ history }) => {
           toast.success("Your payment has been successfully completed");
         }
         if (data.event === "PAYMENT_INCOMPLETE") {
-          setEvent("Payment Incomplete ");
+          setEvent("Payment Incompleted");
           new Notification("Payercoins", {
             body: "You made an incomplete payment",
           });

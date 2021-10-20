@@ -3,7 +3,7 @@ import { required } from "../utils/validations";
 
 const useWithdrawForm = () => {
   const [withdrawForm, setWithdrawForm] = useState({
-    address: {
+    walletAddress: {
       value: "",
       type: "text",
       label: "Wallet Address",
