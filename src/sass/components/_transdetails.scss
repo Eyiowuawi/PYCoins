@@ -8,10 +8,28 @@
   &_item {
     @include flex(row, space-between, center);
     padding: 1.2rem 0;
-    border-bottom: 1px solid #e5e9f2;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #e5e9f2;
+    }
 
     p:first-of-type {
       font-weight: 600 !important;
     }
+  }
+
+  .status {
+    padding: 0.2rem 0.5rem;
+    @include flex(row, center, center);
+    border-radius: 100px;
+  }
+  p[type="confirmed"] {
+    color: $color-success;
+    background-color: $bg-color-success;
+  }
+
+  p[type="pending"] {
+    color: $color-pending;
+    background-color: $bg-color-pending;
   }
 }

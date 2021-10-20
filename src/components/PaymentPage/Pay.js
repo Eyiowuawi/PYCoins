@@ -8,6 +8,7 @@ import handleCopy from "./../../utils/copyToClipboard";
 import QrcodeGenerator from "../QrCode";
 
 const Pay = ({ goBack, data, event }) => {
+  console.log(data);
   return (
     <div className="">
       <div className="popupform_back" onClick={goBack}>
@@ -16,7 +17,7 @@ const Pay = ({ goBack, data, event }) => {
       <h3 className="ta title-black title mb-small">Pay</h3>
       <div className="paymentpage_pay">
         <p className="title title-grey ta">
-          To Pay, open your cryto wallet app and send the amount to the wallet
+          To Pay, open your <strong> {data?.crypto.symbol}</strong> wallet app and send the amount to the wallet
           address below.
         </p>
         <div className="paymentpage_qr">
@@ -26,7 +27,7 @@ const Pay = ({ goBack, data, event }) => {
           <div className="mb-small">
             <p className="title title-grey mb-smaller">AMOUNT</p>
             <ActionLabel
-              text={`${data?.amount.amountInCrypto} (${data?.amount.currency.sign}${data?.amount.amountInUsd})`}
+              text={`${data?.amount.amountInCrypto} ${data?.crypto.symbol} (${data?.amount.currency.sign}${data?.amount.amountInUsd})`}
               onclick={() => handleCopy(data?.amount.amountInCrypto)}
             >
               <Copy fill="#909198" />

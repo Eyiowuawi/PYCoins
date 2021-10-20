@@ -27,16 +27,6 @@ const CryptoDetails = () => {
 
   const crypto = cryptos.find((item) => item.slug === currency);
 
-  // useEffect(() => {
-  //   window.addEventListener("resize", () => {
-  //     setWidth(window.innerWidth);
-  //   });
-  // }, [width]);
-
-  // console.log(crypto);
-
-  // console.log(data);
-
   return (
     <>
       <div className="cryptodetails">

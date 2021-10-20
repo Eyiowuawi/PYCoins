@@ -13,7 +13,7 @@ const Details = ({ crypto, setFund, setWithdraw }) => (
       <p className="title title-grey">{crypto.name}</p>
     </div>
     <p className="title title-grey mt-small">TOTAL BALANCE</p>
-    <p className="title title-grey mt-small">0.00 BTC</p>
+    <p className="title title-grey mt-small">0.00 {crypto.rate}</p>
     <div className="cryptodetails_btns">
       <Button
         disabled={true}
