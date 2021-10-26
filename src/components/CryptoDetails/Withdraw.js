@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useMemo } from "react";
 
 import Accounts from "../Account";
 import Confirmation from "./Confirmation";
@@ -17,12 +17,19 @@ import { requestWithdrawal } from "../../services/crypto";
 import { sendOtp, verifyOtp } from "../../services/otp";
 import useOtp from "./../../hooks/otpForm";
 import { toast } from "react-toastify";
+import { AppContext } from "./../../context/index";
 
 const WithDraw = ({ currency, close, show, selectedCrypto }) => {
+  const { settlements } = useContext(AppContext);
+
   const crypto = cryptos.filter((item) => item.slug === currency);
 
+  const selectedSettlement = useMemo(() => {
+    return settlements.find((item) => item.wallet_slug === currency);
+  }, [settlements]);
+
   const [withdrawForm, setWithdrawForm, formValid, setFormValid] =
-    useWithdrawForm();
+    useWithdrawForm(selectedSettlement);
 
   const [otpForm, setOtpForm, isValidForm, setIsValidForm] = useOtp();
 
@@ -55,7 +62,6 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
     data["currency"] = selectedCrypto.rate;
     data["action"] = "withdrawal";
     sendOtpMutate(data);
-    // setName("success");
   };
 
   const handleVerifyOtp = (evt) => {
@@ -63,7 +69,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
     const data = {
       otp: otpForm.otp.value,
     };
-    verifyOtpMutate(data)
+    verifyOtpMutate(data);
   };
 
   const handleSuccess = (evt) => {

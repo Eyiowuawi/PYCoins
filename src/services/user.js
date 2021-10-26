@@ -1,9 +1,9 @@
-import { userBaseUrl } from "../constants/baseUrl";
+import { userAuthBaseUrl } from "../constants/baseUrl";
 import { toast } from "react-toastify";
 
 export const userProfile = async () => {
   try {
-    const { data } = await userBaseUrl.get("/profile");
+    const { data } = await userAuthBaseUrl.get("/profile");
     return data.data;
   } catch (error) {
     console.log(error);
@@ -13,7 +13,7 @@ export const userProfile = async () => {
 
 export const getApiKeys = async () => {
   try {
-    const { data } = await userBaseUrl.get("/keys");
+    const { data } = await userAuthBaseUrl.get("/keys");
     return data.data.apiKey;
   } catch (error) {
     return error;
@@ -22,7 +22,7 @@ export const getApiKeys = async () => {
 
 export const switchToBusiness = async (params) => {
   try {
-    const { data } = await userBaseUrl.patch("/switch", params);
+    const { data } = await userAuthBaseUrl.patch("/switch", params);
     return data;
   } catch (error) {
     throw new Error("Error processing your request");
@@ -31,7 +31,7 @@ export const switchToBusiness = async (params) => {
 
 export const changeUserImage = async (image) => {
   try {
-    const { data } = await userBaseUrl.patch("/updateImage", image);
+    const { data } = await userAuthBaseUrl.patch("/updateImage", image);
     toast.success("Photo updated successfully");
     return data;
   } catch (error) {
@@ -42,7 +42,7 @@ export const changeUserImage = async (image) => {
 
 export const updateUserProfile = async (profile) => {
   try {
-    const { data } = await userBaseUrl.patch("/updateuser", profile);
+    const { data } = await userAuthBaseUrl.patch("/updateuser", profile);
     toast.success("User profile updated Successfully");
     return data;
   } catch (error) {
@@ -53,7 +53,7 @@ export const updateUserProfile = async (profile) => {
 
 export const updateBusinessprofile = async (business) => {
   try {
-    const { data } = await userBaseUrl.patch("/updateBusiness", business);
+    const { data } = await userAuthBaseUrl.patch("/updateBusiness", business);
     toast.success("User profile updated Successfully");
     return data;
   } catch (error) {
@@ -64,7 +64,7 @@ export const updateBusinessprofile = async (business) => {
 
 export const updatePassword = async (params) => {
   try {
-    const { data } = await userBaseUrl.patch("/updatePassword", params);
+    const { data } = await userAuthBaseUrl.patch("/updatePassword", params);
     toast.success("Password successfully updated");
     return data.data;
   } catch (error) {

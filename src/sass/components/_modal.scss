@@ -19,6 +19,7 @@
     margin: 10rem auto;
     position: relative;
     animation: slideup 0.7s ease-in-out none;
+    border-radius: 10px;
 
     background-color: $color-white;
     @include respond(phone) {

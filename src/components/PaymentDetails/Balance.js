@@ -2,7 +2,7 @@ import Available from "../../assets/available.svg";
 import Ledger from "../../assets/ledger.svg";
 import Customer from "../../assets/customers.svg";
 
-const Balance = ({ data, available, customer }) => {
+const Balance = ({ data, available, customers }) => {
   return (
     <div className="balance mt-small">
       <div className="balance_item">
@@ -18,7 +18,7 @@ const Balance = ({ data, available, customer }) => {
         <img src={Customer} alt="available balance" />
         <div className="balance_content">
           <p className="title title-grey mb-smaller">Total Customers</p>
-          <p className="mute">{customer || 0}</p>
+          <p className="mute">{customers || 0}</p>
         </div>
       </div>
       <div className="balance_item">

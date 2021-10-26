@@ -9,6 +9,7 @@ const initialState = {
   fullname: "",
   apiKeys: {},
   environment: "",
+  settlements: [],
 };
 export const AppContext = createContext(initialState);
 
@@ -67,6 +68,20 @@ const AppComponent = ({ children }) => {
       payload: data,
     });
   };
+
+  const saveSettlements = (data) => {
+    const settlements = [];
+    for (let key in data) {
+      settlements.push({
+        key,
+        ...data[key],
+      });
+    }
+    dispatch({
+      type: "SAVE_SETLLEMENT",
+      payload: settlements,
+    });
+  };
   const contextValue = {
     ...state,
     changeToRegister,
@@ -75,6 +90,7 @@ const AppComponent = ({ children }) => {
     switchBusiness,
     saveApiKeys,
     saveUserEnvironment,
+    saveSettlements,
     state: state,
   };
 

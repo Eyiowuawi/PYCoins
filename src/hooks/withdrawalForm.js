@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { required } from "../utils/validations";
 
-const useWithdrawForm = () => {
+const useWithdrawForm = ({ wallet_address }) => {
   const [withdrawForm, setWithdrawForm] = useState({
     walletAddress: {
-      value: "",
+      value: wallet_address ? wallet_address : "",
       type: "text",
       label: "Wallet Address",
       elementType: "input",
       validation: required,
       required: true,
       blur: false,
-      valid: false,
+      valid: true,
     },
     amount: {
       value: "",

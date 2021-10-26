@@ -42,7 +42,7 @@ const formGenerator = (formType, formFunc, validForm) => {
       multiple={config.singleSelect}
       readonly={config.readonly}
       selected={config.selected}
-      closeMenu={config.closeMenuOnSelect}
+      isLoading={config.loading}
     />
   ));
   return form;

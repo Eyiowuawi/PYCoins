@@ -8,8 +8,8 @@ export const authBaseUrl = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  // timeout: 30000,
-  // timeoutErrorMessage: "Request timed out, pls try again later",
+  timeout: 100000,
+  timeoutErrorMessage: "Request timed out, pls try again later",
 });
 
 authBaseUrl.interceptors.response.use(
@@ -22,16 +22,16 @@ authBaseUrl.interceptors.response.use(
   }
 );
 
-export const userBaseUrl = axios.create({
+export const userAuthBaseUrl = axios.create({
   baseURL: `${url}/auth`,
   headers: {
     "Content-Type": "application/json",
   },
-  // timeout: 100000,
+  timeout: 100000,
   timeoutErrorMessage: "Request timed out, pls try again later",
 });
 
-userBaseUrl.interceptors.request.use(
+userAuthBaseUrl.interceptors.request.use(
   (request) => {
     const token = localStorage.getItem("token");
     request.headers.Authorization = `Bearer ${token}`;
@@ -42,7 +42,7 @@ userBaseUrl.interceptors.request.use(
   }
 );
 
-userBaseUrl.interceptors.response.use(
+userAuthBaseUrl.interceptors.response.use(
   (config) => {
     return config;
   },
@@ -138,14 +138,14 @@ base.interceptors.response.use(
   }
 );
 
-export const otpBaseUrl = axios.create({
-  baseURL: `${url}/users`,
+export const userBaseUrl = axios.create({
+  baseURL: `${url}/user`,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-otpBaseUrl.interceptors.request.use(
+userBaseUrl.interceptors.request.use(
   (request) => {
     const token = localStorage.getItem("token");
     request.headers.Authorization = `Bearer ${token}`;
@@ -156,7 +156,7 @@ otpBaseUrl.interceptors.request.use(
   }
 );
 
-otpBaseUrl.interceptors.response.use(
+userBaseUrl.interceptors.response.use(
   (config) => {
     return config;
   },

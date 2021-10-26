@@ -1,0 +1,49 @@
+.settlements {
+  width: 100%;
+
+  &_box {
+    margin-top: 4rem;
+    @include border(#e5e9f2);
+    // padding: 4rem;
+
+    button {
+      width: 50% !important;
+    }
+  }
+
+  &_info {
+    width: 85%;
+    display: grid;
+    row-gap: 3rem;
+    @media (max-width: 1024px) and (min-width: 800px) {
+      width: 100%;
+    }
+
+    @media (max-width: 500px) {
+      width: 100%;
+    }
+
+    &-item {
+      @include line;
+      padding: 1.5rem;
+
+      display: grid;
+      grid-template-columns: 200px 1fr 1fr;
+      position: relative;
+
+      div {
+        @include flex(column, initial, initial);
+      }
+      p {
+        font-weight: 400 !important;
+      }
+    }
+
+    &-icon {
+      position: absolute;
+      right: 30px;
+      top: 30px;
+      cursor: pointer;
+    }
+  }
+}

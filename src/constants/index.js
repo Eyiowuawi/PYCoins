@@ -110,6 +110,14 @@ export const cryptos = [
     slug: "usdt-eth",
     rate: "USDT",
   },
+  {
+    id: 5,
+    name: "USDT (TRC20)",
+    img: Tether,
+    classname: "accounts_img accounts_img-4",
+    slug: "usdt-trx",
+    rate: "USDT",
+  },
 ];
 
 export const paymentTable = [

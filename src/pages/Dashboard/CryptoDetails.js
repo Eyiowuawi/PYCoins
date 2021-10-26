@@ -16,6 +16,10 @@ import { requestWithdrawal } from "../../services/crypto";
 import { cryptos } from "../../constants";
 import { useMutation } from "react-query";
 import useWindowWidth from "./../../hooks/windowWidth";
+import { useGetWalletTransactions } from "../../query/getWalletTransactions";
+import WithLoadingComponent from "./../../hoc/withLoading";
+import { useGetStaticAddress } from "./../../query/getStaticAddress";
+
 const CryptoDetails = () => {
   const [show, setShow] = useState(false);
   const [fund, setFund] = useState(false);
@@ -27,8 +31,13 @@ const CryptoDetails = () => {
 
   const crypto = cryptos.find((item) => item.slug === currency);
 
+  const { data, isFetching } = useGetWalletTransactions(crypto.slug);
+
+  const { data: address } = useGetStaticAddress(crypto.slug);
+  console.log(address);
+
   return (
-    <>
+    <WithLoadingComponent isLoading={isFetching}>
       <div className="cryptodetails">
         <Helmet>
           <title>{currency} - Payercoins</title>
@@ -51,7 +60,7 @@ const CryptoDetails = () => {
       </div>
 
       {show && <TransactionsDetails close={() => setShow(false)} />}
-      {fund && <FundWallet close={() => setFund(false)} />}
+      {fund && <FundWallet address={address} close={() => setFund(false)} />}
       {withdraw && (
         <WithDraw
           currency={currency}
@@ -59,7 +68,7 @@ const CryptoDetails = () => {
           selectedCrypto={crypto}
         />
       )}
-    </>
+    </WithLoadingComponent>
   );
 };
 

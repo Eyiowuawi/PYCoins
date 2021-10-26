@@ -3,7 +3,15 @@ import Proceed from "../assets/proceed.svg";
 
 import { useLocation } from "react-router-dom";
 
-const Accounts = ({ showForm, goBack, name, cryptos, title, header }) => {
+const Accounts = ({
+  showForm,
+  goBack,
+  name,
+  cryptos,
+  title,
+  header,
+  isBankAdded,
+}) => {
   const { pathname } = useLocation();
   return (
     <>
@@ -13,7 +21,7 @@ const Accounts = ({ showForm, goBack, name, cryptos, title, header }) => {
           <div className="accounts_container mt-small">
             <h5 className="mute">{title} </h5>
             <div className="accounts_list mt-small">
-              {!pathname.includes("pay") && (
+              {!pathname.includes("pay") && !isBankAdded && (
                 <div
                   className="accounts_item mt-small"
                   onClick={() => showForm("bank")}

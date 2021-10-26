@@ -71,7 +71,7 @@ const PaymentPage = ({ history }) => {
   }, [data, cryptoData]);
 
   // console.log(rates);
-  formatRates("62626.624287808045");
+  // formatRates("62626.624287808045");
 
   const addedRates = useMemo(() => {
     const joinedArr = [];
@@ -82,7 +82,7 @@ const PaymentPage = ({ history }) => {
           if (item.rate === key) {
             joinedArr.push({
               ...item,
-              rateValue: rates[key].USD,
+              rateValue: parseFloat(rates[key].USD).toFixed(2),
             });
           }
         }

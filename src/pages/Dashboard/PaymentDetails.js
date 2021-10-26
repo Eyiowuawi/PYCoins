@@ -46,7 +46,7 @@ const PaymentDetails = ({ history }) => {
 
   const {
     data: paymentData,
-    isFetching: transLoading,
+    isFetching: isTransactionLoading,
     isError: linkError,
   } = useGetPaymentTransactions(params.id);
 
@@ -87,6 +87,8 @@ const PaymentDetails = ({ history }) => {
     }
   }, [paymentData]);
 
+  console.log(transactions);
+
   const updatedData = useMemo(() => {
     const updatedPaymentLink = data && addPaymentUrl(data?.paymentlink);
 
@@ -123,7 +125,7 @@ const PaymentDetails = ({ history }) => {
   };
   return (
     <>
-      <WithLoadingComponent isLoading={transLoading}>
+      <WithLoadingComponent isLoading={isTransactionLoading}>
         <WithErrorComponent isError={linkError}>
           <div className="paymentdetails" onClick={() => setCtas(false)}>
             <Helmet>

@@ -120,7 +120,7 @@ const PaymentForm = ({
             <div className="payment_amount mb-small">
               <Label
                 id={"fixed"}
-                title="Fixed Amout"
+                title="Fixed Amount"
                 name={"amount"}
                 type="radio"
                 onchange={handleChange}
@@ -128,7 +128,7 @@ const PaymentForm = ({
               />
               <Label
                 id={"custom"}
-                title="Custom Amout Amout"
+                title="Custom Amount"
                 name={"amount"}
                 type="radio"
                 onchange={handleChange}

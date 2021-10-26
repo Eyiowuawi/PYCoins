@@ -70,6 +70,10 @@ button {
   margin-left: 0.3rem;
 }
 
+.mt-md {
+  margin-top: 2.5rem;
+}
+
 .mt-bg {
   margin-top: 5rem;
 }
@@ -166,7 +170,7 @@ button {
 
 .title-grey {
   color: #787676;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .title-small {
@@ -741,7 +745,7 @@ button {
 }
 
 .table th {
-  font-size: .75rem;
+  font-size: 0.75rem;
   line-height: 15px;
   letter-spacing: 0.03em;
   color: #787676;
@@ -818,6 +822,7 @@ button {
   border-radius: 100px;
   font-size: 12px;
   border: 2px solid #ffffff;
+  text-transform: capitalize;
 }
 
 .table .failed {
@@ -861,6 +866,7 @@ button {
   position: relative;
   -webkit-animation: slideup 0.7s ease-in-out none;
           animation: slideup 0.7s ease-in-out none;
+  border-radius: 10px;
   background-color: #ffffff;
 }
 
@@ -1763,6 +1769,45 @@ button {
   .remove button {
     width: 90%;
   }
+}
+
+.radio input:checked ~ label span:first-of-type:after {
+  opacity: 1;
+}
+
+.radio label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+}
+
+.radio label span {
+  margin-right: 1rem;
+}
+
+.radio label span:first-of-type {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 2px solid #48d189;
+  position: relative;
+}
+
+.radio label span:first-of-type::after {
+  width: 12px;
+  height: 12px;
+  background-color: #48d189;
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .auth_form {
@@ -3365,7 +3410,7 @@ button {
 }
 
 .general {
-  width: 90%;
+  width: 85%;
 }
 
 @media (max-width: 1024px) and (min-width: 800px) {
@@ -3424,6 +3469,68 @@ button {
 .settlements_box {
   margin-top: 4rem;
   border: 1px solid #e5e9f2 !important;
+}
+
+.settlements_box button {
+  width: 50% !important;
+}
+
+.settlements_info {
+  width: 85%;
+  display: -ms-grid;
+  display: grid;
+  row-gap: 3rem;
+}
+
+@media (max-width: 1024px) and (min-width: 800px) {
+  .settlements_info {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .settlements_info {
+    width: 100%;
+  }
+}
+
+.settlements_info-item {
+  border: 1px solid #e5e9f2 !important;
+  padding: 1rem;
+  border-radius: 8px !important;
+  padding: 1.5rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 200px 1fr 1fr;
+      grid-template-columns: 200px 1fr 1fr;
+  position: relative;
+}
+
+.settlements_info-item div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: initial;
+      -ms-flex-pack: initial;
+          justify-content: initial;
+  -webkit-box-align: initial;
+      -ms-flex-align: initial;
+          align-items: initial;
+}
+
+.settlements_info-item p {
+  font-weight: 400 !important;
+}
+
+.settlements_info-icon {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  cursor: pointer;
 }
 
 .currency {

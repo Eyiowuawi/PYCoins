@@ -21,7 +21,7 @@ export const getWallets = async () => {
 
 export const activateWallet = async (wallet) => {
   try {
-    const { data } = await cryptoBaseUrl.post("/add-wallet", wallet);
+    const { data } = await cryptoBaseUrl.post("/wallet/activate", wallet);
     toast.success(data.message);
 
     return data.message;
@@ -32,7 +32,7 @@ export const activateWallet = async (wallet) => {
 
 export const deactivateWallet = async (wallet) => {
   try {
-    const { data } = await cryptoBaseUrl.post("/remove-wallet", wallet);
+    const { data } = await cryptoBaseUrl.post("/wallet/deactivate", wallet);
     toast.success(data.message);
     return data.message;
   } catch (error) {
@@ -74,6 +74,24 @@ export const requestWithdrawal = async (details) => {
     const { data } = await cryptoBaseUrl.post("/request-withdrawal", details);
     console.log(data);
     return data;
+  } catch (error) {
+    throw new Error("Error processing your request");
+  }
+};
+
+export const getStaticAddress = async (crypto) => {
+  try {
+    const { data } = await cryptoBaseUrl.get(`${crypto}/address`);
+    return data.data.address;
+  } catch (error) {
+    throw new Error("Error processing your request");
+  }
+};
+
+export const getWalletTransactions = async (crypto) => {
+  try {
+    const { data } = await cryptoBaseUrl.get(`${crypto}/transactions`);
+    return data.data;
   } catch (error) {
     throw new Error("Error processing your request");
   }

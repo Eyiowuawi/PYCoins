@@ -62,6 +62,7 @@ const Input = ({
   removeSelect,
   selected,
   closeMenu,
+  isLoading,
 }) => {
   const classes = useStyles();
 
@@ -102,20 +103,18 @@ const Input = ({
         <MultipleSelect
           options={options}
           singleSelect={multiple}
-          // components={animatedComponents}
-          // className={`react-select-container `}
-          // classNamePrefix="react-select"
           placeholder={label}
           selectedValues={selected}
           displayValue={"label"}
           onSelect={onchange}
-          // onBlur={onblur}
           closeOnSelect={closeMenu}
           isSearchable={false}
           avoidHighlightFirstOption={true}
           emptyRecordMsg="No crypto available"
           hidePlaceholder={true}
           onRemove={removeSelect}
+          loading={isLoading}
+          loadingMessage="Loading Banks, Please Wait..."
         />
       );
       break;

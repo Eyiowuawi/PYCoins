@@ -4,13 +4,13 @@ import { renderRoutes, matchRoutes } from "react-router-config";
 import WithLoadingComponent from "./../hoc/withLoading";
 import WithErrorComponent from "./../hoc/withError";
 
-// import Popup from "./../pages/Popup/index";
+import Popup from "./../pages/Popup/index";
 
 import Sidebar from "../components/UI/Sidebar";
 import Header from "../components/UI/Header";
 import MobileSidebar from "./../components/UI/Mobilesidebar";
 
-// import { getProcessedPayment } from "../services/userPaymentLink";
+import { useGetSettlements } from "../query/getSettlements";
 import { autoLogout } from "./../services/auth";
 
 import { useUserProfile } from "./../query/getUserProfile";
@@ -18,7 +18,7 @@ import { useGetUserEnvironment } from "./../query/getUserEnvironment";
 import { toast } from "react-toastify";
 
 const DashboardLayout = ({ route, history, location, ...props }) => {
-  // const [showpopup, setShowPopup] = useState(false);
+  const [showpopup, setShowPopup] = useState(false);
 
   const [show, setShow] = useState(false);
 
@@ -29,6 +29,7 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
   if (branch.length < 1) history.push("/pageNotFound");
 
   useGetUserEnvironment();
+  useGetSettlements();
 
   const results = useUserProfile();
 
@@ -37,32 +38,24 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
   }, [results]);
   const isError = useMemo(() => {
     const error = results.some((result) => result.isError);
-    // error && toast.error("Error processing your request");
     return error;
   }, [results]);
-  // console.log(isError, "IS ERROR");
-
-  // useMemo(() => {
-  //   console.log(isError);
-  //   isError && toast.error("Error processing your request");
-  // }, [isError]);
 
   useEffect(() => {
     const startApp = async () => {
       await autoLogout(history);
-      // await getProcessedPayment();
     };
 
     startApp();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // useEffect(() => {
-  //   const show = setTimeout(() => {
-  //     setShowPopup(true);
-  //   }, 5000);
+  useEffect(() => {
+    const show = setTimeout(() => {
+      setShowPopup(true);
+    }, 5000);
 
-  //   return () => clearTimeout(show);
-  // }, []);
+    return () => clearTimeout(show);
+  }, []);
 
   return (
     <>
@@ -88,7 +81,7 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
           </div>
         </div>
       </div>
-      {/* {showpopup && <Popup closeModal={setShowPopup} />} */}
+      {/* {showpopup && <Popup closeModal={() => setShowPopup(false)} />} */}
     </>
   );
 };

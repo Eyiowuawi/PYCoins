@@ -5,20 +5,21 @@ import QRCode from "../../assets/qrcode.png";
 
 import { Copy } from "../../icons";
 import handleCopy from "./../../utils/copyToClipboard";
+import QrcodeGenerator from "./../QrCode";
 
-const FundWallet = ({ close }) => {
+const FundWallet = ({ close, address }) => {
   return (
     <Modal close={close}>
       <h3 className="title title-black">Fund Wallet</h3>
       <div className="fund ">
         <div className="fund_img">
-          <img src={QRCode} alt="Barcode Scanner" />
+          <QrcodeGenerator value={address?.address} />
         </div>
         <p className="title title-grey">WALLET ADDRESS</p>
         <ActionLabel
           className="mt-small"
-          text="3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5"
-          onclick={() => handleCopy("3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5")}
+          text={address?.address}
+          onclick={() => handleCopy(address?.address)}
         >
           <Copy fill="#909198" />
         </ActionLabel>

@@ -1,60 +1,75 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { required } from "./../utils/validations";
 
-const useBankForm = () => {
+const useBankForm = (bank) => {
+  const [banks, setBanks] = useState([]);
   const [bankForm, setBankForm] = useState({
-    country: {
-      value: "",
-      valid: false,
+    bank_name: {
+      value: bank ? bank.bankName : "",
+      valid: bank ? true : false,
       elementType: "select",
-      options: [
-        { id: 1, displayValue: "Sect Country" },
-        { id: 2, displayValue: "Nigeria" },
-        { id: 3, displayValue: "Togo" },
-        { id: 4, displayValue: "Fnland" },
-        { id: 5, displayValue: "Somalia" },
-        { id: 6, displayValue: "Afghanistan" },
-      ],
+      label: "Select Bank",
+      loading: true,
+      options: [],
+      closeMenuOnSelect: false,
+      selected: [],
+      singleSelect: true,
+      validation: required,
     },
-    currency: {
-      value: "",
-      valid: false,
-      elementType: "select",
-      options: [
-        { id: 1, displayValue: "Select Currency" },
-        { id: 4, displayValue: "NGN" },
-        { id: 5, displayValue: "Dollars" },
-        { id: 6, displayValue: "Euros" },
-      ],
-    },
-    bank: {
-      value: "",
-      valid: false,
-      elementType: "select",
-      options: [
-        { id: 1, displayValue: "Select Bank" },
-        { id: 4, displayValue: "NGN" },
-        { id: 5, displayValue: "Dollars" },
-        { id: 6, displayValue: "Euros" },
-      ],
-    },
-    number: {
-      value: "",
-      valid: false,
+    account_number: {
+      value: bank ? bank.number : "",
+      valid: bank ? true : false,
       elementType: "input",
       type: "number",
       placeholder: "Accouunt Number",
       label: "Account Number",
+      validation: required,
     },
-    name: {
-      value: "",
-      valid: false,
+    account_name: {
+      value: bank ? bank.name : "",
+      valid: bank ? true : false,
       elementType: "input",
-      type: "number",
+      type: "text",
       placeholder: "Accouunt Name",
       label: "Account Name",
+      validation: required,
     },
   });
-  return [bankForm, setBankForm];
+  useEffect(() => {
+    const fetchBanks = async () => {
+      const { data } = await axios.get("https://api.paystack.co/bank");
+      const formatted = data.data.map((item) => {
+        return {
+          label: item.name,
+          value: item.name,
+          id: item.id,
+        };
+      });
+      setBanks(formatted);
+    };
+
+    fetchBanks();
+  }, []);
+
+  useEffect(() => {
+    setBankForm((prevState) => {
+      return {
+        ...prevState,
+        bank_name: {
+          ...prevState.bank_name,
+          options: banks,
+          loading: banks.length > 0 ? false : true,
+          selected: bank
+            ? banks.filter((item) => item.label === bank.bankName)
+            : [],
+        },
+      };
+    });
+  }, [banks]);
+
+  const [formValid, setFormValid] = useState(bank ? true : false);
+  return [bankForm, setBankForm, formValid, setFormValid];
 };
 
 export default useBankForm;

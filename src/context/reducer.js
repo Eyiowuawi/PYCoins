@@ -50,6 +50,12 @@ const appReducer = (state, action) => {
         environment: action.payload,
       };
 
+    case "SAVE_SETLLEMENT":
+      return {
+        ...state,
+        settlements: action.payload,
+      };
+
     default:
       return state;
   }
