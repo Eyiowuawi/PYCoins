@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { useState, useEffect, useContext, useMemo } from "react";
+import { useContext, useMemo } from "react";
 
 import Currency from "../../components/Settings/Currency";
 import General from "../../components/Settings/General";
@@ -30,7 +30,7 @@ const Settings = ({ isLoading, history }) => {
       // setSettingsNav()
     }
     return page;
-  }, [search]);
+  }, [search]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // useEffect(() => {
 

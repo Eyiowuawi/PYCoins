@@ -1,7 +1,7 @@
 import useBankForm from "../../hooks/bankForm";
 import { LeftArrow } from "../../icons";
 import Button from "../UI/Button";
-import Primary from "../UI/Label";
+// import Primary from "../UI/Label";
 import formGenerator from "../../utils/formGenerator";
 import { addBankSettlement } from "../../services/settlement";
 import { useMutation, useQueryClient } from "react-query";

@@ -1,6 +1,6 @@
-import Input from "./UI/Input";
+// import Input from "./UI/Input";
 import { LeftArrow } from "../icons";
-import Primary from "./UI/Primary";
+// import Primary from "./UI/Primary";
 import Button from "./UI/Button";
 import useCryptoForm from "../hooks/cryptoForm";
 import formGenerator from "./../utils/formGenerator";

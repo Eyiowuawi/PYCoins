@@ -13,14 +13,16 @@ export const addCryptoSettlement = async (details) => {
   try {
     const { data } = await userBaseUrl.post("/settlement/preference", details);
     return data.message;
+  } catch (error) {
     throw new Error("Error Processing your request");
-  } catch (error) {}
+  }
 };
 
 export const addBankSettlement = async (details) => {
   try {
     const { data } = await userBaseUrl.post("/settlement/preference", details);
     return data.message;
+  } catch (error) {
     throw new Error("Error Processing your request");
-  } catch (error) {}
+  }
 };

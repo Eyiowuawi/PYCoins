@@ -32,6 +32,11 @@
   }
   &_pay {
     @include flex(column, stretch, center);
+
+    strong {
+      color: black !important;
+      font-weight: bolder;
+    }
   }
   &_wallets {
     align-self: stretch;

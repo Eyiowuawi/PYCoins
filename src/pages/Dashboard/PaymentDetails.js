@@ -42,7 +42,7 @@ const PaymentDetails = ({ history }) => {
 
   const [width] = useWindowWidth();
 
-  const { data, isFetching: linkFetching } = useGetUserPaymentLink(params.id);
+  const { data } = useGetUserPaymentLink(params.id);
 
   const {
     data: paymentData,
@@ -86,8 +86,6 @@ const PaymentDetails = ({ history }) => {
       return formatTransactions(paymentData);
     }
   }, [paymentData]);
-
-  console.log(transactions);
 
   const updatedData = useMemo(() => {
     const updatedPaymentLink = data && addPaymentUrl(data?.paymentlink);

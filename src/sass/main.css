@@ -472,6 +472,7 @@ button {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
+  row-gap: 1.5rem;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -1164,6 +1165,7 @@ button {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 100px;
+  text-transform: capitalize;
 }
 
 .transdetails p[type="confirmed"] {
@@ -2752,8 +2754,7 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-column-gap: 3rem;
-          column-gap: 3rem;
+  gap: 3rem;
 }
 
 @media screen and (max-width: 500px) {
@@ -3125,6 +3126,11 @@ button {
           align-items: center;
 }
 
+.paymentpage_pay strong {
+  color: black !important;
+  font-weight: bolder;
+}
+
 .paymentpage_wallets {
   -ms-flex-item-align: stretch;
       -ms-grid-row-align: stretch;
@@ -3475,38 +3481,8 @@ button {
   width: 50% !important;
 }
 
-.settlements_info {
+.settlements_content {
   width: 85%;
-  display: -ms-grid;
-  display: grid;
-  row-gap: 3rem;
-}
-
-@media (max-width: 1024px) and (min-width: 800px) {
-  .settlements_info {
-    width: 100%;
-  }
-}
-
-@media (max-width: 500px) {
-  .settlements_info {
-    width: 100%;
-  }
-}
-
-.settlements_info-item {
-  border: 1px solid #e5e9f2 !important;
-  padding: 1rem;
-  border-radius: 8px !important;
-  padding: 1.5rem;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 200px 1fr 1fr;
-      grid-template-columns: 200px 1fr 1fr;
-  position: relative;
-}
-
-.settlements_info-item div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3514,16 +3490,86 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: initial;
-      -ms-flex-pack: initial;
-          justify-content: initial;
-  -webkit-box-align: initial;
-      -ms-flex-align: initial;
-          align-items: initial;
 }
 
-.settlements_info-item p {
+@media (max-width: 1024px) {
+  .settlements_content {
+    width: 100%;
+  }
+}
+
+.settlements_button {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin-top: 2rem;
+}
+
+.settlements_button button {
+  padding: 1rem;
+}
+
+.settlements_info {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  row-gap: 3rem;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.settlements_info-item {
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid #e5e9f2 !important;
+  padding: 1rem;
+  border-radius: 8px !important;
+  padding: 1.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+@media screen and (max-width: 450px) {
+  .settlements_info-item {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.settlements_info-item .currency {
+  margin-right: 2rem;
+  -ms-flex-preferred-size: 150px;
+      flex-basis: 150px;
+}
+
+@media screen and (max-width: 450px) {
+  .settlements_info-item .currency {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-bottom: 4rem;
+    -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+  }
+}
+
+.settlements_info-item p,
+.settlements_info-item span {
   font-weight: 400 !important;
+}
+
+.settlements_info-item .address p {
+  overflow-x: auto;
+  padding-bottom: 0.5em;
+}
+
+.settlements_info-item .address p::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .settlements_info-icon {

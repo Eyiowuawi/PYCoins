@@ -69,6 +69,7 @@ const Dashboard = ({ ...props }) => {
     }
   );
 
+  console.log(walletData);
   const handleSubmit = (evt, data) => {
     evt.preventDefault();
     mutate(data);

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -11,11 +11,9 @@ import Back from "../../components/Back";
 import Details from "../../components/CryptoDetails/Details";
 import LandingEmpty from "./../../components/Dashboard/Empty";
 
-import { requestWithdrawal } from "../../services/crypto";
-
 import { cryptos } from "../../constants";
-import { useMutation } from "react-query";
-import useWindowWidth from "./../../hooks/windowWidth";
+// import { useMutation } from "react-query";
+// import useWindowWidth from "./../../hooks/windowWidth";
 import { useGetWalletTransactions } from "../../query/getWalletTransactions";
 import WithLoadingComponent from "./../../hoc/withLoading";
 import { useGetStaticAddress } from "./../../query/getStaticAddress";
@@ -24,20 +22,19 @@ const CryptoDetails = () => {
   const [show, setShow] = useState(false);
   const [fund, setFund] = useState(false);
   const [withdraw, setWithdraw] = useState(false);
-  const [width, setWidth] = useWindowWidth();
+  // const [width, setWidth] = useWindowWidth();
 
   const { search } = useLocation();
   const currency = search.substring(10);
 
   const crypto = cryptos.find((item) => item.slug === currency);
 
-  const { data, isFetching } = useGetWalletTransactions(crypto.slug);
+  const { isLoading, data } = useGetWalletTransactions(crypto.slug);
 
   const { data: address } = useGetStaticAddress(crypto.slug);
-  console.log(address);
 
   return (
-    <WithLoadingComponent isLoading={isFetching}>
+    <WithLoadingComponent isLoading={isLoading}>
       <div className="cryptodetails">
         <Helmet>
           <title>{currency} - Payercoins</title>

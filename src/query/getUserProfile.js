@@ -2,10 +2,9 @@ import { useQueries } from "react-query";
 import { useContext } from "react";
 import { AppContext } from "./../context/index";
 import { userProfile, getApiKeys } from "../services/user";
-import { getSettlements } from "../services/settlement";
 
 export const useUserProfile = () => {
-  const { saveUser, saveApiKeys, saveSettlements } = useContext(AppContext);
+  const { saveUser, saveApiKeys } = useContext(AppContext);
 
   return useQueries([
     {
@@ -22,12 +21,5 @@ export const useUserProfile = () => {
       retry: false,
       onSuccess: (data) => saveApiKeys(data),
     },
-    // {
-    //   queryKey: ["getPreferences", 3],
-    //   queryFn: () => getSettlements(),
-    //   refetchOnWindowFocus: false,
-    //   retry: false,
-    //   onSuccess: (data) => saveSettlements(data),
-    // },
   ]);
 };

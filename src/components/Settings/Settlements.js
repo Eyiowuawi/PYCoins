@@ -9,14 +9,15 @@ import CryptoForm from "./../Popup/CryptoForm";
 import { useGetFeePreference } from "../../query/getFeePreference";
 import { updatePreference } from "../../services/fee";
 import SettlementInfo from "./SettlementInfo";
-import { useGetSettlements } from "../../query/getSettlements";
 import { AppContext } from "./../../context/index";
+import Button from "../UI/Button";
 
 const Settlements = () => {
   const [name, setName] = useState("");
   const [show, setShow] = useState(false);
   const [checked, setChecked] = useState("");
   const { settlements } = useContext(AppContext);
+  // console.log(settlements);
   const queryClient = useQueryClient();
 
   const { data, isFetching } = useGetFeePreference();
@@ -55,21 +56,13 @@ const Settlements = () => {
   const bankAdded = useMemo(() => {
     return settlements.find((item) => item.key === "bank") ? true : false;
   }, [settlements]);
-  console.log(bankAdded);
 
   return (
     <>
       <div className="settlements">
         <div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div>
             <h3 className="title title-black">Settlement Information</h3>
-            <p
-              onClick={() => setShow(true)}
-              className="title title-black"
-              role="button"
-            >
-              Add Account
-            </p>
           </div>
           {settlements.length < 1 && (
             <div className="settlements_box">
@@ -78,14 +71,23 @@ const Settlements = () => {
           )}
 
           {settlements.length > 0 && (
-            <div className="settlements_info mt-small">
-              {settlements.map((item) => (
-                <SettlementInfo key={item.key} {...item} />
-              ))}
+            <div className="settlements_content">
+              <div className="settlements_info mt-small">
+                {settlements.map((item) => (
+                  <SettlementInfo key={item.key} {...item} />
+                ))}
+              </div>
+              {settlements.length > 0 && settlements.length < 5 && (
+                <div className="settlements_button">
+                  <Button bg={"button_primary"} onclick={() => setShow(true)}>
+                    Add Settlement Account
+                  </Button>
+                </div>
+              )}
             </div>
           )}
         </div>
-        <div className="mt-small">
+        <div className="mt-md">
           <h3 className="title title-black title-small">
             <strong> Who should pay the transaction fees?</strong>
           </h3>

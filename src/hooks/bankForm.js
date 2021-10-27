@@ -66,7 +66,7 @@ const useBankForm = (bank) => {
         },
       };
     });
-  }, [banks]);
+  }, [banks]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [formValid, setFormValid] = useState(bank ? true : false);
   return [bankForm, setBankForm, formValid, setFormValid];

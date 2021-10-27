@@ -27,8 +27,6 @@ const Payment = ({ history, isLoading }) => {
   const [width] = useWindowWidth();
   const { data, isLoading: getLinksLoading, isError } = useGetPaymentLinks();
 
-  console.log(data);
-
   useEffect(() => {
     if (data && !getLinksLoading) {
       const mappedArray = data?.paymentLinks?.map((item) => {
@@ -46,8 +44,6 @@ const Payment = ({ history, isLoading }) => {
   const handleChangePage = (slug, id) => {
     history.push(`/payment/pay/${slug}/${id}`);
   };
-
-  // console.log(paymentLinks);
 
   // const handleCreateLink = (evt, isFixed) => {
   //   evt.preventDefault();

@@ -1,6 +1,5 @@
-import Input from "../UI/Input";
 import { LeftArrow } from "../../icons";
-import Primary from "../UI/Label";
+// import Primary from "../UI/Label";
 import Button from "../UI/Button";
 import useCryptoForm from "../../hooks/cryptoForm";
 import formGenerator from "../../utils/formGenerator";
@@ -19,7 +18,7 @@ const CryptoForm = ({ name, goBack, edit, address, close }) => {
   const form = formGenerator(cryptoForm, setCryptoForm, setValid);
 
   const queryClient = useQueryClient();
-  const { data, mutate, isLoading } = useMutation(
+  const { mutate, isLoading } = useMutation(
     "updatesettlemet",
     (data) => addCryptoSettlement(data),
     {
@@ -38,8 +37,9 @@ const CryptoForm = ({ name, goBack, edit, address, close }) => {
       type: "crypto",
       wallet_slug: crypto.slug,
       wallet_address: cryptoForm.address.value,
-      wallet_symbol: crypto.rate,
+      wallet_symbol: crypto.symbol,
     };
+    console.log(data);
 
     mutate(data);
   };

@@ -1,6 +1,9 @@
 .crypto {
   @include flex(row, space-between, stretch);
+  row-gap: 1.5rem;
   flex-wrap: wrap;
+  // display: grid;
+  // grid-template-columns: repeat(auto-fill, 1fr);
   @include respond(phone) {
     @include flex(column, flex-start, stretch);
     & > div {

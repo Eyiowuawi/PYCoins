@@ -93,6 +93,7 @@ export const cryptos = [
     classname: "accounts_img accounts_img-2",
     slug: "bitcoin",
     rate: "BTC",
+    symbol: "BTC",
   },
   {
     id: 3,
@@ -101,6 +102,7 @@ export const cryptos = [
     classname: "accounts_img accounts_img-3",
     slug: "ethereum",
     rate: "ETH",
+    symbol: "ETH",
   },
   {
     id: 4,
@@ -109,6 +111,7 @@ export const cryptos = [
     classname: "accounts_img accounts_img-4",
     slug: "usdt-eth",
     rate: "USDT",
+    symbol: "USDT_ETH",
   },
   {
     id: 5,
@@ -117,6 +120,7 @@ export const cryptos = [
     classname: "accounts_img accounts_img-4",
     slug: "usdt-trx",
     rate: "USDT",
+    symbol: "USDT_TRX",
   },
 ];
 

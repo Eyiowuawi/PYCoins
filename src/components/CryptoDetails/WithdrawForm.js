@@ -1,6 +1,6 @@
 import { LeftArrow } from "../../icons";
 import Button from "../UI/Button";
-import Input from "../UI/Input";
+// import Input from "../UI/Input";
 import formGenerator from "./../../utils/formGenerator";
 
 const WithdrawForm = ({

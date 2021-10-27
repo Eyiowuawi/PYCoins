@@ -30,6 +30,8 @@ export const activateWallet = async (wallet) => {
   }
 };
 
+
+
 export const deactivateWallet = async (wallet) => {
   try {
     const { data } = await cryptoBaseUrl.post("/wallet/deactivate", wallet);
@@ -72,7 +74,6 @@ export const getEnvironment = async () => {
 export const requestWithdrawal = async (details) => {
   try {
     const { data } = await cryptoBaseUrl.post("/request-withdrawal", details);
-    console.log(data);
     return data;
   } catch (error) {
     throw new Error("Error processing your request");
@@ -91,6 +92,7 @@ export const getStaticAddress = async (crypto) => {
 export const getWalletTransactions = async (crypto) => {
   try {
     const { data } = await cryptoBaseUrl.get(`${crypto}/transactions`);
+    // console.log(data);
     return data.data;
   } catch (error) {
     throw new Error("Error processing your request");

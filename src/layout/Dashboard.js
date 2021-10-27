@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useContext } from "react";
 import { renderRoutes, matchRoutes } from "react-router-config";
 
 import WithLoadingComponent from "./../hoc/withLoading";
@@ -15,9 +15,10 @@ import { autoLogout } from "./../services/auth";
 
 import { useUserProfile } from "./../query/getUserProfile";
 import { useGetUserEnvironment } from "./../query/getUserEnvironment";
-import { toast } from "react-toastify";
+import { AppContext } from "./../context/index";
 
 const DashboardLayout = ({ route, history, location, ...props }) => {
+  const { settlements } = useContext(AppContext);
   const [showpopup, setShowPopup] = useState(false);
 
   const [show, setShow] = useState(false);
@@ -50,12 +51,15 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    const show = setTimeout(() => {
-      setShowPopup(true);
-    }, 5000);
+    let show;
+    if (settlements.length < 1) {
+      show = setTimeout(() => {
+        setShowPopup(true);
+      }, 5000);
+    }
 
     return () => clearTimeout(show);
-  }, []);
+  }, [settlements]);
 
   return (
     <>
@@ -81,7 +85,7 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
           </div>
         </div>
       </div>
-      {/* {showpopup && <Popup closeModal={() => setShowPopup(false)} />} */}
+      {showpopup && <Popup closeModal={() => setShowPopup(false)} />}
     </>
   );
 };

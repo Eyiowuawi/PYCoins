@@ -19,18 +19,20 @@ const SettlementInfo = ({
   return (
     <>
       <div className="settlements_info-item">
-        <div>
-          <p className="title title-grey mb-small ">Currency</p>
+        <div className="currency">
+          <p className="title title-grey mb-smaller ">Currency</p>
           <p className="title title-black">{wallet_slug || "Naira"}</p>
         </div>
-        <div>
-          <p className="title title-grey mb-small">
+        <div className="address">
+          <p className="title title-grey mb-smaller">
             {wallet_slug ? "Address" : "Bank Account"}
           </p>
-          <p className="title title-black">
-            {wallet_slug
-              ? wallet_address
-              : `${account_number} (${account_name})`}
+          <p>
+            <span className="title title-black">
+              {wallet_slug
+                ? wallet_address
+                : `${account_number} (${account_name})`}
+            </span>
           </p>
         </div>
         {bank_name && (

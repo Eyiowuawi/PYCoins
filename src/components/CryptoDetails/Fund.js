@@ -1,8 +1,6 @@
 import Modal from "../UI/Modal";
 import ActionLabel from "./../UI/ActionLabel";
 
-import QRCode from "../../assets/qrcode.png";
-
 import { Copy } from "../../icons";
 import handleCopy from "./../../utils/copyToClipboard";
 import QrcodeGenerator from "./../QrCode";

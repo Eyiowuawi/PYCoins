@@ -13,8 +13,8 @@ import Success from "../../assets/success.svg";
 import { cryptos } from "../../constants";
 import useWithdrawForm from "./../../hooks/withdrawalForm";
 import { useMutation } from "react-query";
-import { requestWithdrawal } from "../../services/crypto";
-import { sendOtp, verifyOtp } from "../../services/otp";
+// import { requestWithdrawal } from "../../services/crypto";
+import { initateWithdrawal, processWithdrawal } from "../../services/withdraw";
 import useOtp from "./../../hooks/otpForm";
 import { toast } from "react-toastify";
 import { AppContext } from "./../../context/index";
@@ -26,7 +26,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
 
   const selectedSettlement = useMemo(() => {
     return settlements.find((item) => item.wallet_slug === currency);
-  }, [settlements]);
+  }, [settlements, currency]);
 
   const [withdrawForm, setWithdrawForm, formValid, setFormValid] =
     useWithdrawForm(selectedSettlement);
@@ -35,33 +35,35 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
 
   const [name, setName] = useState("");
 
-  const { mutate: sendOtpMutate, isLoading: isWithdrawLoading } = useMutation(
-    (data) => sendOtp(data),
-    {
+  const { mutate: initiateWithdrawal, isLoading: isInitiateLoading } =
+    useMutation((data) => initateWithdrawal(data), {
       onSuccess: () => {
         toast.success("An Otp has been sent to your email address");
         setName("otp");
       },
-    }
-  );
-  const { mutate: verifyOtpMutate, isLoading: isVerifyLoading } = useMutation(
-    (data) => verifyOtp(data),
-    {
+    });
+
+  const { mutate: processWithdrawal, isLoading: isProcessLoading } =
+    useMutation((data) => processWithdrawal(data), {
       onSuccess: () => setName("success"),
-    }
-  );
+    });
 
   const handleChange = (name) => {
     setName(name);
   };
 
-  const handleSendOtp = (evt) => {
+  const handleInitiateWithdrawal = (evt) => {
     evt.preventDefault();
-    const data = {};
+    const data = {
+      type: "crypto",
+      wallet: selectedSettlement.wallet_slug,
+      walletName: selectedSettlement.key,
+    };
     for (const key in withdrawForm) data[key] = withdrawForm[key].value;
-    data["currency"] = selectedCrypto.rate;
-    data["action"] = "withdrawal";
-    sendOtpMutate(data);
+    // data;
+
+    console.log(data);
+    initiateWithdrawal(data);
   };
 
   const handleVerifyOtp = (evt) => {
@@ -69,7 +71,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
     const data = {
       otp: otpForm.otp.value,
     };
-    verifyOtpMutate(data);
+    processWithdrawal(data);
   };
 
   const handleSuccess = (evt) => {
@@ -98,7 +100,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
           <WithdrawForm
             goBack={() => setName("")}
             name=""
-            withdraw={handleSendOtp}
+            // withdraw={handleSendOtp}
           />
         </>
       );
@@ -109,13 +111,13 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
           <WithdrawForm
             goBack={() => setName("")}
             name=""
-            withdraw={handleSendOtp}
+            withdraw={handleInitiateWithdrawal}
             withdrawForm={withdrawForm}
             setForm={setWithdrawForm}
             validForm={formValid}
             setValidForm={setFormValid}
             crypto={selectedCrypto}
-            isLoading={isWithdrawLoading}
+            isLoading={isInitiateLoading}
           />
         </>
       );
@@ -131,7 +133,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
             setForm={setOtpForm}
             validForm={isValidForm}
             setValidForm={setIsValidForm}
-            isLoading={isVerifyLoading}
+            isLoading={isProcessLoading}
           />
         </>
       );

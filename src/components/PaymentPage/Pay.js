@@ -28,13 +28,11 @@ const Pay = ({ goBack, data, event }) => {
   const handleCountdown = () => {
     setInterval(() => {
       setSecs((prevState) => {
-        console.log(prevState);
         return prevState - 1;
       });
     }, 1000);
   };
-  // console.log(secs);
-  // console.log(mins);
+
   return (
     <div className="">
       <div className="popupform_back" onClick={goBack}>
