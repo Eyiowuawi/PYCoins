@@ -29,6 +29,7 @@ const WithdrawForm = ({
         isLoading={isLoading}
         onclick={withdraw}
         bg="button_primary"
+        type="submit"
       >
         Continue
       </Button>

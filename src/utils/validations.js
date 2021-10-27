@@ -1,5 +1,5 @@
 export const phoneNumberCheck = (value) => {
-  const regex = /^[+234][0-9]{13}/;
+  const regex = /^[+234][0-9]{12}/;
   return regex.test(value);
 };
 

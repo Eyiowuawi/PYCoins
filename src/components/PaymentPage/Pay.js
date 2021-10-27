@@ -19,7 +19,7 @@ const Pay = ({ goBack, data, event }) => {
   }, [event]);
 
   useEffect(() => {
-    if (secs === 0) {
+    if (secs === -1) {
       setSecs(59);
       setMins((prevState) => prevState - 1);
     }

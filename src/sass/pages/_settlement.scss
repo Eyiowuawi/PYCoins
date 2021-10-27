@@ -56,6 +56,7 @@
           flex-direction: column;
           margin-bottom: 4rem;
           flex-basis: 0;
+          margin-right: 0;
         }
       }
       p,
@@ -64,9 +65,9 @@
       }
 
       .address {
+        margin-right: 5rem;
         p {
           overflow-x: auto;
-          padding-bottom: 0.5em;
           &::-webkit-scrollbar {
             width: 0;
             height: 0;

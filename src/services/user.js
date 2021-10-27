@@ -6,7 +6,6 @@ export const userProfile = async () => {
     const { data } = await userAuthBaseUrl.get("/profile");
     return data.data;
   } catch (error) {
-    console.log(error);
     throw new Error("Error processing your request");
   }
 };

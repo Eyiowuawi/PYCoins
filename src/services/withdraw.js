@@ -1,6 +1,6 @@
 import { cryptoBaseUrl } from "../constants/baseUrl";
 
-export const initateWithdrawal = async (details) => {
+export const initiateWithdrawal = async (details) => {
   try {
     const { data } = await cryptoBaseUrl.post("/withdrawal/initiate", details);
     return data.message;

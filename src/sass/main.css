@@ -208,7 +208,6 @@ button {
 .link {
   font-family: "Mulish", sans-serif;
   font-size: 1.25rem;
-  font-weight: bold;
   color: #48d189;
   line-height: 1.125rem;
   display: block;
@@ -856,7 +855,7 @@ button {
 
 @media (max-width: 600px) {
   .modal {
-    padding-top: 10rem;
+    padding-top: 20rem;
   }
 }
 
@@ -880,7 +879,7 @@ button {
 }
 
 .modal_box {
-  padding: 2rem 2rem 2rem 2rem;
+  padding: 2rem;
   border-radius: 10px;
 }
 
@@ -3554,6 +3553,7 @@ button {
     margin-bottom: 4rem;
     -ms-flex-preferred-size: 0;
         flex-basis: 0;
+    margin-right: 0;
   }
 }
 
@@ -3562,9 +3562,12 @@ button {
   font-weight: 400 !important;
 }
 
+.settlements_info-item .address {
+  margin-right: 5rem;
+}
+
 .settlements_info-item .address p {
   overflow-x: auto;
-  padding-bottom: 0.5em;
 }
 
 .settlements_info-item .address p::-webkit-scrollbar {

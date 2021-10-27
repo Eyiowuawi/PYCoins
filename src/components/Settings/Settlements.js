@@ -17,7 +17,6 @@ const Settlements = () => {
   const [show, setShow] = useState(false);
   const [checked, setChecked] = useState("");
   const { settlements } = useContext(AppContext);
-  // console.log(settlements);
   const queryClient = useQueryClient();
 
   const { data, isFetching } = useGetFeePreference();

@@ -1,7 +1,10 @@
 import { House } from "../icons";
 import Proceed from "../assets/proceed.svg";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+import { RightArrow } from "./../icons/index";
+import { useMemo } from "react";
+import { cryptos as cryptoList } from "../constants/index";
 
 const Accounts = ({
   showForm,
@@ -12,7 +15,12 @@ const Accounts = ({
   header,
   isBankAdded,
 }) => {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
+  const cryptoName = useMemo(() => {
+    const sliced = search.substring(10);
+    return cryptoList.find((item) => item.slug === sliced);
+  }, []);
+
   return (
     <>
       {name === "" && (
@@ -33,26 +41,39 @@ const Accounts = ({
                   <img src={Proceed} alt="Continue" />
                 </div>
               )}
-              {cryptos?.map((item) => (
-                <div
-                  key={item.name}
-                  className="accounts_item mt-small"
-                  onClick={() => showForm(item.slug)}
+              {cryptos &&
+                cryptos?.map((item) => (
+                  <div
+                    key={item.name}
+                    className="accounts_item mt-small"
+                    onClick={() => showForm(item.slug)}
+                  >
+                    <div className={item.classname}>
+                      <img src={item.img} alt={item.name} />
+                    </div>
+                    <div className={"accounts_content"}>
+                      <p className="title title-grey">{item.name} Wallet</p>
+                      {pathname.includes("pay") && (
+                        <p className="title title-grey ta">
+                          1{item.rate} = ${item.rateValue}{" "}
+                        </p>
+                      )}
+                    </div>
+                    <img src={Proceed} alt="Continue" />
+                  </div>
+                ))}
+              {!cryptos && (
+                <Link
+                  to={{ pathname: "/settings", search: "?tab=settlements" }}
+                  className="link link-small mt-small"
+                  style={{ display: "flex", alignItems: "center", gap: "1rem" }}
                 >
-                  <div className={item.classname}>
-                    <img src={item.img} alt={item.name} />
-                  </div>
-                  <div className={"accounts_content"}>
-                    <p className="title title-grey">{item.name} Wallet</p>
-                    {pathname.includes("pay") && (
-                      <p className="title title-grey ta">
-                        1{item.rate} = ${item.rateValue}{" "}
-                      </p>
-                    )}
-                  </div>
-                  <img src={Proceed} alt="Continue" />
-                </div>
-              ))}
+                  <span className="link ">
+                    Click to add {cryptoName.name} account
+                  </span>
+                  <RightArrow fill={"#48D189"} />
+                </Link>
+              )}
             </div>
           </div>
         </div>

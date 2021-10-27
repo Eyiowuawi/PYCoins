@@ -14,7 +14,7 @@ import { cryptos } from "../../constants";
 import useWithdrawForm from "./../../hooks/withdrawalForm";
 import { useMutation } from "react-query";
 // import { requestWithdrawal } from "../../services/crypto";
-import { initateWithdrawal, processWithdrawal } from "../../services/withdraw";
+import { initiateWithdrawal, processWithdrawal } from "../../services/withdraw";
 import useOtp from "./../../hooks/otpForm";
 import { toast } from "react-toastify";
 import { AppContext } from "./../../context/index";
@@ -22,7 +22,9 @@ import { AppContext } from "./../../context/index";
 const WithDraw = ({ currency, close, show, selectedCrypto }) => {
   const { settlements } = useContext(AppContext);
 
-  const crypto = cryptos.filter((item) => item.slug === currency);
+  const crypto = useMemo(() => {
+    return cryptos.filter((item) => item.slug === currency);
+  }, []);
 
   const selectedSettlement = useMemo(() => {
     return settlements.find((item) => item.wallet_slug === currency);
@@ -35,15 +37,15 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
 
   const [name, setName] = useState("");
 
-  const { mutate: initiateWithdrawal, isLoading: isInitiateLoading } =
-    useMutation((data) => initateWithdrawal(data), {
+  const { mutate: initiateWithdrawalMutate, isLoading: isInitiateLoading } =
+    useMutation((data) => initiateWithdrawal(data), {
       onSuccess: () => {
         toast.success("An Otp has been sent to your email address");
         setName("otp");
       },
     });
 
-  const { mutate: processWithdrawal, isLoading: isProcessLoading } =
+  const { mutate: processWithdrawalMutate, isLoading: isProcessLoading } =
     useMutation((data) => processWithdrawal(data), {
       onSuccess: () => setName("success"),
     });
@@ -60,18 +62,16 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
       walletName: selectedSettlement.key,
     };
     for (const key in withdrawForm) data[key] = withdrawForm[key].value;
-    // data;
 
-    console.log(data);
-    initiateWithdrawal(data);
+    initiateWithdrawalMutate(data);
   };
 
-  const handleVerifyOtp = (evt) => {
+  const handleProcessWithdrawal = (evt) => {
     evt.preventDefault();
     const data = {
       otp: otpForm.otp.value,
     };
-    processWithdrawal(data);
+    processWithdrawalMutate(data);
   };
 
   const handleSuccess = (evt) => {
@@ -87,9 +87,10 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
           <Accounts
             header="Settlement Account"
             title="SELECT YOUR SETTLEMENT METHOD "
-            cryptos={crypto}
+            cryptos={selectedSettlement ? crypto : null}
             name={name}
             showForm={handleChange}
+            isBankAdded={true}
           />
         </>
       );
@@ -128,7 +129,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
           <OtpForm
             goBack={() => setName("")}
             name=""
-            verifyOtp={handleVerifyOtp}
+            verifyOtp={handleProcessWithdrawal}
             otpForm={otpForm}
             setForm={setOtpForm}
             validForm={isValidForm}
@@ -154,7 +155,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
           <Response
             img={Success}
             title="Withdrawal Successful"
-            text=" Your withdrawal of NGN 100,000 was successful."
+            text=" Your withdrawal was successful."
           />
         </>
       );

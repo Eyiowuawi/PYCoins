@@ -39,7 +39,6 @@ const CryptoForm = ({ name, goBack, edit, address, close }) => {
       wallet_address: cryptoForm.address.value,
       wallet_symbol: crypto.symbol,
     };
-    console.log(data);
 
     mutate(data);
   };

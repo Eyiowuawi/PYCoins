@@ -52,7 +52,8 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
 
   useEffect(() => {
     let show;
-    if (settlements.length < 1) {
+
+    if (!isFetching && settlements.length < 1) {
       show = setTimeout(() => {
         setShowPopup(true);
       }, 5000);
