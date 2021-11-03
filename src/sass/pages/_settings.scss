@@ -22,6 +22,7 @@
   &_li {
     margin-right: 3rem;
     flex-shrink: 0;
+    transition: background-color 3.5s ease-in-out;
     a {
       margin-left: 0 !important;
     }

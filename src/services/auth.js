@@ -1,10 +1,12 @@
 import { authBaseUrl } from "../constants/baseUrl";
 import { toast } from "react-toastify";
 import { createAutoLogout } from "../utils/createAutoLogout";
+import axios from "axios";
 
 export const saveToLocalStorage = (token) => {
   localStorage.setItem("token", token);
 };
+
 export const registerUser = async (params) => {
   try {
     const { data } = await authBaseUrl.post("/signup", params);

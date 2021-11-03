@@ -21,7 +21,7 @@ const WithdrawForm = ({
       </div>
       <h3 className="title title-black ta ">Withdraw</h3>
       <p className="title title-grey mt-small">
-        Enter the amount of {crypto.rate} you’d like to withdraw
+        Enter the amount of {crypto?.rate || "naira"} you’d like to withdraw
       </p>
       <form className="mt-small">{form}</form>
       <Button

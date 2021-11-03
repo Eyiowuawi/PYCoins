@@ -22,6 +22,10 @@ import { AppContext } from "./../../context/index";
 const WithDraw = ({ currency, close, show, selectedCrypto }) => {
   const { settlements } = useContext(AppContext);
 
+  const isBankAdded = useMemo(() => {
+    return settlements.find((item) => item.key === "bank");
+  }, []);
+
   const crypto = useMemo(() => {
     return cryptos.filter((item) => item.slug === currency);
   }, []);
@@ -30,25 +34,33 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
     return settlements.find((item) => item.wallet_slug === currency);
   }, [settlements, currency]);
 
-  const [withdrawForm, setWithdrawForm, formValid, setFormValid] =
-    useWithdrawForm(selectedSettlement);
+  const [
+    withdrawForm,
+    setWithdrawForm,
+    formValid,
+    setFormValid,
+  ] = useWithdrawForm(selectedSettlement);
 
   const [otpForm, setOtpForm, isValidForm, setIsValidForm] = useOtp();
 
   const [name, setName] = useState("");
 
-  const { mutate: initiateWithdrawalMutate, isLoading: isInitiateLoading } =
-    useMutation((data) => initiateWithdrawal(data), {
-      onSuccess: () => {
-        toast.success("An Otp has been sent to your email address");
-        setName("otp");
-      },
-    });
+  const {
+    mutate: initiateWithdrawalMutate,
+    isLoading: isInitiateLoading,
+  } = useMutation((data) => initiateWithdrawal(data), {
+    onSuccess: () => {
+      toast.success("An Otp has been sent to your email address");
+      setName("otp");
+    },
+  });
 
-  const { mutate: processWithdrawalMutate, isLoading: isProcessLoading } =
-    useMutation((data) => processWithdrawal(data), {
-      onSuccess: () => setName("success"),
-    });
+  const {
+    mutate: processWithdrawalMutate,
+    isLoading: isProcessLoading,
+  } = useMutation((data) => processWithdrawal(data), {
+    onSuccess: () => setName("success"),
+  });
 
   const handleChange = (name) => {
     setName(name);
@@ -56,12 +68,22 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
 
   const handleInitiateWithdrawal = (evt) => {
     evt.preventDefault();
-    const data = {
-      type: "crypto",
-      wallet: selectedSettlement.wallet_slug,
-      walletName: selectedSettlement.key,
-    };
-    for (const key in withdrawForm) data[key] = withdrawForm[key].value;
+
+    let data = {};
+    if (name === "bank") {
+      data["type"] = "fiat";
+      data["amount"] = withdrawForm.amount.value;
+      data["wallet"] = selectedSettlement.wallet_slug;
+      data["walletName"] = selectedSettlement.key;
+    } else {
+      data = {
+        type: "crypto",
+        wallet: selectedSettlement.wallet_slug,
+        walletName: selectedSettlement.key,
+        address: selectedSettlement.wallet_address,
+      };
+      for (const key in withdrawForm) data[key] = withdrawForm[key].value;
+    }
 
     initiateWithdrawalMutate(data);
   };
@@ -90,23 +112,31 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
             cryptos={selectedSettlement ? crypto : null}
             name={name}
             showForm={handleChange}
-            isBankAdded={true}
+            isBankAdded={!isBankAdded}
           />
         </>
       );
       break;
     case "bank":
+      // setType("fiat");
       renderElement = (
         <>
           <WithdrawForm
             goBack={() => setName("")}
             name=""
+            withdraw={handleInitiateWithdrawal}
+            withdrawForm={withdrawForm}
+            setForm={setWithdrawForm}
+            validForm={formValid}
+            setValidForm={setFormValid}
+            isLoading={isInitiateLoading}
             // withdraw={handleSendOtp}
           />
         </>
       );
       break;
     case currency:
+      // setType("crypto");
       renderElement = (
         <>
           <WithdrawForm

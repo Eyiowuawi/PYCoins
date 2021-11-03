@@ -31,6 +31,8 @@ import empty from "../../assets/empty.svg";
 import Delete from "./../../components/UI/Delete";
 import WithErrorComponent from "./../../hoc/withError";
 
+const tableHeader = ["NAME", "EMAIL", "DATE", "AMOUNT", "STATUS"];
+
 const PaymentDetails = ({ history }) => {
   const [show, setShow] = useState(false);
   const [ctas, setCtas] = useState(false);
@@ -78,8 +80,12 @@ const PaymentDetails = ({ history }) => {
     return userData;
   }, [userData]);
 
-  const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
-    usePaymentForm(userAcceptedWallet, editDetails);
+  const [
+    paymentForm,
+    setPayentForm,
+    paymentFormValid,
+    setPaymentFormValid,
+  ] = usePaymentForm(userAcceptedWallet, editDetails);
 
   const transactions = useMemo(() => {
     if (paymentData?.length > 0) {
@@ -164,7 +170,11 @@ const PaymentDetails = ({ history }) => {
             {transactions?.length > 0 && (
               <>
                 {width > 500 && (
-                  <Table data={transactions} onclick={selectedTransaction} />
+                  <Table
+                    tableHead={tableHeader}
+                    data={transactions}
+                    onclick={selectedTransaction}
+                  />
                 )}
                 {width <= 500 && (
                   <TableResponsive

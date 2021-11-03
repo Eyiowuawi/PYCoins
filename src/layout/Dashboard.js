@@ -51,15 +51,13 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    let show;
-
-    if (!isFetching && settlements.length < 1) {
-      show = setTimeout(() => {
-        setShowPopup(true);
-      }, 5000);
-    }
-
-    return () => clearTimeout(show);
+    // let show;
+    // if (!isFetching && settlements.length < 1) {
+    //   show = setTimeout(() => {
+    //     setShowPopup(true);
+    //   }, 5000);
+    // }
+    // return () => clearTimeout(show);
   }, [settlements]);
 
   return (

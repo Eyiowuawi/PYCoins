@@ -90,7 +90,7 @@ export const getStaticAddress = async (crypto) => {
 export const getWalletTransactions = async (crypto) => {
   try {
     const { data } = await cryptoBaseUrl.get(`${crypto}/transactions`);
-    return data.data;
+    return data.data.transactions;
   } catch (error) {
     throw new Error("Error processing your request");
   }

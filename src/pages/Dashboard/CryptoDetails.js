@@ -6,30 +6,43 @@ import TransactionsDetails from "./../../components/TransactionDetails";
 import FundWallet from "../../components/CryptoDetails/Fund";
 import WithDraw from "../../components/CryptoDetails/Withdraw";
 import Back from "../../components/Back";
-// import Table from "./../../components/Table";
-// import TableResponsive from "./../../components/TableResponsive";
+import Table from "./../../components/Table";
+import TableResponsive from "./../../components/TableResponsive";
 import Details from "../../components/CryptoDetails/Details";
 import LandingEmpty from "./../../components/Dashboard/Empty";
 
 import { cryptos } from "../../constants";
 // import { useMutation } from "react-query";
-// import useWindowWidth from "./../../hooks/windowWidth";
+import useWindowWidth from "./../../hooks/windowWidth";
 import { useGetWalletTransactions } from "../../query/getWalletTransactions";
 import WithLoadingComponent from "./../../hoc/withLoading";
 import { useGetStaticAddress } from "./../../query/getStaticAddress";
+import { transactions } from "../../constants/index";
+
+const cryptoTableHead = ["TRANSACTION", "AMOUNT", "DATE", "STATUS"];
+const fiatTableHead = [
+  "ACCOUNT NUMBER",
+  "BANK NAME",
+  "AMOUNT",
+  "DATE",
+  "STATUS",
+];
 
 const CryptoDetails = () => {
+  const [tableType, setTableType] = useState("crypto");
   const [show, setShow] = useState(false);
   const [fund, setFund] = useState(false);
   const [withdraw, setWithdraw] = useState(false);
-  // const [width, setWidth] = useWindowWidth();
+  const [width, setWidth] = useWindowWidth();
 
   const { search } = useLocation();
   const currency = search.substring(10);
 
   const crypto = cryptos.find((item) => item.slug === currency);
 
-  const { isLoading, data } = useGetWalletTransactions(crypto.slug);
+  const { isLoading, data: transactions } = useGetWalletTransactions(
+    crypto.slug
+  );
 
   const { data: address } = useGetStaticAddress(crypto.slug);
 
@@ -41,18 +54,49 @@ const CryptoDetails = () => {
         </Helmet>
         <Back to="/wallet" title="Wallet" />
         <Details crypto={crypto} setFund={setFund} setWithdraw={setWithdraw} />
-        <div className="mt-small">
+        <div className="mt-md">
           <h3 className="title title-black mb-small">Transaction </h3>
-          <LandingEmpty />
-          {/* {width > 500 && (
-            <Table data={transactions} onclick={() => setShow(true)} />
+
+          <div className="cryptodetails_buttons">
+            <button
+              className={`nav-text ${
+                tableType === "crypto" && "settings_active"
+              }`}
+              onClick={() => setTableType("crypto")}
+            >
+              Crypto Transaction
+            </button>
+            <button
+              className={`nav-text ${
+                tableType === "fiat" && "settings_active"
+              }`}
+              onClick={() => setTableType("fiat")}
+            >
+              Fiat Transaction
+            </button>
+          </div>
+
+          {transactions.length < 1 && <LandingEmpty />}
+          {transactions.length > 1 && (
+            <>
+              {width > 500 && (
+                <Table
+                  data={transactions}
+                  onclick={() => setShow(true)}
+                  tableHead={
+                    tableType === "crypto" ? cryptoTableHead : fiatTableHead
+                  }
+                />
+                // <Table data={transactions} onclick={() => setShow(true)} />
+              )}
+              {width <= 500 && (
+                <TableResponsive
+                  data={transactions}
+                  onclick={() => setShow(true)}
+                />
+              )}
+            </>
           )}
-          {width <= 500 && (
-            <TableResponsive
-              data={transactions}
-              onclick={() => setShow(true)}
-            />
-          )} */}
         </div>
       </div>
 

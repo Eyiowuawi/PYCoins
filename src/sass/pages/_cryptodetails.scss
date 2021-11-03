@@ -12,13 +12,13 @@
     margin-top: 3rem;
     width: 400px;
     max-width: 100%;
-    display : grid;
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     button {
       // flex-shrink: 1;
       @include flex(row, center, center);
-      span{
+      span {
         margin-left: 1rem;
       }
     }
@@ -30,6 +30,17 @@
       svg {
         transform: rotate(90deg);
       }
+    }
+  }
+
+  &_buttons {
+    @include flex(row, initial, center);
+    margin-bottom: 2rem;
+
+    button {
+      margin-right: 2rem;
+      margin-left: 0 !important;
+      // transition: background-color 0.3s ease-in;
     }
   }
 }
