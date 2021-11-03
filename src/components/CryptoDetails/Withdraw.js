@@ -93,6 +93,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
     const data = {
       otp: otpForm.otp.value,
     };
+    console.log("Submitted");
     processWithdrawalMutate(data);
   };
 
@@ -118,7 +119,6 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
       );
       break;
     case "bank":
-      // setType("fiat");
       renderElement = (
         <>
           <WithdrawForm
@@ -136,7 +136,6 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
       );
       break;
     case currency:
-      // setType("crypto");
       renderElement = (
         <>
           <WithdrawForm

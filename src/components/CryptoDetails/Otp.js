@@ -27,6 +27,7 @@ const OtpForm = ({
       <Button
         disabled={validForm}
         isLoading={isLoading}
+        type={"submit"}
         onclick={verifyOtp}
         bg="button_primary"
       >
