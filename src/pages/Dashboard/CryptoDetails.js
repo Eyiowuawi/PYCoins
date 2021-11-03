@@ -76,8 +76,8 @@ const CryptoDetails = () => {
             </button>
           </div>
 
-          {transactions.length < 1 && <LandingEmpty />}
-          {transactions.length > 1 && (
+          {transactions?.length < 1 && <LandingEmpty />}
+          {transactions?.length > 1 && (
             <>
               {width > 500 && (
                 <Table
