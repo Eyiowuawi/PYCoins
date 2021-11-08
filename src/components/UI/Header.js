@@ -24,6 +24,7 @@ const Header = ({ showsidebar, dropdown, close }) => {
         queryClient.invalidateQueries("getusercrypto");
         queryClient.invalidateQueries("getpaymentlinks");
         queryClient.invalidateQueries("getwallets");
+        queryClient.invalidateQueries("getwallettransactions");
         toast.success(`Switched Integration: ${data}`);
       },
     }
