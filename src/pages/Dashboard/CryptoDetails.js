@@ -57,6 +57,7 @@ const CryptoDetails = () => {
     });
   }, [transactions]);
 
+  console.log(crypto.slug);
   const { data: address } = useGetStaticAddress(crypto.slug);
 
   const updateTable = useMemo(() => {

@@ -90,6 +90,8 @@ const PaymentPage = ({ history }) => {
     return joinedArr;
   }, [rates, userCryptos]);
 
+  console.log(addedRates);
+
   const {
     data: processLinkData,
     mutate: processLinkMutate,

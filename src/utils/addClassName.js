@@ -9,6 +9,7 @@ export const addClassName = (data) => {
         joinedArr.push({
           ...item,
           img: key.img,
+          ...key,
         });
       }
     }
