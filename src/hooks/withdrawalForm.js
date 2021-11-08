@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { required } from "../utils/validations";
+import { validateWithdraw } from "../utils/validations";
 
 const useWithdrawForm = () => {
   const [withdrawForm, setWithdrawForm] = useState({
     amount: {
       value: "",
-      type: "number",
+      type: "text",
       label: "Amount",
       elementType: "input",
-      validation: required,
+      validation: validateWithdraw,
       required: true,
       blur: false,
       valid: false,

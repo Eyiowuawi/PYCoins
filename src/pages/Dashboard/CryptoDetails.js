@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -18,6 +18,8 @@ import { useGetWalletTransactions } from "../../query/getWalletTransactions";
 import WithLoadingComponent from "./../../hoc/withLoading";
 import { useGetStaticAddress } from "./../../query/getStaticAddress";
 import { transactions } from "../../constants/index";
+import { formatTransactions } from "./../../utils/formatTransaction";
+import { dateFormatter } from "./../../utils/dateFormatter";
 
 const cryptoTableHead = ["TRANSACTION", "AMOUNT", "DATE", "STATUS"];
 const fiatTableHead = [
@@ -34,20 +36,39 @@ const CryptoDetails = () => {
   const [fund, setFund] = useState(false);
   const [withdraw, setWithdraw] = useState(false);
   const [width, setWidth] = useWindowWidth();
+  const [bank, setBank] = useState([]);
 
   const { search } = useLocation();
   const currency = search.substring(10);
 
   const crypto = cryptos.find((item) => item.slug === currency);
 
-  const { isLoading, data: transactions } = useGetWalletTransactions(
+  const { isFetching, data: transactions } = useGetWalletTransactions(
     crypto.slug
   );
 
+  const formattedTransactions = useMemo(() => {
+    return transactions?.map((item) => {
+      const date = dateFormatter(item.createdAt);
+      return {
+        ...item,
+        date,
+      };
+    });
+  }, [transactions]);
+
   const { data: address } = useGetStaticAddress(crypto.slug);
 
+  const updateTable = useMemo(() => {
+    if (tableType === "crypto") {
+      return formattedTransactions;
+    } else {
+      return bank;
+    }
+  }, [tableType, formattedTransactions, bank]);
+
   return (
-    <WithLoadingComponent isLoading={isLoading}>
+    <>
       <div className="cryptodetails">
         <Helmet>
           <title>{currency} - Payercoins</title>
@@ -75,28 +96,29 @@ const CryptoDetails = () => {
               Fiat Transaction
             </button>
           </div>
-
-          {transactions?.length < 1 && <LandingEmpty />}
-          {transactions?.length > 1 && (
-            <>
-              {width > 500 && (
-                <Table
-                  data={transactions}
-                  onclick={() => setShow(true)}
-                  tableHead={
-                    tableType === "crypto" ? cryptoTableHead : fiatTableHead
-                  }
-                />
-                // <Table data={transactions} onclick={() => setShow(true)} />
-              )}
-              {width <= 500 && (
-                <TableResponsive
-                  data={transactions}
-                  onclick={() => setShow(true)}
-                />
-              )}
-            </>
-          )}
+          <WithLoadingComponent isLoading={isFetching}>
+            {updateTable?.length < 1 && <LandingEmpty />}
+            {updateTable?.length > 1 && (
+              <>
+                {width > 500 && (
+                  <Table
+                    data={updateTable}
+                    onclick={() => setShow(true)}
+                    tableHead={
+                      tableType === "crypto" ? cryptoTableHead : fiatTableHead
+                    }
+                    currency={currency}
+                  />
+                )}
+                {width <= 500 && (
+                  <TableResponsive
+                    data={transactions}
+                    onclick={() => setShow(true)}
+                  />
+                )}
+              </>
+            )}
+          </WithLoadingComponent>
         </div>
       </div>
 
@@ -109,7 +131,7 @@ const CryptoDetails = () => {
           selectedCrypto={crypto}
         />
       )}
-    </WithLoadingComponent>
+    </>
   );
 };
 

@@ -12,7 +12,7 @@ import Success from "../../assets/success.svg";
 
 import { cryptos } from "../../constants";
 import useWithdrawForm from "./../../hooks/withdrawalForm";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 // import { requestWithdrawal } from "../../services/crypto";
 import { initiateWithdrawal, processWithdrawal } from "../../services/withdraw";
 import useOtp from "./../../hooks/otpForm";
@@ -34,33 +34,30 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
     return settlements.find((item) => item.wallet_slug === currency);
   }, [settlements, currency]);
 
-  const [
-    withdrawForm,
-    setWithdrawForm,
-    formValid,
-    setFormValid,
-  ] = useWithdrawForm(selectedSettlement);
+  const [withdrawForm, setWithdrawForm, formValid, setFormValid] =
+    useWithdrawForm(selectedSettlement);
 
   const [otpForm, setOtpForm, isValidForm, setIsValidForm] = useOtp();
 
   const [name, setName] = useState("");
 
-  const {
-    mutate: initiateWithdrawalMutate,
-    isLoading: isInitiateLoading,
-  } = useMutation((data) => initiateWithdrawal(data), {
-    onSuccess: () => {
-      toast.success("An Otp has been sent to your email address");
-      setName("otp");
-    },
-  });
+  const { mutate: initiateWithdrawalMutate, isLoading: isInitiateLoading } =
+    useMutation((data) => initiateWithdrawal(data), {
+      onSuccess: () => {
+        toast.success("An Otp has been sent to your email address");
+        setName("otp");
+      },
+    });
 
-  const {
-    mutate: processWithdrawalMutate,
-    isLoading: isProcessLoading,
-  } = useMutation((data) => processWithdrawal(data), {
-    onSuccess: () => setName("success"),
-  });
+  const queryClient = useQueryClient();
+
+  const { mutate: processWithdrawalMutate, isLoading: isProcessLoading } =
+    useMutation((data) => processWithdrawal(data), {
+      onSuccess: () => {
+        setName("success");
+        queryClient.invalidateQueries("getwallettransactions");
+      },
+    });
 
   const handleChange = (name) => {
     setName(name);

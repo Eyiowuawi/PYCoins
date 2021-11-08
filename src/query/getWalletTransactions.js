@@ -6,7 +6,7 @@ export const useGetWalletTransactions = (crypto) => {
     "getwallettransactions",
     () => getWalletTransactions(crypto),
     {
-      refetchOnWindowFocus: true,
+      refetchOnWindowFocus: false,
       retry: false,
     }
   );

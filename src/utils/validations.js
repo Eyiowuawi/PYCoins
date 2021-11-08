@@ -38,6 +38,11 @@ export const urlValidator = (value) => {
   return regex.test(value);
 };
 
+export const validateWithdraw = (value) => {
+  const regex = /^\d*\.?\d*$/;
+  return regex.test(value) && value.length > 0;
+};
+
 export const otpValidator = (value) => {
   return value.length === 6;
 };

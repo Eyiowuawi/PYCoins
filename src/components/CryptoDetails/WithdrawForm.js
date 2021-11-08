@@ -23,7 +23,9 @@ const WithdrawForm = ({
       <p className="title title-grey mt-small">
         Enter the amount of {crypto?.rate || "naira"} you’d like to withdraw
       </p>
-      <form className="mt-small">{form}</form>
+      <form className="mt-small" onSubmit={withdraw}>
+        {form}
+      </form>
       <Button
         disabled={validForm}
         isLoading={isLoading}

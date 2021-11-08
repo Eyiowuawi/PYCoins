@@ -8,7 +8,7 @@ export const addClassName = (data) => {
       if (key.slug === item.slug) {
         joinedArr.push({
           ...item,
-          ...key,
+          img: key.img,
         });
       }
     }

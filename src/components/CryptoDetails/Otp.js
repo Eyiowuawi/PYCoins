@@ -23,7 +23,7 @@ const OtpForm = ({
         Enter the verification code sent to the email address linked to your
         account
       </p>
-      <form className="mt-small">{form}</form>
+      <form className="mt-small" onSubmit={verifyOtp}>{form}</form>
       <Button
         disabled={validForm}
         isLoading={isLoading}

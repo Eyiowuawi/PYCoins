@@ -1,41 +1,59 @@
-const Table = ({ data, onclick, tableHead }) => {
+import Sent from "../assets/sent.svg";
+import Received from "../assets/received.svg";
+
+const Table = ({ data, onclick, tableHead, currency }) => {
+  console.log(data);
   return (
     <table className="table">
       <thead>
         <tr>
-          {/* <th>Name</th>
-          <th>Email</th>
-          <th>Date</th>
-          <th>Amount</th>
-        <th>Status</th> */}
           {tableHead.map((item) => (
             <th key={item}>{item}</th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {data?.map((item) => (
-          <tr key={item.id} onClick={() => onclick(item.id)}>
-            {item.name && <td>{item.name}</td>}
-            {item.email && <td>{item.email}</td>}
-            <td>{parseFloat(item.amount).toFixed(6)}</td>
-            <td>{item.date}</td>
-            <td>
-              <span
-                className={
-                  item.status === "Failed"
-                    ? "failed"
-                    : item.status === "Pending"
-                    ? "pending"
-                    : "success"
-                }
-              >
-                {" "}
-                {item.status}
-              </span>
-            </td>
-          </tr>
-        ))}
+        {data
+          ?.sort((a, b) => new Date(b.date) - new Date(a.date))
+          .map((item) => (
+            <tr key={item.id} onClick={() => onclick(item.id)}>
+              {item.type && (
+                <td>
+                  <div className={item.type === "send" ? "sent" : "received"}>
+                    <img
+                      src={item.type === "send" ? Sent : Received}
+                      alt={item.type}
+                    />
+                  </div>
+                  {item.type === "send"
+                    ? `Sent ${currency}`
+                    : `Received ${currency}`}
+                </td>
+              )}
+              {item.name && <td>{item.name}</td>}
+              {item.email && <td>{item.email}</td>}
+              <td>{parseFloat(item.amount).toFixed(6)}</td>
+              <td>{item.date}</td>
+              <td>
+                <span
+                  className={
+                    item.status === "Failed"
+                      ? "failed"
+                      : item.status === "pending"
+                      ? "pending"
+                      : item.status === "successful"
+                      ? "success"
+                      : item.status === "confirmed"
+                      ? "success"
+                      : null
+                  }
+                >
+                  {" "}
+                  {item.status}
+                </span>
+              </td>
+            </tr>
+          ))}
       </tbody>
     </table>
   );
