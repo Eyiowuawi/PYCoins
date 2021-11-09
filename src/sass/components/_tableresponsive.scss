@@ -18,7 +18,13 @@
       flex-basis: 50px;
     }
   }
+  .type {
+    @include span;
 
+    img {
+      @include img;
+    }
+  }
   &_sign {
     height: 3.125rem;
     width: 3.125rem;

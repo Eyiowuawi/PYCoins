@@ -37,6 +37,7 @@ const CryptoDetails = () => {
   const [withdraw, setWithdraw] = useState(false);
   const [width, setWidth] = useWindowWidth();
   const [bank, setBank] = useState([]);
+  const [selected, setSelected] = useState({});
 
   const { search } = useLocation();
   const currency = search.substring(10);
@@ -57,7 +58,6 @@ const CryptoDetails = () => {
     });
   }, [transactions]);
 
-  console.log(crypto.slug);
   const { data: address } = useGetStaticAddress(crypto.slug);
 
   const updateTable = useMemo(() => {
@@ -67,6 +67,12 @@ const CryptoDetails = () => {
       return bank;
     }
   }, [tableType, formattedTransactions, bank]);
+
+  const selectedTransaction = (id) => {
+    const transaction = updateTable.find((item) => item.id === id);
+    setSelected(transaction);
+    setShow(true);
+  };
 
   return (
     <>
@@ -104,7 +110,7 @@ const CryptoDetails = () => {
                 {width > 500 && (
                   <Table
                     data={updateTable}
-                    onclick={() => setShow(true)}
+                    onclick={selectedTransaction}
                     tableHead={
                       tableType === "crypto" ? cryptoTableHead : fiatTableHead
                     }
@@ -113,8 +119,9 @@ const CryptoDetails = () => {
                 )}
                 {width <= 500 && (
                   <TableResponsive
-                    data={transactions}
+                    data={updateTable}
                     onclick={() => setShow(true)}
+                    currency={currency}
                   />
                 )}
               </>
@@ -123,7 +130,9 @@ const CryptoDetails = () => {
         </div>
       </div>
 
-      {show && <TransactionsDetails close={() => setShow(false)} />}
+      {show && (
+        <TransactionsDetails close={() => setShow(false)} details={selected} />
+      )}
       {fund && <FundWallet address={address} close={() => setFund(false)} />}
       {withdraw && (
         <WithDraw

@@ -6,7 +6,6 @@ import handleCopy from "./../../utils/copyToClipboard";
 import QrcodeGenerator from "./../QrCode";
 
 const FundWallet = ({ close, address }) => {
-  console.log(address);
   return (
     <Modal close={close}>
       <h3 className="title title-black">Fund Wallet</h3>

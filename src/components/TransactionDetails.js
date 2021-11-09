@@ -1,5 +1,6 @@
 import Modal from "./UI/Modal";
 const TransactionsDetails = ({ close, details }) => {
+  console.log(details);
   return (
     <Modal close={close}>
       <div className="transdetails">
@@ -9,17 +10,23 @@ const TransactionsDetails = ({ close, details }) => {
             <p className="title title-grey">Wallet Address</p>
             <p className="title title-grey">{details?.address || ""}</p>
           </div>
-          <div className="transdetails_item">
-            <p className="title title-grey">Name</p>
-            <p className="title title-grey">{details?.name}</p>
-          </div>
-          <div className="transdetails_item">
-            <p className="title title-grey">Email</p>
-            <p className="title title-grey">{details?.email}</p>
-          </div>
+          {details?.name && (
+            <div className="transdetails_item">
+              <p className="title title-grey">Name</p>
+              <p className="title title-grey">{details?.name}</p>
+            </div>
+          )}
+          {details?.email && (
+            <div className="transdetails_item">
+              <p className="title title-grey">Email</p>
+              <p className="title title-grey">{details?.email}</p>
+            </div>
+          )}
           <div className="transdetails_item">
             <p className="title title-grey">Amount</p>
-            <p className="title title-grey">${details?.amount}</p>
+            <p className="title title-grey">
+              ${parseFloat(details?.amount).toFixed(6)}
+            </p>
           </div>
           <div className="transdetails_item">
             <p className="title title-grey">Date</p>

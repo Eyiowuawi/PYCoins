@@ -16,19 +16,29 @@ const Wallet = () => {
     const mappedWallet = walletData?.map((item) => {
       var symbol;
       if (item?.crypto?.symbol?.includes("USDT")) {
-        console.log(true);
         symbol = "USDT";
       }
+
       return {
         ...item,
         ...item.crypto,
-        symbol: symbol || item.crypto.symbol,
+        symbol: symbol,
       };
     });
 
     if (mappedWallet?.length > 0) {
       const addedWallet = addClassName(mappedWallet);
-      return addedWallet;
+
+      return addedWallet.map((item) => {
+        var symbol;
+        if (item?.crypto?.symbol?.includes("USDT")) {
+          symbol = "USDT";
+        }
+        return {
+          ...item,
+          symbol: symbol || item.crypto.symbol,
+        };
+      });
     }
   }, [walletData]);
 

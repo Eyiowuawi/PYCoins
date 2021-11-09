@@ -74,7 +74,12 @@ const Pay = ({ goBack, data, event }) => {
       </div>
       <div className="paymentpage_loader">
         <SmallLoader isLoading={true} height={50} width={50} />
-        <p className="title title-grey ta"> {event} </p>
+        <p className="title title-grey ta">
+          {" "}
+          {event === "Payment Seen"
+            ? "Payment Seen! Confirming..."
+            : event}{" "}
+        </p>
         {event === "Payment Seen" && (
           <p>
             {mins < 10 && "0"}

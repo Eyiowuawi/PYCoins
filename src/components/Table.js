@@ -2,7 +2,6 @@ import Sent from "../assets/sent.svg";
 import Received from "../assets/received.svg";
 
 const Table = ({ data, onclick, tableHead, currency }) => {
-  console.log(data);
   return (
     <table className="table">
       <thead>
@@ -19,15 +18,17 @@ const Table = ({ data, onclick, tableHead, currency }) => {
             <tr key={item.id} onClick={() => onclick(item.id)}>
               {item.type && (
                 <td>
-                  <div className={item.type === "send" ? "sent" : "received"}>
+                  <span className={item.type === "send" ? "sent" : "received"}>
                     <img
                       src={item.type === "send" ? Sent : Received}
                       alt={item.type}
                     />
-                  </div>
-                  {item.type === "send"
-                    ? `Sent ${currency}`
-                    : `Received ${currency}`}
+                  </span>
+                  {item.type === "send" ? (
+                    <span>Sent ${currency}</span>
+                  ) : (
+                    <span>Received ${currency}</span>
+                  )}
                 </td>
               )}
               {item.name && <td>{item.name}</td>}

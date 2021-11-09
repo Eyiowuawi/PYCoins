@@ -90,7 +90,6 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
     const data = {
       otp: otpForm.otp.value,
     };
-    console.log("Submitted");
     processWithdrawalMutate(data);
   };
 
@@ -180,8 +179,8 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
         <>
           <Response
             img={Success}
-            title="Withdrawal Successful"
-            text=" Your withdrawal was successful."
+            title="Withdrawal Submitted"
+            text="Your withdrawal has been submitted and is being processed"
           />
         </>
       );

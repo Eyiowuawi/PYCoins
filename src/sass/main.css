@@ -288,6 +288,14 @@ button {
   margin-top: 2rem;
 }
 
+.sent {
+  background: rgba(235, 67, 53, 0.08);
+}
+
+.received {
+  background: rgba(72, 209, 137, 0.08);
+}
+
 .button {
   padding: 1rem 0;
   width: 100%;
@@ -767,48 +775,25 @@ button {
   cursor: pointer;
 }
 
-.table tbody tr td:first-of-type {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.table tbody tr td:first-of-type div {
+.table tbody tr td:first-of-type span:first-of-type {
   margin-right: 1rem;
   height: 30px;
   width: 30px;
   border-radius: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  display: inline-block;
+  position: relative;
 }
 
-.table tbody tr td:first-of-type .sent {
-  background: rgba(235, 67, 53, 0.08);
+.table tbody tr td:first-of-type span:first-of-type img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
-.table tbody tr td:first-of-type .received {
-  background: rgba(72, 209, 137, 0.08);
+.table tbody tr td:first-of-type span {
+  vertical-align: middle;
 }
 
 .table tbody tr td:last-of-type {
@@ -1167,7 +1152,8 @@ button {
   text-transform: capitalize;
 }
 
-.transdetails p[type="confirmed"] {
+.transdetails p[type="confirmed"],
+.transdetails p[type="successful"] {
   color: #188f32;
   background-color: #deffe5;
 }
@@ -1320,6 +1306,23 @@ button {
 .tableresponsive_item .name {
   -ms-flex-preferred-size: 50px;
       flex-basis: 50px;
+}
+
+.tableresponsive .type {
+  margin-right: 1rem;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+
+.tableresponsive .type img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .tableresponsive_sign {

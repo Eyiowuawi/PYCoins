@@ -24,7 +24,8 @@
     border-radius: 100px;
     text-transform: capitalize;
   }
-  p[type="confirmed"] {
+  p[type="confirmed"],
+  p[type="successful"] {
     color: $color-success;
     background-color: $bg-color-success;
   }
