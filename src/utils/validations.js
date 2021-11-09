@@ -46,3 +46,8 @@ export const validateWithdraw = (value) => {
 export const otpValidator = (value) => {
   return value.length === 6;
 };
+
+export const accountNumberValidator = (value) => {
+  const regex = /^[0-9]{10}$/;
+  return regex.test(value);
+};

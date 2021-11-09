@@ -14,8 +14,7 @@ const Details = ({ crypto, setFund, setWithdraw }) => {
   const handleWithdraw = () => {
     if (settlements.length < 1) {
       history.push({
-        pathname: "/settings",
-        search: "?tab=settlements",
+        pathname: "/settings/settlements",
       });
     } else {
       setWithdraw(true);

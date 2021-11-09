@@ -1,16 +1,15 @@
 import { NavLink } from "react-router-dom";
 
-const SettingsNav = ({ search, name, handlechange, active }) => {
+const SettingsNav = ({ tab, name, active }) => {
   return (
     <li className="settings_li">
       <NavLink
         to={{
-          pathname: "/settings",
-          search: `${search}`,
+          pathname: `/settings${tab}`,
         }}
-        className={["nav-text", active && "settings_active"].join(" ")}
+        className={"nav-text"}
+        activeClassName="settings_active"
         exact
-        onClick={handlechange}
       >
         {name}
       </NavLink>

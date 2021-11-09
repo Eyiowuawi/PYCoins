@@ -64,7 +64,7 @@ const Accounts = ({
                 ))}
               {!cryptos && (
                 <Link
-                  to={{ pathname: "/settings", search: "?tab=settlements" }}
+                  to={{ pathname: "/settings/settlements" }}
                   className="link link-small mt-small"
                   style={{ display: "flex", alignItems: "center", gap: "1rem" }}
                 >

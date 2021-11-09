@@ -65,6 +65,7 @@ const SettlementInfo = ({
               name={account_name}
               bankName={bank_name}
               number={account_number}
+              editing={true}
             />
           )}
         </Modal>

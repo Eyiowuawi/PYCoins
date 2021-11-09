@@ -23,7 +23,7 @@ import { saveToLocalStorage } from "./../../services/auth";
 
 import Avatar from "../../assets/avatar.svg";
 
-const General = ({ profileimg, history }) => {
+const General = ({ history }) => {
   const [image, setImage] = useState(null);
 
   const { saveUser, profile } = useContext(AppContext);
@@ -142,7 +142,14 @@ const General = ({ profileimg, history }) => {
         />
         <WithSmallLoader isLoading={isLoading}>
           <div className="general_pic">
-            <img src={profileimg ? profileimg : Avatar} alt="avatar" />
+            <img
+              src={
+                profile?.user?.profileImage
+                  ? profile?.user.profileImage
+                  : Avatar
+              }
+              alt="avatar"
+            />
             <label htmlFor="photo" className="general_upload">
               Change
             </label>

@@ -48,7 +48,7 @@ const Navigation = ({ close }) => {
             ))}
           </div>
         </li>
-        <NavItem close={close} to="/settings?tab=general" title="Settings">
+        <NavItem close={close} to="/settings/general" title="Settings">
           <Settings />
         </NavItem>
       </ul>

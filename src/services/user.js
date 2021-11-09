@@ -34,7 +34,6 @@ export const changeUserImage = async (image) => {
     toast.success("Photo updated successfully");
     return data;
   } catch (error) {
-    toast.error("Error uploading image, pls try agin later");
     throw new Error("Error processing your request");
   }
 };

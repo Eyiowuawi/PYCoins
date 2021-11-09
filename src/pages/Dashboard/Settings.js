@@ -1,51 +1,29 @@
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useContext, useMemo } from "react";
+import { renderRoutes, matchRoutes } from "react-router-config";
 
-import Currency from "../../components/Settings/Currency";
-import General from "../../components/Settings/General";
 import SettingsNav from "../../components/Settings/NavLink";
-import Webhooks from "../../components/Settings/WebHooks";
-import Settlement from "./../../components/Settings/Settlements";
-
-import useSettingsNav from "../../hooks/settingsNav";
 
 import { AppContext } from "./../../context/index";
 
 const navs = ["general", "currency", "settlements", "api-keys-webhooks"];
 
-const Settings = ({ isLoading, history }) => {
-  const { search } = useLocation();
+const nav = [
+  { id: 1, tab: "/general", name: "General", active: true },
+  { id: 2, tab: "/settlements", name: "Settlements", active: false },
+  {
+    id: 3,
+    tab: "/webhooks",
+    name: "API Keys & Webhooks",
+    active: false,
+  },
+  { id: 4, tab: "/currency", name: "Currency", active: false },
+];
 
-  const [settingsNav, setSettingsNav] = useSettingsNav();
-
-  const {
-    profile: { user },
-  } = useContext(AppContext);
-
-  const page = useMemo(() => {
-    let page = search.substring(5);
-    if (!navs.includes(page)) {
-      history.push({ pathname: "settings", search: "?tab=general" });
-      // setSettingsNav()
-    }
-    return page;
-  }, [search]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // useEffect(() => {
-
-  //   if(!navs.includes(search))
-  // }, [search])
-
-  const handleChange = (id) => {
-    setSettingsNav(
-      settingsNav.map((item) => {
-        if (item.id === id) item.active = true;
-        else item.active = false;
-        return item;
-      })
-    );
-  };
+const Settings = ({ isLoading, history, route, location }) => {
+  const branch = matchRoutes(route.routes, location.pathname);
+  if (branch.length < 1) history.push("/pageNotFound");
 
   return (
     <div className="settings">
@@ -55,23 +33,17 @@ const Settings = ({ isLoading, history }) => {
       <h3 className="title title-black mb-small">Settings</h3>
       <nav className="settings_nav mt-small">
         <ul className="settings_ul">
-          {settingsNav.map((item) => (
+          {nav.map((item) => (
             <SettingsNav
-              search={item.to}
+              tab={item.tab}
               name={item.name}
               key={item.id}
-              handlechange={() => handleChange(item.id)}
               active={item.active}
             />
           ))}
         </ul>
       </nav>
-      <div className="settings_pages">
-        {page === "general" && <General profileimg={user?.profileImage} />}
-        {page === "settlements" && <Settlement />}
-        {page === "api-keys-webhooks" && <Webhooks />}
-        {page === "currency" && <Currency />}
-      </div>
+      <div className="settings_pages">{renderRoutes(route.routes)}</div>
     </div>
   );
 };
