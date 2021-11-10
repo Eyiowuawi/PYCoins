@@ -15,6 +15,7 @@ import { cryptos } from "../../constants";
 // import { useMutation } from "react-query";
 import useWindowWidth from "./../../hooks/windowWidth";
 import { useGetWalletTransactions } from "../../query/getWalletTransactions";
+import { useGetWalletBalance } from "../../query/getWalletBalance";
 import WithLoadingComponent from "./../../hoc/withLoading";
 import { useGetStaticAddress } from "./../../query/getStaticAddress";
 import { transactions } from "../../constants/index";
@@ -47,6 +48,10 @@ const CryptoDetails = () => {
   const { isFetching, data: transactions } = useGetWalletTransactions(
     crypto.slug
   );
+  const {  data: balance } = useGetWalletBalance(
+    crypto.slug
+  );
+
 
   const formattedTransactions = useMemo(() => {
     return transactions?.map((item) => {
@@ -81,7 +86,7 @@ const CryptoDetails = () => {
           <title>{currency} - Payercoins</title>
         </Helmet>
         <Back to="/wallet" title="Wallet" />
-        <Details crypto={crypto} setFund={setFund} setWithdraw={setWithdraw} />
+        <Details balance={balance} crypto={crypto} setFund={setFund} setWithdraw={setWithdraw} />
         <div className="mt-md">
           <h3 className="title title-black mb-small">Transaction </h3>
 

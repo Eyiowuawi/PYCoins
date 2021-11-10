@@ -2,7 +2,7 @@ import Modal from "./Modal";
 import deleteImg from "../../assets/delete.svg";
 import Button from "./Button";
 
-const Delete = ({ close, mutate }) => {
+const Delete = ({ close, mutate, isLoading }) => {
   return (
     <Modal close={close}>
       <div className="remove">
@@ -13,7 +13,11 @@ const Delete = ({ close, mutate }) => {
           history attached to this payment page but your balance will still be
           intact.
         </p>
-        <Button onclick={() => mutate()} bg={"button_remove"}>
+        <Button
+          isLoading={isLoading}
+          onclick={() => mutate()}
+          bg={"button_remove"}
+        >
           Continue to Delete
         </Button>
       </div>

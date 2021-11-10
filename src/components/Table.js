@@ -25,9 +25,9 @@ const Table = ({ data, onclick, tableHead, currency }) => {
                     />
                   </span>
                   {item.type === "send" ? (
-                    <span>Sent ${currency}</span>
+                    <span>Sent {currency}</span>
                   ) : (
-                    <span>Received ${currency}</span>
+                    <span>Received {currency}</span>
                   )}
                 </td>
               )}

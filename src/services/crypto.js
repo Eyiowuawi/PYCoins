@@ -95,3 +95,16 @@ export const getWalletTransactions = async (crypto) => {
     throw new Error("Error processing your request");
   }
 };
+
+
+
+export const getWalletBalance = async (wallet) =>{
+  try {
+    const {data} = await cryptoBaseUrl.get(`${wallet}/balance`);
+    return data.data.balance
+    
+  } catch (error) {
+    throw new Error("Error processing your request");
+    
+  }
+}

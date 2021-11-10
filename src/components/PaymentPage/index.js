@@ -15,6 +15,7 @@ const PaymentProcess = ({
   isError,
   event,
 }) => {
+  // console.log(event)
   const handleClose = () => {
     close(false);
     setEvent("");
@@ -40,7 +41,7 @@ const PaymentProcess = ({
           />
         )}
       </WithLoadingComponent>
-      {(event === "Payment Completed" || event === "Payment Incomplete ") && (
+      {(event === "Payment Completed" || event === "Payment Incompleted") && (
         <Success event={event} />
       )}
     </Modal>

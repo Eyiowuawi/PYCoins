@@ -6,7 +6,7 @@ import { RightArrow } from "../../icons/index";
 import { useContext } from "react";
 import { AppContext } from "./../../context/index";
 import { useHistory } from "react-router-dom";
-const Details = ({ crypto, setFund, setWithdraw }) => {
+const Details = ({ crypto, setFund, setWithdraw, balance }) => {
   const { settlements } = useContext(AppContext);
 
   const history = useHistory();
@@ -29,7 +29,11 @@ const Details = ({ crypto, setFund, setWithdraw }) => {
         <p className="title title-grey">{crypto.name}</p>
       </div>
       <p className="title title-grey mt-small">TOTAL BALANCE</p>
-      <p className="title title-grey mt-small">0.00 {crypto.rate}</p>
+      {balance && (
+        <p className="title title-grey mt-small">
+          {parseFloat(balance).toFixed(6)} {crypto.rate}
+        </p>
+      )}
       <div className="cryptodetails_btns">
         <Button
           disabled={true}

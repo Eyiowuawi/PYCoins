@@ -56,10 +56,8 @@ const PaymentDetails = ({ history }) => {
 
   const [amountForm, setAmountForm] = useAmount(data?.paymentPage.amount);
 
-  const { mutate: deleteMutate } = useDeletePaymentLink(
-    data?.paymentlink._id,
-    history
-  );
+  const { mutate: deleteMutate, isLoading: deleteLoading } =
+    useDeletePaymentLink(data?.paymentlink._id, history);
 
   const { mutate: disableMutate } = useDisablePaymentLink(
     data?.paymentlink._id
@@ -80,12 +78,8 @@ const PaymentDetails = ({ history }) => {
     return userData;
   }, [userData]);
 
-  const [
-    paymentForm,
-    setPayentForm,
-    paymentFormValid,
-    setPaymentFormValid,
-  ] = usePaymentForm(userAcceptedWallet, editDetails);
+  const [paymentForm, setPayentForm, paymentFormValid, setPaymentFormValid] =
+    usePaymentForm(userAcceptedWallet, editDetails);
 
   const transactions = useMemo(() => {
     if (paymentData?.length > 0) {
@@ -209,7 +203,11 @@ const PaymentDetails = ({ history }) => {
       )}
 
       {showDelete && (
-        <Delete close={() => setShowDelete(false)} mutate={deleteMutate} />
+        <Delete
+          close={() => setShowDelete(false)}
+          mutate={deleteMutate}
+          isLoading={deleteLoading}
+        />
       )}
     </>
   );
