@@ -48,10 +48,7 @@ const CryptoDetails = () => {
   const { isFetching, data: transactions } = useGetWalletTransactions(
     crypto.slug
   );
-  const {  data: balance } = useGetWalletBalance(
-    crypto.slug
-  );
-
+  const { data: balance } = useGetWalletBalance(crypto.slug);
 
   const formattedTransactions = useMemo(() => {
     return transactions?.map((item) => {
@@ -79,6 +76,7 @@ const CryptoDetails = () => {
     setShow(true);
   };
 
+
   return (
     <>
       <div className="cryptodetails">
@@ -86,7 +84,12 @@ const CryptoDetails = () => {
           <title>{currency} - Payercoins</title>
         </Helmet>
         <Back to="/wallet" title="Wallet" />
-        <Details balance={balance} crypto={crypto} setFund={setFund} setWithdraw={setWithdraw} />
+        <Details
+          balance={balance}
+          crypto={crypto}
+          setFund={setFund}
+          setWithdraw={setWithdraw}
+        />
         <div className="mt-md">
           <h3 className="title title-black mb-small">Transaction </h3>
 

@@ -1,11 +1,13 @@
-import Background from "./Background";
+import Feedback from "../../components/Feedback";
+
 
 import notfound from "../../assets/404.svg";
 
-const NotFound = () => {
-  return (
-    <Background>
-      <div className="notfound">
+
+
+const PageNotFound = () =>{
+    return(
+        <Feedback>
         <img src={notfound} alt="page not found" />
         <h5 className="mb-small errortitle">Oops, Page not found</h5>
         <p className="title title-grey mb-small ">
@@ -18,9 +20,7 @@ const NotFound = () => {
         >
           Go Back Home
         </a>
-      </div>
-    </Background>
-  );
-};
-
-export default NotFound;
+        </Feedback>
+    )
+}
+export default PageNotFound

@@ -27,7 +27,7 @@ const DashboardLayout = ({ route, history, location, ...props }) => {
 
   const branch = matchRoutes(route.routes, location.pathname);
 
-  if (branch.length < 1) history.push("/pageNotFound");
+  if (branch.length < 1) history.push("/page-not-found");
 
   useGetUserEnvironment();
   useGetSettlements();

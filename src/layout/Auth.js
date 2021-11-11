@@ -6,7 +6,7 @@ import Logo from "../assets/Logo.svg";
 
 const Auth = ({ route, history, location }) => {
   const branch = matchRoutes(route.routes, location.pathname);
-  if (branch.length < 1) history.push("/pageNotFound");
+  if (branch.length < 1) history.push("/page-not-found");
 
   return (
     <div className="auth">

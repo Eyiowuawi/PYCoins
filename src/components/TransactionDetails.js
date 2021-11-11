@@ -1,6 +1,5 @@
 import Modal from "./UI/Modal";
 const TransactionsDetails = ({ close, details }) => {
-  console.log(details);
   return (
     <Modal close={close}>
       <div className="transdetails">

@@ -15,7 +15,6 @@ const PaymentProcess = ({
   isError,
   event,
 }) => {
-  // console.log(event)
   const handleClose = () => {
     close(false);
     setEvent("");

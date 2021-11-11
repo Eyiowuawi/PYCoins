@@ -40,15 +40,9 @@ const Dashboard = ({ ...props }) => {
 
   const wallets = useMemo(() => {
     const mappedWallet = walletData?.map((item) => {
-      var symbol;
-      if (item?.crypto?.symbol?.includes("USDT")) {
-        symbol = "USDT";
-      }
-
       return {
         ...item,
         ...item.crypto,
-        symbol: symbol,
       };
     });
 
@@ -57,7 +51,10 @@ const Dashboard = ({ ...props }) => {
 
       return addedWallet.map((item) => {
         var symbol;
-        if (item?.crypto?.symbol?.includes("USDT")) {
+        if (
+          item?.crypto?.symbol?.includes("USDT") ||
+          item?.crypto?.symbol?.includes("UDST")
+        ) {
           symbol = "USDT";
         }
         return {

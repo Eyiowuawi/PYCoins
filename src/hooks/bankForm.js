@@ -4,7 +4,6 @@ import { required, accountNumberValidator } from "./../utils/validations";
 import { toast } from "react-toastify";
 
 const useBankForm = (bank, editing) => {
-  // console.log(bank && true);
   const [banks, setBanks] = useState([]);
   const [formValid, setFormValid] = useState(editing ? true : false);
   const [loading, setLoading] = useState(false);
@@ -101,7 +100,6 @@ const useBankForm = (bank, editing) => {
               },
             };
           });
-          console.log(bankForm);
           setFormValid(true);
           toast.success("Account Name Fetched");
         } else {

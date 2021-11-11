@@ -13,7 +13,7 @@ const Table = ({ data, onclick, tableHead, currency }) => {
       </thead>
       <tbody>
         {data
-          ?.sort((a, b) => new Date(b.date) - new Date(a.date))
+          ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .map((item) => (
             <tr key={item.id} onClick={() => onclick(item.id)}>
               {item.type && (
@@ -49,7 +49,6 @@ const Table = ({ data, onclick, tableHead, currency }) => {
                       : null
                   }
                 >
-                  {" "}
                   {item.status}
                 </span>
               </td>

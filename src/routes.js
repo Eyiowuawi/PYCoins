@@ -31,7 +31,7 @@ import Settlements from "./components/Settings/Settlements";
 
 import PaymentPage from "./pages/PaymentPage";
 
-import NotFound from "./components/UI/404";
+import NotFound from "./pages/Feedback/404";
 import { Redirect } from "react-router-dom";
 
 const routes = [
@@ -42,7 +42,7 @@ const routes = [
     key: "payment-page",
   },
   {
-    path: "/pageNotFound",
+    path: "/page-not-found",
     component: NotFound,
     exact: true,
   },

@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import { useRouteMatch } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
+import Disabled from "../Feedback/Disabled";
+
 import WithErrorComponent from "./../../hoc/withError";
 import WithLoadingComponent from "./../../hoc/withLoading";
 
@@ -29,6 +31,8 @@ import Logo from "../../assets/Logo.svg";
 
 const PaymentPage = ({ history }) => {
   const [processError, setProcessError] = useState();
+
+  const [disabled, setDisabled] = useState(false);
   const [event, setEvent] = useState("");
 
   const { params } = useRouteMatch();
@@ -39,9 +43,9 @@ const PaymentPage = ({ history }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (error?.message === "404") history.push("/pageNotFound");
-    if (error?.message === "Payment Link Has been disabled!")
+    if (error?.message === "Payment Link not found")
       history.push("/pageNotFound");
+    if (error?.message === "Payment Link has been disabled") setDisabled(true);
     if (error?.message === "Error processing payment page")
       setProcessError(true);
   }, [error]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -68,8 +72,6 @@ const PaymentPage = ({ history }) => {
       return addedCrypto;
     }
   }, [data, cryptoData]);
-
-  // formatRates("62626.624287808045");
 
   const addedRates = useMemo(() => {
     const joinedArr = [];
@@ -149,45 +151,48 @@ const PaymentPage = ({ history }) => {
 
   return (
     <>
-      <Background>
-        <WithLoadingComponent isLoading={isLoading}>
-          <WithErrorComponent isError={processError}>
-            <div className="paymentpage">
-              <Helmet>
-                <title> Make a payment - Payercoins</title>
-              </Helmet>
-              <div className="paymentpage_img mb-small">
-                <img src={data?.paymentlink.user.profileImage} alt="User" />
-              </div>
-              <h3 className="title title-black mb-small">
-                {data?.paymentlink.pageName}
-              </h3>
-              <p className="title title-grey ta">
-                {data?.paymentPage.metaData.description}
-              </p>
-              {!error && <form className="paymentpage_form">{form}</form>}
-              <Button
-                disabled={formValid}
-                bg="button_primary"
-                onclick={() => setShow(true)}
-              >
-                Pay Now
-              </Button>
-              <div className="paymentpage_powered">
-                <span className="title title-grey"> Powered by</span>
-                <a
-                  href={"https://payercoins.com"}
-                  target="_blank"
-                  rel="noreferrer"
+      {disabled && <Disabled />}
+      {!disabled && (
+        <Background>
+          <WithLoadingComponent isLoading={isLoading}>
+            <WithErrorComponent isError={processError}>
+              <div className="paymentpage">
+                <Helmet>
+                  <title> Make a payment - Payercoins</title>
+                </Helmet>
+                <div className="paymentpage_img mb-small">
+                  <img src={data?.paymentlink.user.profileImage} alt="User" />
+                </div>
+                <h3 className="title title-black mb-small">
+                  {data?.paymentlink.pageName}
+                </h3>
+                <p className="title title-grey ta">
+                  {data?.paymentPage.metaData.description}
+                </p>
+                {!error && <form className="paymentpage_form">{form}</form>}
+                <Button
+                  disabled={formValid}
+                  bg="button_primary"
+                  onclick={() => setShow(true)}
                 >
-                  {" "}
-                  <img src={Logo} alt="payercoins" />
-                </a>
+                  Pay Now
+                </Button>
+                <div className="paymentpage_powered">
+                  <span className="title title-grey"> Powered by</span>
+                  <a
+                    href={"https://payercoins.com"}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {" "}
+                    <img src={Logo} alt="payercoins" />
+                  </a>
+                </div>
               </div>
-            </div>
-          </WithErrorComponent>
-        </WithLoadingComponent>
-      </Background>
+            </WithErrorComponent>
+          </WithLoadingComponent>
+        </Background>
+      )}
       {data?.paymentlink.environment === "sandbox" && <Warning />}
       {show && (
         <PaymentProcess
