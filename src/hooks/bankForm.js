@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 const useBankForm = (bank, editing) => {
   const [banks, setBanks] = useState([]);
   const [formValid, setFormValid] = useState(editing ? true : false);
-  const [loading, setLoading] = useState(false);
 
   const [bankForm, setBankForm] = useState({
     bank_name: {
@@ -14,11 +13,7 @@ const useBankForm = (bank, editing) => {
       valid: editing ? true : false,
       elementType: "select",
       label: "Select Bank",
-      loading: true,
       options: [],
-      closeMenuOnSelect: false,
-      selected: [],
-      singleSelect: true,
       validation: required,
     },
     account_number: {
@@ -83,13 +78,13 @@ const useBankForm = (bank, editing) => {
         const selected = banks.find(
           (item) => item.value === bankForm.bank_name.value
         );
-        setLoading(true);
-        toast.info("Fetching Account Name");
+        toast.info("Checking Account Number");
+        setFormValid(false);
         const { data } = await axios.get(
-          `https://maylancer.org/api/nuban/api.php?account_number=${bankForm.account_number.value}&bank_code=${selected.code}`
+          `https://maylancer.org/api/nuban/api.php?account_number=${bankForm.account_number.value}&bank_code=${selected?.code}`
         );
-        setLoading(false);
-        if (data && data.account_name) {
+        if (data.account_name) {
+          toast.success("Account Name Matched");
           setBankForm((prevState) => {
             return {
               ...prevState,
@@ -101,14 +96,24 @@ const useBankForm = (bank, editing) => {
             };
           });
           setFormValid(true);
-          toast.success("Account Name Fetched");
         } else {
-          toast.error("Failed to fetch Account Name");
+          toast.error("Account Name Not Matched");
+          setFormValid(false);
+          setBankForm((prevState) => {
+            return {
+              ...prevState,
+              account_name: {
+                ...prevState.account_name,
+                value: "",
+                valid: false,
+              },
+            };
+          });
         }
       }
     };
     validateAccount();
-  }, [bankForm.bank_name.selected, bankForm.account_number.value]);
+  }, [bankForm.bank_name.value, bankForm.account_number.value]);
 
   return [bankForm, setBankForm, formValid, setFormValid];
 };

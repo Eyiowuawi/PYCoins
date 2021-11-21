@@ -8,8 +8,19 @@
 }
 
 .Toastify__toast--success {
-  background-color: $primary-color !important; 
+  background-color: $primary-color !important;
+  color: #fff !important;
 }
 .Toastify__toast--info {
-  background-color: #444854 !important; 
+  background-color: #444854 !important;
+  color: #fff !important;
+}
+
+.Toastify__toast--error {
+  background-color: #f44336 !important;
+  color: #fff !important;
+
+  svg {
+    fill: #fff !important;
+  }
 }

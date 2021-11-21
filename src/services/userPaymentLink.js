@@ -31,8 +31,8 @@ export const getUserPaymentLink = async (id) => {
 
 export const deletePaymentLink = async (id) => {
   try {
-    const { data } = await paymentlinkBaseUrl.delete(`/delete/${id}`);
-    return data;
+    const response = await paymentlinkBaseUrl.delete(`/delete/${id}`);
+    return response.data;
   } catch (error) {
     toast.error("Error deleting payment link");
 

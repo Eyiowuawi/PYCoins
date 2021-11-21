@@ -40,7 +40,7 @@ const useGeneralForm = (profile) => {
       value: profile?.user?.phoneNumber || "",
       valid: true,
       type: "text",
-      elementType: "input",
+      elementType: "phone",
       placeholder: "Phone Number",
       label: "Phone Number",
       required: true,

@@ -11,24 +11,22 @@ export const changeHandler = (
   let updatedFormElement = {};
   let isValid = true;
 
-  if (Array.isArray(event)) {
-    if (elementID === "currency") {
-      isValid = formType[elementID].validation(event) && isValid;
-      updatedFormElement = {
-        ...formType[elementID],
-        value: event.map((item) => item.value),
-        valid: isValid,
-        selected: event,
-      };
-    } else {
-      isValid = formType[elementID].validation(event[0].value) && isValid;
-      updatedFormElement = {
-        ...formType[elementID],
-        value: event[0].value,
-        valid: isValid,
-        selected: event,
-      };
-    }
+  if (elementID === "currency") {
+    isValid = formType[elementID].validation(event) && isValid;
+    updatedFormElement = {
+      ...formType[elementID],
+      value: event.map((item) => item.label),
+      valid: isValid,
+      selected: event,
+    };
+  } else if (elementID === "phoneNumber") {
+    isValid = formType[elementID].validation(event) && isValid;
+    updatedFormElement = {
+      ...formType[elementID],
+      value: event,
+      valid: isValid,
+      selected: event,
+    };
   } else {
     if (elementID === "businessDocument") {
       updatedFormElement = {
@@ -42,17 +40,15 @@ export const changeHandler = (
         ? formType["password"].value
         : null;
       let isValid = true;
-      isValid =
-        formType[elementID].validation(event.target.value, passwordValue) &&
-        isValid;
+      const value = event?.target ? event?.target.value : event?.label;
+      isValid = formType[elementID].validation(value, passwordValue) && isValid;
       updatedFormElement = {
         ...formType[elementID],
-        value: event.target.value,
+        value: event?.target ? event?.target.value : event?.label,
         valid: isValid,
       };
     }
   }
-
   const updatedForm = {
     ...formType,
     [elementID]: updatedFormElement,

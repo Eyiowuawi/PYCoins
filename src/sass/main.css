@@ -2422,66 +2422,87 @@ button {
 
 .Toastify__toast--success {
   background-color: #48d189 !important;
+  color: #fff !important;
 }
 
 .Toastify__toast--info {
   background-color: #444854 !important;
+  color: #fff !important;
 }
 
-.searchWrapper {
-  font-size: 0.8rem;
+.Toastify__toast--error {
+  background-color: #f44336 !important;
+  color: #fff !important;
+}
+
+.Toastify__toast--error svg {
+  fill: #fff !important;
+}
+
+.container-phone {
+  position: relative !important;
+}
+
+.input-phone {
+  width: 100% !important;
+  height: 100% !important;
   border: 1px solid #e5e9f2 !important;
   padding: 1rem;
   border-radius: 8px !important;
-  font-family: "Mulish", sans-serif;
-  color: #30324b;
-  padding: 1rem !important;
-  background-color: transparent;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  -ms-appearance: none !important;
-  -o-appearance: none !important;
-  appearance: none !important;
-  background-position-x: 98% !important;
-  background-repeat: no-repeat;
-  background-position-y: 50% !important;
-  background-image: url("../assets/select.svg");
-}
-
-.icon_down_dir {
-  display: none !important;
-}
-
-.singleChip {
   background-color: transparent !important;
+  font-size: 1rem !important;
+  font-family: "Mulish", sans-serif !important;
+  text-transform: capitalize !important;
+  background-position-x: 98% !important;
+  background-repeat: no-repeat !important;
+  background-position-y: 50% !important;
+  background-image: url("../assets/select.svg") !important;
 }
 
-.singleChip .closeIcon {
+.input-phone:focus {
+  outline: none !important;
+  border-color: "#e5e9f2";
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.button-phone {
+  border-right: 1px solid #e5e9f2;
+}
+
+.flag-drodpwn {
   display: none !important;
 }
 
-.chip {
-  font-size: 1rem !important;
-  font-family: "Mulish", sans-serif;
-  text-transform: capitalize;
-  background-color: #48d189;
+.dropdown-phone {
+  width: 400px !important;
+  max-height: 500px;
 }
 
-.searchBox::-webkit-input-placeholder {
-  color: rgba(0, 0, 0, 0.87) !important;
-  font-family: "Mulish", sans-serif;
-  font-size: 1rem !important;
+.country-list li {
+  font-size: 1.2rem !important;
+  text-transform: capitalize !important;
+  font-family: "Mulish", sans-serif !important;
 }
 
-.optionContainer li {
-  font-size: 1rem !important;
-  padding: 1rem;
-  text-transform: capitalize;
+.country-list li:hover {
+  background-color: #48d189 !important;
+  color: white !important;
 }
 
-.optionContainer li:hover {
-  background-color: #48d189;
-  color: white;
+.error-phone {
+  font-family: "Mulish", sans-serif !important;
+  border: 1px solid #f44336 !important;
+}
+
+.MuiChip-filled {
+  background-color: #48d189 !important;
+  color: white !important;
+}
+
+.MuiChip-label {
+  font-size: 1rem !important;
+  text-transform: capitalize !important;
 }
 
 .create {

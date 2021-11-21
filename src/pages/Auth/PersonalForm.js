@@ -35,7 +35,7 @@ const PersonalForm = ({ history }) => {
 
     data.append(`userType`, "individual");
 
-    mutate(data);
+    // mutate(data);
   };
   return (
     <div className="personal">
@@ -63,5 +63,5 @@ const PersonalForm = ({ history }) => {
   );
 };
 
-export default withRegistrationType(PersonalForm);
-// export default PersonalForm;
+// export default withRegistrationType(PersonalForm);
+export default PersonalForm;

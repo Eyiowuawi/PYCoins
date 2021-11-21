@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import {
   password,
@@ -38,7 +39,7 @@ const usePersonalForm = () => {
       value: "+234",
       valid: false,
       type: "text",
-      elementType: "input",
+      elementType: "phone",
       placeholder: "Phone Number",
       label: "Phone Number",
       required: true,
@@ -51,14 +52,7 @@ const usePersonalForm = () => {
       valid: false,
       elementType: "select",
       label: "Country",
-      options: [
-        { id: 2, label: "Nigeria", value: "Nigeria" },
-        { id: 3, label: "Togo", value: "Togo" },
-        { id: 4, label: "Finland", value: "Finland" },
-        { id: 5, label: "Somalia", value: "Somalia" },
-        { id: 6, label: "Afghanistan", value: "Afghanistan" },
-      ],
-      singleSelect: true,
+      options: [],
       validation: required,
       blur: false,
       required: true,
@@ -103,6 +97,28 @@ const usePersonalForm = () => {
       blur: false,
     },
   });
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      const { data } = await axios.get(
+        "https://countriesnow.space/api/v0.1/countries/capital"
+      );
+      setPersonalForm((prevState) => {
+        return {
+          ...prevState,
+          country: {
+            ...prevState.country,
+            options: data.data.map((item) => {
+              return {
+                label: item.name,
+              };
+            }),
+          },
+        };
+      });
+    };
+    fetchCountries();
+  }, []);
 
   const [formValid, setFormValid] = useState(false);
 

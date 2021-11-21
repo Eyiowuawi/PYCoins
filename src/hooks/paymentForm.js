@@ -27,9 +27,9 @@ const usePaymentForm = (userWallets, editDetails) => {
       blur: false,
     },
     currency: {
-      value: editDetails ? editDetails.cryptos : [],
+      value: [],
       valid: false,
-      elementType: "select",
+      elementType: "multiple",
       label: "Select Currency",
       options: [],
       validation: notEmptyArray,

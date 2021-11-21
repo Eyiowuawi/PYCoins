@@ -1,8 +1,11 @@
-import TextField from "@material-ui/core/TextField";
-
+// import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import Box from "@mui/material/Box";
 import { makeStyles } from "@material-ui/core/styles";
-
-import MultipleSelect from "multiselect-react-dropdown";
+import TextField from "@mui/material/TextField";
+import { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/material.css";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -32,9 +35,12 @@ const useStyles = makeStyles(() => ({
         fontFamily: "Mulish , sans-serif",
         color: "#30324b",
       },
-      " & label.Mui-focused": {
+      "& label.Mui-focused": {
         color: "#48d189",
         fontFamily: "Mulish , sans-serif",
+      },
+      "& MuiChip-label": {
+        color: "#30324b",
       },
     },
   },
@@ -64,6 +70,11 @@ const Input = ({
   closeMenu,
   isLoading,
 }) => {
+  // const [seleted, setSelected] = useState([]);
+
+  const handleChange = (values) => {
+    onchange(values);
+  };
   const classes = useStyles();
 
   let inputElement;
@@ -100,21 +111,73 @@ const Input = ({
 
     case "select":
       inputElement = (
-        <MultipleSelect
+        <Autocomplete
+          sx={{ width: 300 }}
           options={options}
-          singleSelect={multiple}
-          placeholder={label}
-          selectedValues={selected}
-          displayValue={"label"}
-          onSelect={onchange}
-          closeOnSelect={closeMenu}
-          isSearchable={false}
-          avoidHighlightFirstOption={true}
-          emptyRecordMsg="No crypto available"
-          hidePlaceholder={true}
-          onRemove={removeSelect}
-          loading={isLoading}
-          loadingMessage="Loading Banks, Please Wait..."
+          autoHighlight
+          className={classes.root}
+          getOptionLabel={(option) => option.label}
+          onChange={(event, value) => handleChange(value)}
+          renderOption={(props, option) => (
+            <Box
+              component="li"
+              sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+              {...props}
+            >
+              {option.label}
+            </Box>
+          )}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label={label}
+              inputProps={{
+                ...params.inputProps,
+                autoComplete: "new-password", // disable autocomplete and autofill
+              }}
+            />
+          )}
+        />
+      );
+      break;
+    case "multiple":
+      inputElement = (
+        <Autocomplete
+          multiple
+          id="tags-outlined"
+          sx={{ width: 300 }}
+          options={options || []}
+          filterSelectedOptions
+          className={classes.root}
+          getOptionLabel={(option) => option.label}
+          onChange={(event, value) => handleChange(value)}
+          // onClose={closeMenu}
+          freeSolo={true}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label={label}
+              inputProps={{
+                ...params.inputProps,
+                autoComplete: "new-password firstName lastName", // disable autocomplete and autofill
+              }}
+            />
+          )}
+        />
+      );
+      break;
+
+    case "phone":
+      inputElement = (
+        <PhoneInput
+          containerClass="container-phone"
+          inputClass={`input-phone ${blur && !valid && "error-phone"}`}
+          buttonClass="button-phone"
+          country={"us"}
+          value={value}
+          dropdownClass="dropdown-phone"
+          onChange={onchange}
+          onBlur={onblur}
         />
       );
       break;

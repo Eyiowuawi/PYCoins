@@ -9,6 +9,7 @@ import App from "./App";
 import AppComponentContext from "./context";
 import reportWebVitals from "./reportWebVitals";
 import "./sass/main.css";
+import { StyledEngineProvider } from "@mui/material/styles";
 
 // worker;
 
@@ -18,7 +19,9 @@ ReactDOM.render(
     <BrowserRouter>
       <AppComponentContext>
         <React.StrictMode>
-          <App />
+          <StyledEngineProvider injectFirst>
+            <App />
+          </StyledEngineProvider>
         </React.StrictMode>
       </AppComponentContext>
     </BrowserRouter>

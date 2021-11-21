@@ -23,6 +23,7 @@ const settingsFormGenerator = (formType, formFunc, validForm) => {
       info={config.info}
       show={config.show}
       image={config.image}
+      elementType={config.elementType}
       showPassword={(evt) => showPassword(evt, id, formType, formFunc)}
     />
   ));

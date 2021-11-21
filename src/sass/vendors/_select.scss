@@ -60,53 +60,128 @@
 //   }
 // }
 
-.searchWrapper {
-  font-size: 0.8rem;
+// .searchWrapper {
+//   font-size: 0.8rem;
+//   @include line;
+//   font-family: $font-family;
+//   color: #30324b;
+//   padding: 1rem !important;
+//   background-color: transparent;
+//   -webkit-appearance: none !important;
+//   -moz-appearance: none !important;
+//   -ms-appearance: none !important;
+//   -o-appearance: none !important;
+//   appearance: none !important;
+//   background-position-x: 98% !important;
+//   background-repeat: no-repeat;
+//   background-position-y: 50% !important;
+//   background-image: url("../assets/select.svg");
+// }
+
+// .icon_down_dir {
+//   display: none !important;
+// }
+
+// .singleChip {
+//   background-color: transparent !important;
+// }
+// .singleChip .closeIcon {
+//   display: none !important;
+// }
+// .chip {
+//   font-size: 1rem !important;
+//   font-family: $font-family;
+//   text-transform: capitalize;
+//   background-color: $primary-color;
+// }
+// .searchBox::-webkit-input-placeholder {
+//   color: rgba(0, 0, 0, 0.87) !important;
+//   font-family: $font-family;
+//   font-size: 1rem !important;
+// }
+
+// .optionContainer li {
+//   font-size: 1rem !important;
+//   padding: 1rem;
+//   text-transform: capitalize;
+
+//   &:hover {
+//     background-color: $primary-color;
+//     color: white;
+//   }
+// }
+
+// .containerClass{
+//   background-color: red
+// }
+
+// .react-tel-input {
+//   background-color: red !important;
+// }
+
+.container-phone {
+  position: relative !important;
+}
+.input-phone {
+  width: 100% !important;
+  height: 100% !important;
   @include line;
-  font-family: $font-family;
-  color: #30324b;
-  padding: 1rem !important;
-  background-color: transparent;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  -ms-appearance: none !important;
-  -o-appearance: none !important;
-  appearance: none !important;
-  background-position-x: 98% !important;
-  background-repeat: no-repeat;
-  background-position-y: 50% !important;
-  background-image: url("../assets/select.svg");
-}
-
-.icon_down_dir {
-  display: none !important;
-}
-
-.singleChip {
   background-color: transparent !important;
+  font-size: 1rem !important;
+  font-family: $font-family !important;
+  text-transform: capitalize !important;
+  background-position-x: 98% !important;
+  background-repeat: no-repeat !important;
+  background-position-y: 50% !important;
+  background-image: url("../assets/select.svg") !important;
+
+  &:focus {
+    outline: none !important;
+    // border: none !important;
+    border-color: "#e5e9f2";
+    box-shadow: none !important;
+  }
 }
-.singleChip .closeIcon {
+
+.button-phone {
+  // display: none !important;
+  // width: 100%;
+  border-right: 1px solid #e5e9f2;
+}
+
+.flag-drodpwn {
   display: none !important;
 }
-.chip {
-  font-size: 1rem !important;
-  font-family: $font-family;
-  text-transform: capitalize;
-  background-color: $primary-color;
-}
-.searchBox::-webkit-input-placeholder {
-  color: rgba(0, 0, 0, 0.87) !important;
-  font-family: $font-family;
-  font-size: 1rem !important;
+.dropdown-phone {
+  width: 400px !important;
+  // max-width: 100% !important;
+  max-height: 500px;
+  // position: static !important;
 }
 
-.optionContainer li {
-  font-size: 1rem !important;
-  padding: 1rem;
-  text-transform: capitalize;
-
+.country-list li {
+  font-size: 1.2rem !important;
+  // padding: 1rem !important;
+  text-transform: capitalize !important;
+  font-family: $font-family !important;
   &:hover {
-    background-color: $primary-color;
-    color: white;
+    background-color: $primary-color !important;
+    color: white !important;
   }
+}
+
+.error-phone {
+  font-family: $font-family !important;
+  border: 1px solid #f44336 !important;
+}
+
+.MuiChip-filled {
+  background-color: $primary-color !important;
+  color: white !important;
+}
+
+.MuiChip-label {
+  // color: $primary-color !important;
+  font-size: 1rem !important;
+  text-transform: capitalize !important;
 }
