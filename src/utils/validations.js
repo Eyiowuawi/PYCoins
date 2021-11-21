@@ -1,9 +1,9 @@
 export const phoneNumberCheck = (value) => {
   // const regex = /^[+234][0-9]{12}/;
-  return value.length >= 13;
+  return value.length >= 10;
 };
 
-export const password = (value) => {
+export const password = (value, _, confirm) => {
   const regex =
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?.!@$%^&*-]).{8,}$/;
 

@@ -30,8 +30,11 @@ const PersonalForm = ({ history }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const data = new FormData();
-    for (let key in personalForm)
-      data.append(`${key}`, personalForm[key].value);
+    for (let key in personalForm) {
+      if (key === "phoneNumber")
+        data.append(key, `+${personalForm[key].value}`);
+      else data.append(key, personalForm[key].value);
+    }
 
     data.append(`userType`, "individual");
 

@@ -39,6 +39,7 @@ export const changeHandler = (
       let passwordValue = formType["password"]
         ? formType["password"].value
         : null;
+
       let isValid = true;
       const value = event?.target ? event?.target.value : event?.label;
       isValid = formType[elementID].validation(value, passwordValue) && isValid;
@@ -54,6 +55,13 @@ export const changeHandler = (
     [elementID]: updatedFormElement,
   };
 
+  if (
+    updatedForm["password"] &&
+    updatedForm["confirm"] &&
+    updatedForm["password"].value === updatedForm["confirm"].value
+  ) {
+    updatedForm["confirm"].valid = true;
+  } else updatedForm["confirm"].valid = false;
   if (validForm) {
     let formIsValid = true;
     for (let elementID in updatedForm) {
