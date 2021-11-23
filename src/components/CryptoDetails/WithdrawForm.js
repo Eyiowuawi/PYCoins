@@ -81,13 +81,14 @@ const WithdrawForm = ({
       <p className="title title-grey mt-small">
         Enter the amount of{" "}
         <strong style={{ color: "#333333", fontWeight: "bolder" }}>
-          {crypto?.rate || "naira"}{" "}
+          {/* {crypto?.rate || "naira"}{" "} */}
+          {isBank ? "Naira" : crypto.rate}{" "}
         </strong>
         you’d like to withdraw
       </p>
       {isInsufficient && (
         <p style={{ color: "#EB5757" }} className="mt-small">
-          Insufficeient Funds
+          Insufficient Funds
         </p>
       )}
       <form className="mt-small" onSubmit={withdraw}>
