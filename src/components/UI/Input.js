@@ -69,6 +69,7 @@ const Input = ({
   selected,
   closeMenu,
   isLoading,
+  displayedValue,
 }) => {
   // const [seleted, setSelected] = useState([]);
 
@@ -92,7 +93,7 @@ const Input = ({
               required={required}
               onBlur={onblur}
               type={type}
-              value={value}
+              value={value === "NaN" ? "" : value}
               disabled={readonly}
             />
             {svg && (

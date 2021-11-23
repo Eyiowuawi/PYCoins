@@ -12,14 +12,15 @@ import Success from "../../assets/success.svg";
 
 import { cryptos } from "../../constants";
 import useWithdrawForm from "./../../hooks/withdrawalForm";
+import useFormattedWithdraw from "../../hooks/formattedForm";
 import { useMutation, useQueryClient } from "react-query";
-// import { requestWithdrawal } from "../../services/crypto";
 import { initiateWithdrawal, processWithdrawal } from "../../services/withdraw";
 import useOtp from "./../../hooks/otpForm";
 import { toast } from "react-toastify";
 import { AppContext } from "./../../context/index";
+import { extractNumber } from "../../utils/numberWithComma";
 
-const WithDraw = ({ currency, close, show, selectedCrypto }) => {
+const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
   const { settlements } = useContext(AppContext);
 
   const isBankAdded = useMemo(() => {
@@ -37,6 +38,12 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
   const [withdrawForm, setWithdrawForm, formValid, setFormValid] =
     useWithdrawForm(selectedSettlement);
 
+  const [
+    formattedWithdrawalForm,
+    setFormattedWithdrawalForm,
+    formIsValid,
+    setFormIsValid,
+  ] = useFormattedWithdraw(" Amount (Naira)");
   const [otpForm, setOtpForm, isValidForm, setIsValidForm] = useOtp();
 
   const [name, setName] = useState("");
@@ -63,13 +70,14 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
     setName(name);
   };
 
-  const handleInitiateWithdrawal = (evt) => {
+  const handleInitiateWithdrawal = (evt, rates) => {
     evt.preventDefault();
 
     let data = {};
     if (name === "bank") {
       data["type"] = "fiat";
-      data["amount"] = withdrawForm.amount.value;
+      // data["amount"] =
+      data["fiat_amount"] = extractNumber(formattedWithdrawalForm.amount.value);
       data["wallet"] = selectedSettlement.wallet_slug;
       data["walletName"] = selectedSettlement.key;
     } else {
@@ -121,12 +129,14 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
             goBack={() => setName("")}
             name=""
             withdraw={handleInitiateWithdrawal}
-            withdrawForm={withdrawForm}
-            setForm={setWithdrawForm}
-            validForm={formValid}
-            setValidForm={setFormValid}
+            withdrawForm={formattedWithdrawalForm}
+            setForm={setFormattedWithdrawalForm}
+            validForm={formIsValid}
+            setValidForm={setFormIsValid}
             isLoading={isInitiateLoading}
-            // withdraw={handleSendOtp}
+            crypto={selectedCrypto}
+            isBank={true}
+            balance={balance}
           />
         </>
       );
@@ -144,6 +154,8 @@ const WithDraw = ({ currency, close, show, selectedCrypto }) => {
             setValidForm={setFormValid}
             crypto={selectedCrypto}
             isLoading={isInitiateLoading}
+            isBank={false}
+            balance={balance}
           />
         </>
       );

@@ -21,13 +21,13 @@ const Balance = ({ data, available, customers }) => {
           <p className="mute">{customers || 0}</p>
         </div>
       </div>
-      <div className="balance_item">
+      {/* <div className="balance_item">
         <img src={Ledger} alt="available balance" />
         <div className="balance_content">
           <p className="title title-grey mb-smaller">Number of Visitors</p>
           <p className="mute mb-smaller">0</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import show from "../assets/show.svg";
 import hide from "../assets/hide.svg";
+import { addComma } from "./numberWithComma";
+
 export const changeHandler = (
   event,
   elementID,
@@ -10,6 +12,12 @@ export const changeHandler = (
 ) => {
   let updatedFormElement = {};
   let isValid = true;
+
+  // if (formType[elementID].comma) {
+  //   // console.log(event.target.value);
+  //   const v = numberWithCommas(event.target.value);
+  //   console.log(v);
+  // }
 
   if (elementID === "currency") {
     isValid = formType[elementID].validation(event) && isValid;
@@ -34,6 +42,14 @@ export const changeHandler = (
         valid: true,
         value: event.target.files[0],
         label: event.target.files[0].name,
+      };
+    } else if (formType[elementID].comma) {
+      const commaAddedvalues = addComma(event.target.value);
+      // console.log(event.target.name);/
+      updatedFormElement = {
+        ...formType[elementID],
+        value: commaAddedvalues,
+        valid: formType[elementID].validation(event.target.value),
       };
     } else {
       let passwordValue = formType["password"]

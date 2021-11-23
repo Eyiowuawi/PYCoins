@@ -40,7 +40,12 @@ export const urlValidator = (value) => {
 
 export const validateWithdraw = (value) => {
   const regex = /^\d*\.?\d*$/;
-  return regex.test(value) && value.length > 0;
+  return regex.test(value) && value.length > 0 && +value > 0;
+};
+export const validateFormmatedWithdraw = (value) => {
+  console.log(value);
+  const regex = /^\d+(,\d+)*$/;
+  return regex.test(value) && value.length > 0 && value !== "NaN";
 };
 
 export const otpValidator = (value) => {

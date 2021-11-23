@@ -35,6 +35,7 @@ const usePaymentPageForm = (data) => {
       validation: required,
       blur: false,
       readonly: false,
+      comma: true,
     },
     message: {
       value: "",

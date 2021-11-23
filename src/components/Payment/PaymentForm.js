@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 
 import Created from "./Created";
 
-import useAmount from "../../hooks/amountForm";
+import useAmount from "../../hooks/formattedForm";
 import usePaymentForm from "../../hooks/paymentForm";
 
 import Modal from "../UI/Modal";
@@ -15,6 +15,7 @@ import { addPaymentUrl } from "./../../utils/addPaymentUrl";
 import { createPaymentLink } from "../../services/userPaymentLink";
 
 import { useGetUserWallets } from "./../../query/getCryptos";
+import { extractNumber } from "../../utils/numberWithComma";
 
 const PaymentForm = ({
   show,
@@ -31,7 +32,7 @@ const PaymentForm = ({
 
   const queryClient = useQueryClient();
 
-  const [amountForm, setAmountForm] = useAmount();
+  const [amountForm, setAmountForm] = useAmount("Enter your amount (USD)");
 
   const userAcceptedWallet = useMemo(() => {
     return userData;
@@ -101,7 +102,8 @@ const PaymentForm = ({
     const data = {};
     for (let key in paymentForm) data[key] = paymentForm[key].value;
     data["isAmountFixed"] = isFixed === "fixed" ? true : false;
-    data["amount"] = isFixed === "fixed" ? +amountForm.amount.value : 0;
+    data["amount"] =
+      isFixed === "fixed" ? extractNumber(+amountForm.amount.value) : 0;
 
     mutate(data);
   };
@@ -132,7 +134,6 @@ const PaymentForm = ({
                 name={"amount"}
                 type="radio"
                 onchange={handleChange}
-                // checked={amountType === "custom" && true}
               />
             </div>
             {isFixed === "fixed" && amount}

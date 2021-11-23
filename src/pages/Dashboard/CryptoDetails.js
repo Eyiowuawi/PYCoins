@@ -76,7 +76,6 @@ const CryptoDetails = () => {
     setShow(true);
   };
 
-
   return (
     <>
       <div className="cryptodetails">
@@ -147,6 +146,7 @@ const CryptoDetails = () => {
           currency={currency}
           close={() => setWithdraw(false)}
           selectedCrypto={crypto}
+          balance={balance}
         />
       )}
     </>

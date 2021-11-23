@@ -30,7 +30,7 @@ const TableResponsive = ({ data, onclick, currency }) => {
               ) : (
                 <span className="td">Received ${currency}</span>
               )}
-              <p className="td">{parseFloat(item.amount).toFixed(6)}</p>
+              <p className="td">{parseFloat(item.amount).toFixed(2)}</p>
             </div>
             <div className="tableresponsive_amount">
               <p

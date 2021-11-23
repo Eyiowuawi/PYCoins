@@ -43,6 +43,7 @@ const formGenerator = (formType, formFunc, validForm) => {
       readonly={config.readonly}
       selected={config.selected}
       isLoading={config.loading}
+      displayedValue={config.displayedValue}
     />
   ));
   return form;
