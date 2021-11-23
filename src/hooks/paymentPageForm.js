@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
-
-import { required, emailCheck } from "../utils/validations";
+import { addComma } from "../utils/numberWithComma";
+import {
+  validateFormmatedWithdraw,
+  required,
+  emailCheck,
+} from "../utils/validations";
 
 const usePaymentPageForm = (data) => {
   const [paymentPageForm, setPaymentPageForm] = useState({
@@ -27,7 +31,7 @@ const usePaymentPageForm = (data) => {
     amount: {
       value: "",
       valid: false,
-      type: "number",
+      type: "text",
       elementType: "input",
       placeholder: "Number",
       label: "Enter Amount (USD)",
@@ -52,15 +56,16 @@ const usePaymentPageForm = (data) => {
 
   useEffect(() => {
     setPaymentPageForm((prevState) => {
+      const value = new Intl.NumberFormat().format(
+        (Math.round(data?.amount * 100) / 100).toString()
+      );
+
       return {
         ...prevState,
         amount: {
           ...prevState.amount,
           readonly: data?.amountType === "fixed" ? true : false,
-          value:
-            data?.amountType === "fixed"
-              ? parseFloat(data?.amount).toFixed(6)
-              : "",
+          value: data?.amountType === "fixed" ? value : "",
           valid: data?.amountType === "fixed" ? true : false,
         },
       };

@@ -6,6 +6,8 @@ import { Helmet } from "react-helmet";
 
 import Disabled from "../Feedback/Disabled";
 
+import { extractNumber } from "../../utils/numberWithComma";
+
 import WithErrorComponent from "./../../hoc/withError";
 import WithLoadingComponent from "./../../hoc/withLoading";
 
@@ -139,7 +141,8 @@ const PaymentPage = ({ history }) => {
   const handleProcessPaymentLink = async (slug) => {
     const paymentData = {};
     for (let key in paymentPageForm) {
-      if (key === "amount") paymentData[key] = +paymentPageForm[key].value;
+      if (key === "amount")
+        paymentData[key] = +extractNumber(paymentPageForm[key].value);
       else paymentData[key] = paymentPageForm[key].value;
     }
     const { uuid } = await userCryptos.find((item) => item.slug === slug);

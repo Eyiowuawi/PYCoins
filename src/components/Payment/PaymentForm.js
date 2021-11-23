@@ -103,8 +103,9 @@ const PaymentForm = ({
     for (let key in paymentForm) data[key] = paymentForm[key].value;
     data["isAmountFixed"] = isFixed === "fixed" ? true : false;
     data["amount"] =
-      isFixed === "fixed" ? extractNumber(+amountForm.amount.value) : 0;
+      isFixed === "fixed" ? +extractNumber(amountForm.amount.value) : 0;
 
+    console.log(data);
     mutate(data);
   };
 
