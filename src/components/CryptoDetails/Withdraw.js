@@ -1,4 +1,5 @@
 import { useState, useContext, useMemo } from "react";
+import axios from "axios";
 
 import Accounts from "../Account";
 import Confirmation from "./Confirmation";
@@ -66,23 +67,29 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
       },
     });
 
+  // useEffect(() => {
+  //   const data = axios.get(`http://api.exchangeratesapi.io/v1/`);
+  // }, []);
   const handleChange = (name) => {
     setName(name);
   };
 
-  const handleInitiateWithdrawal = (evt, amount, rates) => {
+  const handleInitiateWithdrawal = async (evt, amount, rates) => {
     evt.preventDefault();
-    console.log(amount, rates);
     let data = {};
     if (name === "bank") {
-      data["type"] = "fiat";
-      data["amount"] = parseFloat(amount).toFixed(6)
-        data["fiat_amount"] = extractNumber(
-        formattedWithdrawalForm.amount.value
+      const response = await axios.get(
+        `http://api.exchangeratesapi.io/v1/convert?access_key=e4aaf458314edd556ccf7339a49a4c21&from=NGN&to=USD&amount=${extractNumber(
+          formattedWithdrawalForm.amount.value
+        )}`
       );
-      data["wallet"] = selectedSettlement.wallet_slug;
-      data["walletName"] = selectedSettlement.key;
-          data["amount_in_usd"] = "2.5" ;
+      console.log(response);
+      // data["type"] = "fiat";
+      // data["amount"] = parseFloat(amount).toFixed(6);
+      // data["fiat_amount"] = extractNumber(formattedWithdrawalForm.amount.value);
+      // data["wallet"] = selectedSettlement.wallet_slug;
+      // data["walletName"] = selectedSettlement.key;
+      // data["amount_in_usd"] = "2.5";
     } else {
       data = {
         type: "crypto",
@@ -92,8 +99,8 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
       };
       for (const key in withdrawForm) data[key] = withdrawForm[key].value;
     }
-    console.log(data);
-    initiateWithdrawalMutate(data);
+    // console.log(data);
+    // initiateWithdrawalMutate(data);
   };
 
   const handleProcessWithdrawal = (evt) => {

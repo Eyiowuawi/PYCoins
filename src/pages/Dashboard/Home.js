@@ -8,9 +8,9 @@ import WithErrorComponent from "./../../hoc/withError";
 
 import CryptoCurrency from "../../components/Dashboard/CrytptoCurrency";
 import BusinessForm from "../../components/Dashboard/BusinessForm";
-// import Table from "../../components/Table";
-// import TableResponsive from "./../../components/TableResponsive";
-// import useWindowWidth from "./../../hooks/windowwidth";
+import Table from "../../components/Table";
+import TableResponsive from "./../../components/TableResponsive";
+import useWindowWidth from "./../../hooks/windowWidth";
 import LandingHeader from "./../../components/Dashboard/Header";
 import LandingEmpty from "./../../components/Dashboard/Empty";
 
@@ -21,13 +21,20 @@ import { RightArrow } from "../../icons";
 import { useGetWallets } from "./../../query/getWallets";
 
 import { addClassName } from "./../../utils/addClassName";
+import { useGetTransactions } from "../../query/getTransactions";
+
+const tableHead = ["TRANSACTION", "AMOUNT", "DATE", "STATUS"];
 
 const Dashboard = ({ ...props }) => {
   const [show, setShow] = useState(false);
-  // const [width, setWidth] = useWindowWidth();
+  const [width, setWidth] = useWindowWidth();
   const { data: walletData, isLoading } = useGetWallets();
 
   const queryClient = new QueryClient();
+
+  const { isFetching, data: transactions } = useGetTransactions();
+
+  console.log(transactions);
 
   const date = useMemo(() => {
     return new Date().toLocaleDateString("en-US", {
@@ -107,9 +114,21 @@ const Dashboard = ({ ...props }) => {
           </div>
           <div className="home_empty">
             <p className="title title-small mb-small">Recent Transactions </p>
-            <LandingEmpty />
-            {/* {width > 500 && <Table data={transactions} onclick={() => {}} />}
-            {width <= 500 && <TableResponsive data={transactions} />} */}
+            {transactions?.length < 1 && <LandingEmpty />}
+            {transactions?.length > 1 && (
+              <>
+                {width > 500 && (
+                  <Table
+                    data={transactions}
+                    onclick={() => {}}
+                    tableHead={tableHead}
+                  />
+                )}
+                {width <= 500 && (
+                  <TableResponsive data={transactions} onclick={() => {}} />
+                )}
+              </>
+            )}
           </div>
         </div>
         <>
