@@ -24,8 +24,13 @@ const TransactionsDetails = ({ close, details }) => {
           <div className="transdetails_item">
             <p className="title title-grey">Amount</p>
             <p className="title title-grey">
-              ${parseFloat(details?.amount).toFixed(6)}
+              ${parseFloat(details?.amount).toFixed(6)} (
+              {parseFloat(details?.amountInCrypto).toFixed(6)})
             </p>
+          </div>
+          <div className="transdetails_item">
+            <p className="title title-grey">Transaction ID</p>
+            <p className="title title-grey">{details?.uuid}</p>
           </div>
           <div className="transdetails_item">
             <p className="title title-grey">Date</p>

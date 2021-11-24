@@ -4,7 +4,13 @@ export const formatTransactions = (data) => {
   data.forEach((item) => {
     item.transfers.forEach((trans) => {
       const date = dateFormatter(trans.createdAt);
-      formatted.push({ ...trans, ...item.metaData, date });
+      formatted.push({
+        ...trans,
+        ...item.metaData,
+        date,
+        amount: item.confirmedAmountInUsd,
+        amountInCrypto: trans.amount,
+      });
     });
   });
 

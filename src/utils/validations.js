@@ -43,7 +43,6 @@ export const validateWithdraw = (value) => {
   return regex.test(value) && value.length > 0 && +value > 0;
 };
 export const validateFormmatedWithdraw = (value) => {
-  console.log(value);
   const regex = /^\d+(,\d+)*$/;
   return regex.test(value) && value.length > 0 && value !== "NaN";
 };

@@ -54,13 +54,14 @@ const WithdrawForm = ({
   }, [rates, withdrawForm.amount.value]);
 
   useEffect(() => {
+    console.log(withdrawForm.amount.value);
     if (isBank) {
       if (balance < amount && withdrawForm.amount.value !== "NaN") {
         setValidForm(false);
         setIsInsufficient(true);
       } else {
         setIsInsufficient(false);
-        // setValidForm(true);
+        setValidForm(true);
       }
     } else {
       if (balance < withdrawForm.amount.value) {
@@ -71,7 +72,7 @@ const WithdrawForm = ({
         // setValidForm(true);
       }
     }
-  }, [withdrawForm.amount.value]);
+  }, [withdrawForm.amount.value, amount, balance]);
   return (
     <div className="popupform">
       <div className="popupform_back" onClick={goBack}>
