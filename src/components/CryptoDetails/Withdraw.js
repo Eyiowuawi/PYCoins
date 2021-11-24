@@ -70,16 +70,19 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
     setName(name);
   };
 
-  const handleInitiateWithdrawal = (evt, rates) => {
+  const handleInitiateWithdrawal = (evt, amount, rates) => {
     evt.preventDefault();
-
+    console.log(amount, rates);
     let data = {};
     if (name === "bank") {
       data["type"] = "fiat";
-      // data["amount"] =
-      data["fiat_amount"] = extractNumber(formattedWithdrawalForm.amount.value);
+      data["amount"] = parseFloat(amount).toFixed(6)
+        data["fiat_amount"] = extractNumber(
+        formattedWithdrawalForm.amount.value
+      );
       data["wallet"] = selectedSettlement.wallet_slug;
       data["walletName"] = selectedSettlement.key;
+          data["amount_in_usd"] = "2.5" ;
     } else {
       data = {
         type: "crypto",
@@ -89,7 +92,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
       };
       for (const key in withdrawForm) data[key] = withdrawForm[key].value;
     }
-
+    console.log(data);
     initiateWithdrawalMutate(data);
   };
 

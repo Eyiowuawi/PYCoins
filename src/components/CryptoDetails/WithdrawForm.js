@@ -42,9 +42,9 @@ const WithdrawForm = ({
     crypto && fetchRate();
   }, [crypto]);
 
-  const handleSubmit = (evt) => {
-    withdraw(evt, rates);
-  };
+  // const handleSubmit = (evt) => {
+  //   withdraw(evt, rates);
+  // };
 
   useEffect(() => {
     if (rates.NGN && withdrawForm.amount.value && isBank) {
@@ -73,6 +73,10 @@ const WithdrawForm = ({
       }
     }
   }, [withdrawForm.amount.value, amount, balance]);
+
+  const handleSubmit = (evt) => {
+    withdraw(evt, amount, rates);
+  };
   return (
     <div className="popupform">
       <div className="popupform_back" onClick={goBack}>
@@ -92,7 +96,7 @@ const WithdrawForm = ({
           Insufficient Funds
         </p>
       )}
-      <form className="mt-small" onSubmit={withdraw}>
+      <form className="mt-small" onSubmit={handleSubmit}>
         {form}
       </form>
       <div
@@ -122,7 +126,7 @@ const WithdrawForm = ({
       <Button
         disabled={validForm}
         isLoading={isLoading}
-        onclick={withdraw}
+        onclick={handleSubmit}
         bg="button_primary"
         type="submit"
       >
