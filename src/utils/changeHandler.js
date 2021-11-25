@@ -13,12 +13,6 @@ export const changeHandler = (
   let updatedFormElement = {};
   let isValid = true;
 
-  // if (formType[elementID].comma) {
-  //   // console.log(event.target.value);
-  //   const v = numberWithCommas(event.target.value);
-  //   console.log(v);
-  // }
-
   if (elementID === "currency") {
     isValid = formType[elementID].validation(event) && isValid;
     updatedFormElement = {
@@ -45,7 +39,6 @@ export const changeHandler = (
       };
     } else if (formType[elementID].comma) {
       const commaAddedvalues = addComma(event.target.value);
-      // console.log(event.target.name);/
       updatedFormElement = {
         ...formType[elementID],
         value: commaAddedvalues,

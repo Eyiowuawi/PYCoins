@@ -42,3 +42,11 @@ button {
   border: none;
   cursor: pointer;
 }
+
+.verified {
+  @include flex(row, initial, center);
+  font-weight: 600;
+  span {
+    margin-right: 0.5rem;
+  }
+}

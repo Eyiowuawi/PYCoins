@@ -44,7 +44,6 @@ export const updateUserProfile = async (profile) => {
     toast.success("User profile updated Successfully");
     return data;
   } catch (error) {
-    toast.error("Error uploading image, pls try agin later");
     throw new Error("Error processing your request");
   }
 };
@@ -55,7 +54,6 @@ export const updateBusinessprofile = async (business) => {
     toast.success("User profile updated Successfully");
     return data;
   } catch (error) {
-    toast.error("Error uploading image, pls try agin later");
     throw new Error("Error processing your request");
   }
 };
@@ -66,7 +64,6 @@ export const updatePassword = async (params) => {
     toast.success("Password successfully updated");
     return data.data;
   } catch (error) {
-    toast.error("Error uploading image, pls try agin later");
     throw new Error("Error processing your request");
   }
 };

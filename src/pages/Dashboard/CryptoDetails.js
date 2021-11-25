@@ -12,7 +12,6 @@ import Details from "../../components/CryptoDetails/Details";
 import LandingEmpty from "./../../components/Dashboard/Empty";
 
 import { cryptos } from "../../constants";
-// import { useMutation } from "react-query";
 import useWindowWidth from "./../../hooks/windowWidth";
 import { useGetWalletTransactions } from "../../query/getWalletTransactions";
 import { useGetWalletBalance } from "../../query/getWalletBalance";
@@ -112,7 +111,7 @@ const CryptoDetails = () => {
           </div>
           <WithLoadingComponent isLoading={isFetching}>
             {updateTable?.length < 1 && <LandingEmpty />}
-            {updateTable?.length > 1 && (
+            {updateTable?.length > 0 && (
               <>
                 {width > 500 && (
                   <Table
@@ -138,7 +137,11 @@ const CryptoDetails = () => {
       </div>
 
       {show && (
-        <TransactionsDetails close={() => setShow(false)} details={selected} />
+        <TransactionsDetails
+          close={() => setShow(false)}
+          details={selected}
+          selectedCrypto={crypto}
+        />
       )}
       {fund && <FundWallet address={address} close={() => setFund(false)} />}
       {withdraw && (

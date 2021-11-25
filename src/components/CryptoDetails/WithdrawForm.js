@@ -42,25 +42,23 @@ const WithdrawForm = ({
     crypto && fetchRate();
   }, [crypto]);
 
-  // const handleSubmit = (evt) => {
-  //   withdraw(evt, rates);
-  // };
-
   useEffect(() => {
     if (rates.NGN && withdrawForm.amount.value && isBank) {
       const amount = extractNumber(withdrawForm.amount.value) / rates.NGN;
       setAmount(amount);
-    } else setAmount(balance);
+    }
   }, [rates, withdrawForm.amount.value]);
 
   useEffect(() => {
-    console.log(withdrawForm.amount.value);
     if (isBank) {
-      if (balance < amount && withdrawForm.amount.value !== "NaN") {
+      if (amount && +balance < amount && withdrawForm.amount.value !== "NaN") {
         setValidForm(false);
         setIsInsufficient(true);
       } else {
         setIsInsufficient(false);
+      }
+
+      if (amount && +balance > amount && withdrawForm.amount.value !== "NaN") {
         setValidForm(true);
       }
     } else {
@@ -69,7 +67,13 @@ const WithdrawForm = ({
         setIsInsufficient(true);
       } else {
         setIsInsufficient(false);
-        // setValidForm(true);
+      }
+
+      if (
+        balance > withdrawForm.amount.value &&
+        withdrawForm.amount.value > 0
+      ) {
+        setValidForm(true);
       }
     }
   }, [withdrawForm.amount.value, amount, balance]);

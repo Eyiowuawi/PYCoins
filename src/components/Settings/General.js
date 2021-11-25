@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -12,18 +12,24 @@ import Button from "./../UI/Button";
 import useGeneralForm from "../../hooks/generalForm";
 
 import settingsFormGenerator from "./../../utils/settingsFormGenerator";
+import userSwitch from "../../assets/switch.svg";
 
 import {
   changeUserImage,
   updateUserProfile,
   updateBusinessprofile,
   updatePassword,
+  switchToBusiness,
 } from "./../../services/user";
 import { saveToLocalStorage } from "./../../services/auth";
 
 import Avatar from "../../assets/avatar.svg";
+import { RightArrow } from "./../../icons/index";
+import BusinessForm from "./../Dashboard/BusinessForm";
 
 const General = ({ history }) => {
+  const queryClient = useQueryClient();
+  const [show, setShow] = useState(false);
   const [image, setImage] = useState(null);
 
   const { saveUser, profile } = useContext(AppContext);
@@ -85,6 +91,23 @@ const General = ({ history }) => {
       onSuccess: (data) => saveToLocalStorage(data.token),
     });
 
+  const {
+    mutate: switchMutate,
+    data,
+    isError,
+    isLoading: switchLoading,
+    isSuccess,
+  } = useMutation(
+    (param) => switchToBusiness(param),
+
+    {
+      mutationKey: "switchToBusiness",
+      onSuccess: () => {
+        queryClient.invalidateQueries(["getuserprofile", 1]);
+      },
+    }
+  );
+
   const handleChange = (evt) => {
     const param = new FormData();
     const value = evt.target.files[0];
@@ -125,6 +148,11 @@ const General = ({ history }) => {
     data["currentPassword"] = changePasswordForm["currentPassword"].value;
     data["newPassword"] = changePasswordForm["password"].value;
     updatePasswordMutation(data);
+  };
+
+  const handleSwitchBusiness = (evt, data) => {
+    evt.preventDefault();
+    switchMutate(data);
   };
 
   return (
@@ -200,6 +228,28 @@ const General = ({ history }) => {
             </Button>
           </form>
         </div>
+      )}
+      {profile.user?.userType === "individual" && (
+        <div className="home_switch mt-bg" onClick={() => setShow(true)}>
+          <img src={userSwitch} alt="user switch" />
+          <div>
+            <p className="title title-small">Switch to Registered Business</p>
+            <p className="title title-grey" style={{ fontSize: "14px" }}>
+              Get Started <RightArrow fill="#787676" />{" "}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {show && (
+        <BusinessForm
+          close={() => setShow(false)}
+          isLoading={switchLoading}
+          data={data}
+          show={show}
+          submit={handleSwitchBusiness}
+          success={isSuccess}
+        />
       )}
     </div>
   );

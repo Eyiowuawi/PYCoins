@@ -15,11 +15,10 @@ const LandingHeader = ({ date, setShow }) => {
       <div className="home_container-date">
         <User date={date} />
       </div>
-      {user?.userType === "individual" && (
-        <div className="home_container-reg">
-          <RegisterBusiness onclick={() => setShow(true)} />
-        </div>
-      )}
+
+      <div className="home_container-reg">
+        <RegisterBusiness />
+      </div>
     </div>
   );
 };

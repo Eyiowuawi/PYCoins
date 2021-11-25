@@ -1,5 +1,5 @@
 import Modal from "./UI/Modal";
-const TransactionsDetails = ({ close, details }) => {
+const TransactionsDetails = ({ close, details, selectedCrypto }) => {
   return (
     <Modal close={close}>
       <div className="transdetails">
@@ -23,13 +23,9 @@ const TransactionsDetails = ({ close, details }) => {
           )}
           <div className="transdetails_item">
             <p className="title title-grey">Amount</p>
-            {/* <p className="title title-grey">
-              ${parseFloat(details?.amount).toFixed(6)} (
-              {parseFloat(details?.amountInCrypto).toFixed(6)})
-            </p> */}
             {!details?.amountInCrypto ? (
               <p className="title title-grey">
-                {parseFloat(details?.amount).toFixed(6)}
+                {parseFloat(details?.amount).toFixed(6)} {selectedCrypto.rate}
               </p>
             ) : (
               <p className="title title-grey">

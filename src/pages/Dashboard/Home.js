@@ -22,8 +22,9 @@ import { useGetWallets } from "./../../query/getWallets";
 
 import { addClassName } from "./../../utils/addClassName";
 import { useGetTransactions } from "../../query/getTransactions";
+import { dateFormatter } from "./../../utils/dateFormatter";
 
-const tableHead = ["TRANSACTION", "AMOUNT", "DATE", "STATUS"];
+const tableHead = ["AMOUNT", "DATE", "STATUS"];
 
 const Dashboard = ({ ...props }) => {
   const [show, setShow] = useState(false);
@@ -32,9 +33,7 @@ const Dashboard = ({ ...props }) => {
 
   const queryClient = new QueryClient();
 
-  const { isFetching, data: transactions } = useGetTransactions();
-
-  console.log(transactions);
+  const { isFetching, data: transactions, isError } = useGetTransactions();
 
   const date = useMemo(() => {
     return new Date().toLocaleDateString("en-US", {
@@ -72,30 +71,18 @@ const Dashboard = ({ ...props }) => {
     }
   }, [walletData]);
 
-  const {
-    mutate,
-    data,
-    isError,
-    isLoading: switchLoading,
-    isSuccess,
-  } = useMutation(
-    (param) => switchToBusiness(param),
-
-    {
-      mutationKey: "switchToBusiness",
-      onSuccess: () => {
-        queryClient.invalidateQueries(["getuserprofile", 1]);
-      },
-    }
-  );
-
-  const handleSubmit = (evt, data) => {
-    evt.preventDefault();
-    mutate(data);
-  };
+  const formattedTransactions = useMemo(() => {
+    return transactions?.map((item) => {
+      const date = dateFormatter(item.createdAt);
+      return {
+        ...item,
+        date,
+      };
+    });
+  }, [transactions]);
 
   return (
-    <WithLoadingComponent isLoading={isLoading}>
+    <WithLoadingComponent isLoading={isFetching}>
       <WithErrorComponent isError={isError}>
         <div className="home">
           <Helmet>
@@ -114,35 +101,26 @@ const Dashboard = ({ ...props }) => {
           </div>
           <div className="home_empty">
             <p className="title title-small mb-small">Recent Transactions </p>
-            {transactions?.length < 1 && <LandingEmpty />}
-            {transactions?.length > 1 && (
+            {formattedTransactions?.length < 1 && <LandingEmpty />}
+            {formattedTransactions?.length > 1 && (
               <>
                 {width > 500 && (
                   <Table
-                    data={transactions}
+                    data={formattedTransactions}
                     onclick={() => {}}
                     tableHead={tableHead}
                   />
                 )}
                 {width <= 500 && (
-                  <TableResponsive data={transactions} onclick={() => {}} />
+                  <TableResponsive
+                    data={formattedTransactions}
+                    onclick={() => {}}
+                  />
                 )}
               </>
             )}
           </div>
         </div>
-        <>
-          {show && (
-            <BusinessForm
-              close={() => setShow(false)}
-              isLoading={switchLoading}
-              data={data}
-              show={show}
-              submit={handleSubmit}
-              success={isSuccess}
-            />
-          )}
-        </>
       </WithErrorComponent>
     </WithLoadingComponent>
   );

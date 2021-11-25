@@ -83,13 +83,12 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
           formattedWithdrawalForm.amount.value
         )}`
       );
-      console.log(response);
-      // data["type"] = "fiat";
-      // data["amount"] = parseFloat(amount).toFixed(6);
-      // data["fiat_amount"] = extractNumber(formattedWithdrawalForm.amount.value);
-      // data["wallet"] = selectedSettlement.wallet_slug;
-      // data["walletName"] = selectedSettlement.key;
-      // data["amount_in_usd"] = "2.5";
+      data["type"] = "fiat";
+      data["amount"] = parseFloat(amount).toFixed(6);
+      data["fiat_amount"] = extractNumber(formattedWithdrawalForm.amount.value);
+      data["wallet"] = selectedSettlement.wallet_slug;
+      data["walletName"] = selectedSettlement.key;
+      data["amount_in_usd"] = "2.5";
     } else {
       data = {
         type: "crypto",
@@ -99,8 +98,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
       };
       for (const key in withdrawForm) data[key] = withdrawForm[key].value;
     }
-    // console.log(data);
-    // initiateWithdrawalMutate(data);
+    initiateWithdrawalMutate(data);
   };
 
   const handleProcessWithdrawal = (evt) => {

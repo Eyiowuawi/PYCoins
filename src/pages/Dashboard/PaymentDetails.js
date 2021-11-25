@@ -31,7 +31,7 @@ import empty from "../../assets/empty.svg";
 import Delete from "./../../components/UI/Delete";
 import WithErrorComponent from "./../../hoc/withError";
 
-const tableHeader = ["NAME", "EMAIL", "AMOUNT(USD)", "DATE", "STATUS"];
+const tableHeader = ["NAME", "EMAIL", "AMOUNT (USD)", "DATE", "STATUS"];
 
 const PaymentDetails = ({ history }) => {
   const [show, setShow] = useState(false);
