@@ -30,7 +30,8 @@ const TransactionsDetails = ({ close, details, selectedCrypto }) => {
             ) : (
               <p className="title title-grey">
                 ${parseFloat(details?.amount).toFixed(6)} (
-                {parseFloat(details?.amountInCrypto).toFixed(6)})
+                {parseFloat(details?.amountInCrypto).toFixed(6)}{" "}
+                {details?.crypto})
               </p>
             )}
           </div>

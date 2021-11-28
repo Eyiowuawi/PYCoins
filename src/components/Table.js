@@ -31,9 +31,13 @@ const Table = ({ data, onclick, tableHead, currency }) => {
                   )}
                 </td>
               )}
+              {item.paymentType && <td>{item.paymentType}</td>}
               {item.name && <td>{item.name}</td>}
               {item.email && <td>{item.email}</td>}
-              <td>{parseFloat(item.amount).toFixed(6)}</td>
+              <td>
+                {parseFloat(item.amount).toFixed(6)}{" "}
+                {item.cryptoType && item.cryptoType}
+              </td>
               <td>{item.date}</td>
               <td>
                 <span

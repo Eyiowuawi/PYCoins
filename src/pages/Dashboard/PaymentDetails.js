@@ -51,6 +51,7 @@ const PaymentDetails = ({ history }) => {
     isFetching: isTransactionLoading,
     isError: linkError,
   } = useGetPaymentTransactions(params.id);
+  // console.log(paymentData);
 
   const { data: userData } = useGetUserWallets();
 
@@ -86,6 +87,7 @@ const PaymentDetails = ({ history }) => {
       return formatTransactions(paymentData);
     }
   }, [paymentData]);
+  // console.log(transactions);
 
   const updatedData = useMemo(() => {
     const updatedPaymentLink = data && addPaymentUrl(data?.paymentlink);

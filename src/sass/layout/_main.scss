@@ -9,13 +9,13 @@
 
   &_container {
     margin-left: 2rem;
-    margin-right: 32px;
+    margin-right: 50px;
     padding: 2rem 0 5rem 0;
 
-    @include respond(tab-port){
+    @include respond(tab-port) {
       margin-left: 0;
       margin-right: 0;
-      padding-left:2rem;
+      padding-left: 2rem;
       padding-right: 2rem;
       padding-bottom: 2rem;
     }

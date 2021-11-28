@@ -77,12 +77,15 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
   const handleInitiateWithdrawal = async (evt, amount, rates) => {
     evt.preventDefault();
     let data = {};
+    const getFullday = new Date();
+    const getYear = getFullday.getFullYear();
+    const getMonth = getFullday.getMonth() + 1;
+    const getDay = getFullday.getDate();
+    console.log(getYear, getMonth, getDay);
     if (name === "bank") {
-      const response = await axios.get(
-        `http://api.exchangeratesapi.io/v1/convert?access_key=e4aaf458314edd556ccf7339a49a4c21&from=NGN&to=USD&amount=${extractNumber(
-          formattedWithdrawalForm.amount.value
-        )}`
-      );
+      // const response = await axios.get(
+      //   `http://data.fixer.io/api/latest?access_key=d3bd8538fca2aa24f21044c7a0ede569&base=USD&symbols=NGN`
+      // );
       data["type"] = "fiat";
       data["amount"] = parseFloat(amount).toFixed(6);
       data["fiat_amount"] = extractNumber(formattedWithdrawalForm.amount.value);

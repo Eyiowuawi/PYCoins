@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 import { required, notEmptyArray } from "../utils/validations";
 
+import { cryptos } from "../constants";
+
 const usePaymentForm = (userWallets, editDetails) => {
   const [paymentForm, setPaymentForm] = useState({
     pageName: {
@@ -47,10 +49,15 @@ const usePaymentForm = (userWallets, editDetails) => {
         currency: {
           ...prevState.currency,
           options: userWallets?.map((item) => {
-            return {
-              value: item,
-              label: item,
-            };
+            // const acceptedWallets = []
+            for (let crypto of cryptos) {
+              if (crypto.slug === item) {
+                return {
+                  value: item,
+                  label: crypto.name,
+                };
+              }
+            }
           }),
         },
       };

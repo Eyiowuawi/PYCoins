@@ -23,17 +23,20 @@ import { useGetWallets } from "./../../query/getWallets";
 import { addClassName } from "./../../utils/addClassName";
 import { useGetTransactions } from "../../query/getTransactions";
 import { dateFormatter } from "./../../utils/dateFormatter";
+import Pagination from "./../../components/Pagination";
 
-const tableHead = ["AMOUNT", "DATE", "STATUS"];
+const tableHead = ["PAYMENT TYPE", "AMOUNT (CRYPTO)", "DATE", "STATUS"];
 
 const Dashboard = ({ ...props }) => {
   const [show, setShow] = useState(false);
   const [width, setWidth] = useWindowWidth();
   const { data: walletData, isLoading } = useGetWallets();
+  const [paginatedData, setPaginatedData] = useState({});
+  const [currPage, setCurrPage] = useState(1);
 
   const queryClient = new QueryClient();
 
-  const { isFetching, data: transactions, isError } = useGetTransactions();
+  const { isFetching, data: homeData, isError } = useGetTransactions(currPage);
 
   const date = useMemo(() => {
     return new Date().toLocaleDateString("en-US", {
@@ -71,15 +74,34 @@ const Dashboard = ({ ...props }) => {
     }
   }, [walletData]);
 
+  const paginated = useMemo(() => {
+    setPaginatedData({
+      count: homeData?.count,
+      page: homeData?.page + 1,
+      noOfPages: homeData?.count / 10,
+    });
+  }, [homeData]);
+
   const formattedTransactions = useMemo(() => {
-    return transactions?.map((item) => {
+    return homeData?.transactions?.map((item) => {
       const date = dateFormatter(item.createdAt);
       return {
         ...item,
+        paymentType:
+          item.transferableType === "wallet" ? "Wallet" : "Payment Page",
         date,
+        cryptoType: item.crypto.type
       };
     });
-  }, [transactions]);
+  }, [homeData]);
+
+  console.log(formattedTransactions);
+  const handlePrevPage = () => {
+    setCurrPage(currPage - 1);
+  };
+  const handleNextPage = () => {
+    setCurrPage(currPage + 1);
+  };
 
   return (
     <WithLoadingComponent isLoading={isFetching}>
@@ -103,7 +125,7 @@ const Dashboard = ({ ...props }) => {
             <p className="title title-small mb-small">Recent Transactions </p>
             {formattedTransactions?.length < 1 && <LandingEmpty />}
             {formattedTransactions?.length > 1 && (
-              <>
+              <div className="home_table">
                 {width > 500 && (
                   <Table
                     data={formattedTransactions}
@@ -117,7 +139,13 @@ const Dashboard = ({ ...props }) => {
                     onclick={() => {}}
                   />
                 )}
-              </>
+                <Pagination
+                  data={paginatedData}
+                  nextPage={handleNextPage}
+                  prevPage={handlePrevPage}
+                  currPage={currPage}
+                />
+              </div>
             )}
           </div>
         </div>
