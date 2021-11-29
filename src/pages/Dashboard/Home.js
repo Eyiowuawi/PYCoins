@@ -90,12 +90,21 @@ const Dashboard = ({ ...props }) => {
         paymentType:
           item.transferableType === "wallet" ? "Wallet" : "Payment Page",
         date,
-        cryptoType: item.crypto.type
+        cryptoType: item.crypto.type,
+        // walletType:
+        //   item?.cryptoWalletTransaction?.length > 0 &&
+        //   item?.cryptoWalletTransaction[0].type === "send"
+        //     ? "Withdrawal"
+        //     : item.crypto.cryptoWalletTransaction.length > 0 &&
+        //       item.crypto.cryptoWalletTransaction[0].type === "deposit"
+        //     ? "Deposit"
+        //     : null,
       };
     });
   }, [homeData]);
 
   console.log(formattedTransactions);
+
   const handlePrevPage = () => {
     setCurrPage(currPage - 1);
   };

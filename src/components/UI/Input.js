@@ -74,6 +74,7 @@ const Input = ({
   // const [seleted, setSelected] = useState([]);
 
   const handleChange = (values) => {
+    console.log(values);
     onchange(values);
   };
   const classes = useStyles();

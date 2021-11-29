@@ -17,7 +17,7 @@ export const changeHandler = (
     isValid = formType[elementID].validation(event) && isValid;
     updatedFormElement = {
       ...formType[elementID],
-      value: event.map((item) => item.label),
+      value: event.map((item) => item.value),
       valid: isValid,
       selected: event,
     };

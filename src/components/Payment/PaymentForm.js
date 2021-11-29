@@ -105,6 +105,7 @@ const PaymentForm = ({
     data["amount"] =
       isFixed === "fixed" ? +extractNumber(amountForm.amount.value) : 0;
 
+    console.log(data);
     mutate(data);
   };
 
