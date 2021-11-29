@@ -31,7 +31,11 @@ const Table = ({ data, onclick, tableHead, currency }) => {
                   )}
                 </td>
               )}
-              {item.paymentType && <td>{item.paymentType}</td>}
+              {item.paymentType && (
+                <td>
+                  {item.paymentType} {item.walletType}
+                </td>
+              )}
               {item.name && <td>{item.name}</td>}
               {item.email && <td>{item.email}</td>}
               <td>

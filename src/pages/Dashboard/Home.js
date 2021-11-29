@@ -91,14 +91,18 @@ const Dashboard = ({ ...props }) => {
           item.transferableType === "wallet" ? "Wallet" : "Payment Page",
         date,
         cryptoType: item.crypto.type,
-        // walletType:
-        //   item?.cryptoWalletTransaction?.length > 0 &&
-        //   item?.cryptoWalletTransaction[0].type === "send"
-        //     ? "Withdrawal"
-        //     : item.crypto.cryptoWalletTransaction.length > 0 &&
-        //       item.crypto.cryptoWalletTransaction[0].type === "deposit"
-        //     ? "Deposit"
-        //     : null,
+        walletType:
+          item?.cryptoWalletTransaction?.length > 0 &&
+          item?.cryptoWalletTransaction[0].type === "send"
+            ? "Withdrawal"
+            : item.cryptoWalletTransaction.length > 0 &&
+              item.cryptoWalletTransaction[0].type === "deposit"
+            ? "Deposit"
+            : null,
+        amount:
+          item?.paymentPageTransaction?.length > 0
+            ? item.paymentPageTransaction[0].amountInCrypto
+            : item.amount,
       };
     });
   }, [homeData]);

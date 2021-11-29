@@ -1,4 +1,4 @@
-import { cryptoBaseUrl } from "../constants/baseUrl";
+import { cryptoBaseUrl, base } from "../constants/baseUrl";
 import { toast } from "react-toastify";
 
 export const getCryptos = async () => {
@@ -22,9 +22,7 @@ export const getWallets = async () => {
 export const activateWallet = async (wallet) => {
   try {
     const { data } = await cryptoBaseUrl.post("/wallet/activate", wallet);
-    toast.success(data.message);
-
-    return data.message;
+    return data.message.split(" ")[0];
   } catch (error) {
     throw new Error("Error activating wallet");
   }
@@ -33,8 +31,7 @@ export const activateWallet = async (wallet) => {
 export const deactivateWallet = async (wallet) => {
   try {
     const { data } = await cryptoBaseUrl.post("/wallet/deactivate", wallet);
-    toast.success(data.message);
-    return data.message;
+    return data.message.split(" ")[0];
   } catch (error) {
     throw new Error("Error deactivating wallet");
   }
@@ -109,6 +106,15 @@ export const getWalletBalance = async (wallet) => {
   try {
     const { data } = await cryptoBaseUrl.get(`${wallet}/balance`);
     return data.data.balance;
+  } catch (error) {
+    throw new Error("Error processing your request");
+  }
+};
+
+export const getRates = async (environ) => {
+  try {
+    const { data } = await cryptoBaseUrl.get(`/rate/${environ}`);
+    return data.data.rates.ngn;
   } catch (error) {
     throw new Error("Error processing your request");
   }

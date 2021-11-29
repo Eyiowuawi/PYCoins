@@ -3,6 +3,7 @@ import { useMemo, useState, useContext } from "react";
 
 import WithLoadingComponent from "./../../hoc/withLoading";
 
+import { cryptos } from "../../constants";
 import { AppContext } from "./../../context/index";
 
 import Toggle from "./../UI/Switch";
@@ -11,6 +12,7 @@ import SmallLoader from "./../UI/SmallLoader";
 import { useGetUserCryptos } from "./../../query/getCryptos";
 
 import { activateWallet, deactivateWallet } from "../../services/crypto";
+import { toast } from "react-toastify";
 
 const Currency = () => {
   const [selected, setSelected] = useState("");
@@ -37,14 +39,22 @@ const Currency = () => {
 
   const { mutate: deactivateMutate, isLoading: deactivateLoading } =
     useMutation("deactivate-wallet", (wallet) => deactivateWallet(wallet), {
-      onSuccess: (data) => queryClient.invalidateQueries("getusercrypto"),
+      onSuccess: (data) => {
+        queryClient.invalidateQueries("getusercrypto");
+        const selectedCrypto = cryptos.find((item) => item.slug === data);
+        toast.success(`${selectedCrypto.name} has been deactivated`);
+      },
     });
 
   const { mutate: activateMutate, isLoading: activateLoading } = useMutation(
     "activate-wallet",
     (wallet) => activateWallet(wallet),
     {
-      onSuccess: (data) => queryClient.invalidateQueries("getusercrypto"),
+      onSuccess: (data) => {
+        queryClient.invalidateQueries("getusercrypto");
+        const selectedCrypto = cryptos.find((item) => item.slug === data);
+        toast.success(`${selectedCrypto.name} has been activated`);
+      },
     }
   );
 
@@ -57,6 +67,7 @@ const Currency = () => {
     else activateMutate({ wallet: slug });
     setSelected(slug);
   };
+
   return (
     <div className="currency">
       <h3 className="title title-black mb-small">Currency</h3>

@@ -21,8 +21,9 @@ import { toast } from "react-toastify";
 import { AppContext } from "./../../context/index";
 import { extractNumber } from "../../utils/numberWithComma";
 
+import { useGetNgnRate } from "../../query/getNgnRate";
 const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
-  const { settlements } = useContext(AppContext);
+  const { settlements, environment } = useContext(AppContext);
 
   const isBankAdded = useMemo(() => {
     return settlements.find((item) => item.key === "bank");
@@ -31,6 +32,10 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
   const crypto = useMemo(() => {
     return cryptos.filter((item) => item.slug === currency);
   }, []);
+
+  const { data: rateData } = useGetNgnRate(environment);
+
+  console.log(rateData);
 
   const selectedSettlement = useMemo(() => {
     return settlements.find((item) => item.wallet_slug === currency);
@@ -77,21 +82,15 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
   const handleInitiateWithdrawal = async (evt, amount, rates) => {
     evt.preventDefault();
     let data = {};
-    const getFullday = new Date();
-    const getYear = getFullday.getFullYear();
-    const getMonth = getFullday.getMonth() + 1;
-    const getDay = getFullday.getDate();
-    console.log(getYear, getMonth, getDay);
+
     if (name === "bank") {
-      // const response = await axios.get(
-      //   `http://data.fixer.io/api/latest?access_key=d3bd8538fca2aa24f21044c7a0ede569&base=USD&symbols=NGN`
-      // );
       data["type"] = "fiat";
       data["amount"] = parseFloat(amount).toFixed(6);
       data["fiat_amount"] = extractNumber(formattedWithdrawalForm.amount.value);
       data["wallet"] = selectedSettlement.wallet_slug;
       data["walletName"] = selectedSettlement.key;
-      data["amount_in_usd"] = "2.5";
+      data["amount_in_usd"] =
+        extractNumber(formattedWithdrawalForm.amount.value) / rateData;
     } else {
       data = {
         type: "crypto",
@@ -101,6 +100,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
       };
       for (const key in withdrawForm) data[key] = withdrawForm[key].value;
     }
+    console.log(data);
     initiateWithdrawalMutate(data);
   };
 
