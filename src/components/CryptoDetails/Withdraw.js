@@ -148,6 +148,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
             crypto={selectedCrypto}
             isBank={true}
             balance={balance}
+            rate ={ rateData}
           />
         </>
       );
@@ -167,6 +168,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
             isLoading={isInitiateLoading}
             isBank={false}
             balance={balance}
+            rate ={ rateData}
           />
         </>
       );

@@ -11,6 +11,7 @@ import { updatePreference } from "../../services/fee";
 import SettlementInfo from "./SettlementInfo";
 import { AppContext } from "./../../context/index";
 import Button from "../UI/Button";
+import { cryptos as cryptoList } from "../../constants";
 
 const Settlements = () => {
   const [name, setName] = useState("");
@@ -46,6 +47,22 @@ const Settlements = () => {
     setName("");
   };
 
+  const formmatedSettlements = useMemo(() => {
+    let formmated = [];
+    if (settlements) {
+      formmated = settlements.map((settlement) => {
+        return {
+          ...settlement,
+          crypto: cryptoList.find(
+            (crypto) => crypto.slug === settlement.wallet_slug
+          ),
+        };
+      });
+    }
+    return formmated;
+  });
+  console.log(formmatedSettlements);
+
   const crypto = useMemo(() => {
     return cryptos.filter(
       (item) => !settlements.find((key) => key.wallet_slug === item.slug)
@@ -72,7 +89,7 @@ const Settlements = () => {
           {settlements.length > 0 && (
             <div className="settlements_content">
               <div className="settlements_info mt-small">
-                {settlements.map((item) => (
+                {formmatedSettlements.map((item) => (
                   <SettlementInfo key={item.key} {...item} />
                 ))}
               </div>

@@ -9,6 +9,7 @@ const SettlementInfo = ({
   wallet_address,
   account_name,
   account_number,
+  crypto,
   bank_name,
 }) => {
   const [name, setName] = useState("");
@@ -21,7 +22,7 @@ const SettlementInfo = ({
       <div className="settlements_info-item">
         <div className="currency">
           <p className="title title-grey mb-small ">Currency</p>
-          <p className="title title-black">{wallet_slug || "Naira"}</p>
+          <p className="title title-black">{crypto?.name || "Naira"}</p>
         </div>
         <div className="address">
           <p className="title title-grey mb-small">

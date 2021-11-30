@@ -17,6 +17,7 @@ const WithdrawForm = ({
   isLoading,
   isBank,
   balance,
+  rate,
 }) => {
   const form = formGenerator(withdrawForm, setForm, setValidForm);
   const [isInitiateLoading, setIsInitiateLoading] = useState(true);
@@ -24,19 +25,26 @@ const WithdrawForm = ({
   const [amount, setAmount] = useState();
   const [isInsufficient, setIsInsufficient] = useState(false);
 
+  console.log(crypto);
   useEffect(() => {
     const fetchRate = async () => {
       const token = localStorage.getItem("token");
       setIsInitiateLoading(true);
-      const { data } = await axios.get(
-        `https://api.payercoins.com/api/v1/live/payment/crypto/rate?cryptos=${crypto.rate}&currencies=USD,NGN`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setRates(data.rates[crypto.rate]);
+
+      if (crypto.rate !== "USDT") {
+        const { data } = await axios.get(
+          `https://api.payercoins.com/api/v1/live/payment/crypto/rate?cryptos=${crypto.rate}&currencies=USD,NGN`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setRates(data.rates[crypto.rate]);
+      } else {
+        setRates({ USD: 1, NGN: rate });
+      }
       setIsInitiateLoading(false);
     };
     crypto && fetchRate();
@@ -117,13 +125,7 @@ const WithdrawForm = ({
         {!isInitiateLoading && (
           <p className="title title-grey">
             1 {crypto.rate} = {parseFloat(rates.USD).toFixed(2)} USD{" "}
-            {isBank && (
-              <span>
-                {" "}
-                (NGN
-                {parseFloat(rates.NGN).toFixed(2)})
-              </span>
-            )}
+            {isBank && <span> (NGN {parseFloat(rates.NGN).toFixed(2)})</span>}
           </p>
         )}
       </div>
