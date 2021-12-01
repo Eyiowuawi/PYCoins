@@ -35,8 +35,6 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
 
   const { data: rateData } = useGetNgnRate(environment);
 
-  console.log(rateData);
-
   const selectedSettlement = useMemo(() => {
     return settlements.find((item) => item.wallet_slug === currency);
   }, [settlements, currency]);
@@ -148,7 +146,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
             crypto={selectedCrypto}
             isBank={true}
             balance={balance}
-            rate ={ rateData}
+            rate={rateData}
           />
         </>
       );
@@ -168,7 +166,7 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
             isLoading={isInitiateLoading}
             isBank={false}
             balance={balance}
-            rate ={ rateData}
+            rate={rateData}
           />
         </>
       );

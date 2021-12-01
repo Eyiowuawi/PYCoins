@@ -42,7 +42,7 @@ const WithdrawForm = ({
 
         const rates = {
           USD: data.rates[crypto.rate].USD,
-          NGN: data.rates[crypto.rate].USD * rate,
+          NGN: data?.rates[crypto.rate]?.USD * rate,
         };
         console.log(rates);
         setRates(rates);
@@ -52,7 +52,7 @@ const WithdrawForm = ({
       setIsInitiateLoading(false);
     };
     crypto && fetchRate();
-  }, [crypto]);
+  }, [crypto, rate]);
 
   useEffect(() => {
     if (rates.NGN && withdrawForm.amount.value && isBank) {
@@ -126,7 +126,7 @@ const WithdrawForm = ({
               {parseFloat(amount).toFixed(9)} {crypto.rate}
             </p>
           )}
-        {!isInitiateLoading && (
+        {!isInitiateLoading && rate && (
           <p className="title title-grey">
             1 {crypto.rate} = {parseFloat(rates.USD).toFixed(2)} USD{" "}
             {isBank && <span> (NGN {parseFloat(rates.NGN).toFixed(2)})</span>}
