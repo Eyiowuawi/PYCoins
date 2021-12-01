@@ -25,7 +25,6 @@ const WithdrawForm = ({
   const [amount, setAmount] = useState();
   const [isInsufficient, setIsInsufficient] = useState(false);
 
-  console.log(crypto);
   useEffect(() => {
     const fetchRate = async () => {
       const token = localStorage.getItem("token");
@@ -33,7 +32,7 @@ const WithdrawForm = ({
 
       if (crypto.rate !== "USDT") {
         const { data } = await axios.get(
-          `https://api.payercoins.com/api/v1/live/payment/crypto/rate?cryptos=${crypto.rate}&currencies=USD,NGN`,
+          `https://api.payercoins.com/api/v1/live/payment/crypto/rate?cryptos=${crypto.rate}&currencies=USD`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -41,7 +40,12 @@ const WithdrawForm = ({
           }
         );
 
-        setRates(data.rates[crypto.rate]);
+        const rates = {
+          USD: data.rates[crypto.rate].USD,
+          NGN: data.rates[crypto.rate].USD * rate,
+        };
+        console.log(rates);
+        setRates(rates);
       } else {
         setRates({ USD: 1, NGN: rate });
       }
