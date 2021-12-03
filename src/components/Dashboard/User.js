@@ -1,12 +1,25 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 
 import { AppContext } from "./../../context/index";
 
-import verified from "../../assets/verified.svg";
-import unverified from "../../assets/unverified.svg";
+import verifiedImg from "../../assets/verified.svg";
+import unverifiedImg from "../../assets/unverified.svg";
 
 const User = ({ date }) => {
-  const { fullname } = useContext(AppContext);
+  const [verified, setVerified] = useState(false);
+  const {
+    fullname,
+    profile: { user, business },
+  } = useContext(AppContext);
+
+  useEffect(() => {
+    if (
+      (user?.userType === "individual" && user?.isUserVerified) ||
+      (user?.userType === "business" && business?.isBusinessVerified)
+    )
+      setVerified(true);
+    else setVerified(false);
+  }, [user, business]);
   return (
     <div className="home_name">
       <h3 className="title title-black mb-smaller">Hello, {fullname} 👋</h3>
@@ -14,8 +27,8 @@ const User = ({ date }) => {
         {date}
       </p>
       <p className="title title-grey verified ">
-        <span>Unverified Account</span>
-        <img src={unverified} alt="Verified" />
+        <span>{verified ? "Verified" : "Unverified"} Account</span>
+        <img src={verified ? verifiedImg : unverifiedImg} alt="Verified" />
       </p>
     </div>
   );

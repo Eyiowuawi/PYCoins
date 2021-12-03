@@ -7,8 +7,9 @@ import WithLoadingComponent from "./../../hoc/withLoading";
 import WithErrorComponent from "./../../hoc/withError";
 
 import CryptoCurrency from "../../components/Dashboard/CrytptoCurrency";
-import BusinessForm from "../../components/Dashboard/BusinessForm";
+import BusinessForm from "../../components/BusinessForm";
 import Table from "../../components/Table";
+import Kyc from "../../components/Dashboard/Kyc";
 import TableResponsive from "./../../components/TableResponsive";
 import useWindowWidth from "./../../hooks/windowWidth";
 import LandingHeader from "./../../components/Dashboard/Header";
@@ -107,8 +108,6 @@ const Dashboard = ({ ...props }) => {
     });
   }, [homeData]);
 
-  console.log(formattedTransactions);
-
   const handlePrevPage = () => {
     setCurrPage(currPage - 1);
   };
@@ -117,53 +116,58 @@ const Dashboard = ({ ...props }) => {
   };
 
   return (
-    <WithLoadingComponent isLoading={isFetching}>
-      <WithErrorComponent isError={isError}>
-        <div className="home">
-          <Helmet>
-            <title>Home - Payercoins</title>
-          </Helmet>
-          <LandingHeader date={date} setShow={setShow} />
-          <div className="home_wallets">
-            <p className="title title-small">Wallet</p>
-            <Link to="/wallet" className="home_link">
-              <span className="link link-small">View All</span>
-              <RightArrow fill={"#48D189"} />
-            </Link>
+    <>
+      <WithLoadingComponent isLoading={isFetching}>
+        <WithErrorComponent isError={isError}>
+          <div className="home">
+            <Helmet>
+              <title>Home - Payercoins</title>
+            </Helmet>
+            <LandingHeader date={date} setShow={setShow} />
+            <div className="home_wallets">
+              <p className="title title-small">Wallet</p>
+              <Link to="/wallet" className="home_link">
+                <span className="link link-small">View All</span>
+                <RightArrow fill={"#48D189"} />
+              </Link>
+            </div>
+            <div className="home_container-crypto">
+              <CryptoCurrency wallets={wallets} />
+            </div>
+            <div className="home_empty">
+              <p className="title title-small mb-small">Recent Transactions </p>
+              {formattedTransactions?.length < 1 && <LandingEmpty />}
+              {formattedTransactions?.length > 1 && (
+                <div className="home_table">
+                  {width > 500 && (
+                    <Table
+                      data={formattedTransactions}
+                      onclick={() => {}}
+                      tableHead={tableHead}
+                    />
+                  )}
+                  {width <= 500 && (
+                    <TableResponsive
+                      data={formattedTransactions}
+                      onclick={() => {}}
+                    />
+                  )}
+                  {width > 500 && (
+                    <Pagination
+                      data={paginatedData}
+                      nextPage={handleNextPage}
+                      prevPage={handlePrevPage}
+                      currPage={currPage}
+                    />
+                  )}
+                </div>
+              )}
+            </div>
           </div>
-          <div className="home_container-crypto">
-            <CryptoCurrency wallets={wallets} />
-          </div>
-          <div className="home_empty">
-            <p className="title title-small mb-small">Recent Transactions </p>
-            {formattedTransactions?.length < 1 && <LandingEmpty />}
-            {formattedTransactions?.length > 1 && (
-              <div className="home_table">
-                {width > 500 && (
-                  <Table
-                    data={formattedTransactions}
-                    onclick={() => {}}
-                    tableHead={tableHead}
-                  />
-                )}
-                {width <= 500 && (
-                  <TableResponsive
-                    data={formattedTransactions}
-                    onclick={() => {}}
-                  />
-                )}
-                <Pagination
-                  data={paginatedData}
-                  nextPage={handleNextPage}
-                  prevPage={handlePrevPage}
-                  currPage={currPage}
-                />
-              </div>
-            )}
-          </div>
-        </div>
-      </WithErrorComponent>
-    </WithLoadingComponent>
+        </WithErrorComponent>
+      </WithLoadingComponent>
+      {show && <Kyc close={() => setShow(false)} />}
+    </>
   );
 };
 

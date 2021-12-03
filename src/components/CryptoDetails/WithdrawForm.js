@@ -44,7 +44,6 @@ const WithdrawForm = ({
           USD: data.rates[crypto.rate].USD,
           NGN: data?.rates[crypto.rate]?.USD * rate,
         };
-        console.log(rates);
         setRates(rates);
       } else {
         setRates({ USD: 1, NGN: rate });
@@ -127,7 +126,7 @@ const WithdrawForm = ({
             </p>
           )}
         {!isInitiateLoading && rate && (
-          <p className="title title-grey">
+          <p className="title title-grey tr">
             1 {crypto.rate} = {parseFloat(rates.USD).toFixed(2)} USD{" "}
             {isBank && <span> (NGN {parseFloat(rates.NGN).toFixed(2)})</span>}
           </p>

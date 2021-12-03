@@ -55,3 +55,18 @@ export const accountNumberValidator = (value) => {
   const regex = /^[0-9]{10}$/;
   return regex.test(value);
 };
+
+export const ninValidator = (value) => {
+  const regex = /^[0-9]{11}$/;
+  return regex.test(value);
+};
+
+export const driverNumberValidator = (value) => {
+  const regex = /^[a-zA-Z0-9]{12}$/;
+  return regex.test(value);
+};
+
+export const votersCardValidator = (value) => {
+  const regex = /^[a-zA-Z0-9]{19}$/;
+  return regex.test(value);
+};

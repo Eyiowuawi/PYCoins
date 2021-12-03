@@ -50,11 +50,11 @@ export const changeHandler = (
         : null;
 
       let isValid = true;
-      const value = event?.target ? event?.target.value : event?.label;
+      const value = event?.target ? event?.target.value : event?.value;
       isValid = formType[elementID].validation(value, passwordValue) && isValid;
       updatedFormElement = {
         ...formType[elementID],
-        value: event?.target ? event?.target.value : event?.label,
+        value: event?.target ? event?.target.value : event?.value,
         valid: isValid,
       };
     }

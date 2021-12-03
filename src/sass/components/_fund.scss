@@ -12,6 +12,7 @@
   &_wallet {
     @include line;
     @include flex(row, space-between, center);
+    padding: 1rem 0 !important;
 
     position: relative;
     display: flex;

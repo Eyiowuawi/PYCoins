@@ -98,7 +98,6 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
       };
       for (const key in withdrawForm) data[key] = withdrawForm[key].value;
     }
-    console.log(data);
     initiateWithdrawalMutate(data);
   };
 

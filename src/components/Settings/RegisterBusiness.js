@@ -1,11 +1,12 @@
 import { RightArrow } from "../../icons";
 
-import UserSwitch from "../../assets/user-switch.svg";
+// import UserSwitch from "../../assets/user-switch.svg";
+import userSwitch from "../../assets/switch.svg";
 
-const RegisterBusiness = ({ date, onclick }) => {
+const RegisterBusiness = ({ onclick }) => {
   return (
-    <div className="home_switch" onClick={onclick}>
-      <img src={UserSwitch} alt="user switch" />
+    <div className="home_switch mt-bg" onClick={onclick}>
+      <img src={userSwitch} alt="user switch" />
       <div>
         <p className="title title-small">Switch to Registered Business</p>
         <p className="title title-grey" style={{ fontSize: "14px" }}>

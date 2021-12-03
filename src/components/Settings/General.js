@@ -25,7 +25,8 @@ import { saveToLocalStorage } from "./../../services/auth";
 
 import Avatar from "../../assets/avatar.svg";
 import { RightArrow } from "./../../icons/index";
-import BusinessForm from "./../Dashboard/BusinessForm";
+import BusinessForm from "../BusinessForm";
+import RegisterBusiness from "./RegisterBusiness";
 
 const General = ({ history }) => {
   const queryClient = useQueryClient();
@@ -230,15 +231,16 @@ const General = ({ history }) => {
         </div>
       )}
       {profile.user?.userType === "individual" && (
-        <div className="home_switch mt-bg" onClick={() => setShow(true)}>
-          <img src={userSwitch} alt="user switch" />
-          <div>
-            <p className="title title-small">Switch to Registered Business</p>
-            <p className="title title-grey" style={{ fontSize: "14px" }}>
-              Get Started <RightArrow fill="#787676" />{" "}
-            </p>
-          </div>
-        </div>
+        // <div className="home_switch mt-bg" onClick={}>
+        //   <img src={userSwitch} alt="user switch" />
+        //   <div>
+        //     <p className="title title-small">Switch to Registered Business</p>
+        //     <p className="title title-grey" style={{ fontSize: "14px" }}>
+        //       Get Started <RightArrow fill="#787676" />{" "}
+        //     </p>
+        //   </div>
+        // </div>
+        <RegisterBusiness onclick={() => setShow(true)} />
       )}
 
       {show && (

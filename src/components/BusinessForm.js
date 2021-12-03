@@ -1,20 +1,14 @@
-import Modal from "../UI/Modal";
+import Modal from "./UI/Modal";
 
-import Business from "../Auth/Business";
+import Business from "./Auth/Business";
 
-import useBusinessForm from "../../hooks/businessForm";
+import useBusinessForm from "../hooks/businessForm";
 
-import Response from "../UI/Response";
+import Response from "./UI/Response";
 
-import Success from "../../assets/success.svg";
+import Success from "../assets/success.svg";
 
 const BusinessForm = ({ close, isLoading, data, show, submit, success }) => {
-  // const [success, setSuccess] = useState(false);
-
-  // useEffect(() => {
-  //   if (data && success ) setSuccess(true);
-  // }, [data, succes]);
-
   const [
     businessForm,
     setBusinessForm,

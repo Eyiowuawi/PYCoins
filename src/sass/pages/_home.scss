@@ -61,6 +61,10 @@
   }
   &_table {
     @include flex(column, space-between, flex-end);
+
+    @media (max-width: 500px){
+      display: block !important;
+    }
   }
 }
 @media only screen and (max-width: 800px) {

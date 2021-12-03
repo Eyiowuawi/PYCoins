@@ -51,7 +51,6 @@ const PaymentDetails = ({ history }) => {
     isFetching: isTransactionLoading,
     isError: linkError,
   } = useGetPaymentTransactions(params.id);
-  // console.log(paymentData);
 
   const { data: userData } = useGetUserWallets();
 
@@ -87,7 +86,6 @@ const PaymentDetails = ({ history }) => {
       return formatTransactions(paymentData);
     }
   }, [paymentData]);
-  // console.log(transactions);
 
   const updatedData = useMemo(() => {
     const updatedPaymentLink = data && addPaymentUrl(data?.paymentlink);
@@ -154,7 +152,7 @@ const PaymentDetails = ({ history }) => {
             {(transactions?.length < 1 || !transactions) && (
               <Empty>
                 <img src={empty} alt="Empty State" />
-                <h3 className="title title-black mb-small mt-small">
+                <h3 className="title title-black mb-small mt-small ta">
                   You don't have any transaction yet
                 </h3>
                 <p className="title title-grey ">

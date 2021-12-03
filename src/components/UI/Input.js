@@ -5,6 +5,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DatePicker from "@mui/lab/DatePicker";
 import "react-phone-input-2/lib/material.css";
 
 const useStyles = makeStyles(() => ({
@@ -74,7 +77,6 @@ const Input = ({
   // const [seleted, setSelected] = useState([]);
 
   const handleChange = (values) => {
-    console.log(values);
     onchange(values);
   };
   const classes = useStyles();
@@ -194,6 +196,19 @@ const Input = ({
           onChange={onchange}
         ></textarea>
       );
+      break;
+    case "date":
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DatePicker
+          label="Basic example"
+          value={value}
+          onChange={(newValue) => {
+            handleChange(newValue);
+          }}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </LocalizationProvider>;
+
       break;
     case "file":
       inputElement = (

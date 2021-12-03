@@ -167,3 +167,31 @@ userBaseUrl.interceptors.response.use(
     throw error;
   }
 );
+
+export const kycBaseUrl = axios.create({
+  baseURL: `${url}/user/kyc/verify`,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+kycBaseUrl.interceptors.request.use(
+  (request) => {
+    const token = localStorage.getItem("token");
+    request.headers.Authorization = `Bearer ${token}`;
+    return request;
+  },
+  (error) => {
+    return error;
+  }
+);
+
+kycBaseUrl.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  (error) => {
+    errorHandler(error);
+    throw error;
+  }
+);
