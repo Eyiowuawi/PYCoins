@@ -2,11 +2,11 @@ import down from "../assets/down.svg";
 import goleft from "../assets/go-left.svg";
 import goright from "../assets/go-right.svg";
 
-const Pagination = ({ data, currPage, prevPage, nextPage }) => {
+const Pagination = ({ data, currPage, prevPage, nextPage, handlePageSize }) => {
   return (
     <div className="pagination">
       <p>Rows per page:</p>
-      <select>
+      <select onChange={handlePageSize}>
         <option value="10">10</option>
         <option value="20">20</option>
         <option value="30">30</option>

@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { QueryClient, useMutation } from "react-query";
+import { QueryClient, useMutation, useQueryClient, use } from "react-query";
 
 import WithLoadingComponent from "./../../hoc/withLoading";
 import WithErrorComponent from "./../../hoc/withError";
@@ -18,6 +18,7 @@ import LandingEmpty from "./../../components/Dashboard/Empty";
 import { switchToBusiness } from "../../services/user";
 
 import { RightArrow } from "../../icons";
+import { getTransactions } from "../../services/crypto";
 
 import { useGetWallets } from "./../../query/getWallets";
 
@@ -33,12 +34,24 @@ const Dashboard = ({ ...props }) => {
   const [width, setWidth] = useWindowWidth();
   const [paginatedData, setPaginatedData] = useState({});
   const [currPage, setCurrPage] = useState(1);
-
+  const [pageSize, setPageSize] = useState(10);
   const { data: walletData, isLoading } = useGetWallets();
-  console.log(walletData);
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
-  const { isFetching, data: homeData, isError } = useGetTransactions(currPage);
+  useEffect(() => {
+    queryClient.prefetchQuery(["gettransactions", currPage], () =>
+      getTransactions(1, pageSize)
+    );
+
+    setCurrPage(1);
+  }, [pageSize]);
+  console.log(pageSize);
+
+  const {
+    isLoading: isLoadingTransactions,
+    data: homeData,
+    isError,
+  } = useGetTransactions(currPage, pageSize);
 
   const date = useMemo(() => {
     return new Date().toLocaleDateString("en-US", {
@@ -80,9 +93,11 @@ const Dashboard = ({ ...props }) => {
     setPaginatedData({
       count: homeData?.count,
       page: homeData?.page + 1,
-      noOfPages: homeData?.count / 10,
+      noOfPages: homeData?.count / +homeData?.perPage,
     });
   }, [homeData]);
+
+  console.log(paginatedData);
 
   const formattedTransactions = useMemo(() => {
     return homeData?.transactions?.map((item) => {
@@ -116,9 +131,14 @@ const Dashboard = ({ ...props }) => {
     setCurrPage(currPage + 1);
   };
 
+  const handlePageSize = (e) => {
+    console.log(e.target.value);
+    setPageSize(e.target.value);
+  };
+
   return (
     <>
-      <WithLoadingComponent isLoading={isFetching}>
+      <WithLoadingComponent isLoading={isLoadingTransactions}>
         <WithErrorComponent isError={isError}>
           <div className="home">
             <Helmet>
@@ -159,6 +179,7 @@ const Dashboard = ({ ...props }) => {
                       nextPage={handleNextPage}
                       prevPage={handlePrevPage}
                       currPage={currPage}
+                      handlePageSize={handlePageSize}
                     />
                   )}
                 </div>

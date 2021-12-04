@@ -12,7 +12,6 @@ const LandingHeader = ({ date, setShow }) => {
     profile: { user, business },
   } = useContext(AppContext);
 
-  console.log(business);
   useEffect(() => {
     if (!user?.isUserVerified || (business && !business.isBusinessVerified))
       setShowVerify(true);
