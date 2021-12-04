@@ -1,19 +1,19 @@
 import { useState } from "react";
 
-import { driverNumberValidator, required } from "../utils/validations";
+import { required, rcValidator } from "../utils/validations";
 
 const useCompanyForm = () => {
   const [companyForm, setCompanyForm] = useState({
     rcNumber: {
-      value: "RC",
+      value: "",
       type: "text",
       label: "RC Number",
       elementType: "input",
-      validation: required,
+      validation: rcValidator,
       required: true,
       valid: false,
       blur: false,
-      info: "Must be start with RC",
+      info: "Must be 6 characters long",
     },
     companyName: {
       value: "",

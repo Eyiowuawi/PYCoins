@@ -79,12 +79,10 @@ const General = ({ history }) => {
       onSuccess: (data) => saveUser(data.data),
     });
 
-  const {
-    // mutate: upateBusinessMutation,
-    isLoading: updateBusinessLoading,
-  } = useMutation((data) => updateBusinessprofile(data), {
-    onSuccess: (data) => saveUser(data.data),
-  });
+  const { mutate: upateBusinessMutation, isLoading: updateBusinessLoading } =
+    useMutation((data) => updateBusinessprofile(data), {
+      onSuccess: (data) => saveUser(data.data),
+    });
 
   const { mutate: updatePasswordMutation, isLoading: updatePasswordLooading } =
     useMutation((data) => updatePassword(data), {
@@ -108,7 +106,6 @@ const General = ({ history }) => {
       },
     }
   );
-
   const handleChange = (evt) => {
     const param = new FormData();
     const value = evt.target.files[0];
@@ -131,6 +128,7 @@ const General = ({ history }) => {
   };
 
   const handleUpdateBusiness = (evt) => {
+    console.log(profile);
     evt.preventDefault();
     let data = {};
     for (let key in businessForm) {
@@ -140,7 +138,10 @@ const General = ({ history }) => {
     }
     if (Object.values(data).length < 1)
       toast.info("Change any field to update your profile");
-    else updateUserMutation(data);
+    else {
+      data["businessId"] = profile?.business?._id;
+      upateBusinessMutation(data);
+    }
   };
 
   const handleUpdatePassword = (evt) => {

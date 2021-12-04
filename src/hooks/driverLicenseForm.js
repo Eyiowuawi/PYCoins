@@ -17,7 +17,7 @@ const useDriverLicenseForm = (amt) => {
     dLdateOfBirth: {
       value: "",
       type: "date",
-      //   label: "Date of Birth",
+      label: "Date of Birth",
       elementType: "input",
       validation: required,
       required: true,

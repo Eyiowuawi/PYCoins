@@ -31,10 +31,11 @@ const tableHead = ["PAYMENT TYPE", "AMOUNT (CRYPTO)", "DATE", "STATUS"];
 const Dashboard = ({ ...props }) => {
   const [show, setShow] = useState(false);
   const [width, setWidth] = useWindowWidth();
-  const { data: walletData, isLoading } = useGetWallets();
   const [paginatedData, setPaginatedData] = useState({});
   const [currPage, setCurrPage] = useState(1);
 
+  const { data: walletData, isLoading } = useGetWallets();
+  console.log(walletData);
   const queryClient = new QueryClient();
 
   const { isFetching, data: homeData, isError } = useGetTransactions(currPage);

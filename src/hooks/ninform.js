@@ -11,7 +11,7 @@ const useNinForm = (amt) => {
       validation: ninValidator,
       required: true,
       blur: false,
-      info: "Number must be 12 characters long",
+      info: "Number must be 11 characters long",
     },
   });
   return [ninForm, setNinForm];

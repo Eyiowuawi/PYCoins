@@ -71,6 +71,20 @@ button {
   margin-right: 0.5rem;
 }
 
+input::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+input::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+input::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+  color: transparent !important;
+}
+
+input[type="date"]:required:invalid::-webkit-datetime-edit {
+  color: transparent;
+}
+
+input[type="date"]:focus::-webkit-datetime-edit {
+  color: black !important;
+}
+
 .ta {
   text-align: center;
 }
@@ -2555,10 +2569,6 @@ button {
   font-size: 1rem !important;
   font-family: "Mulish", sans-serif !important;
   text-transform: capitalize !important;
-  background-position-x: 98% !important;
-  background-repeat: no-repeat !important;
-  background-position-y: 50% !important;
-  background-image: url("../assets/select.svg") !important;
 }
 
 .input-phone:focus {
@@ -2605,6 +2615,25 @@ button {
 .MuiChip-label {
   font-size: 1rem !important;
   text-transform: capitalize !important;
+}
+
+.MuiAutocomplete-endAdornment {
+  height: 2rem;
+  width: 2rem;
+  background-position-x: 98% !important;
+  background-repeat: no-repeat !important;
+  background-position-y: 50% !important;
+  background-image: url("../assets/select.svg") !important;
+}
+
+.MuiButtonBase-root {
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+}
+
+.MuiSvgIcon-root {
+  display: none !important;
 }
 
 .create {

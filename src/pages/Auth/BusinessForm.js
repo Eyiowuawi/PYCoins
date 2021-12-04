@@ -59,7 +59,9 @@ const BusinessForm = () => {
       data.append(`${key}`, businessForm[key].value);
     }
     for (let key in personalForm) {
-      data.append(`${key}`, personalForm[key].value);
+      if (key === "phoneNumber")
+        data.append(key, `+${personalForm[key].value}`);
+      else data.append(`${key}`, personalForm[key].value);
     }
     data.append(`userType`, "business");
     mutate(data);

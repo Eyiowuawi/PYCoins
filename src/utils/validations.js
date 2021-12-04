@@ -70,3 +70,9 @@ export const votersCardValidator = (value) => {
   const regex = /^[a-zA-Z0-9]{19}$/;
   return regex.test(value);
 };
+
+export const rcValidator = (value) => {
+  const regex = /^[0-9]{6}$/;
+
+  return regex.test(value);
+};

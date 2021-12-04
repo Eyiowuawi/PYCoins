@@ -32,13 +32,15 @@ const CryptoForm = ({ name, goBack, edit, address, close }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
+    console.log(crypto);
     const data = {
       type: "crypto",
       wallet_slug: crypto.slug,
       wallet_address: cryptoForm.address.value,
       wallet_symbol: crypto.symbol,
     };
+
+    console.log(data);
 
     mutate(data);
   };

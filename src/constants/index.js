@@ -77,6 +77,6 @@ export const cryptos = [
     classname: "accounts_img accounts_img-4",
     slug: "usdt-trx",
     rate: "USDT",
-    symbol: "USDT_TRX",
+    symbol: "USDT_TRC20",
   },
 ];

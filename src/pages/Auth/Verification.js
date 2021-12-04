@@ -68,7 +68,7 @@ const Verification = ({ history }) => {
     );
   }
 
-  return <div className="ta">verifying...</div>;
+  return <div className="ta">Verifying Your Account...</div>;
 };
 
 export default Verification;

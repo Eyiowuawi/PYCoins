@@ -109,7 +109,7 @@ const Kyc = ({ close }) => {
           <Button
             // onclick={handleUserSubmit}
             disabled={validForm}
-            isLoading={isLoading}
+            isLoading={isLoading || isCoyLoading}
             bg="button_primary"
             type="submit"
           >
