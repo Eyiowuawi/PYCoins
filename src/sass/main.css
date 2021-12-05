@@ -1252,7 +1252,7 @@ input[type="date"]:focus::-webkit-datetime-edit {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 1rem 0 !important;
+  padding: 1rem !important;
   position: relative;
   display: flex;
 }

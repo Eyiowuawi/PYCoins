@@ -13,7 +13,6 @@ const useCompanyForm = () => {
       required: true,
       valid: false,
       blur: false,
-      info: "Must be 6 characters long",
     },
     companyName: {
       value: "",

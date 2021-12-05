@@ -73,6 +73,5 @@ export const votersCardValidator = (value) => {
 
 export const rcValidator = (value) => {
   const regex = /^[0-9]{6,}$/;
-
   return regex.test(value);
 };

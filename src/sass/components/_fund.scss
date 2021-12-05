@@ -12,7 +12,7 @@
   &_wallet {
     @include line;
     @include flex(row, space-between, center);
-    padding: 1rem 0 !important;
+    padding: 1rem !important;
 
     position: relative;
     display: flex;
@@ -33,7 +33,6 @@
       right: 20px;
       flex-grow: 1;
       cursor: pointer;
-      // transform: translateY(-50%);
     }
   }
 
