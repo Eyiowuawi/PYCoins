@@ -2,6 +2,7 @@ import Sent from "../assets/sent.svg";
 import Received from "../assets/received.svg";
 
 const TableResponsive = ({ data, onclick, currency }) => {
+  console.log(data);
   return (
     <div className="tableresponsive">
       {data
@@ -32,8 +33,15 @@ const TableResponsive = ({ data, onclick, currency }) => {
               ) : (
                 ""
               )}
-              {item.paymentType && <p className="td">{item.paymentType}</p>}
-              <p className="td">{parseFloat(item.amount).toFixed(6)}</p>
+              {item.paymentType && (
+                <p className="td">
+                  {item.paymentType} {item.walletType}
+                </p>
+              )}
+              <p className="td">
+                {parseFloat(item.amount).toFixed(6)}{" "}
+                {item.cryptoType && item.cryptoType}
+              </p>
             </div>
             <div className="tableresponsive_amount">
               <p
