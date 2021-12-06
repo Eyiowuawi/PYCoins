@@ -51,7 +51,7 @@ const useBankForm = (bank, editing) => {
     };
 
     fetchBanks();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     setBankForm((prevState) => {
@@ -113,7 +113,7 @@ const useBankForm = (bank, editing) => {
       }
     };
     validateAccount();
-  }, [bankForm.bank_name.value, bankForm.account_number.value]);
+  }, [bankForm.bank_name.value, bankForm.account_number.value]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return [bankForm, setBankForm, formValid, setFormValid];
 };

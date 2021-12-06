@@ -3,7 +3,6 @@ import { useMemo, useState, useContext } from "react";
 
 import WithLoadingComponent from "./../../hoc/withLoading";
 
-import { cryptos } from "../../constants";
 import { AppContext } from "./../../context/index";
 
 import Toggle from "./../UI/Switch";

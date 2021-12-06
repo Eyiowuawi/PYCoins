@@ -12,7 +12,6 @@ import Button from "./../UI/Button";
 import useGeneralForm from "../../hooks/generalForm";
 
 import settingsFormGenerator from "./../../utils/settingsFormGenerator";
-import userSwitch from "../../assets/switch.svg";
 
 import {
   changeUserImage,
@@ -24,7 +23,6 @@ import {
 import { saveToLocalStorage } from "./../../services/auth";
 
 import Avatar from "../../assets/avatar.svg";
-import { RightArrow } from "./../../icons/index";
 import BusinessForm from "../BusinessForm";
 import RegisterBusiness from "./RegisterBusiness";
 
@@ -93,7 +91,6 @@ const General = ({ history }) => {
   const {
     mutate: switchMutate,
     data,
-    isError,
     isLoading: switchLoading,
     isSuccess,
   } = useMutation(
@@ -128,7 +125,6 @@ const General = ({ history }) => {
   };
 
   const handleUpdateBusiness = (evt) => {
-    console.log(profile);
     evt.preventDefault();
     let data = {};
     for (let key in businessForm) {
@@ -189,14 +185,16 @@ const General = ({ history }) => {
       </form>
       <form className="mt-small settingsform" onSubmit={handleUpdateUser}>
         {personal}
-        <Button
-          disabled={personalFormValid}
-          isLoading={updateUserLoading}
-          type="submit"
-          bg={"button_primary"}
-        >
-          Save Changes
-        </Button>
+        {!profile?.user?.isUserVerified && (
+          <Button
+            disabled={personalFormValid}
+            isLoading={updateUserLoading}
+            type="submit"
+            bg={"button_primary"}
+          >
+            Save Changes
+          </Button>
+        )}
       </form>
       <div className="mt-bg">
         <h3 className="title title-black mt-small">Change Password</h3>
@@ -220,14 +218,16 @@ const General = ({ history }) => {
             onSubmit={handleUpdateBusiness}
           >
             {business}
-            <Button
-              disabled={businessFormValid}
-              type="submit"
-              bg={"button_primary"}
-              isLoading={updateBusinessLoading}
-            >
-              Save Changes
-            </Button>
+            {!profile?.business?.isBusinessVerified && (
+              <Button
+                disabled={businessFormValid}
+                type="submit"
+                bg={"button_primary"}
+                isLoading={updateBusinessLoading}
+              >
+                Save Changes
+              </Button>
+            )}
           </form>
         </div>
       )}

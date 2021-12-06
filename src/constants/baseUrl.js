@@ -1,10 +1,8 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 import { errorHandler } from "../utils/errorHandler";
 
 const url = "https://api.payercoins.com/api/v1";
 
-const cookies = Cookies.get();
 export const authBaseUrl = axios.create({
   baseURL: `${url}/auth`,
   headers: {

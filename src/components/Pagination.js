@@ -1,4 +1,3 @@
-import down from "../assets/down.svg";
 import goleft from "../assets/go-left.svg";
 import goright from "../assets/go-right.svg";
 

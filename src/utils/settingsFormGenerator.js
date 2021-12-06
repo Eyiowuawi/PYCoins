@@ -25,6 +25,7 @@ const settingsFormGenerator = (formType, formFunc, validForm) => {
       image={config.image}
       elementType={config.elementType}
       showPassword={(evt) => showPassword(evt, id, formType, formFunc)}
+      readonly={config.readonly}
     />
   ));
 

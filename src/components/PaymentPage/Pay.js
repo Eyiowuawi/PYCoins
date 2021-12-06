@@ -53,7 +53,7 @@ const Pay = ({ goBack, data, event }) => {
           <div className="mb-small">
             <p className="title title-grey mb-smaller">AMOUNT</p>
             <ActionLabel
-              text={`${data?.amount.amountInCrypto} ${data?.crypto.symbol} (${
+              text={`${data?.amount.amountInCrypto} ${data?.crypto.name} (${
                 data?.amount.currency.sign
               }${parseFloat(data?.amount.amountInUsd).toFixed(2)})`}
               onclick={() => handleCopy(data?.amount.amountInCrypto)}

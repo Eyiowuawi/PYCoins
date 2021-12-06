@@ -1,5 +1,4 @@
 import Available from "../../assets/available.svg";
-import Ledger from "../../assets/ledger.svg";
 import Customer from "../../assets/customers.svg";
 
 const Balance = ({ data, available, customers }) => {

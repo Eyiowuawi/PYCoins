@@ -19,7 +19,7 @@ const Accounts = ({
   const cryptoName = useMemo(() => {
     const sliced = search.substring(10);
     return cryptoList.find((item) => item.slug === sliced);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

@@ -1,21 +1,18 @@
 import { useMemo, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { QueryClient, useMutation, useQueryClient, use } from "react-query";
+import { useQueryClient } from "react-query";
 
 import WithLoadingComponent from "./../../hoc/withLoading";
 import WithErrorComponent from "./../../hoc/withError";
 
 import CryptoCurrency from "../../components/Dashboard/CrytptoCurrency";
-import BusinessForm from "../../components/BusinessForm";
 import Table from "../../components/Table";
 import Kyc from "../../components/Dashboard/Kyc";
 import TableResponsive from "./../../components/TableResponsive";
 import useWindowWidth from "./../../hooks/windowWidth";
 import LandingHeader from "./../../components/Dashboard/Header";
 import LandingEmpty from "./../../components/Dashboard/Empty";
-
-import { switchToBusiness } from "../../services/user";
 
 import { RightArrow } from "../../icons";
 import { getTransactions } from "../../services/crypto";
@@ -31,11 +28,10 @@ const tableHead = ["PAYMENT TYPE", "AMOUNT (CRYPTO)", "DATE", "STATUS"];
 
 const Dashboard = ({ ...props }) => {
   const [show, setShow] = useState(false);
-  const [width, setWidth] = useWindowWidth();
-  const [paginatedData, setPaginatedData] = useState({});
+  const [width] = useWindowWidth();
   const [currPage, setCurrPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const { data: walletData, isLoading } = useGetWallets();
+  const { data: walletData } = useGetWallets();
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -44,8 +40,7 @@ const Dashboard = ({ ...props }) => {
     );
 
     setCurrPage(1);
-  }, [pageSize]);
-  console.log(pageSize);
+  }, [pageSize]); // eslint-disable-line
 
   const {
     isLoading: isLoadingTransactions,
@@ -60,7 +55,7 @@ const Dashboard = ({ ...props }) => {
       year: "numeric",
       weekday: "long",
     });
-  }, []);
+  }, []); // eslint-disable-line
 
   const wallets = useMemo(() => {
     const mappedWallet = walletData?.map((item) => {
@@ -90,14 +85,12 @@ const Dashboard = ({ ...props }) => {
   }, [walletData]);
 
   const paginated = useMemo(() => {
-    setPaginatedData({
+    return {
       count: homeData?.count,
       page: homeData?.page + 1,
       noOfPages: homeData?.count / +homeData?.perPage,
-    });
+    };
   }, [homeData]);
-
-  console.log(paginatedData);
 
   const formattedTransactions = useMemo(() => {
     return homeData?.transactions?.map((item) => {
@@ -107,7 +100,9 @@ const Dashboard = ({ ...props }) => {
         paymentType:
           item.transferableType === "wallet" ? "Wallet" : "Payment Page",
         date,
-        cryptoType: item.crypto.type,
+        cryptoType: item.crypto.type.includes("USDT")
+          ? item.crypto.type.split("-").splice(1, 2).join(" ")
+          : item.crypto.type,
         walletType:
           item?.cryptoWalletTransaction?.length > 0 &&
           item?.cryptoWalletTransaction[0].type === "send"
@@ -132,7 +127,6 @@ const Dashboard = ({ ...props }) => {
   };
 
   const handlePageSize = (e) => {
-    console.log(e.target.value);
     setPageSize(e.target.value);
   };
 
@@ -175,7 +169,7 @@ const Dashboard = ({ ...props }) => {
                   )}
                   {width > 500 && (
                     <Pagination
-                      data={paginatedData}
+                      data={paginated}
                       nextPage={handleNextPage}
                       prevPage={handlePrevPage}
                       currPage={currPage}

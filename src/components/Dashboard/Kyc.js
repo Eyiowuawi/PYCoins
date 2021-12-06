@@ -43,7 +43,7 @@ const Kyc = ({ close }) => {
       setSelectedForm(voterForm);
     }
     setValidForm(false);
-  }, [selectForm]);
+  }, [selectForm]); // eslint-disable-line
 
   const { mutate, isLoading } = useMutation(
     "verifyuser",
@@ -83,10 +83,8 @@ const Kyc = ({ close }) => {
     for (let key in companyForm) {
       data[key] = companyForm[key].value;
     }
-    console.log(data);
     companyMutate(data);
   };
-  console.log(form);
 
   return (
     <Modal close={close}>

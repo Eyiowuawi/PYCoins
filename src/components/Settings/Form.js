@@ -12,6 +12,7 @@ const SettingsForm = ({
   image,
   showPassword,
   elementType,
+  readonly,
 }) => {
   // console.lgo;
   let inputElement;
@@ -30,6 +31,7 @@ const SettingsForm = ({
                 onChange={onchange}
                 onBlur={onblur}
                 style={{ textTransform: "capitalize" }}
+                readOnly={readonly}
                 // valid={valid}
               />
               {image && (
@@ -58,6 +60,9 @@ const SettingsForm = ({
             dropdownClass="dropdown-phone"
             onChange={onchange}
             onBlur={onblur}
+            inputProps={{
+              readOnly: true,
+            }}
           />
         </div>
       );

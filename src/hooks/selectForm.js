@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { required } from "./../utils/validations";
 
 const useSelectForm = () => {

@@ -23,6 +23,7 @@ const useGeneralForm = (profile) => {
       validation: required,
       blur: false,
       initialValue: profile?.user?.firstName || "",
+      readonly: profile?.user?.isUserVerified ? true : false,
     },
     lastName: {
       value: profile?.user?.lastName || "",
@@ -35,6 +36,7 @@ const useGeneralForm = (profile) => {
       validation: required,
       blur: false,
       initialValue: profile?.user?.lastName || "",
+      readonly: profile?.user?.isUserVerified ? true : false,
     },
     phoneNumber: {
       value: profile?.user?.phoneNumber || "",
@@ -48,6 +50,7 @@ const useGeneralForm = (profile) => {
       blur: false,
       initialValue: profile?.user?.phoneNumber || "",
       info: "Number must start with a +234",
+      readonly: profile?.user?.isUserVerified ? true : false,
     },
   });
   const [personalFormValid, setPersonalFormValid] = useState(true);
@@ -63,6 +66,7 @@ const useGeneralForm = (profile) => {
       validation: required,
       blur: false,
       initialValue: profile?.business?.businessName,
+      readonly: profile?.business?.isBusinessVerified ? true : false,
     },
     businessEmail: {
       value: profile?.business?.businessEmail,
@@ -73,6 +77,7 @@ const useGeneralForm = (profile) => {
       validation: emailCheck,
       blur: false,
       initialValue: profile?.business?.businessEmail,
+      readonly: profile?.business?.isBusinessVerified ? true : false,
     },
     businessAddress: {
       value: profile?.business?.businessAddress,
@@ -85,6 +90,7 @@ const useGeneralForm = (profile) => {
       required: true,
       validation: required,
       initialValue: profile?.business?.businessAddress,
+      readonly: profile?.business?.isBusinessVerified ? true : false,
     },
   });
 

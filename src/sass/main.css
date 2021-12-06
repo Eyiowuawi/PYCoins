@@ -444,6 +444,16 @@ input[type="date"]:focus::-webkit-datetime-edit {
   outline: none;
 }
 
+.form_input:-moz-read-only, .form_textarea:-moz-read-only, .form_upload-label:-moz-read-only {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.form_input:read-only, .form_textarea:read-only, .form_upload-label:read-only {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
 .form_select {
   background-color: transparent;
   -webkit-appearance: none !important;
@@ -2576,6 +2586,16 @@ input[type="date"]:focus::-webkit-datetime-edit {
   border-color: "#e5e9f2";
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
+}
+
+.input-phone:-moz-read-only {
+  background-color: #f5f5f5 !important;
+  cursor: not-allowed;
+}
+
+.input-phone:read-only {
+  background-color: #f5f5f5 !important;
+  cursor: not-allowed;
 }
 
 .button-phone {

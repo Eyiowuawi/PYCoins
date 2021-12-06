@@ -17,8 +17,6 @@ import { useGetWalletTransactions } from "../../query/getWalletTransactions";
 import { useGetWalletBalance } from "../../query/getWalletBalance";
 import WithLoadingComponent from "./../../hoc/withLoading";
 import { useGetStaticAddress } from "./../../query/getStaticAddress";
-import { transactions } from "../../constants/index";
-import { formatTransactions } from "./../../utils/formatTransaction";
 import { dateFormatter } from "./../../utils/dateFormatter";
 
 const cryptoTableHead = ["TRANSACTION", "AMOUNT", "DATE", "STATUS"];
@@ -35,14 +33,16 @@ const CryptoDetails = () => {
   const [show, setShow] = useState(false);
   const [fund, setFund] = useState(false);
   const [withdraw, setWithdraw] = useState(false);
-  const [width, setWidth] = useWindowWidth();
-  const [bank, setBank] = useState([]);
+  const [width] = useWindowWidth();
+  const [bank] = useState([]);
   const [selected, setSelected] = useState({});
 
   const { search } = useLocation();
   const currency = search.substring(10);
 
-  const crypto = cryptos.find((item) => item.slug === currency);
+  const crypto = useMemo(() => {
+    return cryptos.find((item) => item.slug === currency);
+  }, [currency]);
 
   const { isFetching, data: transactions } = useGetWalletTransactions(
     crypto.slug
@@ -120,7 +120,7 @@ const CryptoDetails = () => {
                     tableHead={
                       tableType === "crypto" ? cryptoTableHead : fiatTableHead
                     }
-                    currency={currency}
+                    currency={crypto.name}
                   />
                 )}
                 {width <= 500 && (

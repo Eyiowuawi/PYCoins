@@ -1,5 +1,4 @@
 import { useState, useContext, useMemo } from "react";
-import axios from "axios";
 
 import Accounts from "../Account";
 import Confirmation from "./Confirmation";
@@ -27,11 +26,11 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
 
   const isBankAdded = useMemo(() => {
     return settlements.find((item) => item.key === "bank");
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const crypto = useMemo(() => {
     return cryptos.filter((item) => item.slug === currency);
-  }, []);
+  }, []); // eslint-disable-line
 
   const { data: rateData } = useGetNgnRate(environment);
 

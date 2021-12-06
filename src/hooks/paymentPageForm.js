@@ -1,10 +1,5 @@
 import { useState, useEffect } from "react";
-import { addComma } from "../utils/numberWithComma";
-import {
-  validateFormmatedWithdraw,
-  required,
-  emailCheck,
-} from "../utils/validations";
+import { required, emailCheck } from "../utils/validations";
 
 const usePaymentPageForm = (data) => {
   const [paymentPageForm, setPaymentPageForm] = useState({

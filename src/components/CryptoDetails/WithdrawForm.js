@@ -58,7 +58,7 @@ const WithdrawForm = ({
       const amount = extractNumber(withdrawForm.amount.value) / rates.NGN;
       setAmount(amount);
     }
-  }, [rates, withdrawForm.amount.value]);
+  }, [rates, withdrawForm.amount.value]); // eslint-disable-line
 
   useEffect(() => {
     if (isBank) {
@@ -87,7 +87,7 @@ const WithdrawForm = ({
         setValidForm(true);
       }
     }
-  }, [withdrawForm.amount.value, amount, balance]);
+  }, [withdrawForm.amount.value, amount, balance]); // eslint-disable-line
 
   const handleSubmit = (evt) => {
     withdraw(evt, amount, rates);

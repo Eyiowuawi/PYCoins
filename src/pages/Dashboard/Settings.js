@@ -1,13 +1,7 @@
-import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { useContext, useMemo } from "react";
 import { renderRoutes, matchRoutes } from "react-router-config";
 
 import SettingsNav from "../../components/Settings/NavLink";
-
-import { AppContext } from "./../../context/index";
-
-const navs = ["general", "currency", "settlements", "api-keys-webhooks"];
 
 const nav = [
   { id: 1, tab: "/general", name: "General", active: true },

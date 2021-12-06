@@ -60,7 +60,7 @@ const Settlements = () => {
       });
     }
     return formmated;
-  });
+  }, [settlements]);
 
   const crypto = useMemo(() => {
     return cryptos.filter(

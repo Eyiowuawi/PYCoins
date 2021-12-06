@@ -1,4 +1,4 @@
-import { cryptoBaseUrl, base } from "../constants/baseUrl";
+import { cryptoBaseUrl } from "../constants/baseUrl";
 import { toast } from "react-toastify";
 
 export const getCryptos = async () => {
