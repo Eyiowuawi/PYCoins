@@ -42,7 +42,7 @@ const Pay = ({ goBack, data, event }) => {
       <div className="paymentpage_pay">
         <p className="title title-grey ta">
           To Pay, open your crypto wallet app and send the{" "}
-          <strong> {data?.crypto.symbol}</strong> amount to the wallet address
+          <strong> {data?.crypto.name}</strong> amount to the wallet address
           below. It will be automatically received after payment has been
           confirmed.
         </p>
