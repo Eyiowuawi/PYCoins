@@ -14,13 +14,12 @@ const SettlementInfo = ({
   crypto,
   bank_name,
 }) => {
-  // console.log(crypto);
   const [name, setName] = useState("");
-  const [deleteDate, setDeleteData] = useState({});
+  const [deleteData, setDeleteData] = useState({});
   const [showDelete, setShowDelete] = useState(false);
 
   const { mutate, isLoading: deleteLoading } =
-    useDeleteCryptoSettlement(deleteDate);
+    useDeleteCryptoSettlement(deleteData);
 
   const handleShowEdit = (value) => {
     setName(value);
@@ -98,13 +97,11 @@ const SettlementInfo = ({
       )}
 
       {showDelete && (
-        <Modal close={() => setShowDelete(false)}>
-          <Delete
-            close={() => setShowDelete(false)}
-            mutate={mutate}
-            isLoading={deleteLoading}
-          />
-        </Modal>
+        <Delete
+          close={() => setShowDelete(false)}
+          mutate={mutate}
+          isLoading={deleteLoading}
+        />
       )}
     </>
   );

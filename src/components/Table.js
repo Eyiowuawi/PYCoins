@@ -46,13 +46,12 @@ const Table = ({ data, onclick, tableHead, currency }) => {
               <td>
                 <span
                   className={
-                    item.status === "Failed"
+                    item.status === "Failed" || item.status === "declined"
                       ? "failed"
-                      : item.status === "pending"
+                      : item.status === "pending" || item.status === "pending"
                       ? "pending"
-                      : item.status === "successful"
-                      ? "success"
-                      : item.status === "confirmed"
+                      : item.status === "successful" ||
+                        item.status === "confirmed"
                       ? "success"
                       : null
                   }

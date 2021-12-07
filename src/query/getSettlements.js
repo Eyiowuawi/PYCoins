@@ -6,7 +6,7 @@ import { useContext } from "react";
 export const useGetSettlements = () => {
   const { saveSettlements } = useContext(AppContext);
   return useQuery("getsettlement", () => getSettlements(), {
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
     retry: false,
     onSuccess: (data) => saveSettlements(data),
   });

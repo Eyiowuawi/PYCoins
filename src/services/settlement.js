@@ -19,7 +19,9 @@ export const addCryptoSettlement = async (details) => {
 };
 export const deleteCryptoSettlement = async (details) => {
   try {
-    const { data } = await userBaseUrl.post("/settlement/preference", details);
+    const { data } = await userBaseUrl.delete("/settlement/preference", {
+      data: details,
+    });
     return data.message;
   } catch (error) {
     throw new Error("Error Processing your request");

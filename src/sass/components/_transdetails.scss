@@ -30,6 +30,10 @@
     background-color: $bg-color-success;
   }
 
+  p[type="declined"] {
+    color: $color-failed;
+    background-color: $bg-color-failed;
+  }
   p[type="pending"] {
     color: $color-pending;
     background-color: $bg-color-pending;

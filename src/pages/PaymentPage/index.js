@@ -49,8 +49,8 @@ const PaymentPage = ({ history }) => {
       function handlePermission(permission) {
         // set the button to shown or hidden, depending on what the user answers
         if (
-          window.Notification.permission === "denied" ||
-          window.Notification.permission === "default"
+          Notification.permission === "denied" ||
+          Notification.permission === "default"
         ) {
           toast.error("Please allow notifications to continue");
         } else {
@@ -63,11 +63,11 @@ const PaymentPage = ({ history }) => {
         toast.error("This browser does not support notifications.");
       } else {
         if (checkNotificationPromise()) {
-          window.Notification.requestPermission().then((permission) => {
+          Notification.requestPermission().then((permission) => {
             handlePermission(permission);
           });
         } else {
-          window.Notification.requestPermission(function (permission) {
+          Notification.requestPermission(function (permission) {
             handlePermission(permission);
           });
         }
@@ -75,7 +75,7 @@ const PaymentPage = ({ history }) => {
     }
     function checkNotificationPromise() {
       try {
-        window.Notification.requestPermission().then();
+        Notification.requestPermission().then();
       } catch (e) {
         return false;
       }

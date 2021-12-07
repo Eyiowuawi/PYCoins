@@ -71,7 +71,7 @@ export const cryptos = [
     slug: "usdt-eth",
     rate: "USDT",
     symbol: "USDT_ETH",
-    type: "ETH-WUSDT(ERC20)",
+    type: "USDT_ETH",
   },
   {
     id: 5,

@@ -2,7 +2,6 @@ import Sent from "../assets/sent.svg";
 import Received from "../assets/received.svg";
 
 const TableResponsive = ({ data, onclick, currency }) => {
-  console.log(data);
   return (
     <div className="tableresponsive">
       {data

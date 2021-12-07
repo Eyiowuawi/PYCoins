@@ -1214,6 +1214,11 @@ input[type="date"]:focus::-webkit-datetime-edit {
   background-color: #deffe5;
 }
 
+.transdetails p[type="declined"] {
+  color: #cc4945;
+  background-color: #fff3f3;
+}
+
 .transdetails p[type="pending"] {
   color: #cc9600;
   background-color: #fffade;

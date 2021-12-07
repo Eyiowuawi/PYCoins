@@ -61,7 +61,6 @@ const Settlements = () => {
     }
     return formmated;
   }, [settlements]);
-  console.log(formmatedSettlements);
 
   const crypto = useMemo(() => {
     return cryptos.filter(
