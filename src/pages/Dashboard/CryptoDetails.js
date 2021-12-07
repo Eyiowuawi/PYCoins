@@ -127,7 +127,7 @@ const CryptoDetails = () => {
                   <TableResponsive
                     data={updateTable}
                     onclick={() => setShow(true)}
-                    currency={currency}
+                    currency={crypto.name}
                   />
                 )}
               </>

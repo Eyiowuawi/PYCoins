@@ -1,8 +1,10 @@
-import { Edit } from "./../../icons/index";
+import { Edit, Delete as DeleteIcon } from "./../../icons/index";
 import Modal from "./../UI/Modal";
 import { useState } from "react";
 import CryptoForm from "../Popup/CryptoForm";
 import Bank from "../Popup/Bank";
+import Delete from "../UI/Delete";
+import { useDeleteCryptoSettlement } from "../../query/deleteCryptoSettlement";
 
 const SettlementInfo = ({
   wallet_slug,
@@ -12,10 +14,25 @@ const SettlementInfo = ({
   crypto,
   bank_name,
 }) => {
+  // console.log(crypto);
   const [name, setName] = useState("");
+  const [deleteDate, setDeleteData] = useState({});
+  const [showDelete, setShowDelete] = useState(false);
+
+  const { mutate, isLoading: deleteLoading } =
+    useDeleteCryptoSettlement(deleteDate);
 
   const handleShowEdit = (value) => {
     setName(value);
+  };
+
+  const handleDelete = (symbol) => {
+    const data = {
+      type: symbol !== "bank" ? "crypto" : "bank",
+    };
+    if (symbol !== "bank") data["wallet_symbol"] = symbol;
+    setDeleteData(data);
+    setShowDelete(true);
   };
   return (
     <>
@@ -42,11 +59,19 @@ const SettlementInfo = ({
             <p className="title title-black">{bank_name}</p>
           </div>
         )}
-        <div
-          className="settlements_info-icon"
-          onClick={() => handleShowEdit(wallet_slug || "bank")}
-        >
-          <Edit fill="#48D189" />
+        <div className="settlements_info-icon">
+          <div
+            className="settlements_info-icon-item"
+            onClick={() => handleShowEdit(wallet_slug || "bank")}
+          >
+            <Edit fill="#48D189" />
+          </div>
+          <div
+            className="settlements_info-icon-item"
+            onClick={() => handleDelete(crypto?.type || "bank")}
+          >
+            <DeleteIcon fill="#48D189" />
+          </div>
         </div>
       </div>
       {name !== "" && (
@@ -69,6 +94,16 @@ const SettlementInfo = ({
               editing={true}
             />
           )}
+        </Modal>
+      )}
+
+      {showDelete && (
+        <Modal close={() => setShowDelete(false)}>
+          <Delete
+            close={() => setShowDelete(false)}
+            mutate={mutate}
+            isLoading={deleteLoading}
+          />
         </Modal>
       )}
     </>

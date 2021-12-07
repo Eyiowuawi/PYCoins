@@ -51,6 +51,7 @@ export const cryptos = [
     slug: "bitcoin",
     rate: "BTC",
     symbol: "BTC",
+    type: "BTC",
   },
   {
     id: 3,
@@ -60,6 +61,7 @@ export const cryptos = [
     slug: "ethereum",
     rate: "ETH",
     symbol: "ETH",
+    type: "ETH",
   },
   {
     id: 4,
@@ -69,6 +71,7 @@ export const cryptos = [
     slug: "usdt-eth",
     rate: "USDT",
     symbol: "USDT_ETH",
+    type: "ETH-WUSDT(ERC20)",
   },
   {
     id: 5,
@@ -78,5 +81,6 @@ export const cryptos = [
     slug: "usdt-trx",
     rate: "USDT",
     symbol: "USDT_TRC20",
+    type: "USDT_TRX",
   },
 ];

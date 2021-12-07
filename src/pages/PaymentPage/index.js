@@ -43,7 +43,6 @@ const PaymentPage = ({ history }) => {
   const { data: rates } = useGetRates();
 
   const [show, setShow] = useState(false);
-  console.log(Notification.permission);
   useEffect(() => {
     function askNotificationPermission() {
       // function to actually ask the permissions

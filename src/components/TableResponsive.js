@@ -28,7 +28,7 @@ const TableResponsive = ({ data, onclick, currency }) => {
               {item.email && <p className="td"> {item.email} </p>}
               {item.type && item.type === "send" ? (
                 <span className="td">Sent {currency}</span>
-              ) : item.type && item.type === "received" ? (
+              ) : item.type && item.type === "deposit" ? (
                 <span className="td">Received {currency}</span>
               ) : (
                 ""
@@ -46,9 +46,11 @@ const TableResponsive = ({ data, onclick, currency }) => {
             <div className="tableresponsive_amount">
               <p
                 className={
-                  item.status === "Failed"
+                  item.status === "Failed" ||
+                  item.status === "failed" ||
+                  item.status === "declined"
                     ? "failed"
-                    : item.status === "Pending"
+                    : item.status === "Pending" || item.status === "pending"
                     ? "pending"
                     : "success"
                 }

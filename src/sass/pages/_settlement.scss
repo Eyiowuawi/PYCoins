@@ -80,13 +80,15 @@
       position: absolute;
       right: 30px;
       top: 30px;
-      cursor: pointer;
+      // cursor: pointer;
+      @include flex(row, space-between, center);
+
+      &-item {
+        cursor: pointer;
+        &:first-child {
+          margin-right: 3rem;
+        }
+      }
     }
-
-    // .address {
-    //   // width: 100%;
-    //   overflow-x: auto;
-
-    // }
   }
 }

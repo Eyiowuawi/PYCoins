@@ -17,6 +17,14 @@ export const addCryptoSettlement = async (details) => {
     throw new Error("Error Processing your request");
   }
 };
+export const deleteCryptoSettlement = async (details) => {
+  try {
+    const { data } = await userBaseUrl.post("/settlement/preference", details);
+    return data.message;
+  } catch (error) {
+    throw new Error("Error Processing your request");
+  }
+};
 
 export const addBankSettlement = async (details) => {
   try {

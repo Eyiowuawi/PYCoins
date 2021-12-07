@@ -3781,7 +3781,27 @@ input[type="date"]:focus::-webkit-datetime-edit {
   position: absolute;
   right: 30px;
   top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.settlements_info-icon-item {
   cursor: pointer;
+}
+
+.settlements_info-icon-item:first-child {
+  margin-right: 3rem;
 }
 
 .currency {
