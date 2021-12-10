@@ -20,8 +20,8 @@ const Login = ({ history }) => {
   const { mutate, isLoading } = useMutation((data) => loginUser(data), {
     mutationKey: "login",
     onSuccess: () => {
-      queryClient.cache.reset();
       history.push("/");
+      queryClient.cache.reset();
     },
     onError: (error) => {
       if (error?.message === "Please verify your email first!") setVerify(true);
