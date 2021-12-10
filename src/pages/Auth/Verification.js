@@ -13,10 +13,16 @@ import { resendEmailVerify } from "../../services/auth";
 
 import formGenerator from "./../../utils/formGenerator";
 
+// const VerifyEmail = () => {
+//   const { isError } = useVerifyEmail(token, history);
+
+//   return null;
+// };
+
 const Verification = ({ history }) => {
   const { search } = useLocation();
   const token = search.substring(20);
-
+  console.log(token);
   const [
     forgotpasswordForm,
     setForgotPasswordForm,
@@ -28,7 +34,6 @@ const Verification = ({ history }) => {
     setForgotPasswordForm,
     setForgotFormValid
   );
-  const { isError } = useVerifyEmail(token, history);
   const { mutate, isLoading } = useMutation((data) => resendEmailVerify(data));
 
   const handleSubmit = (evt) => {
@@ -39,7 +44,42 @@ const Verification = ({ history }) => {
     mutate(data);
   };
 
-  if (isError) {
+  const VerifyEmail = () => {
+    const { isError } = useVerifyEmail(token, history);
+    if (isError) {
+      return (
+        <div className="auth_form">
+          <Helmet>
+            <title>Verify Email - Payercoins</title>
+          </Helmet>
+          <div className="auth_form-container ta">
+            <h3 className=" mb-small title title-black">Resend Email</h3>
+            <form onSubmit={handleSubmit}>
+              {form}
+              <Button
+                type="submit"
+                isLoading={isLoading}
+                disabled={forgotFormValid}
+                bg={"button_primary"}
+              >
+                Resend Email{" "}
+              </Button>
+            </form>
+            <AuthFooter
+              title={"Don't have an account?"}
+              link={"/auth/create"}
+              linkTitle={"Login"}
+            />
+          </div>
+        </div>
+      );
+    }
+    return <div className="ta">Verifying Your Account...</div>;
+  };
+
+  if (token !== "") {
+    return <VerifyEmail />;
+  } else {
     return (
       <div className="auth_form">
         <Helmet>
@@ -67,8 +107,6 @@ const Verification = ({ history }) => {
       </div>
     );
   }
-
-  return <div className="ta">Verifying Your Account...</div>;
 };
 
 export default Verification;

@@ -89,6 +89,7 @@ const Dashboard = ({ ...props }) => {
       count: homeData?.count,
       page: homeData?.page + 1,
       noOfPages: homeData?.count / +homeData?.perPage,
+      pageSize,
     };
   }, [homeData]);
 
@@ -118,6 +119,7 @@ const Dashboard = ({ ...props }) => {
       };
     });
   }, [homeData]);
+  console.log(formattedTransactions);
 
   const handlePrevPage = () => {
     setCurrPage(currPage - 1);
@@ -152,7 +154,7 @@ const Dashboard = ({ ...props }) => {
             <div className="home_empty">
               <p className="title title-small mb-small">Recent Transactions </p>
               {formattedTransactions?.length < 1 && <LandingEmpty />}
-              {formattedTransactions?.length > 1 && (
+              {formattedTransactions?.length > 0 && (
                 <div className="home_table">
                   {width > 500 && (
                     <Table
@@ -167,15 +169,13 @@ const Dashboard = ({ ...props }) => {
                       onclick={() => {}}
                     />
                   )}
-                  {width > 500 && (
-                    <Pagination
-                      data={paginated}
-                      nextPage={handleNextPage}
-                      prevPage={handlePrevPage}
-                      currPage={currPage}
-                      handlePageSize={handlePageSize}
-                    />
-                  )}
+                  <Pagination
+                    data={paginated}
+                    nextPage={handleNextPage}
+                    prevPage={handlePrevPage}
+                    currPage={currPage}
+                    handlePageSize={handlePageSize}
+                  />
                 </div>
               )}
             </div>

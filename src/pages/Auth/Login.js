@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { Helmet } from "react-helmet";
 
 import Button from "../../components/UI/Button";
@@ -12,12 +13,24 @@ import { loginUser } from "../../services/auth";
 import formGenerator from "../../utils/formGenerator";
 
 const Login = ({ history }) => {
+  const [verify, setVerify] = useState(false);
   const [loginForm, setLoginForm, loginFormValid, setLoginFormValid] =
     useLoginForm();
-  const { mutate, isLoading } = useMutation((data) => loginUser(data), {
-    mutationKey: "login",
-    onSuccess: () => history.push("/"),
-  });
+  const queryClient = useQueryClient();
+  const { mutate, isLoading, error, isError } = useMutation(
+    (data) => loginUser(data),
+    {
+      mutationKey: "login",
+      onSuccess: () => {
+        queryClient.cache.reset();
+        history.push("/");
+      },
+      onError: (error) => {
+        if (error?.message === "Please verify your email first!")
+          setVerify(true);
+      },
+    }
+  );
 
   const form = formGenerator(loginForm, setLoginForm, setLoginFormValid);
 
@@ -39,6 +52,11 @@ const Login = ({ history }) => {
         <p className="ta mb-small title title-grey">
           Enter your email address and password to continue.
         </p>
+        {verify && (
+          <Link to="/auth/email/verify" className="link ta mt-small mb-small">
+            Didn't get Verification Link
+          </Link>
+        )}
         <form onSubmit={handleSubmit}>
           {form}
           <Button

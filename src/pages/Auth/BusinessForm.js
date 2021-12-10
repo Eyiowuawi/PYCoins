@@ -107,5 +107,5 @@ const BusinessForm = () => {
   );
 };
 
-export default withRegistrationType(BusinessForm);
-// export default BusinessForm;
+// export default withRegistrationType(BusinessForm);
+export default BusinessForm;

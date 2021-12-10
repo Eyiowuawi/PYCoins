@@ -38,7 +38,12 @@ const TransactionsDetails = ({ close, details, selectedCrypto }) => {
           {details?.uuid && (
             <div className="transdetails_item">
               <p className="title title-grey">Transaction ID</p>
-              <p className="title title-grey">{details?.uuid}</p>
+              <p
+                className="title title-grey"
+                style={{ wordBreak: "break-all" }}
+              >
+                {details?.uuid}
+              </p>
             </div>
           )}
           <div className="transdetails_item">

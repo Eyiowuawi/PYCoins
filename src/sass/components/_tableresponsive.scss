@@ -12,6 +12,7 @@
     @include flex(row, flex-start, center);
 
     margin-bottom: 3rem;
+    gap: 1rem;
 
     .name {
       // color: red;

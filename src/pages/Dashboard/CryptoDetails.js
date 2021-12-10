@@ -126,7 +126,7 @@ const CryptoDetails = () => {
                 {width <= 500 && (
                   <TableResponsive
                     data={updateTable}
-                    onclick={() => setShow(true)}
+                    onclick={selectedTransaction}
                     currency={crypto.name}
                   />
                 )}

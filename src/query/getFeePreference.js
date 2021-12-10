@@ -3,7 +3,7 @@ import { getFeePreference } from "../services/fee";
 
 export const useGetFeePreference = () => {
   return useQuery("getfeepreference", () => getFeePreference(), {
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
     retry: false,
   });
 };

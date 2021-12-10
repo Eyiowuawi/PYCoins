@@ -4,6 +4,6 @@ import { getUserPaymentLink } from "../services/userPaymentLink";
 export const useGetUserPaymentLink = (id) => {
   return useQuery("getuserpaymentlink", () => getUserPaymentLink(id), {
     refetchOnWindowFocus: false,
-    retry: 3,
+    retry: false,
   });
 };

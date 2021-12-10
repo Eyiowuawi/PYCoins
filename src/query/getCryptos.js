@@ -7,13 +7,13 @@ export const useGetUserCryptos = () => {
       queryKey: ["getusercrypto", 1],
       queryFn: () => getCryptos(),
       refetchOnWindowFocus: false,
-      retry: 2,
+      retry: false,
     },
     {
       queryKey: ["getusercrypto", 2],
       queryFn: () => userAcceptedWallet(),
       refetchOnWindowFocus: false,
-      retry: 2,
+      retry: false,
     },
   ]);
 };

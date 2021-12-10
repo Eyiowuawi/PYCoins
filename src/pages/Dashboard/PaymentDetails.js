@@ -207,6 +207,9 @@ const PaymentDetails = ({ history }) => {
           close={() => setShowDelete(false)}
           mutate={deleteMutate}
           isLoading={deleteLoading}
+          text=" Deleting this payment page means you will loose all the transaction
+          history attached to this payment page but your balance will still be
+          intact."
         />
       )}
     </>

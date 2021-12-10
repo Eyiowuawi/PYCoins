@@ -73,7 +73,7 @@ const Webhooks = () => {
             </ActionLabel>
           </div>
           {liveform}
-          <Button bg={"button_primary"}>Save Changes</Button>
+          {/* <Button bg={"button_primary"}>Save Changes</Button> */}
         </form>
       </div>
       <div className="mt-bg">
@@ -98,7 +98,7 @@ const Webhooks = () => {
             </ActionLabel>
           </div>
           {testform}
-          <Button bg={"button_primary"}>Save Changes</Button>
+          {/* <Button bg={"button_primary"}>Save Changes</Button> */}
         </form>
       </div>
     </div>

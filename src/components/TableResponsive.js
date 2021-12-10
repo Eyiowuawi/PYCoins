@@ -38,7 +38,7 @@ const TableResponsive = ({ data, onclick, currency }) => {
                 </p>
               )}
               <p className="td">
-                {parseFloat(item.amount).toFixed(6)}{" "}
+                ${parseFloat(item.amount).toFixed(6)}{" "}
                 {item.cryptoType && item.cryptoType}
               </p>
             </div>

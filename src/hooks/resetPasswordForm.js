@@ -16,7 +16,6 @@ const useResetPasswordForm = () => {
       validation: password,
       blur: false,
       required: true,
-      info: "Password must be alphanumeric, 8 characters long and must contain a  special character",
     },
     confirm: {
       value: "",
@@ -28,7 +27,6 @@ const useResetPasswordForm = () => {
       validation: confirmPassword,
       blur: false,
       required: true,
-      info: "Password must be alphanumeric, 8 characters long and must contain a  special character",
     },
   });
   const [resetPasswordValid, setResetPasswordValid] = useState(false);

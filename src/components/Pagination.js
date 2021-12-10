@@ -1,7 +1,14 @@
 import goleft from "../assets/go-left.svg";
 import goright from "../assets/go-right.svg";
 
-const Pagination = ({ data, currPage, prevPage, nextPage, handlePageSize }) => {
+const Pagination = ({
+  data,
+  currPage,
+  prevPage,
+  nextPage,
+  handlePageSize,
+  pageSize,
+}) => {
   return (
     <div className="pagination">
       <p>Rows per page:</p>
@@ -13,7 +20,8 @@ const Pagination = ({ data, currPage, prevPage, nextPage, handlePageSize }) => {
         <option value="50">50</option>
       </select>
       <p>
-        {(data?.page - 1) * 10 + 1} - {10 * data?.page} of {data?.count}
+        {(data?.page - 1) * 10 + 1} - {data?.pageSize * data?.page} of{" "}
+        {data?.count}
       </p>
       <div className="pagination_img">
         <button onClick={prevPage} disabled={currPage === 1 ? true : false}>

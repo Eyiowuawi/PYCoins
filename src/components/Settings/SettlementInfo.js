@@ -100,6 +100,7 @@ const SettlementInfo = ({
         <Delete
           close={() => setShowDelete(false)}
           mutate={mutate}
+          text="Are you sure you want to delete this settlement account"
           isLoading={deleteLoading}
         />
       )}

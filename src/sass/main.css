@@ -671,7 +671,7 @@ input[type="date"]:focus::-webkit-datetime-edit {
 /*media query*/
 .indicator {
   height: auto;
-  width: 80%;
+  width: 85%;
   margin: 3rem auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -688,6 +688,33 @@ input[type="date"]:focus::-webkit-datetime-edit {
           align-items: center;
 }
 
+.indicator_content {
+  gap: 1rem;
+}
+
+.indicator_content p {
+  margin-left: -35px;
+}
+
+.indicator_content:not(:last-child) {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: initial;
+      -ms-flex-pack: initial;
+          justify-content: initial;
+  -webkit-box-align: initial;
+      -ms-flex-align: initial;
+          align-items: initial;
+}
+
 .indicator_item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -702,11 +729,6 @@ input[type="date"]:focus::-webkit-datetime-edit {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.indicator_item:not(:last-child) {
-  -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
 }
 
 .indicator_item:first-child span:first-of-type span {
@@ -1187,6 +1209,7 @@ input[type="date"]:focus::-webkit-datetime-edit {
 
 .transdetails_item p:first-of-type {
   font-weight: 600 !important;
+  margin-right: 1rem;
 }
 
 .transdetails .status {
@@ -1363,6 +1386,7 @@ input[type="date"]:focus::-webkit-datetime-edit {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 3rem;
+  gap: 1rem;
 }
 
 .tableresponsive_item .name {

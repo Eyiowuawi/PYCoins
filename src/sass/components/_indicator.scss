@@ -2,15 +2,27 @@
   //   background-color: red;
   height: auto;
 
-  width: 80%;
+  width: 85%;
   margin: 3rem auto;
   @include flex(row, space-between, center);
+
+  &_content {
+    gap: 1rem;
+
+    p {
+      margin-left: -35px;
+    }
+
+    &:not(:last-child) {
+      flex-grow: 2;
+      @include flex(column, initial, initial);
+    }
+  }
 
   &_item {
     @include flex(row, flex-start, center);
 
     &:not(:last-child) {
-      flex-basis: 50%;
     }
 
     &:first-child span:first-of-type span {

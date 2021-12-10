@@ -54,7 +54,7 @@ const PaymentPage = ({ history }) => {
         ) {
           toast.error("Please allow notifications to continue");
         } else {
-          toast.success("Notifications are now enabled");
+          console.log("Notifications are now enabled");
         }
       }
 
@@ -150,6 +150,7 @@ const PaymentPage = ({ history }) => {
 
       channel.bind(`payment-${message.reference}`, function (details) {
         const { data } = details;
+        console.log(data);
         if (data.event === "PAYMENT_SEEN") {
           setEvent("Payment Seen");
           new Notification("Payercoins", {

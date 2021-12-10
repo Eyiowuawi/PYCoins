@@ -4,6 +4,6 @@ import { getRates } from "../services/crypto";
 export const useGetNgnRate = (environ) => {
   return useQuery("getngnrates", () => getRates(environ), {
     // refetchOnWindowFocus: false,
-    retry: false,
+    retry: 1,
   });
 };

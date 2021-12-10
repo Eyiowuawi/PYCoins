@@ -7,7 +7,7 @@ export const useGetPaymentTransactions = (id) => {
     () => getPaymentLinkTransactions(id),
     {
       refetchOnWindowFocus: false,
-      retry: 3,
+      retry: false,
     }
   );
 };
