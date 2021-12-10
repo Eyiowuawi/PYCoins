@@ -13,12 +13,6 @@ import { resendEmailVerify } from "../../services/auth";
 
 import formGenerator from "./../../utils/formGenerator";
 
-// const VerifyEmail = () => {
-//   const { isError } = useVerifyEmail(token, history);
-
-//   return null;
-// };
-
 const Verification = ({ history }) => {
   const { search } = useLocation();
   const token = search.substring(20);

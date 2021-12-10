@@ -17,20 +17,16 @@ const Login = ({ history }) => {
   const [loginForm, setLoginForm, loginFormValid, setLoginFormValid] =
     useLoginForm();
   const queryClient = useQueryClient();
-  const { mutate, isLoading, error, isError } = useMutation(
-    (data) => loginUser(data),
-    {
-      mutationKey: "login",
-      onSuccess: () => {
-        queryClient.cache.reset();
-        history.push("/");
-      },
-      onError: (error) => {
-        if (error?.message === "Please verify your email first!")
-          setVerify(true);
-      },
-    }
-  );
+  const { mutate, isLoading } = useMutation((data) => loginUser(data), {
+    mutationKey: "login",
+    onSuccess: () => {
+      queryClient.cache.reset();
+      history.push("/");
+    },
+    onError: (error) => {
+      if (error?.message === "Please verify your email first!") setVerify(true);
+    },
+  });
 
   const form = formGenerator(loginForm, setLoginForm, setLoginFormValid);
 

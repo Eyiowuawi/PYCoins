@@ -66,5 +66,4 @@ const PersonalForm = ({ history }) => {
   );
 };
 
-// export default withRegistrationType(PersonalForm);
-export default PersonalForm;
+export default withRegistrationType(PersonalForm);
