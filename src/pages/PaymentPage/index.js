@@ -173,7 +173,7 @@ const PaymentPage = ({ history }) => {
             (acc, value) => +acc + +value.amount,
             0
           );
-          if (totalAmount === +message.amount.amountInCrypto) {
+          if (totalAmount >= +message.amount.amountInCrypto) {
             setEvent("Payment Seen");
             new Notification("Payercoins", {
               body: "Your payment has been seen",
