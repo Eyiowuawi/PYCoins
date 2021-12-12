@@ -43,11 +43,12 @@ const PaymentPage = ({ history }) => {
   const { data: rates } = useGetRates();
 
   const [show, setShow] = useState(false);
+
+  const [amount, setAmount] = useState(0);
+  const [usd, setUsd] = useState(0);
   useEffect(() => {
     function askNotificationPermission() {
-      // function to actually ask the permissions
       function handlePermission(permission) {
-        // set the button to shown or hidden, depending on what the user answers
         if (
           Notification.permission === "denied" ||
           Notification.permission === "default"
@@ -142,8 +143,10 @@ const PaymentPage = ({ history }) => {
     isError: processLinkError,
   } = useMutation("processpagelink", (data) => processPaymentLink(data), {
     onSuccess: (message) => {
+      setAmount(+message.amount.amountInCrypto);
+      setUsd(+message.amount.amountInUsd);
       setEvent("Awaiting Payment");
-
+      console.log(message);
       const channel = pusher.subscribe(
         `payment-notification-${data?.paymentlink.environment}`
       );
@@ -166,11 +169,32 @@ const PaymentPage = ({ history }) => {
           toast.success("Your payment has been successfully completed");
         }
         if (data.event === "PAYMENT_INCOMPLETE") {
-          setEvent("Payment Incompleted");
-          new Notification("Payercoins", {
-            body: "You made an incomplete payment",
-          });
-          toast.info("You made an incomplete payment");
+          const totalAmount = data.paymentPageTransaction.transfers.reduce(
+            (acc, value) => +acc + +value.amount,
+            0
+          );
+          if (totalAmount === +message.amount.amountInCrypto) {
+            setEvent("Payment Seen");
+            new Notification("Payercoins", {
+              body: "Your payment has been seen",
+            });
+            toast.info("Your payment has been seen");
+          } else {
+            setAmount(
+              (prevState) => +message.amount.amountInCrypto - +totalAmount
+            );
+            setUsd(
+              (prevState) =>
+                data.paymentPageTransaction.rate *
+                (+message.amount.amountInCrypto - +totalAmount)
+            );
+            console.log(data.paymentPageTransaction.transfers);
+            setEvent("Payment Incompleted");
+            new Notification("Payercoins", {
+              body: "You made an incomplete payment",
+            });
+            toast.info("You made an incomplete payment");
+          }
         }
       });
     },
@@ -245,6 +269,8 @@ const PaymentPage = ({ history }) => {
           isLoading={processLinkLoading}
           isError={processLinkError}
           event={event}
+          amount={amount}
+          usd={usd}
         />
       )}
     </>

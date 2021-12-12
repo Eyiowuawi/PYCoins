@@ -23,15 +23,15 @@ const Details = ({ crypto, setFund, setWithdraw, balance }) => {
   return (
     <>
       <div className="cryptodetails_name">
-        <div type={crypto.name} className={"crypto_img"}>
-          <img src={crypto.img} alt={crypto.name} />
+        <div type={crypto?.name} className={"crypto_img"}>
+          <img src={crypto?.img} alt={crypto?.name} />
         </div>
-        <p className="title title-grey">{crypto.name}</p>
+        <p className="title title-grey">{crypto?.name}</p>
       </div>
       <p className="title title-grey mt-small">TOTAL BALANCE</p>
       {balance && (
         <p className="title title-grey mt-small">
-          {parseFloat(balance).toFixed(6)} {crypto.rate}
+          {parseFloat(balance).toFixed(6)} {crypto?.rate}
         </p>
       )}
       <div className="cryptodetails_btns">

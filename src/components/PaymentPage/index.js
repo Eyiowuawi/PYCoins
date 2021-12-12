@@ -14,14 +14,25 @@ const PaymentProcess = ({
   isLoading,
   isError,
   event,
+  amount,
+  usd,
 }) => {
   const handleClose = () => {
     close(false);
     setEvent("");
     window.location.reload();
   };
+
+  const handleIncompletePayment = () => {
+    setEvent("Awaiting Payment");
+  };
+
   return (
-    <Modal close={handleClose}>
+    <Modal
+      close={
+        event === "Payment Incompleted" ? handleIncompletePayment : handleClose
+      }
+    >
       <WithLoadingComponent isLoading={isLoading}>
         {event === "" && (
           <Accounts
@@ -34,6 +45,8 @@ const PaymentProcess = ({
         )}
         {(event === "Awaiting Payment" || event === "Payment Seen") && (
           <Pay
+            amount={amount}
+            usd={usd}
             event={event}
             data={processPageData}
             goBack={() => setEvent("")}

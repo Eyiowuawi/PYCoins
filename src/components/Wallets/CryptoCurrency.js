@@ -8,8 +8,7 @@ const Cryptocurrency = ({ wallets }) => {
       {wallets?.map((item) => (
         <Link
           to={{
-            pathname: "/wallet/crypto",
-            search: `?currency=${item.slug}`,
+            pathname: `/wallets/${item.slug}`,
           }}
           className="wallets_crypto-item"
           key={item.id}

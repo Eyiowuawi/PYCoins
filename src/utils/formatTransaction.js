@@ -10,6 +10,7 @@ export const formatTransactions = (data) => {
         date,
         amount: item.confirmedAmountInUsd,
         amountInCrypto: trans.amount,
+        status: item.status,
       });
     });
   });

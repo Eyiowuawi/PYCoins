@@ -61,7 +61,7 @@ const Login = ({ history }) => {
             bg={"button_primary"}
             type="submit"
           >
-            Sign In{" "}
+            Sign In
           </Button>
         </form>
         <Link to="/auth/forgotpassword" className="link ta mt-small">

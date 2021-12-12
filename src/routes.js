@@ -119,8 +119,8 @@ const routes = [
         key: "wallet",
       },
       {
-        path: "/wallet/:currency",
-        exact: true,
+        path: "/wallets/:slug",
+        // exact: true,
         component: CryptoDetails,
         key: "crypto-details",
       },

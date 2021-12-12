@@ -8,14 +8,16 @@ import handleCopy from "./../../utils/copyToClipboard";
 
 import QrcodeGenerator from "../QrCode";
 
-const Pay = ({ goBack, data, event }) => {
+const Pay = ({ goBack, data, event, amount, usd }) => {
   const [secs, setSecs] = useState(0);
   const [mins, setMins] = useState(10);
 
   useEffect(() => {
+    let timer;
     if (event === "Payment Seen") {
       handleCountdown();
     }
+    return () => clearInterval(timer);
   }, [event]);
 
   useEffect(() => {
@@ -53,10 +55,10 @@ const Pay = ({ goBack, data, event }) => {
           <div className="mb-small">
             <p className="title title-grey mb-smaller">AMOUNT</p>
             <ActionLabel
-              text={`${data?.amount.amountInCrypto} ${data?.crypto.name} (${
+              text={`${parseFloat(amount).toFixed(6)} ${data?.crypto.name} (${
                 data?.amount.currency.sign
-              }${parseFloat(data?.amount.amountInUsd).toFixed(2)})`}
-              onclick={() => handleCopy(data?.amount.amountInCrypto)}
+              }${parseFloat(usd).toFixed(2)})`}
+              onclick={() => handleCopy(amount)}
             >
               <Copy fill="#909198" />
             </ActionLabel>

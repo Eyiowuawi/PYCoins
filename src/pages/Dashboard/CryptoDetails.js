@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import TransactionsDetails from "./../../components/TransactionDetails";
@@ -28,7 +28,7 @@ const fiatTableHead = [
   "STATUS",
 ];
 
-const CryptoDetails = () => {
+const CryptoDetails = ({ history }) => {
   const [tableType, setTableType] = useState("crypto");
   const [show, setShow] = useState(false);
   const [fund, setFund] = useState(false);
@@ -37,17 +37,20 @@ const CryptoDetails = () => {
   const [bank] = useState([]);
   const [selected, setSelected] = useState({});
 
-  const { search } = useLocation();
-  const currency = search.substring(10);
+  const { slug } = useParams();
+  // const currency = search.substring(10);
 
   const crypto = useMemo(() => {
-    return cryptos.find((item) => item.slug === currency);
-  }, [currency]);
+    return cryptos.find((item) => item.slug === slug);
+  }, [slug]);
 
+  console.log(crypto);
+
+  if (!crypto) history.push("/");
   const { isFetching, data: transactions } = useGetWalletTransactions(
-    crypto.slug
+    crypto?.slug
   );
-  const { data: balance } = useGetWalletBalance(crypto.slug);
+  const { data: balance } = useGetWalletBalance(crypto?.slug);
 
   const formattedTransactions = useMemo(() => {
     return transactions?.map((item) => {
@@ -59,7 +62,7 @@ const CryptoDetails = () => {
     });
   }, [transactions]);
 
-  const { data: address } = useGetStaticAddress(crypto.slug);
+  const { data: address } = useGetStaticAddress(crypto?.slug);
 
   const updateTable = useMemo(() => {
     if (tableType === "crypto") {
@@ -79,7 +82,7 @@ const CryptoDetails = () => {
     <>
       <div className="cryptodetails">
         <Helmet>
-          <title>{currency} - Payercoins</title>
+          <title>{slug} - Payercoins</title>
         </Helmet>
         <Back to="/wallet" title="Wallet" />
         <Details
@@ -146,7 +149,7 @@ const CryptoDetails = () => {
       {fund && <FundWallet address={address} close={() => setFund(false)} />}
       {withdraw && (
         <WithDraw
-          currency={currency}
+          currency={slug}
           close={() => setWithdraw(false)}
           selectedCrypto={crypto}
           balance={balance}
