@@ -53,7 +53,7 @@ const PaymentPage = ({ history }) => {
           Notification.permission === "denied" ||
           Notification.permission === "default"
         ) {
-          toast.error("Please allow notifications to continue");
+          console.log("Please allow notifications to continue");
         } else {
           console.log("Notifications are now enabled");
         }
@@ -173,6 +173,8 @@ const PaymentPage = ({ history }) => {
             (acc, value) => +acc + +value.amount,
             0
           );
+          console.log(totalAmount)
+          console.log(+message.amount.amountInCrypto);
           if (totalAmount >= +message.amount.amountInCrypto) {
             setEvent("Payment Seen");
             new Notification("Payercoins", {
@@ -188,7 +190,6 @@ const PaymentPage = ({ history }) => {
                 data.paymentPageTransaction.rate *
                 (+message.amount.amountInCrypto - +totalAmount)
             );
-            console.log(data.paymentPageTransaction.transfers);
             setEvent("Payment Incompleted");
             new Notification("Payercoins", {
               body: "You made an incomplete payment",

@@ -10,7 +10,7 @@ import QrcodeGenerator from "../QrCode";
 
 const Pay = ({ goBack, data, event, amount, usd }) => {
   const [secs, setSecs] = useState(0);
-  const [mins, setMins] = useState(10);
+  const [mins, setMins] = useState(15);
 
   useEffect(() => {
     let timer;
