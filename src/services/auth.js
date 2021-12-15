@@ -20,7 +20,6 @@ export const loginUser = async (params) => {
     const { data } = await authBaseUrl.post("/login", params);
     saveToLocalStorage(data.data.token);
   } catch (error) {
-    console.log();
     // return error;how
     throw new Error(
       error.response.data.message || "Error processing your request"

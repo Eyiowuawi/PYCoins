@@ -1,10 +1,7 @@
+import serverConfig from "../env";
 export const addPaymentUrl = (data) => {
   return {
     ...data,
-    paymenturl: `${
-      process.env.REACT_APP_ENV === "dev"
-        ? process.env.REACT_APP_DEV_URL
-        : process.env.REACT_APP_PROD_URL
-    }/pay/${data.paymentSlug}`,
+    paymenturl: `${serverConfig.baseurl}/pay/${data.paymentSlug}`,
   };
 };

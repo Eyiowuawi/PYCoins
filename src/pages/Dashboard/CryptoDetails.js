@@ -44,8 +44,6 @@ const CryptoDetails = ({ history }) => {
     return cryptos.find((item) => item.slug === slug);
   }, [slug]);
 
-  console.log(crypto);
-
   if (!crypto) history.push("/");
   const { isFetching, data: transactions } = useGetWalletTransactions(
     crypto?.slug

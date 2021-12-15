@@ -1,7 +1,7 @@
 import Pusher from "pusher-js";
-
-const pusher = new Pusher(process.env.REACT_APP_PUSHER_APP_KEY, {
-  cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
+import serverConfig from "../env";
+const pusher = new Pusher(serverConfig.pusher.key, {
+  cluster: serverConfig.pusher.cluster,
 });
 
 pusher.connection.bind("connected", (data) => console.log(data));

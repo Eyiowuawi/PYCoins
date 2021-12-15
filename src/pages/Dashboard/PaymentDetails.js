@@ -87,7 +87,6 @@ const PaymentDetails = ({ history }) => {
     }
   }, [paymentData]);
 
-  console.log(paymentData);
   const updatedData = useMemo(() => {
     const updatedPaymentLink = data && addPaymentUrl(data?.paymentlink);
 

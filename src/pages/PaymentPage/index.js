@@ -146,14 +146,12 @@ const PaymentPage = ({ history }) => {
       setAmount(+message.amount.amountInCrypto);
       setUsd(+message.amount.amountInUsd);
       setEvent("Awaiting Payment");
-      console.log(message);
       const channel = pusher.subscribe(
         `payment-notification-${data?.paymentlink.environment}`
       );
 
       channel.bind(`payment-${message.reference}`, function (details) {
         const { data } = details;
-        console.log(data);
         if (data.event === "PAYMENT_SEEN") {
           setEvent("Payment Seen");
           new Notification("Payercoins", {
@@ -173,8 +171,6 @@ const PaymentPage = ({ history }) => {
             (acc, value) => +acc + +value.amount,
             0
           );
-          console.log(totalAmount)
-          console.log(+message.amount.amountInCrypto);
           if (totalAmount >= +message.amount.amountInCrypto) {
             setEvent("Payment Seen");
             new Notification("Payercoins", {

@@ -16,7 +16,6 @@ import formGenerator from "./../../utils/formGenerator";
 const Verification = ({ history }) => {
   const { search } = useLocation();
   const token = search.substring(20);
-  console.log(token);
   const [
     forgotpasswordForm,
     setForgotPasswordForm,

@@ -119,7 +119,6 @@ const Dashboard = ({ ...props }) => {
       };
     });
   }, [homeData]);
-  console.log(formattedTransactions);
 
   const handlePrevPage = () => {
     setCurrPage(currPage - 1);
