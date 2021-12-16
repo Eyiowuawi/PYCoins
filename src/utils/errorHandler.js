@@ -9,7 +9,14 @@ export const errorHandler = (error) => {
       error.response.data.message.includes("signature")
     ) {
       toast.error("Your session has expired. Please login again");
-      createAutoLogout();
+      localStorage.removeItem("token");
+      window.location.reload();
+    }
+    if (error.response.data.message === "This user no longer exist") {
+      console.log("YES");
+      localStorage.removeItem("token");
+      window.location.reload();
+      // createAutoLogout();
     }
     toast.error(error.response.data.message);
   }
