@@ -20,7 +20,7 @@ const Navigation = ({ close }) => {
         <NavItem close={close} to="/" exact title="Dashboard">
           <Home />
         </NavItem>
-        <NavItem close={close} to="/wallet" title="Wallet">
+        <NavItem close={close} to="/wallets" title="Wallet">
           <Wallet />
         </NavItem>
         <li className={"nav_item"} onClick={handleShow}>

@@ -9,7 +9,7 @@ const SettingsNav = ({ tab, name, active }) => {
         }}
         className={"nav-text"}
         activeClassName="settings_active"
-        exact
+        // exact
       >
         {name}
       </NavLink>

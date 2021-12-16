@@ -82,7 +82,7 @@ const CryptoDetails = ({ history }) => {
         <Helmet>
           <title>{slug} - Payercoins</title>
         </Helmet>
-        <Back to="/wallet" title="Wallet" />
+        <Back to="/wallets" title="Wallet" />
         <Details
           balance={balance}
           crypto={crypto}

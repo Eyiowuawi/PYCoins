@@ -113,7 +113,7 @@ const routes = [
         key: "dashboard-page",
       },
       {
-        path: "/wallet",
+        path: "/wallets",
         exact: true,
         component: Wallet,
         key: "wallet",
@@ -156,19 +156,19 @@ const routes = [
           },
           {
             path: "/settings/currency",
-            exact: true,
+            // exact: true,
             component: Currency,
             key: "settings-currency",
           },
           {
             path: "/settings/webhooks",
-            exact: true,
+            // exact: true,
             component: Webhooks,
             key: "settings-webhooks",
           },
           {
             path: "/settings/settlements",
-            exact: true,
+            // exact: true,
             component: Settlements,
             key: "settings-settlements",
           },

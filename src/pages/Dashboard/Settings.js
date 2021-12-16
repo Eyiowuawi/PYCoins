@@ -17,6 +17,7 @@ const nav = [
 
 const Settings = ({ isLoading, history, route, location }) => {
   const branch = matchRoutes(route.routes, location.pathname);
+  console.log(branch);
   if (branch.length < 1) history.push("/page-not-found");
 
   return (
