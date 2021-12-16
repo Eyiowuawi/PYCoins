@@ -1,7 +1,7 @@
 import { House } from "../icons";
 import Proceed from "../assets/proceed.svg";
 
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useParams } from "react-router-dom";
 import { RightArrow } from "./../icons/index";
 import { useMemo } from "react";
 import { cryptos as cryptoList } from "../constants/index";
