@@ -1,7 +1,7 @@
 import { House } from "../icons";
 import Proceed from "../assets/proceed.svg";
 
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useParams } from "react-router-dom";
 import { RightArrow } from "./../icons/index";
 import { useMemo } from "react";
 import { cryptos as cryptoList } from "../constants/index";
@@ -15,10 +15,10 @@ const Accounts = ({
   header,
   isBankAdded,
 }) => {
-  const { pathname, search } = useLocation();
+  const { slug } = useParams();
+
   const cryptoName = useMemo(() => {
-    const sliced = search.substring(10);
-    return cryptoList.find((item) => item.slug === sliced);
+    return cryptoList.find((item) => item.slug === slug);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

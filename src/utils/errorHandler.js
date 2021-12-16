@@ -16,7 +16,6 @@ export const errorHandler = (error) => {
       console.log("YES");
       localStorage.removeItem("token");
       window.location.reload();
-      // createAutoLogout();
     }
     toast.error(error.response.data.message);
   }

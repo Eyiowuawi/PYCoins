@@ -50,7 +50,7 @@ const Login = ({ history }) => {
         </p>
         {verify && (
           <Link to="/auth/email/verify" className="link ta mt-small mb-small">
-            Didn't get Verification Link
+            Didn't get Verification Link??
           </Link>
         )}
         <form onSubmit={handleSubmit}>
