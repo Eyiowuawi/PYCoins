@@ -6,7 +6,8 @@ export const errorHandler = (error) => {
   if (error.response && error.response.status) {
     if (
       error.response.data.message.includes("jwt") ||
-      error.response.data.message.includes("signature")
+      error.response.data.message.includes("signature") ||
+      error.response.data.message.includes("token")
     ) {
       toast.error("Your session has expired. Please login again");
       localStorage.removeItem("token");

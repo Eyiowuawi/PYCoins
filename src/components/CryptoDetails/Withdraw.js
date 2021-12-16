@@ -24,6 +24,8 @@ import { useGetNgnRate } from "../../query/getNgnRate";
 const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
   const { settlements, environment } = useContext(AppContext);
 
+  console.log(settlements);
+
   const isBankAdded = useMemo(() => {
     return settlements.find((item) => item.key === "bank");
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -84,8 +86,8 @@ const WithDraw = ({ currency, close, show, selectedCrypto, balance }) => {
       data["type"] = "fiat";
       data["amount"] = parseFloat(amount).toFixed(6);
       data["fiat_amount"] = extractNumber(formattedWithdrawalForm.amount.value);
-      data["wallet"] = selectedSettlement.wallet_slug;
-      data["walletName"] = selectedSettlement.key;
+      data["wallet"] = selectedCrypto.slug;
+      data["walletName"] = selectedCrypto.symbol;
       data["amount_in_usd"] =
         extractNumber(formattedWithdrawalForm.amount.value) / rateData;
     } else {

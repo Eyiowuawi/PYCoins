@@ -50,6 +50,8 @@ const CryptoDetails = ({ history }) => {
   );
   const { data: balance } = useGetWalletBalance(crypto?.slug);
 
+  console.log(transactions);
+
   const formattedTransactions = useMemo(() => {
     return transactions?.map((item) => {
       const date = dateFormatter(item.createdAt);
