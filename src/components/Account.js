@@ -19,7 +19,6 @@ const Accounts = ({
   const { slug } = useParams();
 
   const cryptoName = useMemo(() => {
-    const sliced = search.substring(10);
     return cryptoList.find((item) => item.slug === slug);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
