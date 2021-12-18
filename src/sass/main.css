@@ -2728,7 +2728,7 @@ input[type="date"]:focus::-webkit-datetime-edit {
   position: absolute;
   height: 1.6rem;
   width: 1.6rem;
-  content: "";
+  content: '';
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
@@ -2740,8 +2740,8 @@ input[type="date"]:focus::-webkit-datetime-edit {
 
 .create_form-group input:checked ~ label > span:first-of-type:after {
   opacity: 1;
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .verify {

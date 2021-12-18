@@ -1,40 +1,35 @@
-import { useState, useMemo } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { useState, useMemo } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
-import TransactionsDetails from "./../../components/TransactionDetails";
-import FundWallet from "../../components/CryptoDetails/Fund";
-import WithDraw from "../../components/CryptoDetails/Withdraw";
-import Back from "../../components/Back";
-import Table from "./../../components/Table";
-import TableResponsive from "./../../components/TableResponsive";
-import Details from "../../components/CryptoDetails/Details";
-import LandingEmpty from "./../../components/Dashboard/Empty";
+import TransactionsDetails from './../../components/TransactionDetails';
+import FundWallet from '../../components/CryptoDetails/Fund';
+import WithDraw from '../../components/CryptoDetails/Withdraw';
+import Back from '../../components/Back';
+import Table from './../../components/Table';
+import TableResponsive from './../../components/TableResponsive';
+import Details from '../../components/CryptoDetails/Details';
+import LandingEmpty from './../../components/Dashboard/Empty';
+import TransactionType from '../../components/TransactionType';
 
-import { cryptos } from "../../constants";
-import useWindowWidth from "./../../hooks/windowWidth";
-import { useGetWalletTransactions } from "../../query/getWalletTransactions";
-import { useGetWalletBalance } from "../../query/getWalletBalance";
-import WithLoadingComponent from "./../../hoc/withLoading";
-import { useGetStaticAddress } from "./../../query/getStaticAddress";
-import { dateFormatter } from "./../../utils/dateFormatter";
+import { cryptos } from '../../constants';
+import useWindowWidth from './../../hooks/windowWidth';
+import { useGetWalletTransactions } from '../../query/getWalletTransactions';
+import { useGetWalletBalance } from '../../query/getWalletBalance';
+import WithLoadingComponent from './../../hoc/withLoading';
+import { useGetStaticAddress } from './../../query/getStaticAddress';
+import { dateFormatter } from './../../utils/dateFormatter';
+import { useGetWalletFiatTransactions } from '../../query/getFiatTransations';
 
-const cryptoTableHead = ["TRANSACTION", "AMOUNT", "DATE", "STATUS"];
-const fiatTableHead = [
-  "ACCOUNT NUMBER",
-  "BANK NAME",
-  "AMOUNT",
-  "DATE",
-  "STATUS",
-];
+const cryptoTableHead = ['TRANSACTION', 'AMOUNT', 'DATE', 'STATUS'];
+const fiatTableHead = ['AMOUNT (FIAT)', 'AMOUNT (USD)', 'DATE', 'STATUS'];
 
 const CryptoDetails = ({ history }) => {
-  const [tableType, setTableType] = useState("crypto");
+  const [tableType, setTableType] = useState('crypto');
   const [show, setShow] = useState(false);
   const [fund, setFund] = useState(false);
   const [withdraw, setWithdraw] = useState(false);
   const [width] = useWindowWidth();
-  const [bank] = useState([]);
   const [selected, setSelected] = useState({});
 
   const { slug } = useParams();
@@ -44,33 +39,47 @@ const CryptoDetails = ({ history }) => {
     return cryptos.find((item) => item.slug === slug);
   }, [slug]);
 
-  if (!crypto) history.push("/");
-  const { isFetching, data: transactions } = useGetWalletTransactions(
+  if (!crypto) history.push('/');
+  const { isFetching, data: cryptoData } = useGetWalletTransactions(
     crypto?.slug
   );
+  const { data: fiatData } = useGetWalletFiatTransactions(crypto?.slug, 1, 100);
   const { data: balance } = useGetWalletBalance(crypto?.slug);
 
-  console.log(transactions);
-
   const formattedTransactions = useMemo(() => {
-    return transactions?.map((item) => {
+    return cryptoData?.transactions
+      .filter((item) => item.transfer !== null)
+      .map((item) => {
+        const date = dateFormatter(item.createdAt);
+        return {
+          ...item,
+          date,
+        };
+      });
+  }, [cryptoData]);
+
+  const formattedFiatTransactions = useMemo(() => {
+    return fiatData?.transactions.map((item) => {
       const date = dateFormatter(item.createdAt);
       return {
-        ...item,
+        fiat_amount: item.fiat_amount,
+        usd_amount: item.amount_usd,
         date,
+        status: item.status,
       };
     });
-  }, [transactions]);
+  }, [fiatData]);
 
   const { data: address } = useGetStaticAddress(crypto?.slug);
 
   const updateTable = useMemo(() => {
-    if (tableType === "crypto") {
+    if (tableType === 'crypto') {
       return formattedTransactions;
     } else {
-      return bank;
+      return formattedFiatTransactions;
     }
-  }, [tableType, formattedTransactions, bank]);
+  }, [tableType, formattedTransactions, formattedFiatTransactions]);
+  console.log(updateTable);
 
   const selectedTransaction = (id) => {
     const transaction = updateTable.find((item) => item.id === id);
@@ -94,24 +103,11 @@ const CryptoDetails = ({ history }) => {
         <div className="mt-md">
           <h3 className="title title-black mb-small">Transaction </h3>
 
-          <div className="cryptodetails_buttons">
-            <button
-              className={`nav-text ${
-                tableType === "crypto" && "settings_active"
-              }`}
-              onClick={() => setTableType("crypto")}
-            >
-              Crypto Transaction
-            </button>
-            <button
-              className={`nav-text ${
-                tableType === "fiat" && "settings_active"
-              }`}
-              onClick={() => setTableType("fiat")}
-            >
-              Fiat Transaction
-            </button>
-          </div>
+          <TransactionType
+            tableType={tableType}
+            setCrypto={() => setTableType('crypto')}
+            setFiat={() => setTableType('fiat')}
+          />
           <WithLoadingComponent isLoading={isFetching}>
             {updateTable?.length < 1 && <LandingEmpty />}
             {updateTable?.length > 0 && (
@@ -121,7 +117,7 @@ const CryptoDetails = ({ history }) => {
                     data={updateTable}
                     onclick={selectedTransaction}
                     tableHead={
-                      tableType === "crypto" ? cryptoTableHead : fiatTableHead
+                      tableType === 'crypto' ? cryptoTableHead : fiatTableHead
                     }
                     currency={crypto.name}
                   />
