@@ -1,10 +1,10 @@
-import Input from "../components/UI/Input";
+import Input from '../components/UI/Input';
 import {
   changeHandler,
   handleBlur,
   showPassword,
   removeItem,
-} from "./changeHandler";
+} from './changeHandler';
 
 const formGenerator = (formType, formFunc, validForm) => {
   const formArr = [];
@@ -28,7 +28,7 @@ const formGenerator = (formType, formFunc, validForm) => {
       svg={config.image}
       options={config.options}
       label={config.label}
-      onchange={(event) =>
+      onChange={(event) =>
         changeHandler(event, id, formType, formFunc, validForm)
       }
       onblur={(event) => handleBlur(id, formType, formFunc)}
