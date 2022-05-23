@@ -72,9 +72,11 @@
 
   &_actions {
     display: none;
+    // row
 
     @media (max-width: 500px) {
       display: block;
+
     }
   }
 }
